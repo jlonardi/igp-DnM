@@ -1,4 +1,12 @@
 bin/
+temp/
 src/Temp/
 src/Library/
 src/Obj
+src/*.sln
+src/*.csproj
+src/*.pidb
+src/*.suo
+src/*.user
+src/*.userprefs
+src/Assembly*.*
