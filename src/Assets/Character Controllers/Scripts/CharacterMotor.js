@@ -163,6 +163,8 @@ class CharacterMotorSliding {
 
 var sliding : CharacterMotorSliding = CharacterMotorSliding();
 
+var slopeLimit = 35.0;
+
 @System.NonSerialized
 var grounded : boolean = true;
 
@@ -584,7 +586,7 @@ function IsGrounded () {
 }
 
 function TooSteep () {
-	return (groundNormal.y <= Mathf.Cos(controller.slopeLimit * Mathf.Deg2Rad));
+	return (groundNormal.y <= Mathf.Cos(slopeLimit * Mathf.Deg2Rad));
 }
 
 function GetDirection () {
