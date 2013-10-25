@@ -25,7 +25,7 @@ public class MenuObjekt : MonoBehaviour
 		}
 		else
 		{
-			Application.LoadLevel(1);  // loads main level
+			Application.LoadLevel("MainScene");  // loads main level
 		}
 	}
 				
