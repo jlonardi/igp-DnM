@@ -384,6 +384,7 @@ GameObject:
   - 4: {fileID: 402282146}
   - 114: {fileID: 402282145}
   - 154: {fileID: 402282144}
+  - 114: {fileID: 402282147}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -399,7 +400,7 @@ TerrainCollider:
   m_GameObject: {fileID: 402282143}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 752618c768c37db4ab872e0c9f6784d6, type: 2}
   m_CreateTreeColliders: 1
 --- !u!114 &402282145
@@ -439,6 +440,18 @@ Transform:
   m_LocalScale: {x: 1.003968, y: 1.003968, z: 1.003968}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &402282147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402282143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709d24b7d7ab63241aaf700aac0b59d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isQuit: 0
 --- !u!1 &680986308
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,9 +463,10 @@ GameObject:
   - 23: {fileID: 680986310}
   - 102: {fileID: 680986309}
   - 65: {fileID: 680986312}
+  - 114: {fileID: 680986313}
   m_Layer: 0
   m_Name: Quit game
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,7 +491,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: e8376e01f58410e41ae18b4dd46999de, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278782450
+    rgba: 4294967295
 --- !u!23 &680986310
 Renderer:
   m_ObjectHideFlags: 0
@@ -519,6 +533,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.52000046, y: 3.32296896, z: 0}
   m_Center: {x: 4.26000023, y: -1.66148448, z: 0}
+--- !u!114 &680986313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 680986308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709d24b7d7ab63241aaf700aac0b59d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isQuit: 1
 --- !u!1 &736476026
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +559,7 @@ GameObject:
   - 114: {fileID: 736476031}
   m_Layer: 0
   m_Name: Start game
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +584,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: e8376e01f58410e41ae18b4dd46999de, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278782450
+    rgba: 4294967295
 --- !u!23 &736476028
 Renderer:
   m_ObjectHideFlags: 0
@@ -611,6 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709d24b7d7ab63241aaf700aac0b59d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isQuit: 0
 --- !u!1 &790794416
 GameObject:
   m_ObjectHideFlags: 0
