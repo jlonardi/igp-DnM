@@ -2703,7 +2703,8 @@ Prefab:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: 9d5167889b80870408f06911adb4e83b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9d5167889b80870408f06911adb4e83b, type: 2}
   m_RootGameObject: {fileID: 485608023}
   m_IsPrefabParent: 0
@@ -3948,7 +3949,6 @@ GameObject:
   - 4: {fileID: 485608024}
   - 114: {fileID: 485608027}
   - 154: {fileID: 485608026}
-  - 114: {fileID: 485608028}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -4007,94 +4007,6 @@ MonoBehaviour:
   m_LightmapSize: 1024
   m_DrawTreesAndFoliage: 1
   m_MaterialTemplate: {fileID: 0}
---- !u!114 &485608028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 9d5167889b80870408f06911adb4e83b,
-    type: 2}
-  m_PrefabInternal: {fileID: 319424851}
-  m_GameObject: {fileID: 485608023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f794e56866546c4a975ff68b5cdbc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guiSkin: {fileID: 0}
-  createIcon: {fileID: 0}
-  erodeIcon: {fileID: 0}
-  textureIcon: {fileID: 0}
-  mooreIcon: {fileID: 0}
-  vonNeumannIcon: {fileID: 0}
-  mountainsIcon: {fileID: 0}
-  hillsIcon: {fileID: 0}
-  plateausIcon: {fileID: 0}
-  defaultTexture: {fileID: 0}
-  toolModeInt: 0
-  erosionTypeInt: 0
-  generatorTypeInt: 0
-  isBrushOn: 0
-  isBrushHidden: 0
-  isBrushPainting: 0
-  brushPosition: {x: 0, y: 0, z: 0}
-  brushSize: 50
-  brushOpacity: 1
-  brushSoftness: .5
-  neighbourhoodInt: 0
-  useDifferenceMaps: 1
-  thermalIterations: 25
-  thermalMinSlope: 1
-  thermalFalloff: .5
-  hydraulicTypeInt: 0
-  hydraulicType: 0
-  hydraulicIterations: 25
-  hydraulicMaxSlope: 60
-  hydraulicFalloff: .5
-  hydraulicRainfall: .00999999978
-  hydraulicEvaporation: .5
-  hydraulicSedimentSolubility: .00999999978
-  hydraulicSedimentSaturation: .100000001
-  hydraulicVelocityRainfall: .00999999978
-  hydraulicVelocityEvaporation: .5
-  hydraulicVelocitySedimentSolubility: .00999999978
-  hydraulicVelocitySedimentSaturation: .100000001
-  hydraulicVelocity: 20
-  hydraulicMomentum: 1
-  hydraulicEntropy: 0
-  hydraulicDowncutting: .100000001
-  tidalIterations: 25
-  tidalSeaLevel: 50
-  tidalRangeAmount: 5
-  tidalCliffLimit: 60
-  windIterations: 25
-  windDirection: 0
-  windForce: .5
-  windLift: .00999999978
-  windGravity: .5
-  windCapacity: .00999999978
-  windEntropy: .100000001
-  windSmoothing: .25
-  tempTexture: {fileID: 0}
-  slopeBlendMinAngle: 60
-  slopeBlendMaxAngle: 75
-  heightBlendPoints: []
-  gradientStyles: []
-  voronoiTypeInt: 0
-  voronoiType: 0
-  voronoiCells: 16
-  voronoiFeatures: 1
-  voronoiScale: 1
-  voronoiBlend: 1
-  diamondSquareDelta: .5
-  diamondSquareBlend: 1
-  perlinFrequency: 4
-  perlinAmplitude: 1
-  perlinOctaves: 8
-  perlinBlend: 1
-  smoothBlend: 1
-  smoothIterations: 0
-  normaliseMin: 0
-  normaliseMax: 1
-  normaliseBlend: 1
 --- !u!1 &488040223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,7 +4160,7 @@ GameObject:
   - 114: {fileID: 499643141}
   - 54: {fileID: 499643146}
   m_Layer: 0
-  m_Name: First Person Controller
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
