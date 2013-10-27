@@ -7,7 +7,13 @@ public class PauseMenu : MonoBehaviour {
 	public bool paused=false; //tells if game is paused
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
+	private string game_name="empty";
+	private bool seeLoadMenu= false;
 	
+	void Awake()
+	{
+		LevelSerializer.MaxGames = 5;
+	}
 	void Update(){
 		
 		if(paused){                       //when game is paused time stops and the cursour shows
@@ -31,7 +37,13 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if (paused)
 		{
-			PauseScreen();
+			if(seeLoadMenu)
+			{
+				LoadScreen ();
+			}
+			else{
+				PauseScreen();
+			}
 		}
 	}
 	void PauseScreen()
@@ -47,12 +59,47 @@ public class PauseMenu : MonoBehaviour {
 		{
 			Application.LoadLevel("Main Meny"); //load main meny level
 		}
+		if(GUILayout.Button ("Save game"))
+		{
+			game_name="saved game";
+			LevelSerializer.SaveGame(game_name);	
+		}
+		if(GUILayout.Button ("Load level"))
+		{
+			seeLoadMenu = !seeLoadMenu;
+		}
+		
+  
 		if(GUILayout.Button ("Quit game"))
 		{
 			Application.Quit();  //quit game
 		}
 		
+			
+		
 		GUILayout.EndArea ();
+	}
+	
+	void LoadScreen()
+	{
+		GUILayout.BeginArea(new Rect((screen_width *0.5f)-50, (Screen.height*0.5f)-50,100,200));
+		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
+			{
+				if(GUILayout.Button(sg.Name))
+				{
+					LevelSerializer.LoadSavedLevel(sg.Data);
+					Time.timeScale = 1;
+				}
+			
+        }
+		if(GUILayout.Button ("Return"))
+		{
+			seeLoadMenu = !seeLoadMenu;
+		}
+		GUILayout.EndArea ();
+		
+		
+			
 	}
 	
 }
