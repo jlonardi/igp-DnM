@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
-//  	public GUISkin skin;
+  	//public GUISkin skin;
 	public bool paused=false; //tells if game is paused
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
-	private string save_name="empy";
+	private string save_name="Dragons & Miniguns";
 	private bool seeLoadMenu= false;
 
 	

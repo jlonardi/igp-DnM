@@ -31,6 +31,9 @@ public class FPSInputController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Time.timeScale==0){	// don't update if game is paused
+			return;
+		}
 		// Get the input vector from kayboard or analog stick
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 		
