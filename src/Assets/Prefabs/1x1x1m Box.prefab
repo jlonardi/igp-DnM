@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: 1x1x1m Box
   m_TagString: wood
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: 256.399994, y: 25.2999992, z: 295.299988}
+  m_LocalPosition: {x: 256.399994, y: 19.5, z: 295.299988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,6 +83,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.00000024, z: 1.00000024}
   m_Center: {x: 0, y: 3.05175781e-05, z: 1.90734863e-06}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a32f73ef33a6b4b8850f6697a9abf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDeserializing: 0
+  _id: 10296cef-116b-47e8-b000-f687d950f910
+  classId: 3aec14d5-8215-4da8-936d-0d98f0b3889c
+  StoreAllComponents: 1
+  Components: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

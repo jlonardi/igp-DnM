@@ -2,20 +2,17 @@
 using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
-
+//  	public GUISkin skin;
 	public bool paused=false; //tells if game is paused
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
-
-/*
-  	public GUISkin skin;
 	private string save_name="empy";
 	private bool seeLoadMenu= false;
-*/
+
 	
 	void Awake()
 	{
-//		LevelSerializer.MaxGames = 5;
+		LevelSerializer.MaxGames = 5;
 	}
 	void Update(){
 		
@@ -40,15 +37,13 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if (paused)
 		{
-/*			if(seeLoadMenu)
+			if(seeLoadMenu)
 			{
 				LoadScreen ();
 			}
 			else{
 				PauseScreen();
 			}
-*/		
-		PauseScreen();
 		}
 	}
 
@@ -66,7 +61,7 @@ public class PauseMenu : MonoBehaviour {
 		{
 			Application.LoadLevel("Main Meny"); //load main meny level
 		}
-/*		if(GUILayout.Button ("Save game"))
+		if(GUILayout.Button ("Save game"))
 		{
 			save_name="saved game";
 			LevelSerializer.SaveGame(save_name);	
@@ -75,8 +70,7 @@ public class PauseMenu : MonoBehaviour {
 		{
 			seeLoadMenu = !seeLoadMenu;
 		}
-*/		
-  
+		  
 		if(GUILayout.Button ("Quit game"))
 		{
 			Application.Quit();  //quit game
@@ -84,7 +78,7 @@ public class PauseMenu : MonoBehaviour {
 		
 		GUILayout.EndArea ();
 	}
-/*	
+
 	void LoadScreen()
 	{
 		GUILayout.BeginArea(new Rect((screen_width *0.5f)-50, (Screen.height*0.5f)-50,100,200));
@@ -102,7 +96,5 @@ public class PauseMenu : MonoBehaviour {
 			seeLoadMenu = !seeLoadMenu;
 		}
 		GUILayout.EndArea ();			
-	}
-	*/
-	
+	}	
 }
