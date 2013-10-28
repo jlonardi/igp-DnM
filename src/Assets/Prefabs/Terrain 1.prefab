@@ -83,7 +83,7 @@ GameObject:
   - 154: {fileID: 15400000}
   m_Layer: 0
   m_Name: Terrain 1
-  m_TagString: Untagged
+  m_TagString: sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +325,7 @@ GameObject:
   - 111: {fileID: 11100024}
   m_Layer: 0
   m_Name: rockBlobFive
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +382,7 @@ GameObject:
   - 111: {fileID: 11100030}
   m_Layer: 0
   m_Name: rockBlobFour
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
