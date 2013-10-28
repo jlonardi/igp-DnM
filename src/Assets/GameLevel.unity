@@ -3546,9 +3546,9 @@ MonoBehaviour:
   useFixedUpdate: 1
   pushPower: 2
   movement:
-    maxForwardSpeed: 10
-    maxSidewaysSpeed: 10
-    maxBackwardsSpeed: 10
+    maxForwardSpeed: 6
+    maxSidewaysSpeed: 6
+    maxBackwardsSpeed: 6
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -3569,14 +3569,14 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 30
-    maxAirAcceleration: 20
-    gravity: 10
+    maxGroundAcceleration: 20
+    maxAirAcceleration: 15
+    gravity: 15
     maxFallSpeed: 20
   jumping:
     enabled: 1
-    baseHeight: 1
-    extraHeight: 4.0999999
+    baseHeight: .699999988
+    extraHeight: .300000012
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
