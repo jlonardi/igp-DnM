@@ -10,10 +10,6 @@ public class LoadLevelMenu : MonoBehaviour {
 	
 	public Texture background_texture;
 
-	void Start()
-	{
-		
-	}
 	
 	void OnGUI(){
 		if (showLoadLevelMenu)
