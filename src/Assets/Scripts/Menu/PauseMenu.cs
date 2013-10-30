@@ -88,7 +88,7 @@ public class PauseMenu : MonoBehaviour {
 	void LoadScreen()
 	{
 		int i=0;
-		GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
+		GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
 		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
 		{
 			string saveSlotText=sg.Name+" " + sg.When.Day +"."+ sg.When.Month +"  "+sg.When.Hour+":" +sg.When.Minute;
@@ -118,7 +118,7 @@ public class PauseMenu : MonoBehaviour {
 	{
 		int i=0;
 		GUI.Box(new Rect((screen_width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Choose where to save your game");
-				GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
+				GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
 		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
 		{
 			string saveSlotText=sg.Name+" " + sg.When.Day +"."+ sg.When.Month +"  "+sg.When.Hour+":" +sg.When.Minute;
@@ -155,10 +155,10 @@ public class PauseMenu : MonoBehaviour {
 	//Save Game ask for the name of the new game and saves the game
 	void SaveGame()
 	{
-		GUI.Box(new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-25,200,100), "Give the name of your game");
-		save_name = GUI.TextArea (new Rect ((screen_width *0.5f)-100, (Screen.height*0.5f), 200, 20), save_name, 20);
+		GUI.Box(new Rect((screen_width *0.5f)-100, (screen_height*0.5f)-25,200,100), "Give the name of your game");
+		save_name = GUI.TextArea (new Rect ((screen_width *0.5f)-100, (screen_height*0.5f), 200, 20), save_name, 20);
 		
-		if (GUI.Button(new Rect ((screen_width *0.5f)-50, (Screen.height*0.5f)+25, 100, 20),"save game"))
+		if (GUI.Button(new Rect ((screen_width *0.5f)-50, (screen_height*0.5f)+25, 100, 20),"save game"))
 		{
 			LevelSerializer.SaveGame(save_name);
 			this.currentGUIMethod=PauseScreen;
