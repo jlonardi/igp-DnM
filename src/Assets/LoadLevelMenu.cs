@@ -30,7 +30,7 @@ public class LoadLevelMenu : MonoBehaviour {
 		GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
 		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
 		{
-			string saveSlotText=sg.Name+" " + sg.When.Day +"."+ sg.When.Month +"  "+sg.When.Hour+":" +sg.When.Minute;
+			string saveSlotText=sg.Name+" " + sg.When.Day +"."+ sg.When.Month +"."+sg.When.Year+"  "+sg.When.Hour+":" +sg.When.Minute;
 			if(GUILayout.Button(saveSlotText))
 			{
 				sg.Load();
