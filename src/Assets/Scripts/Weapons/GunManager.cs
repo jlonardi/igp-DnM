@@ -7,8 +7,7 @@ public class GunManager : MonoBehaviour{
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
-	public HitParticles hitParticlesForBullet = new HitParticles();
-	public HitParticles hitParticlesForExplosion = new HitParticles();
+	public HitParticles hitParticles = new HitParticles();
 			
 	void Start () {		
 		for (int i=0; i<guns.Length; i++){
