@@ -62,7 +62,7 @@ MonoBehaviour:
   tiling: {x: 1, y: 1}
   offset: {x: 0, y: 0}
   uvAngle: 0
-  decalMaterial: {fileID: 2100000, guid: 701fa916f26074f4a80b22173fa1aca3, type: 2}
+  decalMaterial: {fileID: 2100000, guid: 82ab2c1248c261a41beb6d9985baadc2, type: 2}
   decalMode: 0
   bottomPlane: {x: 0, y: 0, z: 0, w: 0}
   topPlane: {x: 0, y: 0, z: 0, w: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   decalTangent: {x: 0, y: 0, z: 0}
   decalBinormal: {x: 0, y: 0, z: 0}
   decalSize: {x: 0, y: 0, z: 0}
-  pushDistance: .00899999961
+  pushDistance: .00200000009
   checkAutomatically: 0
   affectedLayers:
     serializedVersion: 2
@@ -98,15 +98,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b253df36e10447f43b29c56078ea8269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  concrete: []
+  concrete:
+  - {fileID: 2800000, guid: 5409935affbabd74d8e35b8e00aa119c, type: 3}
+  - {fileID: 2800000, guid: 92af6b20edc62964caaff6d889825859, type: 3}
+  - {fileID: 2800000, guid: 5d7d38b69e6f8e14e84aa511cc7db1d6, type: 3}
   wood:
-  - {fileID: 2800000, guid: b0d8d3a045d540b4eb4ff67f2bdf4c0a, type: 3}
-  - {fileID: 2800000, guid: c7d22c511169d94409bd2ba46d18f4bb, type: 3}
-  - {fileID: 2800000, guid: 4b736f6da7217d94ba3f946753c7483f, type: 3}
-  metal: []
-  oldMetal: []
-  glass: []
-  generic: []
+  - {fileID: 2800000, guid: b8927e2621566454abddc9ded00f3d49, type: 3}
+  - {fileID: 2800000, guid: bb6a44ac4f873d840a9773ce8bbc42be, type: 3}
+  - {fileID: 2800000, guid: cf505df95bea5f94198b4394d88a7dd4, type: 3}
+  metal:
+  - {fileID: 2800000, guid: d473ec9221b6ac644bf65be8eb273aff, type: 3}
+  - {fileID: 2800000, guid: 383635b4e6133b24cb9ff2c8b182920f, type: 3}
+  - {fileID: 2800000, guid: 20d341aec9807cb4c9a7f8405690c693, type: 3}
+  oldMetal:
+  - {fileID: 2800000, guid: a77cadb1fbb93c843ae9865d59275f45, type: 3}
+  - {fileID: 2800000, guid: b37842b08c9e5a546b9fcc8a8cfc67df, type: 3}
+  - {fileID: 2800000, guid: 4fb99c5f2f81f444593753ab7932f082, type: 3}
+  glass:
+  - {fileID: 2800000, guid: f92072ccf56797b4493cbbee884a13dd, type: 3}
+  - {fileID: 2800000, guid: e988e3072926a334db1db322dc38936f, type: 3}
+  - {fileID: 2800000, guid: ca5b72b0628ff24469866db73b65ae2c, type: 3}
+  generic:
+  - {fileID: 2800000, guid: 647a38536575bd646a9f85b38f6f0dbf, type: 3}
+  - {fileID: 2800000, guid: ce4bf5d1a6025e74fb30b1420d7d2e52, type: 3}
+  - {fileID: 2800000, guid: ef0b41adef713ff4fa1e0ed5ce7657c5, type: 3}
+  - {fileID: 2800000, guid: f064efd4c8e3a394faeb581639a1c73b, type: 3}
 --- !u!1002 &11400003
 EditorExtensionImpl:
   serializedVersion: 6
