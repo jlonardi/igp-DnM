@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour {
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
 	
-	private string save_name="Savegame"; //name of the saved game
+	private string save_name="Name your game"; //name of the saved game
 	private int max_saved_games =5; //max amount of games saved
 	
 	
@@ -49,6 +49,11 @@ public class PauseMenu : MonoBehaviour {
 	//OnGUI calls the right GUI screen metod when the game is paused
 	void OnGUI()
 	{
+		if (Event.current.keyCode == KeyCode.Return && this.currentGUIMethod==SaveGame) //in save game screen if enter is pressed game is saved
+		{
+    				LevelSerializer.SaveGame(save_name);
+			this.currentGUIMethod=PauseScreen;
+   		}
 		if (paused)
 		{
 			this.currentGUIMethod();
@@ -137,8 +142,9 @@ public class PauseMenu : MonoBehaviour {
 			string saveSlotText= getSaveSlotText(sg);
 			if(GUILayout.Button(saveSlotText))
 			{
-				sg.Delete();	
-				this.currentGUIMethod= SaveGame;
+				save_name=sg.Name;
+				sg.Delete();
+				this.currentGUIMethod = SaveGame;
 				break;
 			}
 			i++;
@@ -149,6 +155,7 @@ public class PauseMenu : MonoBehaviour {
 		{
 			if(GUILayout.Button ("Empty"))
 			{
+				save_name="Empty";
 				this.currentGUIMethod= SaveGame;
 			}
 			
