@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class enemyAnimator : MonoBehaviour {
+public class EnemyAnimator : MonoBehaviour {
 
 	private Animator animator;
 	private AstarAI astar;
