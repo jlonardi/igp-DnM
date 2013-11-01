@@ -14,7 +14,7 @@ public class GunManager : MonoBehaviour{
 	
 	void Start () {		
 		//size and alignment for gun reticle
-		rectSize = Screen.height/15;
+		rectSize = Screen.height/30;
 	    rectPosition = new Rect((Screen.width-rectSize)/2, (Screen.height-rectSize)/2,rectSize,rectSize);	
 
 		for (int i=0; i<guns.Length; i++){
