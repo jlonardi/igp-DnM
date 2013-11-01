@@ -14,7 +14,7 @@ public class BulletMarkManager : MonoBehaviour {
 		}
 	}
 
-	static float Add(GameObject go){
+	public static float Add(GameObject go){
 		if(instance == null){
 			GameObject aux  = new GameObject("BulletMarkManager");
 			instance = aux.AddComponent("BulletMarkManager") as BulletMarkManager;
@@ -72,7 +72,7 @@ public class BulletMarkManager : MonoBehaviour {
 		return pushDistance;
 	}
 	
-	static void ClearMarks()
+	public static void ClearMarks()
 	{
 		GameObject go;
 		

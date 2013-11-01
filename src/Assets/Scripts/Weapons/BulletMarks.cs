@@ -85,10 +85,9 @@ public class BulletMarks : MonoBehaviour {
 				return;
 		}
 		
-		transform.Rotate(new Vector3(0, 0, Random.Range(-180.0f, 180.0f)));
-		/*
+		transform.Rotate(new Vector3(0, 0, Random.Range(-180.0f, 180.0f)));		
 		Decal.dCount++;
-		Decal d = gameObject.GetComponent("Decal");
+		Decal d = gameObject.GetComponent<Decal>();
 		d.affectedObjects = new GameObject[1];
 		d.affectedObjects[0] = go;
 		d.decalMode = DecalMode.MESH_COLLIDER;
@@ -97,6 +96,6 @@ public class BulletMarks : MonoBehaviour {
 		m.mainTexture = useTexture;
 		d.decalMaterial = m;
 		d.CalculateDecal();
-		d.transform.parent = go.transform;*/
+		d.transform.parent = go.transform;
 	}
 }

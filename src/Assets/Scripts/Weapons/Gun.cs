@@ -80,12 +80,7 @@ public class Gun : MonoBehaviour {
 	void Start(){		
 		cam = Camera.main.camera;
 		GunManager gm = GameObject.Find("Gun Manager").GetComponent<GunManager>();
-		
-		if (isExplosive){
-			hitParticles = gm.hitParticlesForExplosion;
-		} else {
-			hitParticles = gm.hitParticlesForExplosion;
-		}
+		hitParticles = gm.hitParticles;
 	}
 	
 	public void OnDisable(){
@@ -348,7 +343,7 @@ public class Gun : MonoBehaviour {
 		if(timerToCreateDecal < 0.0f && hit.collider.tag != "water"){
 			go = (GameObject)Instantiate(bulletMark, hit.point, Quaternion.FromToRotation(Vector3.forward, -hit.normal));
 			BulletMarks bm = (BulletMarks)go.GetComponent("BulletMarks");
-			//bm.GenerateDecal(hitType, hit.collider.gameObject);		
+			bm.GenerateDecal(hitType, hit.collider.gameObject);		
 			timerToCreateDecal = 0.02f;
 		}
 	}

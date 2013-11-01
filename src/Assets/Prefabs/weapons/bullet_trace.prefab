@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .600000024, y: .349999994, z: 4.5}
+  m_LocalPosition: {x: .589999974, y: .330000013, z: 5.78999996}
   m_LocalScale: {x: .509183466, y: .996760845, z: -.505943716}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +83,7 @@ EllipsoidParticleEmitter:
   rndAngularVelocity: 0
   rndRotation: 0
   Simulate in Worldspace?: 1
-  m_OneShot: 0
+  m_OneShot: 1
   m_Ellipsoid: {x: 0, y: 0, z: 0}
   m_MinEmitterRange: 0
 --- !u!26 &2600000
@@ -98,7 +98,7 @@ ParticleRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 95712cbfdf59e634dae3e6c1e6163d7b, type: 2}
+  - {fileID: 2100000, guid: c9a5c9a4754f4fc4d9c1fdf787f9c47f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
