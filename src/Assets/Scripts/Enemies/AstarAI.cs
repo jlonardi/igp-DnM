@@ -5,6 +5,8 @@ using Pathfinding;
 
 public class AstarAI : MonoBehaviour {
 	
+	public float movementSpeed;
+	
 	//The point to move to
     public Vector3 targetPosition;
     
@@ -139,13 +141,22 @@ public class AstarAI : MonoBehaviour {
 		}
 	}
 	
-	private bool newPathNeeded() {
+	private bool newPathNeeded() {		
 		float distanceFromPlayer = Vector3.Distance(transform.position, player.position);
 		float distanceRatio = distanceFromPlayer/10;
-		if(distanceFromPlayer > 3.0f && Vector3.Distance(oldPlayerPosition, player.position) > distanceRatio) {
+		float minDistance = 3.0f;
+		
+		// update movementSpeed for animations
+		if(distanceFromPlayer > minDistance) {
+			movementSpeed = speed;
+		} else {
+			movementSpeed = 0.0f;
+		}
+
+		if(distanceFromPlayer > minDistance && Vector3.Distance(oldPlayerPosition, player.position) > distanceRatio) {
 			return true;
 		} 
-		return false;
+		return false;			
 	}
 	
 	private bool eligibleToNewPathfind() {
