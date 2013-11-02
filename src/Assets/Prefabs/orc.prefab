@@ -938,7 +938,6 @@ GameObject:
   - 4: {fileID: 400116}
   - 95: {fileID: 9500000}
   - 143: {fileID: 14300000}
-  - 114: {fileID: 11400118}
   - 114: {fileID: 11400116}
   - 114: {fileID: 11400120}
   - 114: {fileID: 11400148}
@@ -1154,6 +1153,21 @@ GameObject:
   - 114: {fileID: 11400146}
   m_Layer: 0
   m_Name: Sinbad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400144}
+  m_Layer: 0
+  m_Name: Compass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,10 +1879,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 258.164154, y: 16.8500004, z: 299.084991}
+  m_LocalPosition: {x: 261.303253, y: 4.93391895, z: 352.084961}
   m_LocalScale: {x: .180000007, y: .180000007, z: .180000007}
   m_Children:
   - {fileID: 400138}
+  - {fileID: 400144}
   - {fileID: 400142}
   m_Father: {fileID: 0}
 --- !u!4 &400118
@@ -2022,6 +2037,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400116}
+--- !u!4 &400144
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 245.223724, y: 17.231411, z: 296.476654}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400116}
 --- !u!95 &9500000
 Animator:
   m_ObjectHideFlags: 1
@@ -2046,7 +2072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 53a17c0b-89e5-47b3-982e-3d3bc2874ab8
+  _id: 1d3bc075-59e5-4aa2-8087-2bcec9d573ae
   classId: 18f03bdc-c039-437f-9653-745c8311633c
 --- !u!114 &11400002
 MonoBehaviour:
@@ -2060,7 +2086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 0d90f258-081c-449a-a330-a8fdf3a51fae
+  _id: 0eae8cd2-7ff4-4e2e-adfa-f1673c436d0a
   classId: d00fe8cf-aa1a-4f99-8aa7-f6af9aae36ba
 --- !u!114 &11400004
 MonoBehaviour:
@@ -2074,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 298cc70e-a93c-40c4-b7e7-8936d13f39da
+  _id: 913704db-4a14-4191-be86-07968803881b
   classId: 2527b992-d3bc-471b-a86e-3b80a352aa2e
 --- !u!114 &11400006
 MonoBehaviour:
@@ -2088,7 +2114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 67a87c61-fe98-4941-a30c-248f99bcf48e
+  _id: e9c7c151-3528-4085-8a16-5f67f4ec4eb1
   classId: 1c390963-0460-44c0-9cc2-a72ba9b8621b
 --- !u!114 &11400008
 MonoBehaviour:
@@ -2102,7 +2128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: c7ab07eb-feb7-45c6-8a93-ee6569f5b6ab
+  _id: f2ab82f3-4ce5-446e-9902-1698138b2bf1
   classId: e3ea5a0b-69a5-4f95-b477-ddb9a92080a9
 --- !u!114 &11400010
 MonoBehaviour:
@@ -2116,7 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: fd3b55b1-01ad-409e-bf77-817892ac307e
+  _id: e8644038-e1e1-44ba-8c24-cd965f0115f1
   classId: 39b5ebbc-b51c-4060-a9a1-dd9c512c2a46
 --- !u!114 &11400012
 MonoBehaviour:
@@ -2130,7 +2156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 4ab402e3-2158-4814-9bcf-c549b227778a
+  _id: 09def239-dcdf-410a-83e5-5748f2f04fd1
   classId: 838d854f-9f12-4ad5-9996-792f10bbb62e
 --- !u!114 &11400014
 MonoBehaviour:
@@ -2144,7 +2170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 802bedb0-728b-497c-819a-14081eb8698c
+  _id: df66708f-12f4-41ee-9386-311fa95d3ed1
   classId: 40129717-b6f8-4e26-915c-27048b399b5d
 --- !u!114 &11400016
 MonoBehaviour:
@@ -2158,7 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 7a8c0d31-9240-452c-8237-8a49ee9f8427
+  _id: 214cf393-3cb8-412b-b7fb-68ff4d78b38a
   classId: 5a00e5ae-4258-4e00-81bb-83146f6a7509
 --- !u!114 &11400018
 MonoBehaviour:
@@ -2172,7 +2198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: cac8f666-e768-4b4b-8828-42022d0eff6c
+  _id: 188b4db9-2b18-4bc0-a16a-b7dae27a143b
   classId: 879e7e54-910a-4f14-8670-1fac553789ef
 --- !u!114 &11400020
 MonoBehaviour:
@@ -2186,7 +2212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 8037a8c8-0910-499f-a41a-79ce36a7a5d0
+  _id: 05ba6185-2c1b-449f-9f17-fc5f6bdbf365
   classId: ce12f032-1ccb-401d-8adb-4e4bfd6aa02e
 --- !u!114 &11400022
 MonoBehaviour:
@@ -2200,7 +2226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: bbd1eb70-f91e-483a-95e4-084319909c10
+  _id: e75bd148-d2a3-43bb-8b30-a2acc93fdce8
   classId: 866d9731-b06c-4257-a86e-2912e2107e08
 --- !u!114 &11400024
 MonoBehaviour:
@@ -2214,7 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 4fc6263a-18ea-47c6-930c-0254a9651851
+  _id: 3bc59d8c-f884-429a-9a65-066200cad379
   classId: 027a432f-9a28-4c96-818c-335a43cf3728
 --- !u!114 &11400026
 MonoBehaviour:
@@ -2228,7 +2254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 57760128-effc-4b5d-998d-ee8048fa10d3
+  _id: 052e90eb-1ad3-4660-95d1-714c57b8b0ce
   classId: 1a56b00e-181f-4973-b7de-85e68a345674
 --- !u!114 &11400028
 MonoBehaviour:
@@ -2242,7 +2268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: a76e0cf2-2e25-43d3-aeb6-74748a25c3f2
+  _id: b4b3e12d-9b53-429a-9fd3-2427048f5b43
   classId: 34aa2364-1eda-4fad-8563-4f6bbc8b1870
 --- !u!114 &11400030
 MonoBehaviour:
@@ -2256,7 +2282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 1456ad54-a4ca-4684-bb02-aeebf9bda9d7
+  _id: d5465a21-3732-4433-b5ed-7bbbdf09f945
   classId: 58c38bd9-d98c-4a44-b733-0ee90058dd96
 --- !u!114 &11400032
 MonoBehaviour:
@@ -2270,7 +2296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 93845b8b-d0cb-4770-aadf-e5d86d3b070b
+  _id: b7036853-7dda-4ea6-874b-73e2e65d30ab
   classId: cc7ab7c9-4db1-416e-9ebb-ab12196b2d19
 --- !u!114 &11400034
 MonoBehaviour:
@@ -2284,7 +2310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 763be665-b3b4-4f2a-bd06-caedc8f28a06
+  _id: 391be264-51e9-40e0-a06a-630a3d5d2431
   classId: 305a823c-ad84-4050-8e40-42fed90f3ea4
 --- !u!114 &11400036
 MonoBehaviour:
@@ -2298,7 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 09884554-9327-4300-a92a-bf1b5e055142
+  _id: 0d839e56-4071-477a-9bad-90d300332aca
   classId: 7156ba37-326f-46ea-aa09-eed839e0128c
 --- !u!114 &11400038
 MonoBehaviour:
@@ -2312,7 +2338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 8526d05d-e1c9-4cb6-a589-03d5f5648314
+  _id: a0d3b107-ddd0-40d8-9941-06beebcef916
   classId: 97608424-3590-416a-8320-1a1e0df7a4ff
 --- !u!114 &11400040
 MonoBehaviour:
@@ -2326,7 +2352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: e3f363ad-b88a-44ba-9bfd-f21a408b2c5f
+  _id: 6d1ec4b2-6408-4b1a-adda-5f69f0a578f7
   classId: 3be0dc22-3a78-4210-b9c3-a8470cb71206
 --- !u!114 &11400042
 MonoBehaviour:
@@ -2340,7 +2366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: aca178fb-79ff-4e55-a35b-4f709b772d78
+  _id: c8606caa-c9e6-4deb-b760-cde8da271eab
   classId: ac5370ee-56d1-4151-8ff0-e5e79091bd5a
 --- !u!114 &11400044
 MonoBehaviour:
@@ -2354,7 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 9b695efb-1739-49f8-82e5-522608070e09
+  _id: b8bd4576-a197-4c9e-96d5-46cf32718147
   classId: 2df18dc2-3076-4a00-9a42-a1bf9484355c
 --- !u!114 &11400046
 MonoBehaviour:
@@ -2368,7 +2394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 1d149c1b-2d87-4a8d-9f83-0b9fc08709dc
+  _id: fc2e3150-1697-4207-bf00-ba3d5b7ef1f8
   classId: e1a748d6-6204-4090-b978-70cabb97b3a5
 --- !u!114 &11400048
 MonoBehaviour:
@@ -2382,7 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 49079fd1-6ceb-4280-8726-7cad41369650
+  _id: 22131b58-e084-4603-9b65-68d5e7716fea
   classId: 2b9fda22-4331-4c60-9b63-e140064248ea
 --- !u!114 &11400050
 MonoBehaviour:
@@ -2396,7 +2422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: eace46fa-5208-4ace-bee8-868d94920a5a
+  _id: caa91aa7-d6b8-4200-97e7-0b6ec495756c
   classId: 9cf555f4-f427-4c90-b837-7a14a9e41f1d
 --- !u!114 &11400052
 MonoBehaviour:
@@ -2410,7 +2436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b769b184-06d8-4fb0-85e8-9b7b58f67419
+  _id: 338fde27-458d-4a49-bca3-f9bafc7cc50c
   classId: 3bff5e19-273c-4aec-a246-4a1203d5ec62
 --- !u!114 &11400054
 MonoBehaviour:
@@ -2424,7 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b38ce078-2272-4183-9923-49cd0055b265
+  _id: 521e3bce-8f96-4efb-b840-1fac792be629
   classId: 0df33671-10d1-4ae0-a69e-bfa536388110
 --- !u!114 &11400056
 MonoBehaviour:
@@ -2438,7 +2464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 71772b52-9d0a-4a60-b678-a300e37153e0
+  _id: 0d83ac39-d181-4855-a174-b512d9e96996
   classId: e80a355f-4519-4c8e-a782-c27345550a3b
 --- !u!114 &11400058
 MonoBehaviour:
@@ -2452,7 +2478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 9e725527-3899-474b-80b9-a8e2bf990ea9
+  _id: c4a9db38-e1ae-4220-acaa-d29bc9cedb1b
   classId: e219e9ec-f264-47a8-a266-e81ca9a49840
 --- !u!114 &11400060
 MonoBehaviour:
@@ -2466,7 +2492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: aac0aecb-a7fd-425a-b225-00c54ed73db7
+  _id: e4f97eb0-2b3c-4ecf-b9ef-2b38086566dd
   classId: 40b8d76d-2e7e-488c-a24a-009885d66286
 --- !u!114 &11400062
 MonoBehaviour:
@@ -2480,7 +2506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: a9b1135b-95ba-4516-9f73-4996d294ceea
+  _id: ce7b8844-9d14-4f67-8830-21f76884b7fc
   classId: 204c9355-2701-4774-9a79-7823e2bf48ea
 --- !u!114 &11400064
 MonoBehaviour:
@@ -2494,7 +2520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 5d8ee28e-9f64-4502-8a73-c81fdb801365
+  _id: 71b0f7c8-bc61-4b40-8dbc-d470fa06e023
   classId: c8eef179-e525-4e17-b2e4-7a73eb0b9261
 --- !u!114 &11400066
 MonoBehaviour:
@@ -2508,7 +2534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 289a3c01-93b3-4dfd-8c0c-f02249d017f1
+  _id: 071e03aa-2718-44cd-86e7-30a38d87846b
   classId: 26100ce1-593c-43e8-aec7-f42262946bd8
 --- !u!114 &11400068
 MonoBehaviour:
@@ -2522,7 +2548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 8093d1cd-a6ec-4dee-86aa-837f5910c013
+  _id: b1ae9201-fd2c-4c8d-a090-56aec3caf636
   classId: ab114216-1a89-4a10-b7ba-6de1f32462c6
 --- !u!114 &11400070
 MonoBehaviour:
@@ -2536,7 +2562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 796fb62e-1613-422b-87a2-1475090fe939
+  _id: 52669c52-ab0e-4523-8d6a-a6834411058a
   classId: 6cdcd4f6-b7ae-44f6-9304-f58cb139ce9a
 --- !u!114 &11400072
 MonoBehaviour:
@@ -2550,7 +2576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: fd049e59-3eb6-42a2-975a-ae1152ed4d5e
+  _id: eaf5593f-5930-41da-9482-a4d1ce3e4ea9
   classId: bee2f56f-c782-4171-bfb5-48f83eae5f3f
 --- !u!114 &11400074
 MonoBehaviour:
@@ -2564,7 +2590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b7fe14d6-a93a-482c-ae70-1d7a3feb664a
+  _id: 7d6a05a2-8257-4edc-b739-86255fdb2ee4
   classId: a3b96592-4c2a-475c-b40a-aa832182812b
 --- !u!114 &11400076
 MonoBehaviour:
@@ -2578,7 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 2bd8f8a4-459e-4cfe-a184-4130b03b1efd
+  _id: 33a663b7-f5f0-4f19-a6d3-d7e444b6d94a
   classId: b4110b73-9e19-40a5-950c-f27c358f08a8
 --- !u!114 &11400078
 MonoBehaviour:
@@ -2592,7 +2618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 545cf7b7-0ab5-477f-bec2-6d30f33ab885
+  _id: ea780929-ecb8-4439-8c10-3bd5b95e4382
   classId: 9d0f9f58-bc24-404f-8c6c-31072e663170
 --- !u!114 &11400080
 MonoBehaviour:
@@ -2606,7 +2632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 3b62282e-f7a5-43a8-8371-00854572a09d
+  _id: 83c0d01e-aaf8-49f9-a8d3-0f32a32ff455
   classId: 5fb2b110-3bba-40eb-a17e-5e8d8044ced4
 --- !u!114 &11400082
 MonoBehaviour:
@@ -2620,7 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 92dd5266-6a20-4dc3-b896-e91bbb4966db
+  _id: c8524c55-3e08-413f-9474-9faec1645d3b
   classId: 20d52d75-5cb6-4140-9e69-d79971330250
 --- !u!114 &11400084
 MonoBehaviour:
@@ -2634,7 +2660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 146fe65a-4167-4538-b570-851f3be8fbaf
+  _id: 081b65e9-6c8d-4e6c-b09a-581895481dac
   classId: 52560e55-2ae0-4b74-b029-facb52825612
 --- !u!114 &11400086
 MonoBehaviour:
@@ -2648,7 +2674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: a7bcfa01-ac51-4dd8-bbd7-f6423d30c20a
+  _id: b9ca0616-1fe8-4643-a56d-47804735e2d4
   classId: fb5486aa-7e96-4b3d-90bf-cca968c9293d
 --- !u!114 &11400088
 MonoBehaviour:
@@ -2662,7 +2688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 5c62bfbc-38ff-487d-987e-bf1f44fc54a4
+  _id: b471ae5c-7584-4004-b55b-18b38f9b9543
   classId: 5306442a-cb49-4c5f-bee2-424fdaf562c3
 --- !u!114 &11400090
 MonoBehaviour:
@@ -2676,7 +2702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 89e5b987-605e-45d9-a495-18831874e5c6
+  _id: ce1ceebb-f3e1-444a-b53e-5d43bc9c08ba
   classId: 1d4008e7-d2ed-4388-83b5-7b96b2dcd17c
 --- !u!114 &11400092
 MonoBehaviour:
@@ -2690,7 +2716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: ca69a7af-aebf-4a3a-909a-635738f7bac4
+  _id: 557040c8-9397-444f-8cbb-4b9d85780db9
   classId: e164880d-bba3-4e6a-9dea-940ba9dde290
 --- !u!114 &11400094
 MonoBehaviour:
@@ -2704,7 +2730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 35943ff3-be1c-4432-876f-b4e0600e410d
+  _id: b450218f-e644-4a54-ada5-9fff7366d70e
   classId: 290f0061-83f2-45a0-b073-2613a06cd201
 --- !u!114 &11400096
 MonoBehaviour:
@@ -2718,7 +2744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b5891e8d-153c-416e-a8f1-345c20d4468b
+  _id: 6d90cf37-d2a6-4e93-a5d3-ae264becf425
   classId: 64b42d9f-c5a0-40ee-b1c4-73353c2012c9
 --- !u!114 &11400098
 MonoBehaviour:
@@ -2732,7 +2758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 3ccb9e92-d7e8-4f50-934b-0dbd7438ec7d
+  _id: add20e1f-f7ef-47c7-9a57-d8be0094ac5c
   classId: 0363c60b-e8c6-41db-a5d8-80c44c844365
 --- !u!114 &11400100
 MonoBehaviour:
@@ -2746,7 +2772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 93b3f3de-4360-443c-94b9-8252a162abcd
+  _id: 11d6104a-abaf-4790-90a4-52e680470d6c
   classId: 96b88c87-a442-490f-afa3-d454c1171fd9
 --- !u!114 &11400102
 MonoBehaviour:
@@ -2760,7 +2786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b2f38a57-016d-4712-b05d-1512afe23975
+  _id: e23ebbf6-30db-40bd-9160-a545e6376780
   classId: 6211f261-bd9c-4739-a032-7f4181d2b2b7
 --- !u!114 &11400104
 MonoBehaviour:
@@ -2774,7 +2800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 4b88a781-f5ba-402c-8d6c-efe33c195694
+  _id: f787483a-a684-44fb-94a5-bdb46fddb0ea
   classId: a52e87db-f4b4-44b4-8046-34bbaa1ea6f5
 --- !u!114 &11400106
 MonoBehaviour:
@@ -2788,7 +2814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 698ff4f8-3558-4838-a30c-704466506d1c
+  _id: 26cae418-19d7-426b-9e0e-c8ecc4e0b6ae
   classId: eb950137-ad44-4833-9b1e-7d85091d961f
 --- !u!114 &11400108
 MonoBehaviour:
@@ -2802,7 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: e02d111f-75ef-457c-ad9b-3b9813c51482
+  _id: 1259f13a-d728-4d90-acf0-d6d44c275ba8
   classId: cb12f7dd-71d5-4bc6-9a23-91a068158ccd
 --- !u!114 &11400110
 MonoBehaviour:
@@ -2816,7 +2842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: e50aa937-005e-46dd-b020-03800a868fab
+  _id: b174a1fd-d0c9-48f7-93fb-4ddfee5b2cef
   classId: 6b929b82-87c7-4e36-a994-9e1958f9ec72
 --- !u!114 &11400112
 MonoBehaviour:
@@ -2830,7 +2856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 20729dfd-c80d-4f46-916d-4f3dd8a6ada7
+  _id: bce93f6b-9588-48a1-a7c2-9c41ef9471ac
   classId: c5c88968-5164-4565-907f-842b281d6c1c
 --- !u!114 &11400114
 MonoBehaviour:
@@ -2844,7 +2870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: af2ded0a-c4ef-45cd-a1a0-bdf4cda6ac53
+  _id: 32d73497-3923-47fd-9713-4da4749bb55a
   classId: 6ab4b418-74b7-4943-a72e-098d93834139
 --- !u!114 &11400116
 MonoBehaviour:
@@ -2863,105 +2889,17 @@ MonoBehaviour:
   startEndModifier:
     priority: 2
     addPoints: 0
-    exactStartPoint: 1
-    exactEndPoint: 1
+    exactStartPoint: 2
+    exactEndPoint: 2
     useRaycasting: 0
     mask:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 2560
     useGraphRaycasting: 0
   traversableTags:
     tagsChange: -1
     tagsSet: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &11400118
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  astarData:
-    hasBeenReverted: 0
-    data: 504b0304140000080800f09e614345772a88d1010000880300000b0024006772617068302e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce017552db6edb300cfd9541cf6910274ee6f8ad4bda6c40b7164d873dd3321d0b912543973549917f1f253bb7027b11249e43f2f0501f6ce345c9f20ff617a44796b38a8fcb229bf0495a4cf9ac9adccdf8986745f6750690d13561c70103db2277afe0846679326046bb7057a1d08ee5a301dbc7f34027d1392a87a607a7a36438cfa6938e334c222b9dcf8769369f8d53a27bc525342d966b71c03e2b198dbaaae1421ca54bec602ac0b594c2f6fdddbe0d732ca0b55e221bb0524083b13f516b149bdab17c7c95f55c55165d146c60bf1486668bc5d837ed6aaad080dd5e7914fa77757ede02090195d1cdf7be491234bb5af0ed2bec39580a55202dde0697d7fa7c7be36172f1f0a4765123a7a6ce783cc9b80979f50e720b85c43f35aa5f7a65b45765871ec32cbb85144d11bc4f2fcffb9db0b11d05d652070bd3e980a1219f7f90b8b85e1b65512ce8f86df10d36f63c521f7e14c63a026231f04e3f09b55d19515e98a7e85258f7241a119da29586590aed0d31d9437490c6f66ea18d4273496f518174fb176ae76eb7f709f95fc62370a73bbb7be45e6de8ab7ca2c7e0991b562914e5837ce9f0d8929c5227e715ed91a48761bfac0cb4e1eb9406de57e2d0687b620955e9353788eaf99c7bfc07504b0304140000080800f09e6143287e18aa4300000048000000120024006772617068305f656469746f722e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce01ab56cac94fce4e4d51b22a292a4dd5512acec82f77ad28294a54b24a4bcc29068a94a456949416a58665166726e5a4c2d4156496e59728592939a7e695a41629d50200504b0304140000080800f09e61430b0665d77700000085000000090024006d6574612e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce011dccb10ec2201485e177b9732502164957876e8dbbe9001768ef2034949a18e3bb0b6edff09ff38197cf3ba50803482658cf3874b064b3ad3b0cbcf22057f58080c2592d515e6c8f2ac8934281daeaab32465772983b28efcd4fe6e9ff8bbb296ba0e8282e6ccce4c6f6daaa989cbfa52396969de7ef0f504b01022d00140000080800f09e614345772a88d1010000880300000b00240000000000000000000000000000006772617068302e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce01504b01022d00140000080800f09e6143287e18aa430000004800000012002400000000000000000000001e0200006772617068305f656469746f722e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce01504b01022d00140000080800f09e61430b0665d777000000850000000900240000000000000000000000b50200006d6574612e6a736f6e0a002000000000000100180057cd3c8f2bd7ce0157cd3c8f2bd7ce0157cd3c8f2bd7ce01504b050600000000030003001c010000770300000000
-    data_backup: 
-    data_cachedStartup: 
-    revertData: 
-    cacheStartup: 0
-    compress: 0
-  showNavGraphs: 0
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 20000
-  showSearchTree: 0
-  unwalkableNodeDebugSize: .300000012
-  stepByStep: 1
-  logPathResults: 1
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _NodeConnection: {r: 1, g: 1, b: 1, a: .899999976}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: .5}
-    _BoundsHandles: {r: .289999992, g: .453999996, b: .740999997, a: .899999976}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: .5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: .5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: .5}
-    _MeshColor: {r: .125, g: .68599999, b: 0, a: .189999998}
-    _AreaColors: []
-  tagNames:
-  - Basic Ground
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-  - 8
-  - 9
-  - 10
-  - 11
-  - 12
-  - 13
-  - 14
-  - 15
-  - 16
-  - 17
-  - 18
-  - 19
-  - 20
-  - 21
-  - 22
-  - 23
-  - 24
-  - 25
-  - 26
-  - 27
-  - 28
-  - 29
-  - 30
-  - 31
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 1
-  recyclePaths: 0
-  minAreaSize: 100
-  limitGraphUpdates: 1
-  maxGraphUpdateFreq: .200000003
-  lastScanTime: .730041802
-  inGameDebugPath: 
-  isScanning: 0
-  showGraphs: 1
-  lastUniqueAreaIndex: 11
 --- !u!114 &11400120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2976,6 +2914,7 @@ MonoBehaviour:
   movementSpeed: 0
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 200
+  turnSpeed: 10
   nextWaypointDistance: 3
 --- !u!114 &11400122
 MonoBehaviour:
@@ -2989,7 +2928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 3620cb09-87e6-4c61-a7e0-7c8177e80fec
+  _id: 2477088c-d4f8-413a-9b68-4f82829bfaa0
   classId: 9b8f1e3f-91cf-4849-91d1-4741f9e80522
 --- !u!114 &11400124
 MonoBehaviour:
@@ -3003,7 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 08912631-89fd-49d8-8c78-bb1ac718b0fe
+  _id: 84e47a3a-3f5e-40e3-a060-a71cdfcb1bb8
   classId: b19e6960-877e-4fa9-acba-d784ce36c94a
 --- !u!114 &11400126
 MonoBehaviour:
@@ -3017,7 +2956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 5d6b7d45-b5af-4a64-8efe-83acf9f7345b
+  _id: d52f7940-523a-410f-83ca-1a823417fbd7
   classId: e18b02fb-e607-481a-affa-e7251ff96b1d
 --- !u!114 &11400128
 MonoBehaviour:
@@ -3031,7 +2970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: db0ee7be-f30e-4593-978e-3581d1d26c7e
+  _id: 19e0897e-cbbb-4034-ae4f-7636cea49a61
   classId: a7b75793-b4d6-4a92-b449-09e4f3e92459
 --- !u!114 &11400130
 MonoBehaviour:
@@ -3045,7 +2984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: cc8a2e54-ebdd-4f20-8c2b-3be9e83cbde5
+  _id: 4c2e3b17-5c42-4cbd-8a56-b75f6629f77b
   classId: ef157bdb-64c6-415c-b78a-bd671f4ea1d7
 --- !u!114 &11400132
 MonoBehaviour:
@@ -3059,7 +2998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 54e33503-6cc1-44be-8ade-8d96eb1804e4
+  _id: c2848581-cccb-4a89-b0ac-8eb85c0bbc5d
   classId: 8b36cb5d-09dd-435a-82b0-692a59ec040e
 --- !u!114 &11400134
 MonoBehaviour:
@@ -3073,7 +3012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 0a953a0d-9279-4d30-a64f-456e4d438889
+  _id: 64020b64-507a-43c9-adae-5e0e5f8cadc5
   classId: 8ce4f9a1-af4b-4d33-9081-7f8f41c2de84
 --- !u!114 &11400136
 MonoBehaviour:
@@ -3087,7 +3026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: f08f9cb8-abcf-4503-acb6-a9799ebc1593
+  _id: 55cb74ea-7e6c-4285-93c4-bf1f6e0a92b4
   classId: 6d0f2f77-0a49-4ae2-a928-49dd3513dd7e
 --- !u!114 &11400138
 MonoBehaviour:
@@ -3101,7 +3040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: d17ad91b-c21e-4f1e-bad2-c4bb44943e96
+  _id: 94cda5e1-df2c-429f-884b-7309a5760504
   classId: b045e79b-3b6d-413f-9f9e-b57e846fd670
 --- !u!114 &11400140
 MonoBehaviour:
@@ -3115,7 +3054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 3aef52bd-8666-4af3-93db-281508a70d62
+  _id: d7388bbf-0aa2-4949-9c3e-a774d25613fb
   classId: 5863a378-a38f-47e9-8894-2a0e406cbe27
 --- !u!114 &11400142
 MonoBehaviour:
@@ -3129,7 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 02ec9b15-a9da-4138-89db-47c91d58608d
+  _id: 1dff1b1a-5267-4343-9e11-2388db50ae2f
   classId: 57558555-ac37-4352-8a22-f3e0bb87cfc2
 --- !u!114 &11400144
 MonoBehaviour:
@@ -3143,7 +3082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 1f6ecb90-9113-47ed-8308-c896bcfc9721
+  _id: 3bd30434-dc9d-40f7-a712-c0c2200ef845
   classId: 78013a1c-d076-44f3-9cef-e0e716b6e1e0
 --- !u!114 &11400146
 MonoBehaviour:
@@ -3157,7 +3096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: ab35ad95-b7ed-4ef6-86f6-7035c3d06a43
+  _id: 105289f1-d039-4971-90ca-43e1ba7afd8d
   classId: 11ced954-1835-4ee0-aa34-fb2cdb77e8a2
 --- !u!114 &11400148
 MonoBehaviour:
@@ -3303,7 +3242,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 9
   m_Radius: 1.79999995
-  m_SlopeLimit: 30
+  m_SlopeLimit: 50
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0

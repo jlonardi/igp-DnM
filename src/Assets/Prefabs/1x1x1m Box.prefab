@@ -13,7 +13,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 1x1x1m Box
   m_TagString: wood
   m_Icon: {fileID: 0}
