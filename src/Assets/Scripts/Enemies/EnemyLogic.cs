@@ -24,10 +24,10 @@ public class EnemyLogic : MonoBehaviour {
 		Debug.Log("Enemy health left: " + health);
 	}
 	
-	public void Die(){
-		GameObject killObj = gameObject;
-		Ragdoll r = (Instantiate(ragdoll, killObj.transform.position,killObj.transform.rotation) as GameObject).GetComponent<Ragdoll>();		
-		Destroy(gameObject);
+	public void Die(){		
+		Ragdoll r = (Instantiate(ragdoll, this.transform.position,this.transform.rotation) as GameObject).GetComponent<Ragdoll>();
+		r.CopyPose(this.gameObject.transform);
+		Destroy(this.gameObject);
 	}
 	
 }
