@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour {
     public Path path;
     
     //The speed per second
-    public float speed = 100;
+    public float speed = 200f;
 	
 	//The turn speed per second
 	public float turnSpeed = 10f;

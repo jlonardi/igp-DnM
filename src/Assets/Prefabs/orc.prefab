@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 0
   targetPosition: {x: 0, y: 0, z: 0}
-  speed: 100
+  speed: 200
   turnSpeed: 10
   nextWaypointDistance: .5
 --- !u!114 &11400120
@@ -2928,8 +2928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdoll: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
   health: 100
+  ragdoll: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
+  focusTime: 10
+  attacking: 0
+  looting: 0
 --- !u!114 &11400122
 MonoBehaviour:
   m_ObjectHideFlags: 1
