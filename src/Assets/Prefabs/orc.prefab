@@ -942,9 +942,10 @@ GameObject:
   - 114: {fileID: 11400148}
   - 114: {fileID: 11400150}
   - 114: {fileID: 11400118}
+  - 114: {fileID: 11400120}
   m_Layer: 0
   m_Name: orc
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2916,6 +2917,18 @@ MonoBehaviour:
   speed: 100
   turnSpeed: 10
   nextWaypointDistance: .5
+--- !u!114 &11400120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &11400122
 MonoBehaviour:
   m_ObjectHideFlags: 1
