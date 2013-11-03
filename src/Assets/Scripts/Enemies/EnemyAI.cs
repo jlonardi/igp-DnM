@@ -23,10 +23,10 @@ public class EnemyAI : MonoBehaviour {
 	private Transform compass;
 	
 	//The players transform
-	private Transform player;
+	private Transform target;
 	
-	//The position where the player was previosly
-	private Vector3 oldPlayerPosition;
+	//The position where the target was previosly
+	private Vector3 oldTargetPosition;
 	
 	//The time when the latest pathfind was made to the object
 	private float timeOfLastPathFind = 0f;
@@ -55,8 +55,8 @@ public class EnemyAI : MonoBehaviour {
     public void Start () {	
 		
 		//Get a reference to the object that is targeted
-		GameObject p = GameObject.Find("Player");
-		targetPosition = p.transform.position;
+		//GameObject p = GameObject.Find("arkku");
+		//targetPosition = p.transform.position;
 		
         //Get a reference to the Seeker component
         seeker = GetComponent<Seeker>();
@@ -72,9 +72,10 @@ public class EnemyAI : MonoBehaviour {
 		//Get a reference to the Compass object
 		compass = transform.FindChild("Compass");
 		
-		GameObject playerObject = GameObject.Find("Player");
-		player = playerObject.transform;
-		oldPlayerPosition = player.position;
+		GameObject targetObject = GameObject.Find("arkku");
+		target = targetObject.transform;
+		targetPosition = target.position;
+		oldTargetPosition = target.position;
 		
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		startNewPathfinding();
@@ -115,11 +116,11 @@ public class EnemyAI : MonoBehaviour {
 		//Perform a new pathfind if needed
 		if(pathCalculationComplete && newPathNeeded()) {
 			if(eligibleToNewPathfind()) {
-				Vector3 playerTerrainPosition = terrainLocation(player.position);
-				targetPosition = playerTerrainPosition;
-				oldPlayerPosition = playerTerrainPosition;
-				startNewPathfinding();
-				atTarget = false;
+				 Vector3 terrainPosition = terrainLocation(target.position);
+                 targetPosition = terrainPosition;
+                 oldTargetPosition = terrainPosition;
+                 startNewPathfinding();
+                 atTarget = false;
 			}
 		} 
 		
@@ -133,6 +134,13 @@ public class EnemyAI : MonoBehaviour {
 	public void OnDisable () {
     	seeker.pathCallback -= OnPathComplete;
 	} 
+	
+	public void setTarget(Transform t) {
+		//Debug.Log ("Setting a new target, new target location is at " + t.position);
+		target = t;
+		targetPosition = t.position;
+		startNewPathfinding();
+	}
 	
 	private void startNewPathfinding() {
 		//Debug.Log("Starting a new pathfind");
@@ -151,10 +159,10 @@ public class EnemyAI : MonoBehaviour {
 	
 	//Gets the point of the terrain right underneath
 	private Vector3 terrainLocation(Vector3 objectPosition){
-		Ray ray = new Ray(objectPosition, new Vector3(0,-1,0));
-		RaycastHit hit;
-		Physics.Raycast (ray,out hit);
-		return hit.point;
+		 Ray ray = new Ray(objectPosition, new Vector3(0,-1,0));
+         RaycastHit hit;
+         Physics.Raycast (ray,out hit);
+         return hit.point;
 	}
 	
 	private void moveObject() {
@@ -182,7 +190,7 @@ public class EnemyAI : MonoBehaviour {
 			//If we have allready reached the target we need only to turn the object to face hes target
 			
 			//Direction to the player
-	        Vector3 dir = (player.transform.position-transform.position).normalized;
+	        Vector3 dir = (target.transform.position-transform.position).normalized;
 			
 			compass.rotation = Quaternion.LookRotation(dir);
 			transform.rotation = Quaternion.Lerp(transform.rotation, compass.rotation, turnSpeed * Time.fixedDeltaTime);
@@ -191,7 +199,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	//Chekcs if there is a need to calculate a new path
 	private bool newPathNeeded() {		
-		float distanceFromPlayer = Vector3.Distance(transform.position, player.position);
+		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
 		float distanceRatio = distanceFromPlayer/10;
 		float minDistance = 3.0f;
 		float maxInterval = 10f;
@@ -210,7 +218,7 @@ public class EnemyAI : MonoBehaviour {
 			}
 			//If the player has moved enough related to the distance between this object and him
 			//perform a new pathfind to get a more accurate path
-			if (Vector3.Distance(oldPlayerPosition, player.position) > distanceRatio)  {
+			if (Vector3.Distance(oldTargetPosition, target.position) > distanceRatio)  {
 				return true;
 			}
 			//If the object is allready pretty close to the player we need frequent path updates
