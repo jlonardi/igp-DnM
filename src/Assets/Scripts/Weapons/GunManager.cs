@@ -2,21 +2,15 @@
 
 using System.Collections;
 
-public class GunManager : MonoBehaviour{
-	public Texture2D crosshairTexture;
-	private Rect rectPosition;
-	private float rectSize;
-	
+public class GunManager : MonoBehaviour {
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
 	public HitParticles hitParticles = new HitParticles();
+	private Hud hud;
 	
-	void Start () {		
-		//size and alignment for gun reticle
-		rectSize = Screen.height/30;
-	    rectPosition = new Rect((Screen.width-rectSize)/2, (Screen.height-rectSize)/2,rectSize,rectSize);	
-
+	void Start () {	
+		hud = GameObject.Find("Game Manager").GetComponent<Hud>();
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;
 		}
@@ -31,8 +25,8 @@ public class GunManager : MonoBehaviour{
 				ChangeToGun(i);
 			}
 		}		
-		//hud.selectedGun = currentGun;
-		//hud.ammoRemaining[currentGunIndex] = guns[currentGunIndex].gun.currentRounds;
+		
+		hud.setGun(currentGun);
 	}
 	
 	private void ChangeToGun(int gunIndex){
@@ -40,12 +34,6 @@ public class GunManager : MonoBehaviour{
 		cGun.enabled = true;
 		currentGun = cGun;
 		currentGunIndex = gunIndex;				
-	}
-	
-    void OnGUI() {
-    	if(Time.timeScale!=0 && currentGun.enabled) {
-    		GUI.DrawTexture(rectPosition, crosshairTexture);
-    	}
 	}	
 }
 
