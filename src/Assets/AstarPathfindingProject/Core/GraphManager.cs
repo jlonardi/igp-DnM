@@ -35,10 +35,12 @@ public class GraphManager : MonoBehaviour {
 	private void updateGraphs() {
 		// Updates the graphs if there has been passed enough time since last update
 		if(timeOfLastGraphUpdate + updateInterval < Time.fixedTime) {
+			Debug.Log("Time to update the graphs!");
 			if(levelGraph != null) {
 				updateGraph(levelGraph, new Vector3(495, -0.1f, 495));
 			}
 			if(playerGraph != null) {
+				Debug.Log("Updating the player graph!");
 				updateGraph(playerGraph, new Vector3(player.position.x, -0.1f, player.position.z));
 			}
 			timeOfLastGraphUpdate = Time.fixedTime;
@@ -48,29 +50,29 @@ public class GraphManager : MonoBehaviour {
 	
 	private void init() {
 		
+		levelGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		initGraph(levelGraph, new Vector3(495, -0.1f, 495), 100, 100, 10);
 		
 		Vector3 playerCenter = player.position;
 		playerCenter.y = -0.1f;
+		
+		playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		initGraph(playerGraph, playerCenter, 50, 50, 1);
 		
 		Debug.Log("Initialized graphs");
 	}
 	
 	private void updateGraph(GridGraph g, Vector3 center) {
-		if(g != null && (timeOfLastGraphUpdate + 3f < Time.fixedTime || Time.fixedTime < 3f)) {
-			g.center = center;
-			Matrix4x4 m = g.matrix;
-			g.GenerateMatrix();
-			g.RelocateNodes (m, g.matrix);
-			timeOfLastGraphUpdate = Time.fixedTime;
-			return;
-		}	
+		g.center = center;
+		Matrix4x4 m = g.matrix;
+		g.GenerateMatrix();
+		g.RelocateNodes (m, g.matrix);
+		Debug.Log("Graph updated!");
+		return;
+
 	}
 	
 	private void initGraph(GridGraph g, Vector3 center, int width, int depth, int nodeSize) {
-		
-		g = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		
 		g.center = center;
 		g.width = width;
