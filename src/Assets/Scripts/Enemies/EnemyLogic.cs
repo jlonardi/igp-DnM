@@ -5,7 +5,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
 	public GameObject ragdoll;	
-	public float focusTime = 3f;
+	public float focusTime = 10f;
 	public bool attacking = false;
 	public bool looting = false;
 	
