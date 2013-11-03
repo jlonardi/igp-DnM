@@ -2,6 +2,7 @@ bin/
 temp/
 src/Temp/
 src/Library/
+src/Build/*
 src/Obj
 src/*.sln
 src/*.csproj
@@ -10,3 +11,16 @@ src/*.suo
 src/*.user
 src/*.userprefs
 src/Assembly*.*
+
+#Un-ignore these specific files
+!src/Library/*.asset
+!src/Library/AssetImportState
+!src/Library/AssetVersioning.db
+!src/Library/BuildPlayer.prefs
+!src/Library/ScriptMapper
+!src/Library/assetservercachev3
+!src/Library/expandedItems
+!src/Library/guidmapper
+!src/Library/unity default resources
+!src/Library/unity editor resources
+!src/Library/metadata/
