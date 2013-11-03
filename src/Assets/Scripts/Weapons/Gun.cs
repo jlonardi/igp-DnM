@@ -17,7 +17,10 @@ public class Gun : MonoBehaviour {
 	public float fireRate;
 	
 	//Range of fire in meters
-	public float fireRange;
+	public float fireRange = 50.0f;
+	
+	//Max damage on optimal hit
+	public float maxDamage = 50.0f;
 	
 	//Speed of the projectile in m/s
 	public float projectileSpeed;
@@ -271,7 +274,9 @@ public class Gun : MonoBehaviour {
 		if(Physics.Raycast(origin, dir, out hit, fireRange, hitLayer)){
 			hit.collider.gameObject.SendMessage("Hit", hit, SendMessageOptions.DontRequireReceiver);
 			GenerateGraphicStuff(hit);
-			
+			if(hit.collider.tag == "enemy")	{
+				CalculateDamage(hit);
+			}
 			if(hit.collider.tag == "glass")	{
 				if(Physics.Raycast(glassOrigin, glassDir, out glassHit, fireRange - hit.distance, hitLayer)){
 					glassHit.collider.gameObject.SendMessage("Hit", glassHit, SendMessageOptions.DontRequireReceiver);
@@ -280,7 +285,7 @@ public class Gun : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	public void GenerateGraphicStuff(RaycastHit hit){		
 		HitType hitType = HitType.CONCRETE;
 
@@ -309,6 +314,10 @@ public class Gun : MonoBehaviour {
 		Vector3 hitPoint = hit.point + hit.normal * delta;
 				
 		switch(hit.collider.tag){
+			case "enemy":
+				hitType = HitType.ENEMY;
+				go = GameObject.Instantiate(hitParticles.bloodParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
+				break;
 			case "wood":
 				hitType = HitType.WOOD;
 				go = GameObject.Instantiate(hitParticles.woodParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
@@ -386,7 +395,16 @@ public class Gun : MonoBehaviour {
 		}
 	}
 	
-	
+	// calculates gun's damage for hitpoint
+	public void CalculateDamage(RaycastHit hit){		
+		EnemyLogic enemyObject = hit.collider.GetComponentInChildren<EnemyLogic>();
+		
+		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
+		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
+		enemyObject.HitDamage((int)damageAmount, DamageType.BULLET);
+		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
+	}
+		
 	//---------------AUDIO METHODS--------
 	// These require Audio Source to be available on Gun Manager object
 	public void PlayOutOfAmmoSound()

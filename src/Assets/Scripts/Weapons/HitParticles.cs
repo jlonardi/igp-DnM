@@ -3,6 +3,7 @@ using System.Collections;
 
 [System.Serializable]
 public class HitParticles {
+	public GameObject bloodParticle;
 	public GameObject woodParticle;
 	public GameObject metalParticle;
 	public GameObject concreteParticle;

@@ -1,32 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum DamageType {
+	BULLET,
+	FIRE,
+	EXPLOSION,
+}
+
 public class EnemyLogic : MonoBehaviour {
-	
-	
 	public int health = 100;
+	public GameObject ragdoll;	
 	
-	void Start () {
-	
-	}
-	
-	void Update () {
-	
-	}
-	
-	void Hit(RaycastHit hit) {
+	public void HitDamage(int damageAmount, DamageType damageType){
 		Debug.Log("Hit detected");
-		//Debug.Log("Distance was " + hit.distance);
-		if(hit.distance > 10) {
-			health -= 20;	
-		} else if(hit.distance > 6) {
-			health -= 35;		
-		} else {
-			health -= 50;
+		
+		if (damageType == DamageType.BULLET) {
+			health -= damageAmount;
 		}
+		
 		if(health <= 0) {
-			Destroy(gameObject);
+			Die();
 		}
 		Debug.Log("Enemy health left: " + health);
 	}
+	
+	public void Die(){
+		GameObject killObj = gameObject;
+		Ragdoll r = (Instantiate(ragdoll, killObj.transform.position,killObj.transform.rotation) as GameObject).GetComponent<Ragdoll>();		
+		Destroy(gameObject);
+	}
+	
 }
