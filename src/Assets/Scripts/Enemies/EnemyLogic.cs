@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum DamageType {
-	BULLET,
-	FIRE,
-	EXPLOSION,
-}
-
 public class EnemyLogic : MonoBehaviour {
 	public int health = 100;
 	public GameObject ragdoll;	

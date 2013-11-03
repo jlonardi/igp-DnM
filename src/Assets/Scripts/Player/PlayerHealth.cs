@@ -13,4 +13,7 @@ public class PlayerHealth : MonoBehaviour {
 		hud.setHealth(health);
 	}
 	
+	public void TakeDamage(int damageAmount, DamageType damageType){
+		health -= damageAmount;
+	}	
 }
