@@ -3,6 +3,7 @@ using System.Collections;
 
 public enum HitType
 {
+	ENEMY,
 	CONCRETE,
 	WOOD,
 	METAL,
