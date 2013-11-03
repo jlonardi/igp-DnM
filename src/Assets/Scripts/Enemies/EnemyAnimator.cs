@@ -4,12 +4,12 @@ using System.Collections;
 public class EnemyAnimator : MonoBehaviour {
 
 	private Animator animator;
-	private AstarAI astar;
+	private EnemyAI astar;
 	
 	
 	void Start () {
 		animator = GetComponent<Animator>();
-		astar = GetComponent<AstarAI>();
+		astar = GetComponent<EnemyAI>();
 		animator.speed = 1;	// animation playback speed
 		animator.SetBool("Jumping",false);
 		animator.SetLayerWeight(1,1);
