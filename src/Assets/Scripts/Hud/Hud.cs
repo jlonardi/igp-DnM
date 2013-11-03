@@ -20,7 +20,7 @@ public class Hud : MonoBehaviour {
     void OnGUI() {
     	if(Time.timeScale!=0){ // draw HUD only when game is not paused
 			
-			if (gun.enabled){ // if gun in use, draw crosshair
+			if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
     			GUI.DrawTexture(crosshairPosition, crosshairTexture);
 			}
 			

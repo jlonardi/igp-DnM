@@ -22,11 +22,13 @@ public class FPSInputController : MonoBehaviour {
 	public int currentWeapon;
 	
 	private CharacterMotor motor;
+	private Treasure treasure;
 	
 	// Use this for initialization
 	void Awake () {
 		motor = GetComponent<CharacterMotor>();
 		weaponSystem = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
+		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,7 @@ public class FPSInputController : MonoBehaviour {
 		if (Time.timeScale==0){	// don't update if game is paused
 			return;
 		}
+		
 		// Get the input vector from kayboard or analog stick
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 		
@@ -57,9 +60,11 @@ public class FPSInputController : MonoBehaviour {
 		// Apply the direction to the CharacterMotor
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
-
+		
+		bool treasureOnGround = treasure.OnGround();
+		
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire1") && weaponSystem.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire1") && treasureOnGround && weaponSystem.currentGun.freeToShoot;
 			
 		idleTimer += Time.deltaTime;
 		
@@ -77,12 +82,18 @@ public class FPSInputController : MonoBehaviour {
 		
 //		firing = (firingTimer <= 0.0f && fire);
 		
-		if(weaponSystem.currentGun != null)
+		if(weaponSystem != null && treasureOnGround)
 		{
 			weaponSystem.currentGun.fire = firing;
 			reloading = weaponSystem.currentGun.reloading;
 			currentWeaponName = weaponSystem.currentGun.gunName;
 			currentWeapon = weaponSystem.currentGunIndex;
 		}
+		
+		
+		if (Input.GetButton("Use") && !treasureOnGround ){
+			treasure.SetTreasureOnGround();
+		}
+
 	}
 }
