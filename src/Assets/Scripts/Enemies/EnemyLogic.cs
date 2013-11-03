@@ -1,18 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum DamageType {
-	BULLET,
-	FIRE,
-	EXPLOSION,
-}
-
-
-public enum focusTarget {
-	PLAYER,
-	TRESAURE
-}
-
 public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
@@ -23,10 +11,12 @@ public class EnemyLogic : MonoBehaviour {
 	private bool looting;
 	
 	private EnemyAI ai;
+	private GameObject playerObject;
 	private Transform player;
 	private Transform tresaure;
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
+	private float timeSinceLastAction = 0f;
 	
 	public void Start() {
 		
@@ -46,6 +36,29 @@ public class EnemyLogic : MonoBehaviour {
 		}
 		
 		checkFocus();
+		checkActions();
+	}
+	
+	private void checkActions() {
+		//The object is at target and ready to do some actions
+		if(ai.isAtTarget()) {
+			
+			if(target == focusTarget.PLAYER) {
+				float attackInterval = 1f;
+				if(timeSinceLastAction + attackInterval < Time.time) {
+					//TODO attack the player
+				}	
+			}
+			
+			if(target == focusTarget.TRESAURE) {
+				float lootInterval = 1f;
+				if(timeSinceLastAction + lootInterval < Time.time) {
+					//TODO grab loot from the chest	
+				}
+			}
+			
+			timeSinceLastAction = Time.deltaTime;
+		}
 	}
 	
 	private void checkFocus() {
@@ -74,7 +87,7 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}
 	
-	public void HitDamage(int damageAmount, DamageType damageType){
+	public void TakeDamage(int damageAmount, DamageType damageType){
 		Debug.Log("Hit detected");
 		
 		if (damageType == DamageType.BULLET) {

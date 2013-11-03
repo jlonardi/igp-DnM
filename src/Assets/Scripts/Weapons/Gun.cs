@@ -401,7 +401,7 @@ public class Gun : MonoBehaviour {
 		
 		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
 		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
-		enemyObject.HitDamage((int)damageAmount, DamageType.BULLET);
+		enemyObject.TakeDamage((int)damageAmount, DamageType.BULLET);
 		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
 		

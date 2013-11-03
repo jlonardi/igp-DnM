@@ -1,17 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum HitType
-{
-	ENEMY,
-	CONCRETE,
-	WOOD,
-	METAL,
-	OLD_METAL,
-	GLASS,
-	GENERIC
-}
-
 public class BulletMarks : MonoBehaviour {
 
 	public Texture2D[] concrete;

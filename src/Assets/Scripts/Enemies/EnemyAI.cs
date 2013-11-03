@@ -142,6 +142,10 @@ public class EnemyAI : MonoBehaviour {
 		startNewPathfinding();
 	}
 	
+	public bool isAtTarget() {
+		return atTarget;	
+	}
+	
 	private void startNewPathfinding() {
 		//Debug.Log("Starting a new pathfind");
 		
