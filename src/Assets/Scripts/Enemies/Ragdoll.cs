@@ -23,7 +23,7 @@ public class Ragdoll : MonoBehaviour {
 		
 	}
 	
-	public void AddChildren(Transform parent, List<Transform> list){
+	private void AddChildren(Transform parent, List<Transform> list){
 		list.Add(parent);
 		foreach(Transform t in parent){
 			AddChildren(t,list);
