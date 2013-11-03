@@ -11,7 +11,7 @@ public class EnemyLogic : MonoBehaviour {
 	public int health = 100;
 	public GameObject ragdoll;	
 	
-	public void HitDamage(int damageAmount, DamageType damageType){
+	public void TakeDamage(int damageAmount, DamageType damageType){
 		Debug.Log("Hit detected");
 		
 		if (damageType == DamageType.BULLET) {
