@@ -12,7 +12,7 @@ public class GraphManager : MonoBehaviour {
 	
 	private float timeOfLastGraphUpdate = 0f;
 	
-	private float updateInterval = 3f;
+	private float updateInterval = 2f;
 	
 	void Start () {
 		
@@ -35,12 +35,12 @@ public class GraphManager : MonoBehaviour {
 	private void updateGraphs() {
 		// Updates the graphs if there has been passed enough time since last update
 		if(timeOfLastGraphUpdate + updateInterval < Time.fixedTime) {
-			Debug.Log("Time to update the graphs!");
+			//Debug.Log("Time to update the graphs!");
 			if(levelGraph != null) {
 				updateGraph(levelGraph, new Vector3(495, -0.1f, 495));
 			}
 			if(playerGraph != null) {
-				Debug.Log("Updating the player graph!");
+				//Debug.Log("Updating the player graph!");
 				updateGraph(playerGraph, new Vector3(player.position.x, -0.1f, player.position.z));
 			}
 			timeOfLastGraphUpdate = Time.fixedTime;
@@ -59,7 +59,7 @@ public class GraphManager : MonoBehaviour {
 		playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		initGraph(playerGraph, playerCenter, 50, 50, 1);
 		
-		Debug.Log("Initialized graphs");
+		//Debug.Log("Initialized graphs");
 	}
 	
 	private void updateGraph(GridGraph g, Vector3 center) {
@@ -67,7 +67,7 @@ public class GraphManager : MonoBehaviour {
 		Matrix4x4 m = g.matrix;
 		g.GenerateMatrix();
 		g.RelocateNodes (m, g.matrix);
-		Debug.Log("Graph updated!");
+		//Debug.Log("Graph updated!");
 		return;
 
 	}
