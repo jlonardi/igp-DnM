@@ -6,9 +6,8 @@ public class EnemyLogic : MonoBehaviour {
 	public int health = 100;
 	public GameObject ragdoll;	
 	public float focusTime = 3f;
-		
-	private bool attacking;
-	private bool looting;
+	public bool attacking = false;
+	public bool looting = false;
 	
 	private EnemyAI ai;
 	private GameObject playerObject;
@@ -43,18 +42,31 @@ public class EnemyLogic : MonoBehaviour {
 		//The object is at target and ready to do some actions
 		if(ai.isAtTarget()) {
 			
+			float attackInterval = 1f;
+			float lootInterval = 1f;
+			
 			if(target == focusTarget.PLAYER) {
-				float attackInterval = 1f;
+				
 				if(timeSinceLastAction + attackInterval < Time.time) {
+					attacking = true;
 					//TODO attack the player
 				}	
 			}
 			
 			if(target == focusTarget.TRESAURE) {
-				float lootInterval = 1f;
+				
 				if(timeSinceLastAction + lootInterval < Time.time) {
+					looting = true;
 					//TODO grab loot from the chest	
 				}
+			}
+			
+			if(attacking && timeSinceLastAction + attackInterval < Time.time) {
+				attacking = false;	
+			}
+			
+			if(looting && timeSinceLastAction + lootInterval < Time.time) {
+				looting = false;	
 			}
 			
 			timeSinceLastAction = Time.deltaTime;
