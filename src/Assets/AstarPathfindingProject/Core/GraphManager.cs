@@ -42,7 +42,7 @@ public class GraphManager : MonoBehaviour {
 		if(timeOfLastGraphUpdate + updateInterval < Time.fixedTime) {
 			//Debug.Log("Time to update the graphs!");
 			if(levelGraph != null) {
-				updateGraph(levelGraph, new Vector3(495, -0.1f, 495));
+				updateGraph(levelGraph, new Vector3(160, -0.1f, 150));
 			}
 			if(playerGraph != null) {
 				//Debug.Log("Updating the player graph!");
@@ -60,19 +60,19 @@ public class GraphManager : MonoBehaviour {
 	private void init() {
 		
 		levelGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
-		initGraph(levelGraph, new Vector3(495, -0.1f, 495), 140, 140, 7);
+		initGraph(levelGraph, new Vector3(160, -0.1f, 150), 130, 130, 2);
 		
 		Vector3 playerCenter = player.position;
 		playerCenter.y = -0.1f;
 		
-		playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
-		initGraph(playerGraph, playerCenter, 50, 50, 1);
+		//playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
+		//initGraph(playerGraph, playerCenter, 50, 50, 1);
 		
-		Vector3 tresaureCenter = tresaure.position;
-		tresaureCenter.y = -0.1f;
+		//Vector3 tresaureCenter = tresaure.position;
+		//tresaureCenter.y = -0.1f;
 		
 		//tresaureGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
-		//initGraph(tresaureGraph, tresaureCenter, 50, 50, 1);
+		//initGraph(tresaureGraph, tresaureCenter, 10, 10, 1);
 		//Debug.Log("Initialized graphs");
 	}
 	
@@ -100,6 +100,7 @@ public class GraphManager : MonoBehaviour {
 		g.collision.collisionCheck = true;
 		g.collision.diameter = 2;
 		g.collision.height = 3;
+		g.collision.collisionOffset = 2;
 		int obstacleLayer = LayerMask.NameToLayer("Obstacle");
 		int obstacleMask = 1 << obstacleLayer;
 		g.collision.mask = obstacleMask;

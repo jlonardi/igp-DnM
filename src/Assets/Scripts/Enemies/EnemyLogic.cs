@@ -8,6 +8,8 @@ public class EnemyLogic : MonoBehaviour {
 	public float focusTime = 10f;
 	public bool attacking = false;
 	public bool looting = false;
+	public float attackInterval = 1f;
+	public float lootInterval = 1f;
 	
 	private EnemyAI ai;
 	private GameObject playerObject;
@@ -15,7 +17,9 @@ public class EnemyLogic : MonoBehaviour {
 	private Transform tresaure;
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
-	private float timeSinceLastAction = 0f;
+	private float timeOfLastAction = 0f;
+	
+	private int attacks = 0;
 	
 	public void Start() {
 		
@@ -23,7 +27,7 @@ public class EnemyLogic : MonoBehaviour {
 		GameObject p = GameObject.Find("Player");
 		player = p.transform;
 		GameObject a = GameObject.Find("arkku");
-		tresaure = a.transform;
+		tresaure = a.transform.FindChild("focusPoint");
 		
 		target = focusTarget.TRESAURE;
 	}
@@ -42,35 +46,46 @@ public class EnemyLogic : MonoBehaviour {
 		//The object is at target and ready to do some actions
 		if(ai.isAtTarget()) {
 			
-			float attackInterval = 1f;
-			float lootInterval = 1f;
-			
 			if(target == focusTarget.PLAYER) {
-				
-				if(timeSinceLastAction + attackInterval < Time.time) {
+				if(!attacking) {
 					attacking = true;
+					Debug.Log("attacking set to true");
+				}
+				if((timeOfLastAction + attackInterval) < Time.time && !attacking) {
+					
 					//TODO attack the player
-				}	
-			}
+					
+					timeOfLastAction = Time.time;
+				}
+			} 
 			
 			if(target == focusTarget.TRESAURE) {
-				
-				if(timeSinceLastAction + lootInterval < Time.time) {
-					looting = true;
+				if(!looting) {
+					looting = true;	
+				}
+				if((timeOfLastAction + attackInterval) < Time.time && !looting) {
+					
 					//TODO grab loot from the chest	
+
+					timeOfLastAction = Time.time;
 				}
 			}
 			
-			if(attacking && timeSinceLastAction + attackInterval < Time.time) {
-				attacking = false;	
-			}
 			
-			if(looting && timeSinceLastAction + lootInterval < Time.time) {
-				looting = false;	
-			}
 			
-			timeSinceLastAction = Time.deltaTime;
+
+		} else {
+			attacking = false;	
+			looting = false;
 		}
+
+		//if(attacking && (timeOfLastAction + attackInterval) < Time.time) {
+		//		attacking = false;	
+		//}
+			
+		//if(looting && (timeOfLastAction + attackInterval) < Time.time) {
+		//		looting = false;	
+		//}
 	}
 	
 	private void checkFocus() {

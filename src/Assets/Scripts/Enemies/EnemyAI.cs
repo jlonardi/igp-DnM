@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour {
 	private float timeOfLastPathFind = 0f;
 	
 	//Tells if the object has reached the goal
-	private bool atTarget = false;
+	public bool atTarget = false;
 		
 	//Tells the status of the pathfind calculation
 	private bool pathCalculationComplete = true;
@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour {
 		mesh.renderer.enabled = false;
 		
 		GameObject targetObject = GameObject.Find("arkku");
-		target = targetObject.transform;
+		target = targetObject.transform.FindChild("focusPoint");
 		targetPosition = target.position;
 		oldTargetPosition = target.position;
 		
@@ -144,7 +144,7 @@ public class EnemyAI : MonoBehaviour {
 	private bool targetReached() {
 		
 		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
-		float minDistance = 3.0f;
+		float minDistance = 2f;
 		
 		if(distanceFromPlayer > minDistance) {
 			return false;
