@@ -22,6 +22,8 @@ public class GunManager : MonoBehaviour {
 		
 		// set to false until treasure on ground
 		currentGun.enabled = false;
+		currentGun.gameObject.SetActive(false);
+
 	}
 	
 	void Update () {		
@@ -32,6 +34,7 @@ public class GunManager : MonoBehaviour {
 		}				
 		if (treasure.OnGround()){
 			currentGun.enabled = true;
+			currentGun.gameObject.SetActive(true);
 		}
 	}
 	

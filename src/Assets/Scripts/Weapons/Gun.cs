@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour {
 	public GameObject bulletMark;
 	public GameObject projectilePrefab;
 	
-	public GunParticles shootingEmitter;
+	public GunParticles gunParticles;
 
 	public ParticleEmitter[] capsuleEmitter;
 	
@@ -88,9 +88,8 @@ public class Gun : MonoBehaviour {
 	}
 	
 	public void OnDisable(){
-		this.renderer.enabled = false;
-		if(shootingEmitter != null){
-			shootingEmitter.ChangeState(false);
+		if(gunParticles != null){
+			gunParticles.ChangeState(false);
 		}
 		
 		if(capsuleEmitter != null) {
@@ -107,9 +106,6 @@ public class Gun : MonoBehaviour {
 	
 	public void OnEnable()
 	{
-//		cam = soldierCamera.camera;
-		this.renderer.enabled = true;
-		
 		reloadTimer = 0.0f;
 		reloading = false;
 		freeToShoot = true;
@@ -127,10 +123,10 @@ public class Gun : MonoBehaviour {
 		}
 		
 		shootingParticles = null;
-		if(shootingEmitter != null){
-			for(int i = 0; i < shootingEmitter.transform.childCount; i++){
-				if(shootingEmitter.transform.GetChild(i).name == "bullet_trace"){
-					shootingParticles = shootingEmitter.transform.GetChild(i);
+		if(gunParticles != null){
+			for(int i = 0; i < gunParticles.transform.childCount; i++){
+				if(gunParticles.transform.GetChild(i).name == "bullet_trace"){
+					shootingParticles = gunParticles.transform.GetChild(i);
 					break;
 				}
 			}
@@ -150,8 +146,8 @@ public class Gun : MonoBehaviour {
 					}					
 					PlayShootSound();
 					
-					if(shootingEmitter != null){
-						shootingEmitter.ChangeState(true);
+					if(gunParticles != null){
+						gunParticles.ChangeState(true);
 						
 					}
 					
@@ -161,11 +157,9 @@ public class Gun : MonoBehaviour {
 					
 					switch(fireType){
 						case FireType.RAYCAST:
-//							TrainingStatistics.shotsFired++;
 							CheckRaycastHit();
 							break;
 						case FireType.PHYSIC_PROJECTILE:
-//							TrainingStatistics.grenadeFired++;
 							LaunchProjectile();
 							break;
 					}					
@@ -177,8 +171,8 @@ public class Gun : MonoBehaviour {
 				}
 			}
 			else if(autoReload && freeToShoot){
-				if(shootingEmitter != null){
-					shootingEmitter.ChangeState(false);
+				if(gunParticles != null){
+					gunParticles.ChangeState(false);
 				}
 				
 				if(shotLight != null){
@@ -191,8 +185,8 @@ public class Gun : MonoBehaviour {
 			}
 		}
 		else{
-			if(shootingEmitter != null){
-				shootingEmitter.ChangeState(false);
+			if(gunParticles != null){
+				gunParticles.ChangeState(false);
 			}
 			
 			if(shotLight != null){
