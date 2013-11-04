@@ -33,7 +33,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
     void Update()
 	{
-		if(Time.timeScale!=1){  //Mouse look do not work if game is paused 
+		if(Time.timeScale==0){  //Mouse look do not work if game is paused 
 			return;
 		}
 
