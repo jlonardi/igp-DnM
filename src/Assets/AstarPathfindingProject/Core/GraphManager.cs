@@ -7,8 +7,10 @@ public class GraphManager : MonoBehaviour {
 	
 	private GridGraph levelGraph;
 	private GridGraph playerGraph;
+	private GridGraph tresaureGraph;
 	
 	private Transform player;
+	private Transform tresaure;
 	
 	private float timeOfLastGraphUpdate = 0f;
 	
@@ -18,6 +20,9 @@ public class GraphManager : MonoBehaviour {
 		
 		GameObject playerObject = GameObject.Find("Player");
 		player = playerObject.transform;
+		
+		GameObject trsaureObject = GameObject.Find("arkku");
+		tresaure = trsaureObject.transform;
 	
 		init();
 		
@@ -43,6 +48,10 @@ public class GraphManager : MonoBehaviour {
 				//Debug.Log("Updating the player graph!");
 				updateGraph(playerGraph, new Vector3(player.position.x, -0.1f, player.position.z));
 			}
+			if(tresaureGraph != null) {
+				//Debug.Log("Updating the player graph!");
+				updateGraph(tresaureGraph, new Vector3(tresaure.position.x, -0.1f, tresaure.position.z));
+			}
 			timeOfLastGraphUpdate = Time.fixedTime;
 			AstarPath.active.Scan();
 		}
@@ -51,7 +60,7 @@ public class GraphManager : MonoBehaviour {
 	private void init() {
 		
 		levelGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
-		initGraph(levelGraph, new Vector3(495, -0.1f, 495), 100, 100, 10);
+		initGraph(levelGraph, new Vector3(495, -0.1f, 495), 140, 140, 7);
 		
 		Vector3 playerCenter = player.position;
 		playerCenter.y = -0.1f;
@@ -59,6 +68,11 @@ public class GraphManager : MonoBehaviour {
 		playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		initGraph(playerGraph, playerCenter, 50, 50, 1);
 		
+		Vector3 tresaureCenter = tresaure.position;
+		tresaureCenter.y = -0.1f;
+		
+		//tresaureGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
+		//initGraph(tresaureGraph, tresaureCenter, 50, 50, 1);
 		//Debug.Log("Initialized graphs");
 	}
 	

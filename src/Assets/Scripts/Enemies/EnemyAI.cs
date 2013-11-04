@@ -19,9 +19,6 @@ public class EnemyAI : MonoBehaviour {
 	//The object that contains the mesh of the object
 	private Transform mesh;
 	
-	//Tells the rotation where the object has to be directed over time
-	private Transform compass;
-	
 	//The players transform
 	private Transform target;
 	
@@ -44,7 +41,7 @@ public class EnemyAI : MonoBehaviour {
     public float speed = 200f;
 	
 	//The turn speed per second
-	public float turnSpeed = 10f;
+	public float turnSpeed = 3f;
     
     //The max distance from the AI to a waypoint for it to continue to the next waypoint
     public float nextWaypointDistance = 0.5f;
@@ -68,9 +65,6 @@ public class EnemyAI : MonoBehaviour {
 		//we don't want to draw it before the first path has been calculated
 		mesh = transform.FindChild("Sinbad");
 		mesh.renderer.enabled = false;
-		
-		//Get a reference to the Compass object
-		compass = transform.FindChild("Compass");
 		
 		GameObject targetObject = GameObject.Find("arkku");
 		target = targetObject.transform;
@@ -107,11 +101,13 @@ public class EnemyAI : MonoBehaviour {
 		//and mark us so that we are at the target
 		if (path != null && currentWaypoint >= path.vectorPath.Count) {
             //Debug.Log ("End Of Path Reached");
-			currentWaypoint = 0;
+			currentWaypoint = 2;
 			atTarget = true;
             return;
         }
 		
+		//Check if we are at the target yet
+		atTarget = targetReached();
 		
 		//Perform a new pathfind if needed
 		if(pathCalculationComplete && newPathNeeded()) {
@@ -120,7 +116,6 @@ public class EnemyAI : MonoBehaviour {
                  targetPosition = terrainPosition;
                  oldTargetPosition = terrainPosition;
                  startNewPathfinding();
-                 atTarget = false;
 			}
 		} 
 		
@@ -144,6 +139,18 @@ public class EnemyAI : MonoBehaviour {
 	
 	public bool isAtTarget() {
 		return atTarget;	
+	}
+	
+	private bool targetReached() {
+		
+		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
+		float minDistance = 3.0f;
+		
+		if(distanceFromPlayer > minDistance) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	private void startNewPathfinding() {
@@ -184,11 +191,9 @@ public class EnemyAI : MonoBehaviour {
 			
 			//calculate current speed
 			movementSpeed = Vector3.Distance(transform.position, positionBeforeMove) * speed;
-			
-			//Faces the compass at the next waypoint direction
-			compass.rotation = Quaternion.LookRotation(dir);
-			//Start moving the objoects facing towards the compass over time
-			transform.rotation = Quaternion.Lerp(transform.rotation, compass.rotation, turnSpeed * Time.fixedDeltaTime);
+
+			//Start moving the objoects facing towards the direction over time
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
 			      
 	        //Check if we are close enough to the next waypoint
 	        //If we are, proceed to follow the next waypoint
@@ -201,8 +206,9 @@ public class EnemyAI : MonoBehaviour {
 			//Direction to the player
 	        Vector3 dir = (target.transform.position-transform.position).normalized;
 			
-			compass.rotation = Quaternion.LookRotation(dir);
-			transform.rotation = Quaternion.Lerp(transform.rotation, compass.rotation, turnSpeed * Time.fixedDeltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
+			
+			movementSpeed = 0;
 		}
 	}
 	
@@ -210,10 +216,9 @@ public class EnemyAI : MonoBehaviour {
 	private bool newPathNeeded() {		
 		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
 		float distanceRatio = distanceFromPlayer/10;
-		float minDistance = 3.0f;
 		float maxInterval = 10f;
 		
-		if(distanceFromPlayer > minDistance) {
+		if(!atTarget) {
 			//If enough time has been gone since the last pathfind we have to do a new one
 			if(timeOfLastPathFind + maxInterval > Time.fixedTime) {
 				return true;
