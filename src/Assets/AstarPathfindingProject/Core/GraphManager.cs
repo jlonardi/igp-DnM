@@ -98,7 +98,7 @@ public class GraphManager : MonoBehaviour {
 		g.autoLinkGrids = true;
 		
 		g.collision.collisionCheck = true;
-		g.collision.diameter = 2;
+		g.collision.diameter = 1.5;
 		g.collision.height = 3;
 		g.collision.collisionOffset = 2;
 		int obstacleLayer = LayerMask.NameToLayer("Obstacle");
