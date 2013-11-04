@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour {
 	
-	public float movementSpeed;
+	public float movementSpeed = 0f;	
 	
 	//The point to move to
     public Vector3 targetPosition;
@@ -178,8 +178,13 @@ public class EnemyAI : MonoBehaviour {
 			//Direction to the next waypoint
 	        Vector3 dir = (path.vectorPath[currentWaypoint]-terrainLocation(transform.position)).normalized;
 	        dir *= speed * Time.fixedDeltaTime;
-	        controller.SimpleMove (dir);
-		
+			
+			Vector3 positionBeforeMove = transform.position;		
+			controller.SimpleMove (dir);
+			
+			//calculate current speed
+			movementSpeed = Vector3.Distance(transform.position, positionBeforeMove) * speed;
+			
 			//Faces the compass at the next waypoint direction
 			compass.rotation = Quaternion.LookRotation(dir);
 			//Start moving the objoects facing towards the compass over time
@@ -207,13 +212,6 @@ public class EnemyAI : MonoBehaviour {
 		float distanceRatio = distanceFromPlayer/10;
 		float minDistance = 3.0f;
 		float maxInterval = 10f;
-		
-		//Update movementSpeed for animations
-		if(distanceFromPlayer > minDistance) {
-			movementSpeed = speed;
-		} else {
-			movementSpeed = 0.0f;
-		}
 		
 		if(distanceFromPlayer > minDistance) {
 			//If enough time has been gone since the last pathfind we have to do a new one
