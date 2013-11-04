@@ -99,7 +99,13 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}
 	
+	// TakeDamage without adding force
 	public void TakeDamage(int damageAmount, DamageType damageType){
+		TakeDamage(damageAmount, damageType, new RaycastHit(), new Vector3(), 0f);
+	}
+	
+	// TakeDamage with applying damage force
+	public void TakeDamage(int damageAmount, DamageType damageType, RaycastHit hit, Vector3 direction, float power){
 		Debug.Log("Hit detected");
 		
 		if (damageType == DamageType.BULLET) {
@@ -107,7 +113,7 @@ public class EnemyLogic : MonoBehaviour {
 		}
 		
 		if(health <= 0) {
-			Die();
+			Die(hit, direction, power);
 		}
 		
 		target = focusTarget.PLAYER;
@@ -117,10 +123,22 @@ public class EnemyLogic : MonoBehaviour {
 		Debug.Log("Enemy health left: " + health);
 	}
 	
-	public void Die(){		
-		Ragdoll r = (Instantiate(ragdoll, this.transform.position,this.transform.rotation) as GameObject).GetComponent<Ragdoll>();
-		r.CopyPose(this.gameObject.transform);
-		Destroy(this.gameObject);
+	// enemy death without force
+	public void Die(){
+		Die(new RaycastHit(), new Vector3(), 0f);
 	}
 	
+	// enemy death with force
+	public void Die(RaycastHit hit, Vector3 direction, float power){		
+		//make enemy a ragdoll
+		Ragdoll r = (Instantiate(ragdoll, this.transform.position,this.transform.rotation) as GameObject).GetComponent<Ragdoll>();
+		r.CopyPose(this.gameObject.transform);
+		Destroy(this.gameObject);		
+		
+		// apply impact to ragdoll
+		if (power != 0f){
+			Rigidbody rb = r.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;
+			rb.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
+		}
+	}	
 }

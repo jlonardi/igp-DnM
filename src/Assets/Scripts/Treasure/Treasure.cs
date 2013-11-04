@@ -33,7 +33,8 @@ public class Treasure : MonoBehaviour {
 	public void SetTreasureOnGround(){
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		this.transform.parent = treasureOnScene.transform;
-		this.onGround = true;		
+		this.onGround = true;	
+		hud.setTreasureOnGround();
 	}
 	
 	public bool OnGround(){

@@ -10,7 +10,6 @@ public class Gun : MonoBehaviour {
 	
 	public string gunName;
 	
-	public Transform weaponTransformReference;
 	public LayerMask hitLayer;
 
 	//How many shots the gun can take in one second
@@ -66,6 +65,7 @@ public class Gun : MonoBehaviour {
 	[HideInInspector]
 	public bool fire;
 
+	private Transform weaponTransformReference;
 	private FireType fireType;	
 	private float reloadTimer;
 	private float lastShootTime;
@@ -81,12 +81,14 @@ public class Gun : MonoBehaviour {
 	private HitParticles hitParticles;
 	
 	void Start(){		
+		weaponTransformReference = this.transform;
 		cam = Camera.main.camera;
-		GunManager gm = GameObject.Find("Gun Manager").GetComponent<GunManager>();
-		hitParticles = gm.hitParticles;
+		GunManager gunManager = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
+		hitParticles = gunManager.hitParticles;
 	}
 	
 	public void OnDisable(){
+		this.renderer.enabled = false;
 		if(shootingEmitter != null){
 			shootingEmitter.ChangeState(false);
 		}
@@ -106,6 +108,7 @@ public class Gun : MonoBehaviour {
 	public void OnEnable()
 	{
 //		cam = soldierCamera.camera;
+		this.renderer.enabled = true;
 		
 		reloadTimer = 0.0f;
 		reloading = false;
@@ -203,12 +206,8 @@ public class Gun : MonoBehaviour {
 		
 		Vector3 startPosition;
 		
-		if(weaponTransformReference != null){
-			startPosition = weaponTransformReference.position;
-		}
-		else{
-			startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
-		}
+		startPosition = weaponTransformReference.position;
+		//startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
 		
 		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);
 		
@@ -273,10 +272,10 @@ public class Gun : MonoBehaviour {
 		
 		if(Physics.Raycast(origin, dir, out hit, fireRange, hitLayer)){
 			hit.collider.gameObject.SendMessage("Hit", hit, SendMessageOptions.DontRequireReceiver);
-			GenerateGraphicStuff(hit);
 			if(hit.collider.tag == "enemy")	{
 				CalculateDamage(hit);
 			}
+			GenerateGraphicStuff(hit);
 			if(hit.collider.tag == "glass")	{
 				if(Physics.Raycast(glassOrigin, glassDir, out glassHit, fireRange - hit.distance, hitLayer)){
 					glassHit.collider.gameObject.SendMessage("Hit", glassHit, SendMessageOptions.DontRequireReceiver);
@@ -401,7 +400,8 @@ public class Gun : MonoBehaviour {
 		
 		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
 		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
-		enemyObject.TakeDamage((int)damageAmount, DamageType.BULLET);
+		Vector3 direction = hit.collider.transform.position - weaponTransformReference.position;	
+		enemyObject.TakeDamage((int)damageAmount, DamageType.BULLET, hit, direction, pushPower);
 		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
 		

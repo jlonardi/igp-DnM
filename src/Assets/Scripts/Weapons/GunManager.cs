@@ -8,32 +8,38 @@ public class GunManager : MonoBehaviour {
 	public Gun currentGun;
 	public HitParticles hitParticles = new HitParticles();
 	private Hud hud;
+	private Treasure treasure;
 	
 	void Start () {	
-		hud = GameObject.Find("Game Manager").GetComponent<Hud>();
+		hud = GameObject.FindObjectOfType(typeof(Hud)) as Hud;
+		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
+		
+		
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;
 		}
-		currentGunIndex = 0;
-		guns[0].gun.enabled = true;
-		currentGun = guns[0].gun;
+		ChangeToGun(0);
+		
+		// set to false until treasure on ground
+		currentGun.enabled = false;
 	}
 	
-	void Update () {
+	void Update () {		
 		for (int i=0; i<guns.Length; i++){
 			if (Input.GetKeyDown(guns[i].keyToActivate)){
 				ChangeToGun(i);
 			}
-		}		
-		
-		hud.setGun(currentGun);
+		}				
+		if (treasure.OnGround()){
+			currentGun.enabled = true;
+		}
 	}
 	
 	private void ChangeToGun(int gunIndex){
-		Gun cGun = guns[gunIndex].gun;
-		cGun.enabled = true;
-		currentGun = cGun;
-		currentGunIndex = gunIndex;				
+		guns[currentGunIndex].gun.enabled = false;		
+		currentGun = guns[gunIndex].gun;
+		currentGunIndex = gunIndex;
+		hud.setGun(currentGun);
 	}	
 }
 
