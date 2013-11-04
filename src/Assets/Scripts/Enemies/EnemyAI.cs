@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using Pathfinding;
 
 public class EnemyAI : MonoBehaviour {
 	
 	public float movementSpeed = 0f;	
+	public List<Vector3> movementPositions = new List<Vector3>();
 	
 	//The point to move to
     public Vector3 targetPosition;
@@ -189,9 +191,6 @@ public class EnemyAI : MonoBehaviour {
 			Vector3 positionBeforeMove = transform.position;		
 			controller.SimpleMove (dir);
 			
-			//calculate current speed
-			movementSpeed = Vector3.Distance(transform.position, positionBeforeMove) * speed;
-
 			//Start moving the objoects facing towards the direction over time
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
 			      
@@ -207,9 +206,15 @@ public class EnemyAI : MonoBehaviour {
 	        Vector3 dir = (target.transform.position-transform.position).normalized;
 			
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
-			
-			movementSpeed = 0;
 		}
+
+		//calculate current speed for animations
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>10){
+			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 10;
+			movementPositions.RemoveAt(0);
+		}
+
 	}
 	
 	//Chekcs if there is a need to calculate a new path
