@@ -1865,7 +1865,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.0080414, y: 10, z: 78.3087158}
+  m_LocalPosition: {x: 96.0080414, y: 3.7475512, z: 78.3087158}
   m_LocalScale: {x: .180000007, y: .180000007, z: .180000007}
   m_Children:
   - {fileID: 400138}
@@ -2886,11 +2886,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
+  movementPositions: []
   targetPosition: {x: 0, y: 0, z: 0}
   atTarget: 0
   speed: 200
   turnSpeed: 10
-  nextWaypointDistance: .5
+  nextWaypointDistance: 3
+  currentWaypoint: 0
+  onLongDistanceTravel: 0
+  longDistanceTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &11400120
 MonoBehaviour:
   m_ObjectHideFlags: 1
