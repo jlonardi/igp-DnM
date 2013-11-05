@@ -4,15 +4,20 @@ using System.Collections;
 public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
+	
+	//how long enemy chases player
 	public float focusTime = 10f;
 	public bool attacking = false;
 	public bool looting = false;
 	public float attackInterval = 1f;
 	public float lootInterval = 1f;
 	
+	//distance where enemy detects player
+	public float detectDistance = 10f;
+	
 	private EnemyAI ai;
 	private RagdollManager ragdolls;
-	private GameObject playerObject;
+	private GameObject playerObj;
 	private Transform player;
 	private Transform tresaure;
 	private focusTarget target;
@@ -26,8 +31,8 @@ public class EnemyLogic : MonoBehaviour {
 		ai = GetComponent<EnemyAI>();
 		ragdolls = GameObject.FindObjectOfType(typeof(RagdollManager)) as RagdollManager;
 
-		GameObject p = GameObject.Find("Player");
-		player = p.transform;
+		playerObj = GameObject.Find("Player");	
+		player = playerObj.transform;
 		GameObject a = GameObject.Find("arkku");
 		tresaure = a.transform.FindChild("focusPoint");
 		
@@ -41,6 +46,7 @@ public class EnemyLogic : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.T)) {
 			swapTarget();
 		}
+		
 		
 		checkFocus();
 		checkActions();
@@ -96,6 +102,11 @@ public class EnemyLogic : MonoBehaviour {
 		if(target == focusTarget.PLAYER) {
 			//If the focus time expires change back to focus the tresaure
 			if(timeWhenFocusedPlayer + focusTime < Time.time) {
+				swapTarget();
+			}
+		} else { // if focus not in player, check if player nearby
+			if (Vector3.Distance(player.position, transform.position)<= detectDistance){
+				timeWhenFocusedPlayer = Time.time;
 				swapTarget();
 			}
 		}
