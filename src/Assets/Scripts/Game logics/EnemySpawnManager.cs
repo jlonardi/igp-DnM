@@ -42,11 +42,11 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	private void createSpawnWave() {
 		
-		int index = (int)Mathf.Round(Random.Range(0f, areas.Length));
+		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 		
 		Vector3 targetPosition = logic.getTarget().position;
 		
-		while(Vector3.Distance( areas[index].position, targetPosition) > 50) {
+		while(Vector3.Distance( areas[index].position, targetPosition) < 50) {
 			index = (int)Mathf.Round(Random.Range(0f, areas.Length));
 		}
 
