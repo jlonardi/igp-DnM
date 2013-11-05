@@ -30,6 +30,8 @@ public class EnemyLogic : MonoBehaviour {
 		tresaure = a.transform.FindChild("focusPoint");
 		
 		target = focusTarget.TRESAURE;
+		
+		ai.init (player);
 	}
 	
 	public void Update() {

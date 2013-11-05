@@ -60,7 +60,21 @@ public class EnemyAI : MonoBehaviour {
 		//GameObject p = GameObject.Find("arkku");
 		//targetPosition = p.transform.position;
 		
-        //Get a reference to the Seeker component
+        
+		
+    }
+    
+    public void OnPathComplete (Path p) {
+        //Debug.Log ("Yey, we got a path back. Did it have an error? "+p.error);
+		if (!p.error) {
+            path = p;
+            pathCalculationComplete = true;
+            currentWaypoint = 1;
+        }
+    }
+	
+	public void init(Transform t) {
+		//Get a reference to the Seeker component
         seeker = GetComponent<Seeker>();
 		
 		//Get a reference to the CharacterController component
@@ -71,8 +85,7 @@ public class EnemyAI : MonoBehaviour {
 		mesh = transform.FindChild("Sinbad");
 		mesh.renderer.enabled = false;
 		
-		GameObject targetObject = GameObject.Find("arkku");
-		target = targetObject.transform.FindChild("focusPoint");
+		target = t;
 		targetPosition = target.position;
 		oldTargetPosition = target.position;
 		
@@ -84,18 +97,13 @@ public class EnemyAI : MonoBehaviour {
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		startNewPathfinding();
         //seeker.StartPath (transform.position,targetPosition, OnPathComplete);
-    }
-    
-    public void OnPathComplete (Path p) {
-        //Debug.Log ("Yey, we got a path back. Did it have an error? "+p.error);
-		if (!p.error) {
-            path = p;
-            pathCalculationComplete = true;
-            currentWaypoint = 0;
-        }
-    }
+	}
 	
 	public void FixedUpdate () {
+		
+		if(path == null) {
+			return;			
+		}
 		
 		//Just for testing		
 		if(Input.GetKeyDown(KeyCode.P)) {
