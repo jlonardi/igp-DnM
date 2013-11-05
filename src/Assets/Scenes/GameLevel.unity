@@ -483,11 +483,11 @@ Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 29520579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .579999983, y: .379999995, z: 1.32000005}
+  m_LocalRotation: {x: 0, y: .0202444792, z: -0, w: -.999795079}
+  m_LocalPosition: {x: .589999974, y: .310000002, z: 2.21000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1854104653}
+  m_Father: {fileID: 389128694}
 --- !u!26 &29520581
 ParticleRenderer:
   m_ObjectHideFlags: 0
@@ -2209,6 +2209,123 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 192113543}
   m_Mesh: {fileID: 4300280, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1 &192545804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 192545805}
+  - 15: {fileID: 192545808}
+  - 12: {fileID: 192545807}
+  - 26: {fileID: 192545806}
+  m_Layer: 11
+  m_Name: smoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &192545805
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192545804}
+  m_LocalRotation: {x: 0, y: -8.42936956e-08, z: 0, w: 1}
+  m_LocalPosition: {x: .579997003, y: .380000174, z: 1.31999731}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1854104653}
+--- !u!26 &192545806
+ParticleRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2600000, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192545804}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 67203f9487e8b7f4fa9daca1e4fa8bed, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  serializedVersion: 2
+  m_CameraVelocityScale: 0
+  m_StretchParticles: 3
+  m_LengthScale: 1.07999897
+  m_VelocityScale: 0
+  m_MaxParticleSize: .25
+  UV Animation:
+    x Tile: 4
+    y Tile: 4
+    cycles: 1
+--- !u!12 &192545807
+ParticleAnimator:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1200000, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192545804}
+  Does Animate Color?: 0
+  colorAnimation[0]:
+    serializedVersion: 2
+    rgba: 184549375
+  colorAnimation[1]:
+    serializedVersion: 2
+    rgba: 3036676095
+  colorAnimation[2]:
+    serializedVersion: 2
+    rgba: 4294967295
+  colorAnimation[3]:
+    serializedVersion: 2
+    rgba: 3036676095
+  colorAnimation[4]:
+    serializedVersion: 2
+    rgba: 184549375
+  worldRotationAxis: {x: 0, y: 0, z: 0}
+  localRotationAxis: {x: 0, y: 0, z: 0}
+  sizeGrow: 2
+  rndForce: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: .5, z: 0}
+  damping: 1
+  stopSimulation: 0
+  autodestruct: 0
+--- !u!15 &192545808
+EllipsoidParticleEmitter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1500000, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192545804}
+  serializedVersion: 2
+  m_Enabled: 1
+  m_Emit: 0
+  minSize: .100000001
+  maxSize: .200000003
+  minEnergy: .100000001
+  maxEnergy: .300000012
+  minEmission: 1
+  maxEmission: 5
+  worldVelocity: {x: 0, y: 0, z: 0}
+  localVelocity: {x: 0, y: .100000001, z: .5}
+  rndVelocity: {x: .100000001, y: .100000001, z: .100000001}
+  emitterVelocityScale: .0500000007
+  tangentVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: 0
+  rndAngularVelocity: 0
+  rndRotation: 0
+  Simulate in Worldspace?: 0
+  m_OneShot: 1
+  m_Ellipsoid: {x: 0, y: 0, z: 0}
+  m_MinEmitterRange: 0
 --- !u!1 &193297781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,6 +3766,123 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 301518316}
   m_Mesh: {fileID: 4300268, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1 &306559401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100026, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 306559402}
+  - 15: {fileID: 306559405}
+  - 12: {fileID: 306559404}
+  - 26: {fileID: 306559403}
+  m_Layer: 11
+  m_Name: bullet_trace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &306559402
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400026, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306559401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .560000002, y: .330000013, z: 6.26000023}
+  m_LocalScale: {x: .509183466, y: .996760845, z: -.505943716}
+  m_Children: []
+  m_Father: {fileID: 389128694}
+--- !u!26 &306559403
+ParticleRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2600002, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306559401}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c9a5c9a4754f4fc4d9c1fdf787f9c47f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  serializedVersion: 2
+  m_CameraVelocityScale: 0
+  m_StretchParticles: 3
+  m_LengthScale: 1.29999995
+  m_VelocityScale: 0
+  m_MaxParticleSize: 1
+  UV Animation:
+    x Tile: 1
+    y Tile: 1
+    cycles: 1
+--- !u!12 &306559404
+ParticleAnimator:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1200002, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306559401}
+  Does Animate Color?: 1
+  colorAnimation[0]:
+    serializedVersion: 2
+    rgba: 184549375
+  colorAnimation[1]:
+    serializedVersion: 2
+    rgba: 3036676095
+  colorAnimation[2]:
+    serializedVersion: 2
+    rgba: 4294967295
+  colorAnimation[3]:
+    serializedVersion: 2
+    rgba: 3036676095
+  colorAnimation[4]:
+    serializedVersion: 2
+    rgba: 16777215
+  worldRotationAxis: {x: 0, y: 0, z: 0}
+  localRotationAxis: {x: 0, y: 0, z: 0}
+  sizeGrow: 0
+  rndForce: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  damping: 1
+  stopSimulation: 0
+  autodestruct: 0
+--- !u!15 &306559405
+EllipsoidParticleEmitter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1500002, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306559401}
+  serializedVersion: 2
+  m_Enabled: 1
+  m_Emit: 0
+  minSize: 7
+  maxSize: 7
+  minEnergy: .800000012
+  maxEnergy: .899999976
+  minEmission: 10
+  maxEmission: 10
+  worldVelocity: {x: 0, y: 0, z: 0}
+  localVelocity: {x: 0, y: 0, z: 130}
+  rndVelocity: {x: 0, y: 0, z: 0}
+  emitterVelocityScale: 0
+  tangentVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: 0
+  rndAngularVelocity: 0
+  rndRotation: 0
+  Simulate in Worldspace?: 1
+  m_OneShot: 0
+  m_Ellipsoid: {x: 0, y: 0, z: 0}
+  m_MinEmitterRange: 0
 --- !u!1 &309721512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,6 +4616,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 387384741}
   m_Mesh: {fileID: 4300040, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1 &389128693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100022, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 389128694}
+  - 114: {fileID: 389128695}
+  m_Layer: 11
+  m_Name: Gunshot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &389128694
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400022, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389128693}
+  m_LocalRotation: {x: 0, y: -.0202445239, z: 0, w: -.999795079}
+  m_LocalPosition: {x: -.628489375, y: -.230802238, z: -.840417922}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 306559402}
+  - {fileID: 29520580}
+  m_Father: {fileID: 1455416399}
+--- !u!114 &389128695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389128693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedc6b8d3af2f114dab73c0c6f0bdcf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &391396460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,312 +5409,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1913662966}
   m_GameObject: {fileID: 439928103}
   m_Mesh: {fileID: 4300000, guid: 05eab95d91a0143cbb7c813fb8f2c89e, type: 3}
---- !u!114 &450304003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries:
-  - gameObject: {fileID: 499643140}
-    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
-  - gameObject: {fileID: 2118666200}
-    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
-  - gameObject: {fileID: 1675929635}
-    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
-  - gameObject: {fileID: 1927726302}
-    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
-  - gameObject: {fileID: 291724319}
-    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
-  - gameObject: {fileID: 2005327}
-    Id: f492a38e-e7fc-4fe2-ba7d-9e4e5d7f051d
-  - gameObject: {fileID: 8855584}
-    Id: d24c73e7-5f03-463b-a80c-df29b52cd484
-  - gameObject: {fileID: 31559573}
-    Id: 197646a4-bdd3-41e1-9546-71ca143733e0
-  - gameObject: {fileID: 37450429}
-    Id: 9883d1b1-b2b4-4bca-be98-9c386806becc
-  - gameObject: {fileID: 46179363}
-    Id: 44efe8a6-957c-44fa-8b6f-24006a09f039
-  - gameObject: {fileID: 62969454}
-    Id: 6dc644eb-1ef1-411c-9c99-aca3d50816eb
-  - gameObject: {fileID: 72352537}
-    Id: 96ab56f6-217c-4e6a-843a-f0aa95b530f4
-  - gameObject: {fileID: 79439452}
-    Id: d2d21869-4aba-4a98-90ec-845a2310caa5
-  - gameObject: {fileID: 116730848}
-    Id: 950cad5c-6efb-4b89-a9d8-c76f2ae17be5
-  - gameObject: {fileID: 132422321}
-    Id: d9e2d089-0619-403c-af6e-a7045880973e
-  - gameObject: {fileID: 135690224}
-    Id: e11e1449-4590-4faf-b9d8-695dffe43d91
-  - gameObject: {fileID: 143642017}
-    Id: 277f7f3c-f1dd-47af-a5ab-12f6a6ace748
-  - gameObject: {fileID: 152837609}
-    Id: 187cdc5d-a89f-45eb-a5ff-627592b31670
-  - gameObject: {fileID: 204610863}
-    Id: 9f331761-ad32-4a76-9a0f-1e3de231b5a5
-  - gameObject: {fileID: 205170027}
-    Id: a40280d7-b680-4fb3-8a6b-3fb62e9edbce
-  - gameObject: {fileID: 229950160}
-    Id: a2e98ace-5e30-421e-b1d6-8e435e634a64
-  - gameObject: {fileID: 264508473}
-    Id: 5a398adb-cb8b-4641-8ad7-9b679cdcb402
-  - gameObject: {fileID: 277965191}
-    Id: b563d5db-6470-4b07-921a-2c61f5e11221
-  - gameObject: {fileID: 282217533}
-    Id: e3ea0b5b-3d2b-41a0-b289-2685494aa321
-  - gameObject: {fileID: 297633843}
-    Id: 096ac83e-6c76-44c0-9e41-1656ea0d22b3
-  - gameObject: {fileID: 309721512}
-    Id: 3ced3753-701e-482b-9ea0-858f9855b788
-  - gameObject: {fileID: 340512037}
-    Id: f8ec4a66-b1b5-4f6a-a906-25fd4f0a48cb
-  - gameObject: {fileID: 345390655}
-    Id: 140a2435-3b6a-4917-b6b0-6fa3d1f072b7
-  - gameObject: {fileID: 397498537}
-    Id: 945c73aa-870a-40bc-8181-6414fe56b2cb
-  - gameObject: {fileID: 450380473}
-    Id: 81e76fdf-9761-48a9-9453-2ed542ce3fcb
-  - gameObject: {fileID: 454322762}
-    Id: 2fb86089-563e-42e7-9c76-db25b0303256
-  - gameObject: {fileID: 471124490}
-    Id: 4f0bb312-8d66-4323-88e8-02f9b685bc49
-  - gameObject: {fileID: 520132303}
-    Id: 3502fbd6-f106-4db7-9350-96bc7ef33540
-  - gameObject: {fileID: 524498065}
-    Id: 80e4af44-7868-44f2-8629-abf5780b19e7
-  - gameObject: {fileID: 555233329}
-    Id: 18e58bae-a73a-4ab1-8789-d15fd96fb10d
-  - gameObject: {fileID: 562754138}
-    Id: 1b657aa4-bf84-4694-9d5e-5977c18eb30c
-  - gameObject: {fileID: 581788751}
-    Id: b13feb56-0cfa-402c-95e4-c312976515ea
-  - gameObject: {fileID: 590413608}
-    Id: d19f4d4d-0290-4296-af07-5ac1447c88a8
-  - gameObject: {fileID: 605858814}
-    Id: 96bb3f5b-c4ed-4834-9154-9851c34d3b55
-  - gameObject: {fileID: 631051471}
-    Id: bd4f1e6e-cf16-4fc4-a03e-195b2f54d33e
-  - gameObject: {fileID: 656852445}
-    Id: b09afaba-e9ab-4d10-8388-2248f5d9eaf8
-  - gameObject: {fileID: 661127894}
-    Id: 766872d9-290e-4d34-bc4b-ad13197342b5
-  - gameObject: {fileID: 668624893}
-    Id: ea1cab9f-a6e4-4def-bdcb-ba4a76f07bed
-  - gameObject: {fileID: 672165461}
-    Id: 61e4caa2-5e0e-493e-b8b0-ee4f55484ac8
-  - gameObject: {fileID: 685993764}
-    Id: 03e69480-4097-4fb6-8850-f963e3cc3f10
-  - gameObject: {fileID: 698827362}
-    Id: fb9fd132-1e19-4c8f-9b78-81fdac4090ba
-  - gameObject: {fileID: 719275736}
-    Id: ac3a5f26-ab85-400e-a98a-b42e271a869c
-  - gameObject: {fileID: 735071407}
-    Id: b7f34dd6-994e-4c6f-86a3-36125b79770e
-  - gameObject: {fileID: 748202353}
-    Id: b7a0884b-f5fb-49c8-b242-7b366fc2d40f
-  - gameObject: {fileID: 748474445}
-    Id: f49c8bec-9657-4395-926d-dc37540b0496
-  - gameObject: {fileID: 753829861}
-    Id: 7b10ac9a-1efe-407b-8fd2-62db7cd8d3cc
-  - gameObject: {fileID: 787487849}
-    Id: 9e7c86d0-5c10-4c88-ac7c-3244204958b9
-  - gameObject: {fileID: 803207315}
-    Id: ec0f6843-03b9-46a2-9747-1b31cf210c84
-  - gameObject: {fileID: 807048170}
-    Id: a9e3cb53-b6b6-4488-8ab8-bfe0b208fa58
-  - gameObject: {fileID: 811223491}
-    Id: f46a3145-0297-4c06-a28a-0d98122d2118
-  - gameObject: {fileID: 824730539}
-    Id: 3c2ed507-be8b-4136-bbbe-b7ab90cd4720
-  - gameObject: {fileID: 845192141}
-    Id: 25eb9730-1b54-43d9-baf6-7652f3c522f0
-  - gameObject: {fileID: 886323349}
-    Id: 84a9a0e0-2a25-49dc-993e-6c4d66ba6e3d
-  - gameObject: {fileID: 895327165}
-    Id: 820a200b-f5e8-4d00-958a-0aef0a0267b1
-  - gameObject: {fileID: 922370274}
-    Id: 1bf5effe-463c-4816-96b5-d28fbadb046d
-  - gameObject: {fileID: 942517534}
-    Id: ce997fdb-c3cc-4db7-8125-ef2473c979bb
-  - gameObject: {fileID: 1007362425}
-    Id: 285b3a5c-f788-4081-9040-7c92d388195d
-  - gameObject: {fileID: 1015270950}
-    Id: 0ea46fc8-9b46-4b42-b90a-3745adc8c462
-  - gameObject: {fileID: 1037007009}
-    Id: 3bddd51c-8741-4f77-872f-51fabfcd8744
-  - gameObject: {fileID: 1049317441}
-    Id: e1aee0ac-154d-4aff-b292-7d76c5fec851
-  - gameObject: {fileID: 1070065580}
-    Id: e6b35c78-2ff2-44b1-86ab-89deade010ab
-  - gameObject: {fileID: 1074256369}
-    Id: d1af622a-b506-4021-9c89-3c85907f17d7
-  - gameObject: {fileID: 1074806287}
-    Id: 8b7307e8-c601-4976-882c-9a9030cc9a2e
-  - gameObject: {fileID: 1112822163}
-    Id: f88b0c13-6937-446f-a0cd-9fdd0cc383d7
-  - gameObject: {fileID: 1118083381}
-    Id: ec931969-44c0-4082-bd92-6e7e3c993f14
-  - gameObject: {fileID: 1121783708}
-    Id: 94cfe4ac-55e2-47ea-861d-ffed9d746043
-  - gameObject: {fileID: 1123834431}
-    Id: 8d18a784-4e43-4472-826e-bc1f17c230f2
-  - gameObject: {fileID: 1140638873}
-    Id: db962b70-3474-4d73-8b33-d61c64298ae1
-  - gameObject: {fileID: 1145722541}
-    Id: 61e3404d-15eb-42c7-9e61-ad1d9e1e6668
-  - gameObject: {fileID: 1218545462}
-    Id: a4585992-434d-4c78-b503-342f7618c481
-  - gameObject: {fileID: 1230565987}
-    Id: 245680a7-93db-40df-b833-42eb17bb2959
-  - gameObject: {fileID: 1260578484}
-    Id: 91353918-cea3-4eec-b2cc-94b922dfab9e
-  - gameObject: {fileID: 1261367688}
-    Id: 641b9f17-74ee-4709-9699-8e39fa72fc7f
-  - gameObject: {fileID: 1301521108}
-    Id: 957d8e02-7e61-4f6e-bfb0-91122a68d804
-  - gameObject: {fileID: 1325139160}
-    Id: 01027dee-f884-4ae5-b22c-f410777b058c
-  - gameObject: {fileID: 1350224994}
-    Id: e54cb963-119c-4216-8bd7-3e4f26015fab
-  - gameObject: {fileID: 1354155321}
-    Id: 9010cbbe-8fb0-4c72-ac37-d52bd48e47b2
-  - gameObject: {fileID: 1356212324}
-    Id: 9a88f4b3-50e9-47a5-8107-e8195510211c
-  - gameObject: {fileID: 1370442409}
-    Id: 5f80fb58-3e15-4f32-897c-fecc59983410
-  - gameObject: {fileID: 1382232615}
-    Id: 39a2a422-62a7-4e88-b82a-379d79eafb84
-  - gameObject: {fileID: 1425509339}
-    Id: de62e4dd-9494-47cc-84b3-d0b565429eec
-  - gameObject: {fileID: 1426503488}
-    Id: fcab8fd1-7538-4b31-baa6-d1b137b20aa1
-  - gameObject: {fileID: 1435604144}
-    Id: 2c93ab4b-5a6d-420e-8670-5e402e405743
-  - gameObject: {fileID: 1460143567}
-    Id: 8ee887b9-813e-4c53-8880-5190ebf8a0a8
-  - gameObject: {fileID: 1465662622}
-    Id: d0145828-8e94-4cc4-a971-49a989fb589f
-  - gameObject: {fileID: 1467002968}
-    Id: 37d54788-84b7-4c0d-93a6-b7e2b73f53da
-  - gameObject: {fileID: 1469674398}
-    Id: 76372711-0a8c-412a-96ee-1da3ca452186
-  - gameObject: {fileID: 1483707388}
-    Id: 1d1ca1ad-659b-4ba7-a353-036156ca6339
-  - gameObject: {fileID: 1484200272}
-    Id: 17d3aafe-590e-41ea-9234-56ce79e94b0f
-  - gameObject: {fileID: 1489216695}
-    Id: 4e4edf6e-ac1a-4324-8b84-34cb9deb4da1
-  - gameObject: {fileID: 1516762952}
-    Id: 9d40095a-3251-4b41-8a26-839559105abe
-  - gameObject: {fileID: 1544948231}
-    Id: ce413083-6939-4740-98e8-39bc70dcef23
-  - gameObject: {fileID: 1546272858}
-    Id: fce4f425-63f3-41b7-8471-b89b65e98f55
-  - gameObject: {fileID: 1553914203}
-    Id: ee8ff079-333d-406b-85f2-3c1a1a4aad19
-  - gameObject: {fileID: 1557398699}
-    Id: 66036782-f9c8-48a0-923d-63edf0779bfd
-  - gameObject: {fileID: 1586842863}
-    Id: 864e5caa-b221-47ee-8f42-f68a06f19237
-  - gameObject: {fileID: 1589961411}
-    Id: d419c3ea-0ba8-4866-8803-98cbd5919698
-  - gameObject: {fileID: 1599835971}
-    Id: 1749fbef-95ef-467a-96f1-da76c52dcb9f
-  - gameObject: {fileID: 1609766043}
-    Id: ccda590e-d3cd-40df-866a-0efa15170abd
-  - gameObject: {fileID: 1609943727}
-    Id: 8fd25251-86bb-48ce-811f-9481d9a0a669
-  - gameObject: {fileID: 1611208671}
-    Id: cbe9c236-8e7f-44f0-87f3-567179ba8c68
-  - gameObject: {fileID: 1614253342}
-    Id: 917c16d7-21cd-48d3-a40d-f86e87cb2629
-  - gameObject: {fileID: 1619326018}
-    Id: c1162b14-367e-4858-8040-e812e23657d1
-  - gameObject: {fileID: 1626143554}
-    Id: cbc20d09-267e-4061-8afb-438ec8261e37
-  - gameObject: {fileID: 1642130796}
-    Id: 3ad7bff3-15d8-4a91-98b2-08a677716ee3
-  - gameObject: {fileID: 1653737810}
-    Id: 696f5e45-cd37-4e16-b3ba-ac38b3b19447
-  - gameObject: {fileID: 1658617237}
-    Id: 3816e4fc-de92-4a18-9f0d-5b5aa479cdb3
-  - gameObject: {fileID: 1667441149}
-    Id: 21d31d0d-a860-4dbf-81ff-67975ad581f2
-  - gameObject: {fileID: 1681215149}
-    Id: 60b1414a-82c7-430d-82da-0ffe00453bbd
-  - gameObject: {fileID: 1685422034}
-    Id: b5f3dc28-18bc-4d78-8d48-90a9f491eea5
-  - gameObject: {fileID: 1715951032}
-    Id: c4e183b8-af7e-4504-a300-39b2c94589f8
-  - gameObject: {fileID: 1718704533}
-    Id: a8323c81-933d-4fc2-ae66-b913580e33ab
-  - gameObject: {fileID: 1753429465}
-    Id: 16574b73-1a2f-437a-b602-39e24bfb6a15
-  - gameObject: {fileID: 1769434842}
-    Id: ffdf666d-1d00-4742-827c-df00a9daa4e0
-  - gameObject: {fileID: 1784689504}
-    Id: b02d9dcd-40d9-48e0-a534-6480dafa4f63
-  - gameObject: {fileID: 1789843960}
-    Id: 7d0142f8-57ae-4f69-8c41-fec0d7a071bb
-  - gameObject: {fileID: 1817729610}
-    Id: caf92a50-30f5-4527-8f83-69891e53e48c
-  - gameObject: {fileID: 1823275716}
-    Id: ac3ed27b-e338-4b50-8d2c-47bde88c7856
-  - gameObject: {fileID: 1836164023}
-    Id: 78c56599-ff9b-4f50-8515-57dbd6eaefdb
-  - gameObject: {fileID: 1841978428}
-    Id: 7d3ab787-f0c5-4b86-8b9c-91db2054e0cf
-  - gameObject: {fileID: 1843525789}
-    Id: e7c1c218-f46e-4d6b-aec3-d6acef26dae4
-  - gameObject: {fileID: 1860471869}
-    Id: e500390d-6848-44b8-8995-21a9dc16be5b
-  - gameObject: {fileID: 1879295380}
-    Id: 4e464d17-51ef-42a3-b130-8fdcbc01598c
-  - gameObject: {fileID: 1885022779}
-    Id: f1b3babe-236d-43f5-9695-da9e0f33cf6e
-  - gameObject: {fileID: 1892197418}
-    Id: b27407ee-a6e5-4e67-9062-37f0892d73ae
-  - gameObject: {fileID: 1905305570}
-    Id: f491b242-050b-4794-a17f-1fa195b0664e
-  - gameObject: {fileID: 1918712215}
-    Id: bd35bf6b-f0ba-4d85-8fcb-1036ffe681ce
-  - gameObject: {fileID: 1922679808}
-    Id: 326b640a-c701-4f74-9a87-d717c2d63e6e
-  - gameObject: {fileID: 1927459574}
-    Id: 4897c4e5-7121-4faa-9577-a9c85397c52f
-  - gameObject: {fileID: 1934209964}
-    Id: 0776f81c-3a65-46a8-95a1-e3e77bcb38d3
-  - gameObject: {fileID: 1949958834}
-    Id: d9740613-9c0b-4198-b4fc-27407bb365be
-  - gameObject: {fileID: 1965319477}
-    Id: d5e425b5-258c-41a3-8c32-dda6d964a03b
-  - gameObject: {fileID: 1970836988}
-    Id: 03390906-e715-4b8e-804d-7a0ab0e89eb2
-  - gameObject: {fileID: 1984580042}
-    Id: 94dee503-78bc-40c6-ba8d-47a6cb6d706f
-  - gameObject: {fileID: 2003042882}
-    Id: 720571fc-18f8-475e-bdf1-e51a96397739
-  - gameObject: {fileID: 2009673723}
-    Id: 455f887a-9bb5-47c0-9a52-dc89675cc0aa
-  - gameObject: {fileID: 2061009634}
-    Id: 287854e0-0c78-49f4-b6af-c90798b7fa60
-  - gameObject: {fileID: 2089658815}
-    Id: 303c4153-d4ba-46f1-a4c6-16b2a4236315
-  - gameObject: {fileID: 2090187952}
-    Id: aa664efe-bc54-4110-a15f-b90e5669002c
-  - gameObject: {fileID: 2119920461}
-    Id: 7402b30a-fc86-4731-bb59-6df26090e74e
-  - gameObject: {fileID: 2122013286}
-    Id: ae608d83-a606-4de6-a77f-b966431fb238
-  - gameObject: {fileID: 2129144269}
-    Id: c68e6872-a655-4f4a-aa12-7b496dcab51c
 --- !u!1 &450380473
 GameObject:
   m_ObjectHideFlags: 0
@@ -6241,7 +6210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &500703019
 Transform:
   m_ObjectHideFlags: 0
@@ -6249,7 +6218,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 500703018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .589999974, y: .330000013, z: 5.78999996}
+  m_LocalPosition: {x: .660000026, y: .25, z: 4.57000017}
   m_LocalScale: {x: .509183466, y: .996760845, z: -.505943716}
   m_Children: []
   m_Father: {fileID: 1854104653}
@@ -8456,6 +8425,312 @@ MonoBehaviour:
   IsDeserializing: 0
   _id: b7f34dd6-994e-4c6f-86a3-36125b79770e
   classId: a7b75793-b4d6-4a92-b449-09e4f3e92459
+--- !u!114 &735750818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries:
+  - gameObject: {fileID: 499643140}
+    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
+  - gameObject: {fileID: 2118666200}
+    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
+  - gameObject: {fileID: 1675929635}
+    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
+  - gameObject: {fileID: 1927726302}
+    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
+  - gameObject: {fileID: 291724319}
+    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
+  - gameObject: {fileID: 2005327}
+    Id: f492a38e-e7fc-4fe2-ba7d-9e4e5d7f051d
+  - gameObject: {fileID: 8855584}
+    Id: d24c73e7-5f03-463b-a80c-df29b52cd484
+  - gameObject: {fileID: 31559573}
+    Id: 197646a4-bdd3-41e1-9546-71ca143733e0
+  - gameObject: {fileID: 37450429}
+    Id: 9883d1b1-b2b4-4bca-be98-9c386806becc
+  - gameObject: {fileID: 46179363}
+    Id: 44efe8a6-957c-44fa-8b6f-24006a09f039
+  - gameObject: {fileID: 62969454}
+    Id: 6dc644eb-1ef1-411c-9c99-aca3d50816eb
+  - gameObject: {fileID: 72352537}
+    Id: 96ab56f6-217c-4e6a-843a-f0aa95b530f4
+  - gameObject: {fileID: 79439452}
+    Id: d2d21869-4aba-4a98-90ec-845a2310caa5
+  - gameObject: {fileID: 116730848}
+    Id: 950cad5c-6efb-4b89-a9d8-c76f2ae17be5
+  - gameObject: {fileID: 132422321}
+    Id: d9e2d089-0619-403c-af6e-a7045880973e
+  - gameObject: {fileID: 135690224}
+    Id: e11e1449-4590-4faf-b9d8-695dffe43d91
+  - gameObject: {fileID: 143642017}
+    Id: 277f7f3c-f1dd-47af-a5ab-12f6a6ace748
+  - gameObject: {fileID: 152837609}
+    Id: 187cdc5d-a89f-45eb-a5ff-627592b31670
+  - gameObject: {fileID: 204610863}
+    Id: 9f331761-ad32-4a76-9a0f-1e3de231b5a5
+  - gameObject: {fileID: 205170027}
+    Id: a40280d7-b680-4fb3-8a6b-3fb62e9edbce
+  - gameObject: {fileID: 229950160}
+    Id: a2e98ace-5e30-421e-b1d6-8e435e634a64
+  - gameObject: {fileID: 264508473}
+    Id: 5a398adb-cb8b-4641-8ad7-9b679cdcb402
+  - gameObject: {fileID: 277965191}
+    Id: b563d5db-6470-4b07-921a-2c61f5e11221
+  - gameObject: {fileID: 282217533}
+    Id: e3ea0b5b-3d2b-41a0-b289-2685494aa321
+  - gameObject: {fileID: 297633843}
+    Id: 096ac83e-6c76-44c0-9e41-1656ea0d22b3
+  - gameObject: {fileID: 309721512}
+    Id: 3ced3753-701e-482b-9ea0-858f9855b788
+  - gameObject: {fileID: 340512037}
+    Id: f8ec4a66-b1b5-4f6a-a906-25fd4f0a48cb
+  - gameObject: {fileID: 345390655}
+    Id: 140a2435-3b6a-4917-b6b0-6fa3d1f072b7
+  - gameObject: {fileID: 397498537}
+    Id: 945c73aa-870a-40bc-8181-6414fe56b2cb
+  - gameObject: {fileID: 450380473}
+    Id: 81e76fdf-9761-48a9-9453-2ed542ce3fcb
+  - gameObject: {fileID: 454322762}
+    Id: 2fb86089-563e-42e7-9c76-db25b0303256
+  - gameObject: {fileID: 471124490}
+    Id: 4f0bb312-8d66-4323-88e8-02f9b685bc49
+  - gameObject: {fileID: 520132303}
+    Id: 3502fbd6-f106-4db7-9350-96bc7ef33540
+  - gameObject: {fileID: 524498065}
+    Id: 80e4af44-7868-44f2-8629-abf5780b19e7
+  - gameObject: {fileID: 555233329}
+    Id: 18e58bae-a73a-4ab1-8789-d15fd96fb10d
+  - gameObject: {fileID: 562754138}
+    Id: 1b657aa4-bf84-4694-9d5e-5977c18eb30c
+  - gameObject: {fileID: 581788751}
+    Id: b13feb56-0cfa-402c-95e4-c312976515ea
+  - gameObject: {fileID: 590413608}
+    Id: d19f4d4d-0290-4296-af07-5ac1447c88a8
+  - gameObject: {fileID: 605858814}
+    Id: 96bb3f5b-c4ed-4834-9154-9851c34d3b55
+  - gameObject: {fileID: 631051471}
+    Id: bd4f1e6e-cf16-4fc4-a03e-195b2f54d33e
+  - gameObject: {fileID: 656852445}
+    Id: b09afaba-e9ab-4d10-8388-2248f5d9eaf8
+  - gameObject: {fileID: 661127894}
+    Id: 766872d9-290e-4d34-bc4b-ad13197342b5
+  - gameObject: {fileID: 668624893}
+    Id: ea1cab9f-a6e4-4def-bdcb-ba4a76f07bed
+  - gameObject: {fileID: 672165461}
+    Id: 61e4caa2-5e0e-493e-b8b0-ee4f55484ac8
+  - gameObject: {fileID: 685993764}
+    Id: 03e69480-4097-4fb6-8850-f963e3cc3f10
+  - gameObject: {fileID: 698827362}
+    Id: fb9fd132-1e19-4c8f-9b78-81fdac4090ba
+  - gameObject: {fileID: 719275736}
+    Id: ac3a5f26-ab85-400e-a98a-b42e271a869c
+  - gameObject: {fileID: 735071407}
+    Id: b7f34dd6-994e-4c6f-86a3-36125b79770e
+  - gameObject: {fileID: 748202353}
+    Id: b7a0884b-f5fb-49c8-b242-7b366fc2d40f
+  - gameObject: {fileID: 748474445}
+    Id: f49c8bec-9657-4395-926d-dc37540b0496
+  - gameObject: {fileID: 753829861}
+    Id: 7b10ac9a-1efe-407b-8fd2-62db7cd8d3cc
+  - gameObject: {fileID: 787487849}
+    Id: 9e7c86d0-5c10-4c88-ac7c-3244204958b9
+  - gameObject: {fileID: 803207315}
+    Id: ec0f6843-03b9-46a2-9747-1b31cf210c84
+  - gameObject: {fileID: 807048170}
+    Id: a9e3cb53-b6b6-4488-8ab8-bfe0b208fa58
+  - gameObject: {fileID: 811223491}
+    Id: f46a3145-0297-4c06-a28a-0d98122d2118
+  - gameObject: {fileID: 824730539}
+    Id: 3c2ed507-be8b-4136-bbbe-b7ab90cd4720
+  - gameObject: {fileID: 845192141}
+    Id: 25eb9730-1b54-43d9-baf6-7652f3c522f0
+  - gameObject: {fileID: 886323349}
+    Id: 84a9a0e0-2a25-49dc-993e-6c4d66ba6e3d
+  - gameObject: {fileID: 895327165}
+    Id: 820a200b-f5e8-4d00-958a-0aef0a0267b1
+  - gameObject: {fileID: 922370274}
+    Id: 1bf5effe-463c-4816-96b5-d28fbadb046d
+  - gameObject: {fileID: 942517534}
+    Id: ce997fdb-c3cc-4db7-8125-ef2473c979bb
+  - gameObject: {fileID: 1007362425}
+    Id: 285b3a5c-f788-4081-9040-7c92d388195d
+  - gameObject: {fileID: 1015270950}
+    Id: 0ea46fc8-9b46-4b42-b90a-3745adc8c462
+  - gameObject: {fileID: 1037007009}
+    Id: 3bddd51c-8741-4f77-872f-51fabfcd8744
+  - gameObject: {fileID: 1049317441}
+    Id: e1aee0ac-154d-4aff-b292-7d76c5fec851
+  - gameObject: {fileID: 1070065580}
+    Id: e6b35c78-2ff2-44b1-86ab-89deade010ab
+  - gameObject: {fileID: 1074256369}
+    Id: d1af622a-b506-4021-9c89-3c85907f17d7
+  - gameObject: {fileID: 1074806287}
+    Id: 8b7307e8-c601-4976-882c-9a9030cc9a2e
+  - gameObject: {fileID: 1112822163}
+    Id: f88b0c13-6937-446f-a0cd-9fdd0cc383d7
+  - gameObject: {fileID: 1118083381}
+    Id: ec931969-44c0-4082-bd92-6e7e3c993f14
+  - gameObject: {fileID: 1121783708}
+    Id: 94cfe4ac-55e2-47ea-861d-ffed9d746043
+  - gameObject: {fileID: 1123834431}
+    Id: 8d18a784-4e43-4472-826e-bc1f17c230f2
+  - gameObject: {fileID: 1140638873}
+    Id: db962b70-3474-4d73-8b33-d61c64298ae1
+  - gameObject: {fileID: 1145722541}
+    Id: 61e3404d-15eb-42c7-9e61-ad1d9e1e6668
+  - gameObject: {fileID: 1218545462}
+    Id: a4585992-434d-4c78-b503-342f7618c481
+  - gameObject: {fileID: 1230565987}
+    Id: 245680a7-93db-40df-b833-42eb17bb2959
+  - gameObject: {fileID: 1260578484}
+    Id: 91353918-cea3-4eec-b2cc-94b922dfab9e
+  - gameObject: {fileID: 1261367688}
+    Id: 641b9f17-74ee-4709-9699-8e39fa72fc7f
+  - gameObject: {fileID: 1301521108}
+    Id: 957d8e02-7e61-4f6e-bfb0-91122a68d804
+  - gameObject: {fileID: 1325139160}
+    Id: 01027dee-f884-4ae5-b22c-f410777b058c
+  - gameObject: {fileID: 1350224994}
+    Id: e54cb963-119c-4216-8bd7-3e4f26015fab
+  - gameObject: {fileID: 1354155321}
+    Id: 9010cbbe-8fb0-4c72-ac37-d52bd48e47b2
+  - gameObject: {fileID: 1356212324}
+    Id: 9a88f4b3-50e9-47a5-8107-e8195510211c
+  - gameObject: {fileID: 1370442409}
+    Id: 5f80fb58-3e15-4f32-897c-fecc59983410
+  - gameObject: {fileID: 1382232615}
+    Id: 39a2a422-62a7-4e88-b82a-379d79eafb84
+  - gameObject: {fileID: 1425509339}
+    Id: de62e4dd-9494-47cc-84b3-d0b565429eec
+  - gameObject: {fileID: 1426503488}
+    Id: fcab8fd1-7538-4b31-baa6-d1b137b20aa1
+  - gameObject: {fileID: 1435604144}
+    Id: 2c93ab4b-5a6d-420e-8670-5e402e405743
+  - gameObject: {fileID: 1460143567}
+    Id: 8ee887b9-813e-4c53-8880-5190ebf8a0a8
+  - gameObject: {fileID: 1465662622}
+    Id: d0145828-8e94-4cc4-a971-49a989fb589f
+  - gameObject: {fileID: 1467002968}
+    Id: 37d54788-84b7-4c0d-93a6-b7e2b73f53da
+  - gameObject: {fileID: 1469674398}
+    Id: 76372711-0a8c-412a-96ee-1da3ca452186
+  - gameObject: {fileID: 1483707388}
+    Id: 1d1ca1ad-659b-4ba7-a353-036156ca6339
+  - gameObject: {fileID: 1484200272}
+    Id: 17d3aafe-590e-41ea-9234-56ce79e94b0f
+  - gameObject: {fileID: 1489216695}
+    Id: 4e4edf6e-ac1a-4324-8b84-34cb9deb4da1
+  - gameObject: {fileID: 1516762952}
+    Id: 9d40095a-3251-4b41-8a26-839559105abe
+  - gameObject: {fileID: 1544948231}
+    Id: ce413083-6939-4740-98e8-39bc70dcef23
+  - gameObject: {fileID: 1546272858}
+    Id: fce4f425-63f3-41b7-8471-b89b65e98f55
+  - gameObject: {fileID: 1553914203}
+    Id: ee8ff079-333d-406b-85f2-3c1a1a4aad19
+  - gameObject: {fileID: 1557398699}
+    Id: 66036782-f9c8-48a0-923d-63edf0779bfd
+  - gameObject: {fileID: 1586842863}
+    Id: 864e5caa-b221-47ee-8f42-f68a06f19237
+  - gameObject: {fileID: 1589961411}
+    Id: d419c3ea-0ba8-4866-8803-98cbd5919698
+  - gameObject: {fileID: 1599835971}
+    Id: 1749fbef-95ef-467a-96f1-da76c52dcb9f
+  - gameObject: {fileID: 1609766043}
+    Id: ccda590e-d3cd-40df-866a-0efa15170abd
+  - gameObject: {fileID: 1609943727}
+    Id: 8fd25251-86bb-48ce-811f-9481d9a0a669
+  - gameObject: {fileID: 1611208671}
+    Id: cbe9c236-8e7f-44f0-87f3-567179ba8c68
+  - gameObject: {fileID: 1614253342}
+    Id: 917c16d7-21cd-48d3-a40d-f86e87cb2629
+  - gameObject: {fileID: 1619326018}
+    Id: c1162b14-367e-4858-8040-e812e23657d1
+  - gameObject: {fileID: 1626143554}
+    Id: cbc20d09-267e-4061-8afb-438ec8261e37
+  - gameObject: {fileID: 1642130796}
+    Id: 3ad7bff3-15d8-4a91-98b2-08a677716ee3
+  - gameObject: {fileID: 1653737810}
+    Id: 696f5e45-cd37-4e16-b3ba-ac38b3b19447
+  - gameObject: {fileID: 1658617237}
+    Id: 3816e4fc-de92-4a18-9f0d-5b5aa479cdb3
+  - gameObject: {fileID: 1667441149}
+    Id: 21d31d0d-a860-4dbf-81ff-67975ad581f2
+  - gameObject: {fileID: 1681215149}
+    Id: 60b1414a-82c7-430d-82da-0ffe00453bbd
+  - gameObject: {fileID: 1685422034}
+    Id: b5f3dc28-18bc-4d78-8d48-90a9f491eea5
+  - gameObject: {fileID: 1715951032}
+    Id: c4e183b8-af7e-4504-a300-39b2c94589f8
+  - gameObject: {fileID: 1718704533}
+    Id: a8323c81-933d-4fc2-ae66-b913580e33ab
+  - gameObject: {fileID: 1753429465}
+    Id: 16574b73-1a2f-437a-b602-39e24bfb6a15
+  - gameObject: {fileID: 1769434842}
+    Id: ffdf666d-1d00-4742-827c-df00a9daa4e0
+  - gameObject: {fileID: 1784689504}
+    Id: b02d9dcd-40d9-48e0-a534-6480dafa4f63
+  - gameObject: {fileID: 1789843960}
+    Id: 7d0142f8-57ae-4f69-8c41-fec0d7a071bb
+  - gameObject: {fileID: 1817729610}
+    Id: caf92a50-30f5-4527-8f83-69891e53e48c
+  - gameObject: {fileID: 1823275716}
+    Id: ac3ed27b-e338-4b50-8d2c-47bde88c7856
+  - gameObject: {fileID: 1836164023}
+    Id: 78c56599-ff9b-4f50-8515-57dbd6eaefdb
+  - gameObject: {fileID: 1841978428}
+    Id: 7d3ab787-f0c5-4b86-8b9c-91db2054e0cf
+  - gameObject: {fileID: 1843525789}
+    Id: e7c1c218-f46e-4d6b-aec3-d6acef26dae4
+  - gameObject: {fileID: 1860471869}
+    Id: e500390d-6848-44b8-8995-21a9dc16be5b
+  - gameObject: {fileID: 1879295380}
+    Id: 4e464d17-51ef-42a3-b130-8fdcbc01598c
+  - gameObject: {fileID: 1885022779}
+    Id: f1b3babe-236d-43f5-9695-da9e0f33cf6e
+  - gameObject: {fileID: 1892197418}
+    Id: b27407ee-a6e5-4e67-9062-37f0892d73ae
+  - gameObject: {fileID: 1905305570}
+    Id: f491b242-050b-4794-a17f-1fa195b0664e
+  - gameObject: {fileID: 1918712215}
+    Id: bd35bf6b-f0ba-4d85-8fcb-1036ffe681ce
+  - gameObject: {fileID: 1922679808}
+    Id: 326b640a-c701-4f74-9a87-d717c2d63e6e
+  - gameObject: {fileID: 1927459574}
+    Id: 4897c4e5-7121-4faa-9577-a9c85397c52f
+  - gameObject: {fileID: 1934209964}
+    Id: 0776f81c-3a65-46a8-95a1-e3e77bcb38d3
+  - gameObject: {fileID: 1949958834}
+    Id: d9740613-9c0b-4198-b4fc-27407bb365be
+  - gameObject: {fileID: 1965319477}
+    Id: d5e425b5-258c-41a3-8c32-dda6d964a03b
+  - gameObject: {fileID: 1970836988}
+    Id: 03390906-e715-4b8e-804d-7a0ab0e89eb2
+  - gameObject: {fileID: 1984580042}
+    Id: 94dee503-78bc-40c6-ba8d-47a6cb6d706f
+  - gameObject: {fileID: 2003042882}
+    Id: 720571fc-18f8-475e-bdf1-e51a96397739
+  - gameObject: {fileID: 2009673723}
+    Id: 455f887a-9bb5-47c0-9a52-dc89675cc0aa
+  - gameObject: {fileID: 2061009634}
+    Id: 287854e0-0c78-49f4-b6af-c90798b7fa60
+  - gameObject: {fileID: 2089658815}
+    Id: 303c4153-d4ba-46f1-a4c6-16b2a4236315
+  - gameObject: {fileID: 2090187952}
+    Id: aa664efe-bc54-4110-a15f-b90e5669002c
+  - gameObject: {fileID: 2119920461}
+    Id: 7402b30a-fc86-4731-bb59-6df26090e74e
+  - gameObject: {fileID: 2122013286}
+    Id: ae608d83-a606-4de6-a77f-b966431fb238
+  - gameObject: {fileID: 2129144269}
+    Id: c68e6872-a655-4f4a-aa12-7b496dcab51c
 --- !u!1 &739605326
 GameObject:
   m_ObjectHideFlags: 0
@@ -8519,7 +8794,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 741690647}
-  - 23: {fileID: 741690646}
   - 114: {fileID: 741690648}
   - 65: {fileID: 741690649}
   m_Layer: 11
@@ -8529,33 +8803,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &741690646
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300008, guid: 9d4133d5d30b644bd87802a347eaccbe,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 741690645}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
 --- !u!4 &741690647
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400014, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 741690645}
-  m_LocalRotation: {x: 0, y: .692646801, z: 0, w: -.721276939}
-  m_LocalPosition: {x: -.50999999, y: -.479999989, z: .949999988}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -.50999999, y: -.540000021, z: .910000026}
   m_LocalScale: {x: 2.10000014, y: 2.0999999, z: 2.0999999}
   m_Children:
   - {fileID: 1854104653}
@@ -8594,7 +8849,7 @@ MonoBehaviour:
   pushPower: 3
   bulletMark: {fileID: 100000, guid: bd181b1a8dad9384895dd24e2547233a, type: 2}
   projectilePrefab: {fileID: 0}
-  gunParticles: {fileID: 0}
+  gunParticles: {fileID: 1854104654}
   capsuleEmitter: []
   shotLight: {fileID: 1419421794}
   unlimited: 1
@@ -10200,6 +10455,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 942521981}
   m_Mesh: {fileID: 4300028, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1001 &943260014
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1451586293}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: .449999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -.370000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -.150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+  m_RootGameObject: {fileID: 1455416398}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &948378495
 GameObject:
   m_ObjectHideFlags: 0
@@ -10561,6 +10857,83 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 996046356}
   m_Mesh: {fileID: 4300024, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1 &997304093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100016, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 997304094}
+  - 108: {fileID: 997304096}
+  - 114: {fileID: 997304095}
+  m_Layer: 11
+  m_Name: Shotlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &997304094
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400016, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997304093}
+  m_LocalRotation: {x: 0, y: -.707106888, z: 0, w: .707106769}
+  m_LocalPosition: {x: .00716116698, y: .883999169, z: .658300579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1455416399}
+--- !u!114 &997304095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997304093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4692e4cac407f1540bab655a959d6b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: .0199999996
+--- !u!108 &997304096
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: 9d4133d5d30b644bd87802a347eaccbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997304093}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: .974137902, b: .625, a: 1}
+  m_Intensity: 1
+  m_Range: 2
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &999035394
 GameObject:
   m_ObjectHideFlags: 0
@@ -12503,7 +12876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 450304003}
+  Reference: {fileID: 735750818}
 --- !u!4 &1173328508
 Transform:
   m_ObjectHideFlags: 0
@@ -14918,6 +15291,7 @@ Transform:
   m_LocalScale: {x: 1.42857146, y: 1.42857146, z: 1.42857146}
   m_Children:
   - {fileID: 741690647}
+  - {fileID: 1455416399}
   m_Father: {fileID: 1543014822}
 --- !u!114 &1451586294
 MonoBehaviour:
@@ -14933,9 +15307,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns:
   - gun: {fileID: 741690648}
-    keyToActivate: 0
-  currentGunIndex: 0
-  currentGun: {fileID: 741690648}
+    keyToActivate: 49
+  - gun: {fileID: 1455416400}
+    keyToActivate: 50
+  currentGunIndex: 1
+  currentGun: {fileID: 1455416400}
+  canUseWeapons: 0
   hitParticles:
     bloodParticle: {fileID: 100002, guid: 23d26fe2a04bcca44bf9ca1dd7d5da8c, type: 2}
     woodParticle: {fileID: 100000, guid: b557c8cf4bec4fe49a9860ff075bc571, type: 2}
@@ -15003,6 +15380,104 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1455416398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+  m_PrefabInternal: {fileID: 943260014}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1455416399}
+  - 33: {fileID: 1455416402}
+  - 23: {fileID: 1455416401}
+  - 114: {fileID: 1455416400}
+  m_Layer: 0
+  m_Name: M4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1455416399
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
+  m_PrefabInternal: {fileID: 943260014}
+  m_GameObject: {fileID: 1455416398}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: .449999988, y: -.370000005, z: -.150000006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 389128694}
+  - {fileID: 997304094}
+  m_Father: {fileID: 1451586293}
+--- !u!114 &1455416400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1455416398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97af0ab24e01d244e9af61805762b218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunName: M4
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  fireRate: 13
+  fireRange: 50
+  maxDamage: 20
+  projectileSpeed: 15
+  clipSize: 100
+  totalClips: 100
+  useGravity: 0
+  isExplosive: 0
+  reloadTime: 2.5
+  autoReload: 1
+  currentRounds: 100
+  pushPower: 2
+  bulletMark: {fileID: 100000, guid: bd181b1a8dad9384895dd24e2547233a, type: 2}
+  projectilePrefab: {fileID: 0}
+  gunParticles: {fileID: 389128695}
+  capsuleEmitter: []
+  shotLight: {fileID: 997304095}
+  unlimited: 1
+  shootVolume: .400000006
+  shootSound: {fileID: 8300000, guid: ca3ecaf0c8ce85c4eadee30fde98727c, type: 3}
+  reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
+  outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
+  freeToShoot: 0
+  reloading: 0
+  fire: 0
+--- !u!23 &1455416401
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 20d4d63ac8697b04bb7c0436773ef74b,
+    type: 3}
+  m_PrefabInternal: {fileID: 943260014}
+  m_GameObject: {fileID: 1455416398}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 16c6aa0c60511074aae8789d872eb0a7, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &1455416402
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 20d4d63ac8697b04bb7c0436773ef74b,
+    type: 3}
+  m_PrefabInternal: {fileID: 943260014}
+  m_GameObject: {fileID: 1455416398}
+  m_Mesh: {fileID: 4300000, guid: 20d4d63ac8697b04bb7c0436773ef74b, type: 3}
 --- !u!1 &1460143567
 GameObject:
   m_ObjectHideFlags: 0
@@ -18997,8 +19472,8 @@ Transform:
   m_LocalPosition: {x: -.213100493, y: -.0241915397, z: -.0513277091}
   m_LocalScale: {x: .476190507, y: .476190507, z: .476190537}
   m_Children:
-  - {fileID: 29520580}
   - {fileID: 500703019}
+  - {fileID: 192545805}
   m_Father: {fileID: 741690647}
 --- !u!114 &1854104654
 MonoBehaviour:

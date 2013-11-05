@@ -36,7 +36,7 @@ public class Treasure : MonoBehaviour {
 		return lootAmount;
 	}
 	
-	public void SetTreasureOnGround(){
+	public void SetTreasureOnGround(){		
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		this.transform.parent = treasureOnScene.transform;	
 		this.onGround = true;	
@@ -52,6 +52,9 @@ public class Treasure : MonoBehaviour {
 			transform.rotation = Quaternion.LookRotation(proj, hit.normal);
 		}
 		animator.SetBool("onGround",true);
+		
+		GunManager gunManager = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
+		gunManager.EnableWeapons();
 		mouseLook.clampInDegrees = new Vector2(360, 180);
 	}
 	

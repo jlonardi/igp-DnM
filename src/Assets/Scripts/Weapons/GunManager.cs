@@ -6,24 +6,19 @@ public class GunManager : MonoBehaviour {
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
+	public bool canUseWeapons;
 	public HitParticles hitParticles = new HitParticles();
 	private Hud hud;
 	private Treasure treasure;
 	
 	void Start () {	
 		hud = GameObject.FindObjectOfType(typeof(Hud)) as Hud;
-		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 		
-		
+		// set to false until weapons enabled
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;
-		}
-		ChangeToGun(0);
-		
-		// set to false until treasure on ground
-		currentGun.enabled = false;
-		currentGun.gameObject.SetActive(false);
-
+			guns[i].gun.gameObject.SetActive(false);
+		}		
 	}
 	
 	void Update () {		
@@ -32,16 +27,23 @@ public class GunManager : MonoBehaviour {
 				ChangeToGun(i);
 			}
 		}				
-		if (treasure.OnGround()){
+	}
+	
+	public void EnableWeapons(){
+		canUseWeapons = true;
+		ChangeToGun(0);
+	}
+	
+	private void ChangeToGun(int gunIndex){	
+		currentGun.enabled = false;
+		currentGun.gameObject.SetActive(false);
+		//guns[currentGunIndex].gun.enabled = false;
+		currentGun = guns[gunIndex].gun;
+		currentGunIndex = gunIndex;
+		if (canUseWeapons){
 			currentGun.enabled = true;
 			currentGun.gameObject.SetActive(true);
 		}
-	}
-	
-	private void ChangeToGun(int gunIndex){
-		guns[currentGunIndex].gun.enabled = false;		
-		currentGun = guns[gunIndex].gun;
-		currentGunIndex = gunIndex;
 		hud.setGun(currentGun);
 	}	
 }

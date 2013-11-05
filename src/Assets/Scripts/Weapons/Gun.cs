@@ -245,7 +245,8 @@ public class Gun : MonoBehaviour {
 		}
 		else{
 			camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));			  
-			origin = weaponTransformReference.position - (weaponTransformReference.forward * 1.5f);
+			origin = weaponTransformReference.position + (weaponTransformReference.right * 0.2f);
+//			origin = weaponTransformReference.position - (weaponTransformReference.forward * 1.5f);
 			if(Physics.Raycast(camRay.origin + camRay.direction * 0.1f, camRay.direction, out hit, fireRange, hitLayer))	{
 				dir = (hit.point - origin).normalized;
 				if(hit.collider.tag == "glass")	{
