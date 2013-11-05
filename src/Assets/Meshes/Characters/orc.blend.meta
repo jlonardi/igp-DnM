@@ -726,7 +726,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -737,7 +737,151 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      transformMask: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Thigh_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L/Foot_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L/Foot_L/Toe_L
+        weight: 0
+      - path: Armature/Root/Thigh_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R/Foot_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R/Foot_R/Toe_R
+        weight: 0
+      - path: Armature/Root/Waist
+        weight: 1
+      - path: Armature/Root/Waist/Stomach
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/Handle_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L/IndexFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L/IndexFingerMed_L/IndexFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L/MiddleFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L/MiddleFingerMed_L/MiddleFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L/PinkyMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L/PinkyMed_L/PinkyDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L/RingFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L/RingFingerMed_L/RingFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L/ThumbMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L/ThumbMed_L/ThumbDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/Handle_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R/IndexFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R/IndexFingerMed_R/IndexFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R/MiddleFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R/MiddleFingerMed_R/MiddleFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R/PinkyMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R/PinkyMed_R/PinkyDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R/RingFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R/RingFingerMed_R/RingFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R/ThumbMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R/ThumbMed_R/ThumbDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_C
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Cheek_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Cheek_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Eye_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Eye_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/LowerLip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase/TongueMid
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase/TongueMid/TongueTip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/UpperLip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Sheath_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Sheath_R
+        weight: 1
+      - path: Sinbad
+        weight: 1
     - name: SliceVertical
       takeName: SliceVertical
       firstFrame: 0
@@ -747,7 +891,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -758,7 +902,151 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      transformMask: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Thigh_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L/Foot_L
+        weight: 0
+      - path: Armature/Root/Thigh_L/Calf_L/Foot_L/Toe_L
+        weight: 0
+      - path: Armature/Root/Thigh_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R/Foot_R
+        weight: 0
+      - path: Armature/Root/Thigh_R/Calf_R/Foot_R/Toe_R
+        weight: 0
+      - path: Armature/Root/Waist
+        weight: 1
+      - path: Armature/Root/Waist/Stomach
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/Handle_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L/IndexFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/IndexFingerProx_L/IndexFingerMed_L/IndexFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L/MiddleFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/MiddleFingerProx_L/MiddleFingerMed_L/MiddleFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L/PinkyMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/PinkyProx_L/PinkyMed_L/PinkyDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L/RingFingerMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/RingFingerProx_L/RingFingerMed_L/RingFingerDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L/ThumbMed_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_L/Humerus_L/Ulna_L/Hand_L/ThumbProx_L/ThumbMed_L/ThumbDist_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/Handle_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R/IndexFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/IndexFingerProx_R/IndexFingerMed_R/IndexFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R/MiddleFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/MiddleFingerProx_R/MiddleFingerMed_R/MiddleFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R/PinkyMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/PinkyProx_R/PinkyMed_R/PinkyDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R/RingFingerMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/RingFingerProx_R/RingFingerMed_R/RingFingerDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R/ThumbMed_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Clavicle_R/Humerus_R/Ulna_R/Hand_R/ThumbProx_R/ThumbMed_R/ThumbDist_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_C
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Brow_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Cheek_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Cheek_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Eye_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Eye_R
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/LowerLip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase/TongueMid
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/Jaw/TongueBase/TongueMid/TongueTip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Neck/Head/UpperLip
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Sheath_L
+        weight: 1
+      - path: Armature/Root/Waist/Stomach/Chest/Sheath_R
+        weight: 1
+      - path: Sinbad
+        weight: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

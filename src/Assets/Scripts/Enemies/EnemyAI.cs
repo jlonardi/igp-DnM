@@ -7,7 +7,9 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour {
 	
 	public float movementSpeed = 0f;	
-	public List<Vector3> movementPositions = new List<Vector3>();
+	private float prevMovementSpeed = 0f;	
+	private List<Vector3> movementPositions = new List<Vector3>();
+	private bool stuck = false;
 	
 	//The point to move to
     public Vector3 targetPosition;
@@ -158,7 +160,7 @@ public class EnemyAI : MonoBehaviour {
 	private bool targetReached() {
 		
 		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
-		float minDistance = 2f;
+		float minDistance = 1f;
 		
 		//Used if the object is doing a long travel
 		if(onLongDistanceTravel) {
@@ -241,37 +243,44 @@ public class EnemyAI : MonoBehaviour {
 
 		//calculate current speed for animations
 		movementPositions.Add(transform.position);
-		if (movementPositions.Count>10){
-			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 10;
+		if (movementPositions.Count>7){
+			prevMovementSpeed = movementSpeed;
+			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
 			movementPositions.RemoveAt(0);
+			//Debug.Log(movementSpeed);
 		}
 
 	}
 	
 	//Chekcs if there is a need to calculate a new path
 	private bool newPathNeeded() {		
-		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
-		float distanceRatio = distanceFromPlayer/10;
+		float distanceFromTarget = Vector3.Distance(transform.position, target.position);
+		float distanceRatio = distanceFromTarget/10;
 		float maxInterval = 10f;
 		
 		if(!atTarget) {
-			
-			//Since not at target and speed is low object is most likely stucked
-			/*
-			 * Tähän tarvii jotain fiksumpaa
-			 * 
-			 * if(movementSpeed < 0.2f && Time.fixedTime > 10) {
-				transform.position = new Vector3(	transform.position.y + 10,
-													transform.position.x + Random.Range(-2f, 2f),
-													transform.position.z + Random.Range(-2f, 2f));
-				return true;	
+						
+			if(distanceFromTarget > 10){
+				//Since not at target and speed is low object is most likely stuck
+				if ((stuck && movementSpeed < 0.5f) || (prevMovementSpeed>= 0.5f && movementSpeed < 0.5f)) {
+					stuck = true;
+//					Debug.Log("Stuck - speed: " + movementSpeed);
+/*
+					Vector3 newLocation = terrainLocation(new Vector3(transform.position.x + Random.Range(-1f, 1f),
+												transform.position.y, transform.position.z + Random.Range(-1f, 1f)));
+					transform.position = new Vector3(newLocation.x, newLocation.y + 2, newLocation.z);
+*/
+					return true;	
+				} else {
+					stuck = false;
+				}
+				
 			}
-			*/
-			
+						
 			//If on a long pathfind we get close enogh to the target we need to start a normal pathfinding routine
 			
 			if(onLongDistanceTravel) {
-				if(Vector3.Distance(transform.position, target.position) < 50) {
+				if(distanceFromTarget < 50) {
 					Debug.Log ("We are close enough to the target, distance is " + Vector3.Distance(transform.position, target.position));
 					onLongDistanceTravel = false;
 					return true;
@@ -290,7 +299,7 @@ public class EnemyAI : MonoBehaviour {
 				return true;
 			}
 			//If the object is allready pretty close to the player we need frequent path updates
-			if(distanceFromPlayer < 20) {
+			if(distanceFromTarget < 20) {
 				return true;	
 			}
 		} 
