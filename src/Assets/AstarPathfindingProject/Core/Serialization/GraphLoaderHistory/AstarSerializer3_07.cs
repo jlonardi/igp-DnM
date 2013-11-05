@@ -64,7 +64,11 @@ public class AstarSerializer3_07 : AstarSerializer {
 	}
 	
 	/** Deserializes a Unity Reference. Deserializes references such as Transform, GameObject, Texture or other unity objects */
-	public override UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue = null) {
+	//public override UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue = null) {
+	public override UnityEngine.Object GetUnityReferenceValue (string key, Type type) {
+		return GetUnityReferenceValue(key, type, null);
+	}
+	public override UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue) {
 		//Segment --- Should be (except for the defaultValue cast) identical to a segment in GetUnityReferenceValue/GetValue
 		if (!MoveToVariableAnchor (key)) {
 			Debug.Log ("Couldn't find key '"+key+"' in the data, returning default");

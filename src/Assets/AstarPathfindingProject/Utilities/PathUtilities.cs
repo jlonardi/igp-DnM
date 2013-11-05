@@ -58,7 +58,11 @@ namespace Pathfinding
 		 * \returns A List<Node> containing all nodes reachable from the seed node.
 		 * For better memory management the returned list should be pooled, see Pathfinding.Util.ListPool
 		 */
-		public static List<Node> GetReachableNodes (Node seed, int tagMask = -1) {
+		//public static List<Node> GetReachableNodes (Node seed, int tagMask = -1) {
+		public static List<Node> GetReachableNodes (Node seed) {
+			return GetReachableNodes(seed, -1);
+		}
+		public static List<Node> GetReachableNodes (Node seed, int tagMask) {
 			Stack<Node> stack = Pathfinding.Util.StackPool<Node>.Claim ();
 			List<Node> list = Pathfinding.Util.ListPool<Node>.Claim ();
 			

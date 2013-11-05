@@ -458,7 +458,20 @@ namespace Serialization
 			return result;
 		}
 		
-        public static void RunDeferredActions(int count = 1, bool clear = true)
+        //public static void RunDeferredActions(int count = 1, bool clear = true)
+		public static void RunDeferredActions()
+		{
+			RunDeferredActions(1, true);
+		}
+        public static void RunDeferredActions(int count)
+		{
+			RunDeferredActions(count, true);
+		}
+		public static void RunDeferredActions(bool clear)
+		{
+			RunDeferredActions(1, clear);
+		}
+        public static void RunDeferredActions(int count, bool clear)
         {
 			lock (FixupFunctions)
             {
@@ -493,7 +506,20 @@ namespace Serialization
 		}
 		
         
-		public static void RunDeferredActions(FinalProcess process, int count = 1, bool clear = true)
+		//public static void RunDeferredActions(FinalProcess process, int count = 1, bool clear = true)
+		public static void RunDeferredActions(FinalProcess process)
+		{
+			RunDeferredActions(process, 1, true);
+		}
+		public static void RunDeferredActions(FinalProcess process, int count)
+		{
+			RunDeferredActions(process, count, true);
+		}
+		public static void RunDeferredActions(FinalProcess process, bool clear)
+		{
+			RunDeferredActions(process, 1, clear);
+		}
+		public static void RunDeferredActions(FinalProcess process, int count, bool clear)
         {
 			lock(FixupFunctions)
 			{
@@ -651,7 +677,12 @@ namespace Serialization
 		/// <param name='filename'>
 		/// The filename to save them to
 		/// </param>
-		public static void WriteToFile(this byte[] data, string filename = null)
+		//public static void WriteToFile(this byte[] data, string filename = null)
+		public static void WriteToFile(this byte[] data)
+		{
+			WriteToFile(data, null);
+		}
+		public static void WriteToFile(this byte[] data, string filename)
 		{
 			var f = File.Create(filename ?? "test_output.data");
 			var w = new BinaryWriter(f);
@@ -670,7 +701,12 @@ namespace Serialization
 		/// <param name='filename'>
 		/// Filename for the output
 		/// </param>/
-		public static void WriteToFile(this string str, string filename  = null)
+		//public static void WriteToFile(this string str, string filename  = null)
+		public static void WriteToFile(this string str)
+		{
+			WriteToFile(str, null);
+		}
+		public static void WriteToFile(this string str, string filename)
 		{
 			var f = File.Create(filename ?? "test_output.txt");
 			var w = new StreamWriter(f);

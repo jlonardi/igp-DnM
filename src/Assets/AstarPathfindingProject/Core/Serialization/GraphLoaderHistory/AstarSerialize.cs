@@ -912,7 +912,11 @@ namespace Pathfinding {
 		}
 		
 		/** Deserializes a Unity Reference. Deserializes references such as Transform, GameObject, Texture or other unity objects */
-		public virtual UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue = null) {
+		//public virtual UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue = null) {
+		public virtual UnityEngine.Object GetUnityReferenceValue (string key, Type type) {
+			return GetUnityReferenceValue(key, type, null);
+		}
+		public virtual UnityEngine.Object GetUnityReferenceValue (string key, Type type, UnityEngine.Object defaultValue) {
 			//Segment --- Should be (except for the defaultValue cast) identical to a segment in GetUnityReferenceValue/GetValue
 			if (!MoveToVariableAnchor (key)) {
 				Debug.Log ("Couldn't find key '"+key+"' in the data, returning default");
@@ -1051,8 +1055,11 @@ namespace Pathfinding {
 		}
 		
 		/** Deserializes a variable with key of the specified type */
-		public System.Object GetValue (string key, Type type, System.Object defaultValue = null) {
-			
+		//public System.Object GetValue (string key, Type type, System.Object defaultValue = null) {
+		public System.Object GetValue (string key, Type type) {		
+			return GetValue(key, type, null);
+		}
+		public System.Object GetValue (string key, Type type, System.Object defaultValue) {
 			//Segment --- Should be identical to a segment in GetUnityReferenceValue/GetValue
 			if (!MoveToVariableAnchor (key)) {
 				Debug.Log ("Couldn't find key '"+key+"' in the data, returning default ("+(defaultValue == null ? "null" : defaultValue.ToString ())+")");

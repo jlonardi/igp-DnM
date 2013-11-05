@@ -215,7 +215,12 @@ public static class JSONLevelSerializer
 	/// <param name='onComplete'>
 	/// A method call to make when loading is complete
 	/// </param>
-	public static void LoadObjectTreeFromFile(string filename, Action<JSONLevelLoader> onComplete = null)
+	//public static void LoadObjectTreeFromFile(string filename, Action<JSONLevelLoader> onComplete = null)
+	public static void LoadObjectTreeFromFile(string filename)
+	{
+		LoadObjectTreeFromFile(filename, null);
+	}		
+	public static void LoadObjectTreeFromFile(string filename, Action<JSONLevelLoader> onComplete)
 	{
 		var x= File.OpenText(Application.persistentDataPath + "/" + filename);
 		var data = x.ReadToEnd();
@@ -267,7 +272,12 @@ public static class JSONLevelSerializer
 	/// <param name='onComplete'>
 	/// A function to call when the upload is complete
 	/// </param>
-	public static void SaveObjectTreeToServer(string uri, GameObject rootOfTree, string userName = "", string password = "", Action<Exception> onComplete =null)
+	//public static void SaveObjectTreeToServer(string uri, GameObject rootOfTree, string userName = "", string password = "", Action<Exception> onComplete =null)
+	public static void SaveObjectTreeToServer(string uri, GameObject rootOfTree, string userName, string password)
+	{
+		SaveObjectTreeToServer(uri, rootOfTree, userName, password, null);
+	}	
+	public static void SaveObjectTreeToServer(string uri, GameObject rootOfTree, string userName, string password, Action<Exception> onComplete)
 	{
 		onComplete = onComplete ?? delegate {};
 		Action execute = ()=>{
@@ -316,7 +326,17 @@ public static class JSONLevelSerializer
 	/// <param name='onComplete'>
 	/// A method to call when there is an error using load
 	/// </param>
-	public static void LoadObjectTreeFromServer(string uri, Action<JSONLevelLoader> onComplete = null, Action<string> onError = null)
+	//public static void LoadObjectTreeFromServer(string uri, Action<JSONLevelLoader> onComplete = null, Action<string> onError = null)
+	public static void LoadObjectTreeFromServer(string uri)
+	{
+		LoadObjectTreeFromServer(uri, null, null);			
+	}
+	public static void LoadObjectTreeFromServer(string uri, Action<JSONLevelLoader> onComplete)
+	{
+		LoadObjectTreeFromServer(uri, onComplete, null);			
+	}
+	
+	public static void LoadObjectTreeFromServer(string uri, Action<JSONLevelLoader> onComplete, Action<string> onError)
 	{
 		onComplete = onComplete ?? delegate {};
 		onError = onError ?? delegate {};
@@ -338,7 +358,12 @@ public static class JSONLevelSerializer
 	/// <param name='onComplete'>
 	/// A method to call when the serialization is complete
 	/// </param>
-	public static void SerializeLevelToServer(string uri, string userName = "", string password = "", Action<Exception> onComplete = null)
+	//public static void SerializeLevelToServer(string uri, string userName = "", string password = "", Action<Exception> onComplete = null)
+	public static void SerializeLevelToServer(string uri, string userName, string password)
+	{
+		SerializeLevelToServer(uri, userName, password, null);
+	}	
+	public static void SerializeLevelToServer(string uri, string userName, string password, Action<Exception> onComplete)
 	{
 		lock(Guard)
 		{
@@ -364,7 +389,12 @@ public static class JSONLevelSerializer
 	/// <param name="onError">
 	/// A function to call when there is an error finding the file
 	/// </param>
-	public static void LoadSavedLevelFromServer(string uri, Action<string> onError = null)
+	//public static void LoadSavedLevelFromServer(string uri, Action<string> onError = null)
+	public static void LoadSavedLevelFromServer(string uri)
+	{
+		LoadSavedLevelFromServer(uri, null);
+	}	
+	public static void LoadSavedLevelFromServer(string uri, Action<string> onError)
 	{
 		onError = onError ?? delegate {};
 		RadicalRoutineHelper.Current.StartCoroutine(DownloadLevelFromServer(uri, onError));
@@ -826,7 +856,12 @@ public static class JSONLevelSerializer
     /// </summary>
     /// <param name="data">The data for the tree to be loaded</param>
     /// <param name="onComplete">A function to call when the load is complete</param>
-    public static void LoadObjectTree(string data, Action<JSONLevelLoader> onComplete = null)
+    //public static void LoadObjectTree(string data, Action<JSONLevelLoader> onComplete = null)
+    public static void LoadObjectTree(string data)
+	{
+		LoadObjectTree(data, null);
+	}	
+    public static void LoadObjectTree(string data, Action<JSONLevelLoader> onComplete)
     {
         onComplete = onComplete ?? delegate { };
         LoadNow(data, true, false, onComplete);

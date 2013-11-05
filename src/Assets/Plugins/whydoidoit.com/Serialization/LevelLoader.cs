@@ -103,7 +103,12 @@ public class LevelLoader : MonoBehaviour
 	
 	static int loadingCount = 0;
 	
-    public IEnumerator Load(int numberOfFrames, float timeScale = 0)
+    //public IEnumerator Load(int numberOfFrames, float timeScale = 0)
+    public IEnumerator Load(int numberOfFrames)
+	{
+		return Load (numberOfFrames, 0);
+	}
+    public IEnumerator Load(int numberOfFrames, float timeScale)
     {
 		loadingCount++;
 		var oldFixedTime = Time.fixedDeltaTime;

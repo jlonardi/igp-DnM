@@ -535,7 +535,8 @@ public static class Radical
 		gameObject.audio.Play();
 	}
 	
-	public static void FadeVolume(this GameObject component, float toLevel = 1, float time = 1f, float? fromLevel = null)
+	//public static void FadeVolume(this GameObject component, float toLevel = 1, float time = 1f, float? fromLevel = null)
+	public static void FadeVolume(this GameObject component, float toLevel, float time, float? fromLevel)		
 	{
 		component.gameObject.StartExtendedCoroutine(VolumeFader(component.audio, toLevel, time, fromLevel));
 	}

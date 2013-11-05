@@ -561,8 +561,11 @@ A grid graph will update that area and a small margin around it equal to \link P
 		
 		/** Updates position, walkability and penalty for the node.
 		 * Assumes that collision.Initialize (...) has been called before this function */
-		public void UpdateNodePositionCollision (Node node, int x, int z, bool resetPenalty = true) {
-			
+		//public void UpdateNodePositionCollision (Node node, int x, int z, bool resetPenalty = true) {
+		public void UpdateNodePositionCollision (Node node, int x, int z) {
+			UpdateNodePositionCollision(node, x, z, true);
+		}
+		public void UpdateNodePositionCollision (Node node, int x, int z, bool resetPenalty) {		
 			node.position = (Int3)matrix.MultiplyPoint3x4 (new Vector3 (x+0.5F,0,z+0.5F));
 			
 			RaycastHit hit;
