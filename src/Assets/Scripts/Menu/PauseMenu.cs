@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour {
 	private delegate void GUIMethod(); //takes care of desiding what menu screen i shown
     private GUIMethod currentGUIMethod;
 	
-	public bool paused=false; //tells if game is paused
+//	public bool paused=false; //tells if game is paused
 	
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour {
 	private string save_name="Name your game"; //name of the saved game
 	private int max_saved_games =5; //max amount of games saved
 	
-	
+	private GameManager game;	
 	
 
 	void Awake()
@@ -26,9 +26,13 @@ public class PauseMenu : MonoBehaviour {
 		
 	}
 	
+	void Start(){
+		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
+	}
+	
 	void Update(){
 		
-		if(paused){                       //when game is paused time stops and the cursour shows
+		if(game.paused){                       //when game is paused time stops and the cursour shows
 			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
@@ -39,7 +43,7 @@ public class PauseMenu : MonoBehaviour {
 			Screen.lockCursor=true;
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){  //to get pause on and off pres ESC
-			paused =!paused;
+			game.paused =!game.paused;
 			this.currentGUIMethod=PauseScreen;
 			
 		}
@@ -51,10 +55,10 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if (Event.current.keyCode == KeyCode.Return && this.currentGUIMethod==SaveGame) //in save game screen if enter is pressed game is saved
 		{
-    				LevelSerializer.SaveGame(save_name);
+    		LevelSerializer.SaveGame(save_name);
 			this.currentGUIMethod=PauseScreen;
    		}
-		if (paused)
+		if (game.paused)
 		{
 			this.currentGUIMethod();
 		}
@@ -71,7 +75,7 @@ public class PauseMenu : MonoBehaviour {
 		
 		if(GUILayout.Button ("Resume"))
 		{
-			paused =!paused; //stop pause to resume game
+			game.paused =!game.paused; //stop pause to resume game
 		}
 		
 		if(GUILayout.Button ("Main Menu"))

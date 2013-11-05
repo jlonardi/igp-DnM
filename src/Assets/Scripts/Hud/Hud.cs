@@ -27,13 +27,13 @@ public class Hud : MonoBehaviour {
 	}
 	
     void OnGUI() {
-		if (!game.gameRunning){
+		if (!game.gameRunning && !game.paused){
 			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 			GUI.Label(helpPosition, "GAME OVER!");
 			GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 		}
 		
-    	if(!game.gameRunning || game.paused){
+    	if(Time.timeScale == 0 || !game.gameRunning || game.paused){
 			return;
 		}
 		

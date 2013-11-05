@@ -2,16 +2,32 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-	public int Wave = 0;
+	
+	public int wave;
+	public int score;
+	public int bodyCount;
+	
+	//playTime updated only when game ends for statistics
+	public float playTime;
+	
 	public bool gameRunning = true;
 	public bool paused = false;
 	
 	void Start () {
-	
+		NewGame();
 	}
-			
+	
+	public void NewGame(){
+		wave = 1;
+		score = 0;
+		bodyCount = 0;
+		Time.timeScale = 1;
+		gameRunning = true;
+	}
+	
 	public void GameOver(){
 		Time.timeScale = 0;
+		playTime = Time.time;
 		gameRunning = false;		
 	}
 }

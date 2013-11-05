@@ -35,10 +35,11 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeOfLastAction = 0f;	
 	private int attacks = 0;
 	private bool treasureAvailable = false;
+	private GameManager game;
 	
 	public void Start() {
-		
 		ai = GetComponent<EnemyAI>();
+		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
 		ragdolls = GameObject.FindObjectOfType(typeof(RagdollManager)) as RagdollManager;
 		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 
@@ -187,6 +188,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
+		game.bodyCount++;
 		//make enemy a ragdoll
 		Rigidbody ragdollRigidBody = ragdolls.MakeRagdoll(this.gameObject);
 		
