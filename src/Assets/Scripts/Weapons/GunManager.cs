@@ -8,12 +8,9 @@ public class GunManager : MonoBehaviour {
 	public Gun currentGun;
 	public bool canUseWeapons;
 	public HitParticles hitParticles = new HitParticles();
-	private Hud hud;
 	private Treasure treasure;
 	
 	void Start () {	
-		hud = GameObject.FindObjectOfType(typeof(Hud)) as Hud;
-		
 		// set to false until weapons enabled
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;
@@ -44,7 +41,6 @@ public class GunManager : MonoBehaviour {
 			currentGun.enabled = true;
 			currentGun.gameObject.SetActive(true);
 		}
-		hud.setGun(currentGun);
 	}	
 }
 

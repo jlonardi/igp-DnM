@@ -106,7 +106,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkFocus() {
 		if (!treasureAvailable){
-			treasureAvailable = treasure.OnGround();
+			treasureAvailable = treasure.onGround;
 			if (treasureAvailable){
 				swapTarget();
 			}

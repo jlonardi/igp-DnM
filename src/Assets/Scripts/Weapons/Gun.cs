@@ -111,9 +111,6 @@ public class Gun : MonoBehaviour {
 		freeToShoot = true;
 		shootDelay = 1.0f / fireRate;
 		
-		totalClips--;
-		currentRounds = clipSize;
-		
 		if(projectilePrefab != null){
 			fireType = FireType.PHYSIC_PROJECTILE;
 		}

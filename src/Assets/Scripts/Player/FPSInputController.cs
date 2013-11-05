@@ -23,17 +23,20 @@ public class FPSInputController : MonoBehaviour {
 	
 	private CharacterMotor motor;
 	private Treasure treasure;
+	private GameManager game;
+
 	
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		motor = GetComponent<CharacterMotor>();
 		weaponSystem = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
 		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
+		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.timeScale==0){	// don't update if game is paused
+		if(!game.gameRunning || game.paused){ //Mouse look do not work if game is paused or over
 			return;
 		}
 		
@@ -61,7 +64,7 @@ public class FPSInputController : MonoBehaviour {
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
 		
-		bool treasureOnGround = treasure.OnGround();
+		bool treasureOnGround = treasure.onGround;
 		
 		//Check if the user if firing the weapon
 		fire = Input.GetButton("Fire1") && treasureOnGround && weaponSystem.currentGun.freeToShoot;

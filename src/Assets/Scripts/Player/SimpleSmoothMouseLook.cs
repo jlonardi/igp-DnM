@@ -16,6 +16,8 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     public Vector2 smoothing = new Vector2(3, 3);
     public Vector2 targetDirection;
     public Vector2 targetCharacterDirection;
+	
+	private GameManager game;
 
 	// Assign this if there's a parent object controlling motion, such as a Character Controller.
 	// Yaw rotation will affect this object instead of the camera if set.
@@ -24,6 +26,8 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     
 	void Start()
 	{
+		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
+
 		// Set target direction to the camera's initial orientation.
 		targetDirection = transform.localRotation.eulerAngles;
 
@@ -33,7 +37,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
     void Update()
 	{
-		if(Time.timeScale==0){  //Mouse look do not work if game is paused 
+		if(!game.gameRunning || game.paused){ //Mouse look do not work if game is paused or over
 			return;
 		}
 

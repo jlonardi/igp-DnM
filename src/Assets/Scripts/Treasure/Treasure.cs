@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class Treasure : MonoBehaviour {
+	public int amount = 100;
 	public bool onGround;
-	private Hud hud;
-	private int treasureAmount = 100;
 	private Terrain terrain;
 	private Animator animator;
 	private SimpleSmoothMouseLook mouseLook;
@@ -15,8 +14,6 @@ public class Treasure : MonoBehaviour {
 		animator.SetBool("onGround",false);
 		
 		terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-		hud = GameObject.Find("Game Manager").GetComponent<Hud>();
-		hud.setTreasure(treasureAmount);
 		mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
 	}
 	
@@ -26,13 +23,12 @@ public class Treasure : MonoBehaviour {
 			return 0;
 		}
 		
-		if (treasureAmount > lootAmount){
-			treasureAmount -= lootAmount;
+		if (amount > lootAmount){
+			amount -= lootAmount;
 		} else {
-			lootAmount = treasureAmount;
-			treasureAmount = 0;
+			lootAmount = amount;
+			amount = 0;
 		}
-		hud.setTreasure(treasureAmount);
 		return lootAmount;
 	}
 	
@@ -40,7 +36,6 @@ public class Treasure : MonoBehaviour {
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		this.transform.parent = treasureOnScene.transform;	
 		this.onGround = true;	
-		hud.setTreasureOnGround();
 
 		// align treasure on terrain
 	    transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z); //first move up to make sure it doesn't go through terrain
@@ -57,9 +52,4 @@ public class Treasure : MonoBehaviour {
 		gunManager.EnableWeapons();
 		mouseLook.clampInDegrees = new Vector2(360, 180);
 	}
-	
-	public bool OnGround(){
-		return this.onGround;
-	}
-	
 }
