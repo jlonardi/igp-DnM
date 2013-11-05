@@ -8958,28 +8958,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .889999986, y: 1.28999996, z: .49000001}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1156413962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries:
-  - gameObject: {fileID: 499643140}
-    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
-  - gameObject: {fileID: 2118666200}
-    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
-  - gameObject: {fileID: 1675929635}
-    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
-  - gameObject: {fileID: 1927726302}
-    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
-  - gameObject: {fileID: 291724319}
-    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
 --- !u!1 &1159319092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9140,7 +9118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 1156413962}
+  Reference: {fileID: 1683382179}
 --- !u!4 &1173328508
 Transform:
   m_ObjectHideFlags: 0
@@ -9164,7 +9142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiSkin: {fileID: 0}
-  paused: 0
 --- !u!114 &1173328510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9177,9 +9154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshairTexture: {fileID: 2800000, guid: 86c73534e81ffb14cb3d5f53a989ab08, type: 3}
-  gunManager: {fileID: 0}
-  treasure: {fileID: 0}
-  vitals: {fileID: 0}
 --- !u!114 &1173328511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9219,8 +9193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e8ca26ffcbb7479d3db598f30c2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wave: 0
-  Running: 1
+  wave: 0
+  score: 0
+  bodyCount: 0
+  playTime: 0
+  gameRunning: 1
+  paused: 0
 --- !u!1 &1181984207
 GameObject:
   m_ObjectHideFlags: 0
@@ -12301,6 +12279,28 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1683382179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries:
+  - gameObject: {fileID: 499643140}
+    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
+  - gameObject: {fileID: 2118666200}
+    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
+  - gameObject: {fileID: 1675929635}
+    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
+  - gameObject: {fileID: 1927726302}
+    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
+  - gameObject: {fileID: 291724319}
+    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
 --- !u!1 &1705054791
 GameObject:
   m_ObjectHideFlags: 0
