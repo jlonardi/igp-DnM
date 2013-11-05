@@ -46,10 +46,13 @@ public class EnemyAI : MonoBehaviour {
 	public float turnSpeed = 3f;
     
     //The max distance from the AI to a waypoint for it to continue to the next waypoint
-    public float nextWaypointDistance = 0.5f;
+    public float nextWaypointDistance = 3f;
  
     //The waypoint we are currently moving towards
-    private int currentWaypoint = 0;
+    public int currentWaypoint = 0;
+	
+	public bool onLongDistanceTravel = false;
+	public Vector3 longDistanceTarget;
 	
     public void Start () {	
 		
@@ -73,6 +76,11 @@ public class EnemyAI : MonoBehaviour {
 		targetPosition = target.position;
 		oldTargetPosition = target.position;
 		
+		if(Vector3.Distance(target.position, transform.position) > 150) {
+			onLongDistanceTravel = true;
+			longDistanceTarget = terrainLocation(target.position);
+		}
+		
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		startNewPathfinding();
         //seeker.StartPath (transform.position,targetPosition, OnPathComplete);
@@ -83,7 +91,7 @@ public class EnemyAI : MonoBehaviour {
 		if (!p.error) {
             path = p;
             pathCalculationComplete = true;
-            currentWaypoint = 1;
+            currentWaypoint = 0;
         }
     }
 	
@@ -102,8 +110,12 @@ public class EnemyAI : MonoBehaviour {
 		//If the last waypoint has been reach reset the current way point
 		//and mark us so that we are at the target
 		if (path != null && currentWaypoint >= path.vectorPath.Count) {
-            //Debug.Log ("End Of Path Reached");
-			currentWaypoint = 2;
+            //Debug.Log ("End Of Path Reached")
+			currentWaypoint = 0;
+			if(onLongDistanceTravel) {
+				startNewPathfinding();
+				return;
+			}
 			atTarget = true;
             return;
         }
@@ -148,6 +160,13 @@ public class EnemyAI : MonoBehaviour {
 		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
 		float minDistance = 2f;
 		
+		//Used if the object is doing a long travel
+		if(onLongDistanceTravel) {
+			if(Vector3.Distance(transform.position, longDistanceTarget) < minDistance) {
+				longDistanceTarget = target.position;
+			} 
+		}
+		
 		if(distanceFromPlayer > minDistance) {
 			return false;
 		} else {
@@ -166,8 +185,15 @@ public class EnemyAI : MonoBehaviour {
 		pathCalculationComplete = false;
 		
 		//Starts the calculation for a new path
-		seeker.StartPath (fixedPosition,targetPosition,OnPathComplete);	
+		if(onLongDistanceTravel) {
+			//Debug.Log("Starting a long travel");
+			//Debug.Log("Target location is " + longDistanceTarget);
+			seeker.StartPath (fixedPosition,longDistanceTarget,OnPathComplete);	
+		} else {
+			seeker.StartPath (fixedPosition,targetPosition,OnPathComplete);	
+		}
 		
+		timeOfLastPathFind = Time.fixedTime;
 	}
 	
 	//Gets the point of the terrain right underneath
@@ -196,8 +222,13 @@ public class EnemyAI : MonoBehaviour {
 			      
 	        //Check if we are close enough to the next waypoint
 	        //If we are, proceed to follow the next waypoint
+			//Debug.Log ("Distance is " + Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]));
+			//Debug.Log ("nextWaypointDistance = " + nextWaypointDistance);
+			//Debug.Log (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance);
 	        if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+				//Debug.Log("Moving to next waypoint");
 	            currentWaypoint++;
+				//Debug.Log("Waypoint addition done");
 	        }	
 		} else {
 			//If we have allready reached the target we need only to turn the object to face hes target
@@ -224,6 +255,31 @@ public class EnemyAI : MonoBehaviour {
 		float maxInterval = 10f;
 		
 		if(!atTarget) {
+			
+			//Since not at target and speed is low object is most likely stucked
+			/*
+			 * Tähän tarvii jotain fiksumpaa
+			 * 
+			 * if(movementSpeed < 0.2f && Time.fixedTime > 10) {
+				transform.position = new Vector3(	transform.position.y + 10,
+													transform.position.x + Random.Range(-2f, 2f),
+													transform.position.z + Random.Range(-2f, 2f));
+				return true;	
+			}
+			*/
+			
+			//If on a long pathfind we get close enogh to the target we need to start a normal pathfinding routine
+			
+			if(onLongDistanceTravel) {
+				if(Vector3.Distance(transform.position, target.position) < 50) {
+					Debug.Log ("We are close enough to the target, distance is " + Vector3.Distance(transform.position, target.position));
+					onLongDistanceTravel = false;
+					return true;
+				} else {
+					return false;	
+				}
+			}
+			
 			//If enough time has been gone since the last pathfind we have to do a new one
 			if(timeOfLastPathFind + maxInterval > Time.fixedTime) {
 				return true;
@@ -238,6 +294,11 @@ public class EnemyAI : MonoBehaviour {
 				return true;	
 			}
 		} 
+		
+		if(onLongDistanceTravel && atTarget) {
+			return true;
+		}
+		
 		return false;			
 	}
 	
@@ -246,7 +307,6 @@ public class EnemyAI : MonoBehaviour {
 	private bool eligibleToNewPathfind() {
 		float updateInterval = 0.2f;
 		if(timeOfLastPathFind + updateInterval < Time.fixedTime) {
-			timeOfLastPathFind = Time.fixedTime;
 			//Debug.Log ("Eligible to find a new path.");
 			return true;
 		}
