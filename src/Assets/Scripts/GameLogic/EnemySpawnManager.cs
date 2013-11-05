@@ -3,20 +3,15 @@ using System.Collections;
 
 public class EnemySpawnManager : MonoBehaviour {
 
-	public Transform[] areas;
-	
+	public GameObject orcPrefab;
+	public Transform[] areas;	
 	public float timeOfLastWave = 0f;
 	public float waveInterval = 5f;
-	
-	public GameObject orc;
-	
-	private EnemyLogic logic;
-	
-	void Start () {
-	
-		GameObject o = GameObject.Find("orc");
-		logic = o.GetComponent<EnemyLogic>();
 		
+	private GameObject player;
+	
+	void Start () {	
+		player = GameObject.Find("Player");	
 		Transform spawns = GameObject.Find("Spawns").transform;
 		areas = spawns.GetComponentsInChildren<Transform>();
 	}
@@ -41,18 +36,21 @@ public class EnemySpawnManager : MonoBehaviour {
 	}
 	
 	private void createSpawnWave() {
+		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
 		
-		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
-		
-		Vector3 targetPosition = logic.getTarget().position;
-		
-		while(Vector3.Distance( areas[index].position, targetPosition) < 50) {
+		while(Vector3.Distance( areas[index].position, player.transform.position) < 50) {
 			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 		}
-
-		GameObject go = (GameObject)Instantiate(orc);
+		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));
-		go.transform.position = areas[index].position + offset;
+		
+		GameObject newOrc = (GameObject)Instantiate(orcPrefab, areas[index].position + offset, orcPrefab.transform.rotation);
+
+		RaycastHit hit = new RaycastHit();
+		Ray ray = new Ray(newOrc.transform.position, -Vector3.up);
+		
+        Physics.Raycast(ray,out hit);
+		newOrc.transform.position = new Vector3(newOrc.transform.position.x, hit.point.y + 3, newOrc.transform.position.z);
 		//Debug.Log("Orc instantiated");
 
 	}
