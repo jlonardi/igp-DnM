@@ -154,10 +154,10 @@ public class EnemyAI : MonoBehaviour {
     	seeker.pathCallback -= OnPathComplete;
 	} 
 	
-	public void setTarget(Transform t) {
+	public void setTarget(GameObject targetObject) {
 		//Debug.Log ("Setting a new target, new target location is at " + t.position);
-		target = t;
-		targetPosition = t.position;
+		target = targetObject.transform;
+		targetPosition = target.position;
 		startNewPathfinding();
 	}
 	

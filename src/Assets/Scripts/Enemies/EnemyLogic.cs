@@ -5,40 +5,40 @@ public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
 	
-	//how long enemy chases player
+	//how long enemy chases player if player shoots
 	public float focusTime = 10f;
+	
+	//how long enemy chases player if seen nearby
+	public float nearbyTime = 5f;
+	
+	//distance where enemy detects player
+	public float detectDistance = 6f;
+
 	public bool attacking = false;
 	public bool looting = false;
 	public float attackInterval = 1f;
 	public float lootInterval = 1f;
-	
-	//distance where enemy detects player
-	public float detectDistance = 10f;
-	
+		
 	private EnemyAI ai;
 	private RagdollManager ragdolls;
-	private GameObject playerObj;
-	private Transform player;
-	private Transform tresaure;
+	private Treasure treasure;
+	private GameObject player;
+
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
-	private float timeOfLastAction = 0f;
-	
+	private float timeOfLastAction = 0f;	
 	private int attacks = 0;
+	private bool treasureAvailable = false;
 	
 	public void Start() {
 		
 		ai = GetComponent<EnemyAI>();
 		ragdolls = GameObject.FindObjectOfType(typeof(RagdollManager)) as RagdollManager;
+		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 
-		playerObj = GameObject.Find("Player");	
-		player = playerObj.transform;
-		GameObject a = GameObject.Find("arkku");
-		tresaure = a.transform.FindChild("focusPoint");
-		
-		target = focusTarget.TRESAURE;
-		
-		ai.init (player);
+		player = GameObject.Find("Player");	
+		target = focusTarget.PLAYER;
+		ai.init(player.transform);
 	}
 	
 	public void Update() {
@@ -99,14 +99,25 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	private void checkFocus() {
+		if (!treasureAvailable){
+			treasureAvailable = treasure.OnGround();
+			if (treasureAvailable){
+				swapTarget();
+			}
+		}
 		if(target == focusTarget.PLAYER) {
 			//If the focus time expires change back to focus the tresaure
 			if(timeWhenFocusedPlayer + focusTime < Time.time) {
 				swapTarget();
 			}
 		} else { // if focus not in player, check if player nearby
-			if (Vector3.Distance(player.position, transform.position)<= detectDistance){
-				timeWhenFocusedPlayer = Time.time;
+			if (Vector3.Distance(player.transform.position, transform.position)<= detectDistance){				
+				float timeDifference = focusTime - nearbyTime;
+				if (timeDifference < 0){
+					timeDifference = 0;
+				}
+				// add timeDifference to timeWhenFocusedPlayer so that we actually check nearbyTime if enemy haven't been shot
+				timeWhenFocusedPlayer = Time.time + timeDifference;
 				swapTarget();
 			}
 		}
@@ -115,7 +126,7 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			ai.setTarget(tresaure);
+			ai.setTarget(treasure.gameObject);
 			target = focusTarget.TRESAURE;
 			Debug.Log("New target is tresaure");
 			return;
@@ -170,11 +181,11 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}	
 	
-	public Transform getTarget() {
+	public GameObject getTarget() {
 		if(target == focusTarget.PLAYER) {
 			return player;
 		} else {
-			return tresaure;
+			return treasure.gameObject;
 		}
 	}
 }
