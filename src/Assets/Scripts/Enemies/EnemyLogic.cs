@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
-	public GameObject ragdoll;	
 	public float focusTime = 10f;
 	public bool attacking = false;
 	public bool looting = false;
@@ -12,6 +11,7 @@ public class EnemyLogic : MonoBehaviour {
 	public float lootInterval = 1f;
 	
 	private EnemyAI ai;
+	private RagdollManager ragdolls;
 	private GameObject playerObject;
 	private Transform player;
 	private Transform tresaure;
@@ -24,6 +24,8 @@ public class EnemyLogic : MonoBehaviour {
 	public void Start() {
 		
 		ai = GetComponent<EnemyAI>();
+		ragdolls = GameObject.FindObjectOfType(typeof(RagdollManager)) as RagdollManager;
+
 		GameObject p = GameObject.Find("Player");
 		player = p.transform;
 		GameObject a = GameObject.Find("arkku");
@@ -142,20 +144,18 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death without force
 	public void Die(){
+		
 		Die(new RaycastHit(), new Vector3(), 0f);
 	}
 	
 	// enemy death with force
-	public void Die(RaycastHit hit, Vector3 direction, float power){		
+	public void Die(RaycastHit hit, Vector3 direction, float power){
 		//make enemy a ragdoll
-		Ragdoll r = (Instantiate(ragdoll, this.transform.position,this.transform.rotation) as GameObject).GetComponent<Ragdoll>();
-		r.CopyPose(this.gameObject.transform);
-		Destroy(this.gameObject);		
+		Rigidbody ragdollRigidBody = ragdolls.MakeRagdoll(this.gameObject);
 		
 		// apply impact to ragdoll
 		if (power != 0f){
-			Rigidbody rb = r.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;
-			rb.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
+			ragdollRigidBody.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
 		}
 	}	
 	
