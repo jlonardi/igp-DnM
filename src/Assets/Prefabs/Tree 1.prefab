@@ -11,7 +11,8 @@ GameObject:
   - 193: {fileID: 19300000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  m_Layer: 0
+  - 136: {fileID: 13600000}
+  m_Layer: 10
   m_Name: Tree 1
   m_TagString: wood
   m_Icon: {fileID: 0}
@@ -54,6 +55,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 4300000, guid: f13ac36d3a79acb40af378000f7ef5fc, type: 2}
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .49000001
+  m_Height: 14.7425842
+  m_Direction: 1
+  m_Center: {x: -.342802763, y: 5.37129211, z: .520004988}
 --- !u!193 &19300000
 Tree:
   m_ObjectHideFlags: 1
