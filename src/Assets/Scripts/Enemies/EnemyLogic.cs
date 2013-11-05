@@ -158,4 +158,12 @@ public class EnemyLogic : MonoBehaviour {
 			rb.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
 		}
 	}	
+	
+	public Transform getTarget() {
+		if(target == focusTarget.PLAYER) {
+			return player;
+		} else {
+			return tresaure;
+		}
+	}
 }
