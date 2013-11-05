@@ -5,14 +5,20 @@ public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
 	
-	//how long enemy chases player if player shoots
-	public float focusTime = 10f;
+	//how long enemy chases player if player shoots (s)
+	private float focusTime = 20f;
 	
 	//how long enemy chases player if seen nearby
-	public float nearbyTime = 5f;
+	private float nearbyTime = 10f;
 	
 	//distance where enemy detects player
-	public float detectDistance = 6f;
+	private float detectDistance = 6f;
+	
+	//distance where other enemies may join the chase for hostile player
+	private float joinAttackDistance = 20f;
+	
+	//how greedy enemy is will determine the chance of other enemies to join the chase for hostile player (0-1.0)
+	private float greedyness = 0.4f; 
 
 	public bool attacking = false;
 	public bool looting = false;
@@ -112,11 +118,11 @@ public class EnemyLogic : MonoBehaviour {
 			}
 		} else { // if focus not in player, check if player nearby
 			if (Vector3.Distance(player.transform.position, transform.position)<= detectDistance){				
+				// add timeDifference to timeWhenFocusedPlayer so that we actually check nearbyTime if enemy haven't been shot
 				float timeDifference = focusTime - nearbyTime;
 				if (timeDifference < 0){
 					timeDifference = 0;
 				}
-				// add timeDifference to timeWhenFocusedPlayer so that we actually check nearbyTime if enemy haven't been shot
 				timeWhenFocusedPlayer = Time.time + timeDifference;
 				swapTarget();
 			}
@@ -149,6 +155,15 @@ public class EnemyLogic : MonoBehaviour {
 	public void TakeDamage(int damageAmount, DamageType damageType, RaycastHit hit, Vector3 direction, float power){
 		Debug.Log("Hit detected");
 		
+		// alert nearby enemies about hostile player
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		if (enemies.Length!=0) {
+			foreach (GameObject enemy in enemies) {
+				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);		
+			}
+		}
+		
+		
 		if (damageType == DamageType.BULLET) {
 			health -= damageAmount;
 		}
@@ -180,6 +195,23 @@ public class EnemyLogic : MonoBehaviour {
 			ragdollRigidBody.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
 		}
 	}	
+	
+	
+	// if any of the enemies attacked by player, check if player nearby and attack
+	private void PlayerAttackingEnemy(Vector3 attackLocation){
+		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
+		float distanceToTreasure = Vector3.Distance(treasure.transform.position, this.transform.position);
+		if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
+			// if not near the treasure, just join the chase
+			// else use greedyness to choose whether to chase the player or not
+			if ((distanceToTreasure > 10f) ||(Random.Range(0f,1f) <= greedyness)){
+				timeWhenFocusedPlayer = Time.time;
+				if (target == focusTarget.TRESAURE){
+					swapTarget();
+				} 			
+			}
+		}
+	}
 	
 	public GameObject getTarget() {
 		if(target == focusTarget.PLAYER) {
