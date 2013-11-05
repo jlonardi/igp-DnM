@@ -47,7 +47,7 @@ public class EnemySpawnManager : MonoBehaviour {
 		Vector3 targetPosition = logic.getTarget().position;
 		
 		while(Vector3.Distance( areas[index].position, targetPosition) < 50) {
-			index = (int)Mathf.Round(Random.Range(0f, areas.Length));
+			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 		}
 
 		GameObject go = (GameObject)Instantiate(orc);
