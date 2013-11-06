@@ -1,12 +1,12 @@
-To start te game run the game.exe from the zip you downloaded.
+To start the game run the game.exe from the zip you downloaded.
 Choose the settings you want in unitys start manager and start the game.
 
 Description
-You start the game by holding a treasure. Here your task is to put the treasure on a good point.
-You can move by using a,w,s,d and jump by pressin space. Put down the tressure by pressing space.
+You start the game by holding a treasure. Your first task is to put the treasure down in a good place you
+can defend. You can move by using a,w,s,d and jump by pressing space. Put down the treasure by pressing e.
 
-When the treasure is on the ground the orcs will try to steal it. Defend the treasure by killing the orcs.
-The game will end when you die or the orcs take your whole treasure.
+When the treasure is on the ground the orcs will try to steal it. Defend the treasure by killing the
+orcs by shooting them. The game will end when you die or the orcs steal your whole treasure.
 
 In the main menu
 -Press start game to start the game
@@ -15,25 +15,24 @@ In the main menu
 
 In the game
 -move using a,w,s,d
--pause by pressin ESC
+-pause by pressing ESC
 -select gun by pressing 1,2
 -jump by pressing space
--move your mouse to move the direction of the comera
+-move your mouse to change the direction of the comera
 -press the left mouse button to shoot
 
 Pause menu
--you can resume the game by pressin resume or pressing ESC
--you can save the game by pressing save game and choosing a slot where to save
+-press resume or ESC to resume the game.
+-press save game choose a save slot to save the game
 	-the saved game will appear in the top of the saved games
--you can load the game by pressing load game and choosing the game you vant to load from the slots
--you can return to main menu by pressin main menu
-	- note you will loose your game progress if you do not save your game before goin to main menu
--quit the game by pressing quit game
+-press load game and select a slot to load a saved game
+-press return to main menu to get back to the main menu
+	-note that you will lose any unsaved progress as there is no autosaving
+-press quit game to close the game
 
-When you loose
+When you lose
 - press main menu to go to main menu where you can start a new game or quit
 - you can see your score in the game over screen
 
 
-
-Sorry for any bugs that is still in the game
+Note that the game is still work in progress so there will be bugs, unfinished assets and missing features.
