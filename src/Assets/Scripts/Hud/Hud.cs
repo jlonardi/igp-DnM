@@ -36,10 +36,11 @@ public class Hud : MonoBehaviour {
 		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
     		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 		}
-		GUI.Box(new Rect(5,5,105,120),"");	
+		GUI.Box(new Rect(5,5,105,125),"");	
 		GUI.Label(new Rect(10,10,100,20), "Health: " + PlayerHealth.instance.health);
 		GUI.Label(new Rect(10,25,100,20), "Treasure: " + Treasure.instance.amount);
-		GUI.Label (new Rect(10,40,100,20),"Body Count: " +GameManager.instance.bodyCount);
+
+		GUI.Label (new Rect(10,40,100,20),"Score: " +GameManager.instance.score);
 		if (gun.enabled){
 			GUI.Label(new Rect(10,55,100,20), "Gun: " + gun.gunName);			
 			GUI.Label(new Rect(10,70,100,20), "Ammo: " + gun.currentRounds);

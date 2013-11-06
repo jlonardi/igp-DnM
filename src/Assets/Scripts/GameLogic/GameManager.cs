@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour {
 	
 	public bool gameRunning = true;
 	public bool paused = false;
-	
+	[SerializeThis]
+	private float timeOfLastPoint = 0f;
+	private float pointIntervall=1f;
 	
 	void Start () {
 		NewGame();
@@ -38,5 +40,13 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale = 0;
 		playTime = Time.time;
 		gameRunning = false;		
+	}
+	public void Update(){
+	 	if(Treasure.instance.onGround){
+			if((timeOfLastPoint + pointIntervall)<Time.time){
+				score++;
+				timeOfLastPoint=Time.time;
+			}
+		}
 	}
 }

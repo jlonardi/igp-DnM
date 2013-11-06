@@ -22,8 +22,8 @@ public class EnemyLogic : MonoBehaviour {
 
 	public bool attacking = false;
 	public bool looting = false;
-	public float attackInterval = 1f;
-	public float lootInterval = 1f;
+	public float attackInterval = 2f;
+	public float lootInterval = 2f;
 		
 	private EnemyAI ai;
 	private GameObject player;
@@ -184,6 +184,7 @@ public class EnemyLogic : MonoBehaviour {
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
 		GameManager.instance.bodyCount++;
+		GameManager.instance.score+=100;
 		//make enemy a ragdoll
 		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(this.gameObject);
 		
