@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
+[SerializeAll]
 public class Ragdoll : MonoBehaviour {
 	
 	private List<Transform> poseBones = new List<Transform>();

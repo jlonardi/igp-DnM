@@ -1,25 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-[SerializeAll]
+
 public class Treasure : MonoBehaviour {	
 	//use singleton since only we need once instance of this class
 	public static Treasure instance;
     public void Awake()
     {
         Treasure.instance = this;
-		animator = GetComponent<Animator>();
-		animator.speed = 4;	// animation playback speed
-		if(!LevelSerializer.IsDeserializing){
-			animator.SetBool("onGround",false);
-			
-			terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-			mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
-		}
-		if(LevelSerializer.IsDeserializing){
-			animator.SetBool("onGround",false);
-			animator.SetBool("onGround",true);
-		}
-
     }
 	
 	public int amount = 100;
@@ -29,14 +16,12 @@ public class Treasure : MonoBehaviour {
 	private SimpleSmoothMouseLook mouseLook;
 	
 	void Start () {
+		animator = GetComponent<Animator>();
+		animator.speed = 4;	// animation playback speed
+		animator.SetBool("onGround",false);
 		
-//		animator = GetComponent<Animator>();
-//		animator.speed = 4;	// animation playback speed
-//		animator.SetBool("onGround",false);
-//		
-//		terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-//		mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
-		
+		terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
+		mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
 	}
 	
 	public int Loot(int lootAmount){
@@ -68,7 +53,6 @@ public class Treasure : MonoBehaviour {
  			Vector3 proj = transform.forward - (Vector3.Dot(transform.forward, hit.normal)) * hit.normal;
 			transform.rotation = Quaternion.LookRotation(proj, hit.normal);
 		}
-	
 		animator.SetBool("onGround",true);
 		
 		GunManager.instance.EnableWeapons();

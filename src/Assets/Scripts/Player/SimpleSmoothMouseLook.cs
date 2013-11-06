@@ -5,6 +5,7 @@ using System.Collections;
 // by Francis R. Griffiths-Keam - www.runningdimensions.com
      
 [AddComponentMenu("Camera/Simple Smooth Mouse Look ")]
+[SerializeAll]
 public class SimpleSmoothMouseLook : MonoBehaviour
 {
     Vector2 _mouseAbsolute;

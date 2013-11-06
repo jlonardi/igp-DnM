@@ -2050,7 +2050,8 @@ MonoBehaviour:
   _id: 
   classId: 374713c8-d4e6-4959-8da7-cd2a040494b3
   StoreAllComponents: 0
-  Components: []
+  Components:
+  - UnityEngine.Transform
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
