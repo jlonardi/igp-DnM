@@ -944,11 +944,6 @@ GameObject:
   - 114: {fileID: 11400118}
   - 114: {fileID: 11400120}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
-  - 114: {fileID: 11400004}
-  - 114: {fileID: 11400158}
-  - 114: {fileID: 11400160}
-  - 114: {fileID: 11400162}
   m_Layer: 0
   m_Name: orc
   m_TagString: enemy
@@ -2054,39 +2049,7 @@ MonoBehaviour:
   IsDeserializing: 0
   _id: 
   classId: 374713c8-d4e6-4959-8da7-cd2a040494b3
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 4c2893ca-977f-4a87-87eb-fc11c71cccf5
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: adafb790-81d8-4530-976c-f09dd53449bc
-  StoreAllComponents: 1
+  StoreAllComponents: 0
   Components: []
 --- !u!114 &11400006
 MonoBehaviour:
@@ -3028,7 +2991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  focusTime: 10
   attacking: 0
   looting: 0
   attackInterval: 1
@@ -3319,54 +3281,6 @@ MonoBehaviour:
   IsDeserializing: 0
   _id: 
   classId: 5d94c411-1573-4639-9308-4530b2a17674
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400158
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 1cb90d66-38a4-46ac-9a1e-25ce0c533c4d
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: f4be5630-83b8-4f58-b29f-10f5215e7fda
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 0104d1dd-4275-45b8-9b3e-3a7d03448807
   StoreAllComponents: 1
   Components: []
 --- !u!137 &13700000

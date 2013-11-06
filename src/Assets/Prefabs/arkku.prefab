@@ -1605,6 +1605,7 @@ GameObject:
   - 4: {fileID: 400192}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 10
   m_Name: arkku
   m_TagString: wood
@@ -9110,7 +9111,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91287e02fe6dd342a80f5932131aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amount: 100
   onGround: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a32f73ef33a6b4b8850f6697a9abf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDeserializing: 0
+  _id: 
+  classId: 4f7cb2cf-bf9d-4e50-aa8a-09ebee148ec3
+  StoreAllComponents: 1
+  Components: []
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

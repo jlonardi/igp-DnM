@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
     public void Awake()
     {
-        GameManager.instance = this;
+		//if(!LevelSerializer.IsDeserializing){
+        	GameManager.instance = this;
+		//}
     }	
 	
 	public int wave;

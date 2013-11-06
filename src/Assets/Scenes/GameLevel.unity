@@ -601,6 +601,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 63702132}
   m_Mesh: {fileID: 4300224, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!114 &75226060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries:
+  - gameObject: {fileID: 499643140}
+    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
+  - gameObject: {fileID: 2118666200}
+    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
+  - gameObject: {fileID: 1675929635}
+    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
+  - gameObject: {fileID: 1927726302}
+    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
+  - gameObject: {fileID: 291724319}
+    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
+  - gameObject: {fileID: 989846007}
+    Id: 1170f645-49c3-4867-ac5d-1d2c50a659cb
+  - gameObject: {fileID: 1918092085}
+    Id: f910f1cb-abe0-4c61-b80e-21178584e947
 --- !u!1 &86167665
 GameObject:
   m_ObjectHideFlags: 0
@@ -7552,6 +7578,7 @@ GameObject:
   - 4: {fileID: 989846008}
   - 95: {fileID: 989846009}
   - 114: {fileID: 989846012}
+  - 114: {fileID: 989846010}
   m_Layer: 10
   m_Name: arkku
   m_TagString: wood
@@ -7586,6 +7613,23 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
+--- !u!114 &989846010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: ca87b35ac937fa54eaefaa58526c885b,
+    type: 2}
+  m_PrefabInternal: {fileID: 11913200}
+  m_GameObject: {fileID: 989846007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a32f73ef33a6b4b8850f6697a9abf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDeserializing: 0
+  _id: 
+  classId: 4f7cb2cf-bf9d-4e50-aa8a-09ebee148ec3
+  StoreAllComponents: 1
+  Components: []
 --- !u!114 &989846012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9118,7 +9162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 1985886476}
+  Reference: {fileID: 75226060}
 --- !u!4 &1173328508
 Transform:
   m_ObjectHideFlags: 0
@@ -13616,6 +13660,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1918092086}
+  - 114: {fileID: 1918092087}
   m_Layer: 0
   m_Name: TreasureOnGround
   m_TagString: Untagged
@@ -13634,6 +13679,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1918092087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1918092085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3cbaf3a6e91e094eb7125f4698f48f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDeserializing: 0
+  _id: f910f1cb-abe0-4c61-b80e-21178584e947
+  classId: 739efefc-45f0-458c-bef5-95ca4c584cf3
 --- !u!1 &1920325909
 GameObject:
   m_ObjectHideFlags: 0
@@ -14354,28 +14413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c0454599f75b240b94f9dc257aae83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1985886476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries:
-  - gameObject: {fileID: 499643140}
-    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
-  - gameObject: {fileID: 2118666200}
-    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
-  - gameObject: {fileID: 1675929635}
-    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
-  - gameObject: {fileID: 1927726302}
-    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
-  - gameObject: {fileID: 291724319}
-    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
 --- !u!1 &1987944730
 GameObject:
   m_ObjectHideFlags: 0
