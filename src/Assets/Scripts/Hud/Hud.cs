@@ -20,11 +20,7 @@ public class Hud : MonoBehaviour {
 	}
 	
     void OnGUI() {
-		if (!GameManager.instance.gameRunning && !GameManager.instance.paused){
-			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-			GUI.Label(helpPosition, "GAME OVER!");
-			GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-		}
+
 		
     	if(Time.timeScale == 0 || !GameManager.instance.gameRunning || GameManager.instance.paused){
 			return;
@@ -40,19 +36,20 @@ public class Hud : MonoBehaviour {
 		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
     		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 		}
-			
+		GUI.Box(new Rect(5,5,105,120),"");	
 		GUI.Label(new Rect(10,10,100,20), "Health: " + PlayerHealth.instance.health);
 		GUI.Label(new Rect(10,25,100,20), "Treasure: " + Treasure.instance.amount);
+		GUI.Label (new Rect(10,40,100,20),"Body Count: " +GameManager.instance.bodyCount);
 		if (gun.enabled){
-			GUI.Label(new Rect(10,40,100,20), "Gun: " + gun.gunName);			
-			GUI.Label(new Rect(10,55,100,20), "Ammo: " + gun.currentRounds);
+			GUI.Label(new Rect(10,55,100,20), "Gun: " + gun.gunName);			
+			GUI.Label(new Rect(10,70,100,20), "Ammo: " + gun.currentRounds);
 			string clips = gun.totalClips.ToString();
 			if (gun.unlimited){
 				clips = "unlimited";
 			}
-			GUI.Label(new Rect(10,70,100,20), "Clips: " + clips);
+			GUI.Label(new Rect(10,85,100,20), "Clips: " + clips);
 			if (gun.reloading){
-				GUI.Label(new Rect(10,85,100,20), "Reloading...");
+				GUI.Label(new Rect(10,100,100,20), "Reloading...");
 			}
 		}
 	}	

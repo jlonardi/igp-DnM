@@ -305,64 +305,6 @@ Transform:
   - {fileID: 1199273707}
   - {fileID: 1445832486}
   m_Father: {fileID: 0}
---- !u!114 &21903677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries:
-  - gameObject: {fileID: 499643140}
-    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
-  - gameObject: {fileID: 2118666200}
-    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
-  - gameObject: {fileID: 1675929635}
-    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
-  - gameObject: {fileID: 1927726302}
-    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
-  - gameObject: {fileID: 291724319}
-    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
-  - gameObject: {fileID: 989846007}
-    Id: 1170f645-49c3-4867-ac5d-1d2c50a659cb
-  - gameObject: {fileID: 1918092085}
-    Id: f910f1cb-abe0-4c61-b80e-21178584e947
-  - gameObject: {fileID: 1543014821}
-    Id: 90de82dc-3f88-48c5-9b00-d9792e1c2bf6
-  - gameObject: {fileID: 1451586292}
-    Id: f7e2d31e-58fc-444c-ac99-937af70ccbeb
-  - gameObject: {fileID: 741690645}
-    Id: 4c663d45-7715-485a-b01b-ba7cfcc597cb
-  - gameObject: {fileID: 1854104652}
-    Id: bba0d8b4-124b-49c5-9a45-6aa674b0c1b9
-  - gameObject: {fileID: 192545804}
-    Id: b2f69794-50d0-4735-9833-cfb2923726ee
-  - gameObject: {fileID: 511556429}
-    Id: d6fdd2c9-02bc-48cc-a7eb-c16d7a37362b
-  - gameObject: {fileID: 281246422}
-    Id: a6f5dcab-de07-4fd2-a6f7-540ccaea107c
-  - gameObject: {fileID: 1442253812}
-    Id: 7777eeae-fb7f-4d9d-8a55-914d322bfe1f
-  - gameObject: {fileID: 379113717}
-    Id: 1dce586c-1528-4db7-8630-617e84f905ec
-  - gameObject: {fileID: 1455416398}
-    Id: bca3015e-8508-41ab-8947-ce87d2d80c2f
-  - gameObject: {fileID: 389128693}
-    Id: f212910f-2659-48b8-a31b-8618b77e364f
-  - gameObject: {fileID: 306559401}
-    Id: 5f0b04c3-9e66-4440-aef8-a2d7545b9ae5
-  - gameObject: {fileID: 29520579}
-    Id: a7fe54c5-2160-48d7-b9a1-f22825859acc
-  - gameObject: {fileID: 500703018}
-    Id: f125858c-8106-4529-90c9-4d277b2e6399
-  - gameObject: {fileID: 1419421791}
-    Id: b15fcc33-cf09-41f3-82d9-8fcb9b7b21ed
-  - gameObject: {fileID: 997304093}
-    Id: 6a711079-de1c-4c23-a489-5b5cc1c732e2
 --- !u!1 &26687143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6024,6 +5966,64 @@ Transform:
   - {fileID: 391396461}
   - {fileID: 610380475}
   m_Father: {fileID: 1133542256}
+--- !u!114 &650467260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries:
+  - gameObject: {fileID: 499643140}
+    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
+  - gameObject: {fileID: 2118666200}
+    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
+  - gameObject: {fileID: 1675929635}
+    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
+  - gameObject: {fileID: 1927726302}
+    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
+  - gameObject: {fileID: 291724319}
+    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
+  - gameObject: {fileID: 989846007}
+    Id: 1170f645-49c3-4867-ac5d-1d2c50a659cb
+  - gameObject: {fileID: 1918092085}
+    Id: f910f1cb-abe0-4c61-b80e-21178584e947
+  - gameObject: {fileID: 1543014821}
+    Id: 90de82dc-3f88-48c5-9b00-d9792e1c2bf6
+  - gameObject: {fileID: 1451586292}
+    Id: f7e2d31e-58fc-444c-ac99-937af70ccbeb
+  - gameObject: {fileID: 741690645}
+    Id: 4c663d45-7715-485a-b01b-ba7cfcc597cb
+  - gameObject: {fileID: 1854104652}
+    Id: bba0d8b4-124b-49c5-9a45-6aa674b0c1b9
+  - gameObject: {fileID: 192545804}
+    Id: b2f69794-50d0-4735-9833-cfb2923726ee
+  - gameObject: {fileID: 511556429}
+    Id: d6fdd2c9-02bc-48cc-a7eb-c16d7a37362b
+  - gameObject: {fileID: 281246422}
+    Id: a6f5dcab-de07-4fd2-a6f7-540ccaea107c
+  - gameObject: {fileID: 1442253812}
+    Id: 7777eeae-fb7f-4d9d-8a55-914d322bfe1f
+  - gameObject: {fileID: 379113717}
+    Id: 1dce586c-1528-4db7-8630-617e84f905ec
+  - gameObject: {fileID: 1455416398}
+    Id: bca3015e-8508-41ab-8947-ce87d2d80c2f
+  - gameObject: {fileID: 389128693}
+    Id: f212910f-2659-48b8-a31b-8618b77e364f
+  - gameObject: {fileID: 306559401}
+    Id: 5f0b04c3-9e66-4440-aef8-a2d7545b9ae5
+  - gameObject: {fileID: 29520579}
+    Id: a7fe54c5-2160-48d7-b9a1-f22825859acc
+  - gameObject: {fileID: 500703018}
+    Id: f125858c-8106-4529-90c9-4d277b2e6399
+  - gameObject: {fileID: 1419421791}
+    Id: b15fcc33-cf09-41f3-82d9-8fcb9b7b21ed
+  - gameObject: {fileID: 997304093}
+    Id: 6a711079-de1c-4c23-a489-5b5cc1c732e2
 --- !u!1001 &652700357
 Prefab:
   m_ObjectHideFlags: 0
@@ -9311,6 +9311,7 @@ GameObject:
   - 114: {fileID: 1173328511}
   - 114: {fileID: 1173328512}
   - 114: {fileID: 1173328513}
+  - 114: {fileID: 1173328514}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -9330,7 +9331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 21903677}
+  Reference: {fileID: 650467260}
 --- !u!4 &1173328508
 Transform:
   m_ObjectHideFlags: 0
@@ -9411,6 +9412,17 @@ MonoBehaviour:
   playTime: 0
   gameRunning: 1
   paused: 0
+--- !u!114 &1173328514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173328506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4272db8c3556dbe47a2964d0c31a8f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1181984207
 GameObject:
   m_ObjectHideFlags: 0

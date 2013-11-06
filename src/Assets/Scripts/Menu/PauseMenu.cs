@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour {
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 		}
-		else{
+		else if (GameManager.instance.gameRunning){
 			Time.timeScale=1;            //when game is not paused time runs normally and the cursor is hidden and lockt
 			Screen.showCursor=false;
 			Screen.lockCursor=true;
@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour {
     		LevelSerializer.SaveGame(save_name);
 			this.currentGUIMethod=PauseScreen;
    		}
-		if (GameManager.instance.paused)
+		if (GameManager.instance.paused && GameManager.instance.gameRunning)
 		{
 			this.currentGUIMethod();
 		}
