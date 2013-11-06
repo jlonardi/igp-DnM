@@ -1,0 +1,39 @@
+To start te game run the game.exe from the zip you downloaded.
+Choose the settings you want in unitys start manager and start the game.
+
+Description
+You start the game by holding a treasure. Here your task is to put the treasure on a good point.
+You can move by using a,w,s,d and jump by pressin space. Put down the tressure by pressing space.
+
+When the treasure is on the ground the orcs will try to steal it. Defend the treasure by killing the orcs.
+The game will end when you die or the orcs take your whole treasure.
+
+In the main menu
+-Press start game to start the game
+-Press load game to load a saved game
+-press quit game to quit the game
+
+In the game
+-move using a,w,s,d
+-pause by pressin ESC
+-select gun by pressing 1,2
+-jump by pressing space
+-move your mouse to move the direction of the comera
+-press the left mouse button to shoot
+
+Pause menu
+-you can resume the game by pressin resume or pressing ESC
+-you can save the game by pressing save game and choosing a slot where to save
+	-the saved game will appear in the top of the saved games
+-you can load the game by pressing load game and choosing the game you vant to load from the slots
+-you can return to main menu by pressin main menu
+	- note you will loose your game progress if you do not save your game before goin to main menu
+-quit the game by pressing quit game
+
+When you loose
+- press main menu to go to main menu where you can start a new game or quit
+- you can see your score in the game over screen
+
+
+
+Sorry for any bugs that is still in the game

@@ -32,11 +32,16 @@ public class Treasure : MonoBehaviour {
 		
 		if (amount > lootAmount){
 			amount -= lootAmount;
-		} else {
+		} 
+		else {
 			lootAmount = amount;
 			amount = 0;
 		}
+		if (amount <= 0){			
+			GameManager.instance.GameOver();
+		}
 		return lootAmount;
+		
 	}
 	
 	public void SetTreasureOnGround(){		
