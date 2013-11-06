@@ -63,10 +63,10 @@ public class EnemyLogic : MonoBehaviour {
 					attacking = true;
 					Debug.Log("attacking set to true");
 				}
-				if((timeOfLastAction + attackInterval) < Time.time && !attacking) {
+				if((timeOfLastAction + attackInterval) < Time.time && attacking) {
 					
-					//TODO attack the player
 					
+					PlayerHealth.instance.TakeDamage(1, DamageType.HIT);
 					timeOfLastAction = Time.time;
 				}
 			} 
@@ -75,14 +75,14 @@ public class EnemyLogic : MonoBehaviour {
 				if(!looting) {
 					looting = true;	
 				}
-				if((timeOfLastAction + attackInterval) < Time.time && !looting) {
+				if((timeOfLastAction + attackInterval) < Time.time && looting) {
 					
-					//TODO grab loot from the chest	
+					Treasure.instance.Loot(1);
 
 					timeOfLastAction = Time.time;
 				}
 			}
-			
+
 			
 			
 
