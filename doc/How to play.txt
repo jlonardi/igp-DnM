@@ -1,5 +1,5 @@
-To start the game run the game.exe from the zip you downloaded.
-Choose the settings you want in unitys start manager and start the game.
+To start the game run the game.exe from the bin folder.
+Choose the settings you want in the game configuration and start the game.
 
 Description
 You start the game by holding a treasure. Your first task is to put the treasure down in a good place you
@@ -18,16 +18,16 @@ In the game
 -pause by pressing ESC
 -select gun by pressing 1,2
 -jump by pressing space
--move your mouse to change the direction of the comera
+-move your mouse to change the direction of the camera
 -press the left mouse button to shoot
 
 Pause menu
 -press resume or ESC to resume the game.
 -press save game choose a save slot to save the game
-	-the saved game will appear in the top of the saved games
+-the saved game will appear in the top of the saved games
 -press load game and select a slot to load a saved game
 -press return to main menu to get back to the main menu
-	-note that you will lose any unsaved progress as there is no autosaving
+-note that you will lose any unsaved progress as there is no autosaving
 -press quit game to close the game
 
 When you lose
