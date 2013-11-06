@@ -8,7 +8,6 @@ public class FPSInputController : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool fire;
-	private GunManager weaponSystem;
 	private bool firing;
 	private float firingTimer;
 	public float idleTimer;	
@@ -22,21 +21,15 @@ public class FPSInputController : MonoBehaviour {
 	public int currentWeapon;
 	
 	private CharacterMotor motor;
-	private Treasure treasure;
-	private GameManager game;
-
 	
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
-		weaponSystem = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
-		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
-		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(!game.gameRunning || game.paused){ //Mouse look do not work if game is paused or over
+		if(!GameManager.instance.gameRunning || GameManager.instance.paused){ //Mouse look do not work if game is paused or over
 			return;
 		}
 		
@@ -63,11 +56,9 @@ public class FPSInputController : MonoBehaviour {
 		// Apply the direction to the CharacterMotor
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
-		
-		bool treasureOnGround = treasure.onGround;
-		
+				
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire1") && treasureOnGround && weaponSystem.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire1") && Treasure.instance.onGround && GunManager.instance.currentGun.freeToShoot;
 			
 		idleTimer += Time.deltaTime;
 		
@@ -85,17 +76,17 @@ public class FPSInputController : MonoBehaviour {
 		
 //		firing = (firingTimer <= 0.0f && fire);
 		
-		if(weaponSystem != null && treasureOnGround)
+		if(GunManager.instance != null && Treasure.instance.onGround)
 		{
-			weaponSystem.currentGun.fire = firing;
-			reloading = weaponSystem.currentGun.reloading;
-			currentWeaponName = weaponSystem.currentGun.gunName;
-			currentWeapon = weaponSystem.currentGunIndex;
+			GunManager.instance.currentGun.fire = firing;
+			reloading = GunManager.instance.currentGun.reloading;
+			currentWeaponName = GunManager.instance.currentGun.gunName;
+			currentWeapon = GunManager.instance.currentGunIndex;
 		}
 		
 		
-		if (Input.GetButton("Use") && !treasureOnGround ){
-			treasure.SetTreasureOnGround();
+		if (Input.GetButton("Use") && !Treasure.instance.onGround){
+			Treasure.instance.SetTreasureOnGround();
 		}
 
 	}

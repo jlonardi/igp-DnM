@@ -17,22 +17,15 @@ public class PauseMenu : MonoBehaviour {
 	private string save_name="Name your game"; //name of the saved game
 	private int max_saved_games =5; //max amount of games saved
 	
-	private GameManager game;	
-	
-
 	void Awake()
 	{
 		LevelSerializer.MaxGames = max_saved_games;
 		
 	}
 	
-	void Start(){
-		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
-	}
-	
 	void Update(){
 		
-		if(game.paused){                       //when game is paused time stops and the cursour shows
+		if(GameManager.instance.paused){                       //when game is paused time stops and the cursour shows
 			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
@@ -43,7 +36,7 @@ public class PauseMenu : MonoBehaviour {
 			Screen.lockCursor=true;
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){  //to get pause on and off pres ESC
-			game.paused =!game.paused;
+			GameManager.instance.paused =!GameManager.instance.paused;
 			this.currentGUIMethod=PauseScreen;
 			
 		}
@@ -58,7 +51,7 @@ public class PauseMenu : MonoBehaviour {
     		LevelSerializer.SaveGame(save_name);
 			this.currentGUIMethod=PauseScreen;
    		}
-		if (game.paused)
+		if (GameManager.instance.paused)
 		{
 			this.currentGUIMethod();
 		}
@@ -75,7 +68,7 @@ public class PauseMenu : MonoBehaviour {
 		
 		if(GUILayout.Button ("Resume"))
 		{
-			game.paused =!game.paused; //stop pause to resume game
+			GameManager.instance.paused =!GameManager.instance.paused; //stop pause to resume game
 		}
 		
 		if(GUILayout.Button ("Main Menu"))

@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class EnemySpawnManager : MonoBehaviour {
+	//use singleton since only we need once instance of this class
+	public static EnemySpawnManager instance;
+    public void Awake()
+    {
+        EnemySpawnManager.instance = this;
+    }	
 
 	public GameObject orcPrefab;
 	public Transform[] areas;	

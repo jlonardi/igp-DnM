@@ -2,13 +2,19 @@
 
 using System.Collections;
 
-public class GunManager : MonoBehaviour {
+public class GunManager : MonoBehaviour {	
+	//use singleton since only we need once instance of this class
+	public static GunManager instance;
+    public void Awake()
+    {
+        GunManager.instance = this;
+    }
+	
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
 	public bool canUseWeapons;
 	public HitParticles hitParticles = new HitParticles();
-	private Treasure treasure;
 	
 	void Start () {	
 		// set to false until weapons enabled

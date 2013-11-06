@@ -83,8 +83,7 @@ public class Gun : MonoBehaviour {
 	void Start(){		
 		weaponTransformReference = this.transform;
 		cam = Camera.main.camera;
-		GunManager gunManager = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
-		hitParticles = gunManager.hitParticles;
+		hitParticles = GunManager.instance.hitParticles;
 	}
 	
 	public void OnDisable(){

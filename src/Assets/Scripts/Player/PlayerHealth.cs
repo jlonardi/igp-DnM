@@ -2,14 +2,16 @@
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
+	//use singleton since only we need once instance of this class
+	public static PlayerHealth instance;
+    public void Awake()
+    {
+        PlayerHealth.instance = this;
+    }	
+	
 	public int health = 100;
 	public float armor = 0.0f; // armor scale 0-1.0f
-	private GameManager gameManager;
 		
-	void Start(){
-		gameManager = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
-	}
-	
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.K)) {
 			TakeDamage(20, DamageType.HIT);
@@ -22,7 +24,7 @@ public class PlayerHealth : MonoBehaviour {
 		
 		if (tempHealth <= 0){
 			health = 0;
-			gameManager.GameOver();	
+			GameManager.instance.GameOver();	
 		} else {
 			health = (int)Mathf.Round(tempHealth);
 		}

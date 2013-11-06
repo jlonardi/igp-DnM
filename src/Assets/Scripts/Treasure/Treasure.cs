@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Treasure : MonoBehaviour {
+public class Treasure : MonoBehaviour {	
+	//use singleton since only we need once instance of this class
+	public static Treasure instance;
+    public void Awake()
+    {
+        Treasure.instance = this;
+    }
+	
 	public int amount = 100;
 	public bool onGround;
 	private Terrain terrain;
@@ -48,8 +55,7 @@ public class Treasure : MonoBehaviour {
 		}
 		animator.SetBool("onGround",true);
 		
-		GunManager gunManager = GameObject.FindObjectOfType(typeof(GunManager)) as GunManager;
-		gunManager.EnableWeapons();
+		GunManager.instance.EnableWeapons();
 		mouseLook.clampInDegrees = new Vector2(360, 180);
 	}
 }

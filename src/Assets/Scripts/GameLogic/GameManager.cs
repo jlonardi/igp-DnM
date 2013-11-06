@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
+	//use singleton since only we need once instance of this class
+	public static GameManager instance;
+    public void Awake()
+    {
+        GameManager.instance = this;
+    }	
 	
 	public int wave;
 	public int score;

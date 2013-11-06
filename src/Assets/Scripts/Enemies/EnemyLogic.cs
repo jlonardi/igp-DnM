@@ -26,8 +26,6 @@ public class EnemyLogic : MonoBehaviour {
 	public float lootInterval = 1f;
 		
 	private EnemyAI ai;
-	private RagdollManager ragdolls;
-	private Treasure treasure;
 	private GameObject player;
 
 	private focusTarget target;
@@ -35,13 +33,10 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeOfLastAction = 0f;	
 	private int attacks = 0;
 	private bool treasureAvailable = false;
-	private GameManager game;
 	
 	public void Start() {
 		ai = GetComponent<EnemyAI>();
-		game = GameObject.FindObjectOfType(typeof(GameManager)) as GameManager;
-		ragdolls = GameObject.FindObjectOfType(typeof(RagdollManager)) as RagdollManager;
-		treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
+		//treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 
 		player = GameObject.Find("Player");	
 		target = focusTarget.PLAYER;
@@ -107,7 +102,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkFocus() {
 		if (!treasureAvailable){
-			treasureAvailable = treasure.onGround;
+			treasureAvailable = Treasure.instance.onGround;
 			if (treasureAvailable){
 				swapTarget();
 			}
@@ -133,7 +128,7 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			ai.setTarget(treasure.gameObject);
+			ai.setTarget(Treasure.instance.gameObject);
 			target = focusTarget.TRESAURE;
 			Debug.Log("New target is tresaure");
 			return;
@@ -188,9 +183,9 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
-		game.bodyCount++;
+		GameManager.instance.bodyCount++;
 		//make enemy a ragdoll
-		Rigidbody ragdollRigidBody = ragdolls.MakeRagdoll(this.gameObject);
+		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(this.gameObject);
 		
 		// apply impact to ragdoll
 		if (power != 0f){
@@ -202,7 +197,7 @@ public class EnemyLogic : MonoBehaviour {
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
 		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
-		float distanceToTreasure = Vector3.Distance(treasure.transform.position, this.transform.position);
+		float distanceToTreasure = Vector3.Distance(Treasure.instance.transform.position, this.transform.position);
 		if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
 			// if not near the treasure, just join the chase
 			// else use greedyness to choose whether to chase the player or not
@@ -219,7 +214,7 @@ public class EnemyLogic : MonoBehaviour {
 		if(target == focusTarget.PLAYER) {
 			return player;
 		} else {
-			return treasure.gameObject;
+			return Treasure.instance.gameObject;
 		}
 	}
 }

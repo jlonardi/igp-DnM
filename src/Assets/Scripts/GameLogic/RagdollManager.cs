@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RagdollManager : MonoBehaviour {
+	//use singleton since only we need once instance of this class
+	public static RagdollManager instance;
+    public void Awake()
+    {
+        RagdollManager.instance = this;
+    }	
+
 	public GameObject ragdollPrefab;
 	public int maxRagdolls = 50;
 	private List<GameObject> bodies = new List<GameObject>();

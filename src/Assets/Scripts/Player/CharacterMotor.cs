@@ -44,8 +44,11 @@ public class CharacterMotor : MonoBehaviour {
 		tr = transform;
 	}
 
-	private void UpdateFunction () {		
-
+	private void UpdateFunction () {				
+		if(!GameManager.instance.gameRunning || GameManager.instance.paused){ //Mouse look do not work if game is paused or over
+			return;
+		}
+		
 		Vector3 velocity = movement.velocity;			// We copy the actual velocity into a temporary variable that we can manipulate.
 		velocity = ApplyInputVelocityChange(velocity);	// Update velocity based on input		
 		velocity = ApplyGravityAndJumping (velocity);	// Apply gravity and jumping force
