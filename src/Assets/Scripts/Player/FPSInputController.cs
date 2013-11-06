@@ -85,7 +85,7 @@ public class FPSInputController : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetButton("Use") && !Treasure.instance.onGround){
+		if ((Input.GetButton("Use")||PlayerHealth.instance.health !=100) && !Treasure.instance.onGround){
 			Treasure.instance.SetTreasureOnGround();
 		}
 
