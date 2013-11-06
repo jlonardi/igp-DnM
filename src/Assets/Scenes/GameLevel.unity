@@ -9322,7 +9322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caee8f5291651a84586e4130f37b28e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orcPrefab: {fileID: 100116, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
+  orcPrefab: {fileID: 100142, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
   areas: []
   timeOfLastWave: 0
   waveInterval: 5
