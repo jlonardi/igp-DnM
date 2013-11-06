@@ -183,8 +183,8 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
-		GameManager.instance.bodyCount++;
-		GameManager.instance.score+=100;
+		BodyAndScoreCount.instance.bodyCount++;
+		BodyAndScoreCount.instance.score+=100;
 		//make enemy a ragdoll
 		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(this.gameObject);
 		

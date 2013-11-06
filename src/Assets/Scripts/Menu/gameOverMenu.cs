@@ -27,8 +27,8 @@ public class gameOverMenu : MonoBehaviour {
 		GUI.Box(new Rect((screen_width *0.5f)-138, (Screen.height*0.5f)-100,275,250),"Game Over", myStyle);
 		GUI.Label(new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-150,275,250), "Health: " + PlayerHealth.instance.health);
 		GUI.Label(new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-125,275,250), "Treasure: " + Treasure.instance.amount);
-		GUI.Label (new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-100,275,250), "Body Count: " + GameManager.instance.bodyCount);
-		GUI.Label (new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-75,275,250), "Score: " + GameManager.instance.score);
+		GUI.Label (new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-100,275,250), "Body Count: " + BodyAndScoreCount.instance.bodyCount);
+		GUI.Label (new Rect((screen_width *0.5f)-100, (Screen.height*0.5f)-75,275,250), "Score: " + BodyAndScoreCount.instance.score);
 		GUILayout.BeginArea(new Rect((screen_width *0.5f)-50, (Screen.height*0.5f)+100,100,200));
 		if(GUILayout.Button ("Main Menu"))
 		{

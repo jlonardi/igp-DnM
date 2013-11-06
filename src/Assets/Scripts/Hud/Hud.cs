@@ -40,7 +40,7 @@ public class Hud : MonoBehaviour {
 		GUI.Label(new Rect(10,10,100,20), "Health: " + PlayerHealth.instance.health);
 		GUI.Label(new Rect(10,25,100,20), "Treasure: " + Treasure.instance.amount);
 
-		GUI.Label (new Rect(10,40,100,20),"Score: " +GameManager.instance.score);
+		GUI.Label (new Rect(10,40,100,20),"Score: " +BodyAndScoreCount.instance.score);
 		if (gun.enabled){
 			GUI.Label(new Rect(10,55,100,20), "Gun: " + gun.gunName);			
 			GUI.Label(new Rect(10,70,100,20), "Ammo: " + gun.currentRounds);
