@@ -21,10 +21,35 @@ public class GunManager : MonoBehaviour {
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;
 			guns[i].gun.gameObject.SetActive(false);
-		}		
+		}
+		
+		// temp fix
+		if (Treasure.instance.onGround){
+			EnableWeapons();
+			ChangeToGun(currentGunIndex);
+		}//
 	}
 	
-	void Update () {		
+	void Update () {
+		//temp fix for savegame
+		if (guns[0].gun.gameObject.activeSelf && guns[1].gun.gameObject.activeSelf)
+		{
+			if (canUseWeapons){
+				if (currentGunIndex == 0){
+					guns[1].gun.gameObject.SetActive(false);
+					guns[1].gun.enabled = false;
+				} else {
+					guns[0].gun.gameObject.SetActive(false);
+					guns[0].gun.enabled = false;
+				}
+			} else {
+					guns[0].gun.enabled = false;
+					guns[1].gun.enabled = false;
+					guns[0].gun.gameObject.SetActive(false);
+					guns[1].gun.gameObject.SetActive(false);
+			}
+		} //
+		
 		for (int i=0; i<guns.Length; i++){
 			if (Input.GetKeyDown(guns[i].keyToActivate)){
 				ChangeToGun(i);
@@ -37,7 +62,12 @@ public class GunManager : MonoBehaviour {
 		ChangeToGun(0);
 	}
 	
-	private void ChangeToGun(int gunIndex){	
+	public void ChangeToGun(int gunIndex){	
+		//temp fix
+		guns[0].gun.enabled = false;
+		guns[1].gun.enabled = false;
+		//
+		
 		currentGun.enabled = false;
 		currentGun.gameObject.SetActive(false);
 		//guns[currentGunIndex].gun.enabled = false;

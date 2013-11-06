@@ -177,7 +177,23 @@ public class PauseMenu : MonoBehaviour {
 		
 		if (GUI.Button(new Rect ((screen_width *0.5f)-50, (screen_height*0.5f)+25, 100, 20),"save game"))
 		{
+			//temp fix for gun saving
+			for (int i=0; i<2; i++){
+				GunManager.instance.guns[i].gun.enabled = true;
+				GunManager.instance.guns[i].gun.gameObject.SetActive(true);
+			}//
+			
+			
 			LevelSerializer.SaveGame(save_name);
+			
+			//temp fix for gun saving
+			for (int i=0; i<2; i++){
+				GunManager.instance.guns[i].gun.enabled = false;
+				GunManager.instance.guns[i].gun.gameObject.SetActive(false);
+			}		
+			GunManager.instance.ChangeToGun(GunManager.instance.currentGunIndex);
+			//
+			
 			this.currentGUIMethod=PauseScreen;
 		}
 	}

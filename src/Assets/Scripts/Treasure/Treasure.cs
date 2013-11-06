@@ -22,6 +22,11 @@ public class Treasure : MonoBehaviour {
 		
 		terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
 		mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
+		
+		//temp fix for saving
+		if (onGround){
+			GunManager.instance.EnableWeapons();
+		}//
 	}
 	
 	public int Loot(int lootAmount){
