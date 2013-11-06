@@ -21,7 +21,9 @@ public class PlayerHealth : MonoBehaviour {
 	public void TakeDamage(int damageAmount, DamageType damageType){
 		//if player has an armor, take less damage
 		float tempHealth = health - (damageAmount - (damageAmount*armor));
-		
+		if(!Treasure.instance.onGround){
+			Treasure.instance.SetTreasureOnGround();
+		}
 		if (tempHealth <= 0){
 			health = 0;
 			GameManager.instance.GameOver();	
