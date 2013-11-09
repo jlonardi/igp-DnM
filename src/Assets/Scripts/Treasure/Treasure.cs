@@ -52,8 +52,26 @@ public class Treasure : MonoBehaviour {
 	public void SetTreasureOnGround(){		
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		this.transform.parent = treasureOnScene.transform;	
-		this.onGround = true;	
 
+		GunManager.instance.EnableWeapons();
+		mouseLook.clampInDegrees = new Vector2(360, 180);
+		animator.SetBool("onGround",true);
+
+		// set back to normal colliders when on ground 
+		GameObject treasureTop = GameObject.Find("krishka");
+		GameObject treasureBottom = GameObject.Find("osnSunduk");
+		if (treasureBottom != null && treasureTop != null){
+			treasureBottom.collider.isTrigger = false;
+			treasureTop.collider.isTrigger = false;
+		}		
+
+		// if already on ground, do nothing else
+		if (onGround){
+			return;	
+		}
+		
+		this.onGround = true;	
+		
 		// align treasure on terrain
 	    transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z); //first move up to make sure it doesn't go through terrain
  		RaycastHit hit = new RaycastHit();		
@@ -62,18 +80,6 @@ public class Treasure : MonoBehaviour {
 		    transform.position = new Vector3(transform.position.x, yValue + 0.01f, transform.position.z); // align just above terrain
  			Vector3 proj = transform.forward - (Vector3.Dot(transform.forward, hit.normal)) * hit.normal;
 			transform.rotation = Quaternion.LookRotation(proj, hit.normal);
-		}
-		animator.SetBool("onGround",true);
-		
-		// set back to normal colliders when on ground 
-		GameObject treasureTop = GameObject.Find("krishka");
-		GameObject treasureBottom = GameObject.Find("osnSunduk");
-		if (treasureBottom != null && treasureTop != null){
-			treasureBottom.collider.isTrigger = false;
-			treasureTop.collider.isTrigger = false;
-		}
-		
-		GunManager.instance.EnableWeapons();
-		mouseLook.clampInDegrees = new Vector2(360, 180);
+		}		
 	}
 }

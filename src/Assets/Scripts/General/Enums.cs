@@ -20,3 +20,7 @@ public enum focusTarget {
 	PLAYER,
 	TRESAURE
 }
+
+public enum EnemyType {
+	ORC,
+}

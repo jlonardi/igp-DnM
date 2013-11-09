@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour {
 	
 	public bool gameRunning = true;
 	public bool paused = false;
-	[SerializeThis]
 	private float timeOfLastPoint = 0f;
 	private float pointIntervall=1f;
 	

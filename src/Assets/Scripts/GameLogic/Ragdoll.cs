@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[SerializeAll]
 public class Ragdoll : MonoBehaviour {
 	
 	private List<Transform> poseBones = new List<Transform>();
@@ -15,7 +14,9 @@ public class Ragdoll : MonoBehaviour {
 		foreach (Transform b in poseBones){
 			foreach(Transform r in ragdollBones){
 				if (r.name == b.name){
-					r.eulerAngles = b.eulerAngles;
+					r.rotation = b.rotation;
+					r.position = b.position;
+					//r.eulerAngles = b.eulerAngles;
 					break;
 				}
 			}

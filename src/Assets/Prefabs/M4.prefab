@@ -11,7 +11,6 @@ GameObject:
   - 15: {fileID: 1500000}
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
-  - 114: {fileID: 11400000}
   m_Layer: 11
   m_Name: smoke
   m_TagString: Untagged
@@ -30,7 +29,6 @@ GameObject:
   - 15: {fileID: 1500002}
   - 12: {fileID: 1200002}
   - 26: {fileID: 2600002}
-  - 114: {fileID: 11400002}
   m_Layer: 11
   m_Name: bullet_trace
   m_TagString: Untagged
@@ -47,7 +45,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400006}
   m_Layer: 11
   m_Name: Gunshot
   m_TagString: Untagged
@@ -65,7 +62,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 108: {fileID: 10800000}
   - 114: {fileID: 11400008}
-  - 114: {fileID: 11400010}
   m_Layer: 11
   m_Name: Shotlight
   m_TagString: Untagged
@@ -84,8 +80,6 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400012}
-  - 114: {fileID: 11400014}
-  - 114: {fileID: 11400016}
   m_Layer: 0
   m_Name: M4
   m_TagString: Untagged
@@ -382,38 +376,6 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: a7fe54c5-2160-48d7-b9a1-f22825859acc
-  classId: ec1965ed-8102-4d5c-9151-5616971a4525
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 5f0b04c3-9e66-4440-aef8-a2d7545b9ae5
-  classId: 0826120e-cdfd-47e0-9148-3a1f08aca49e
-  StoreAllComponents: 1
-  Components: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -425,22 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedc6b8d3af2f114dab73c0c6f0bdcf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: f212910f-2659-48b8-a31b-8618b77e364f
-  classId: 3ff7cc7c-870c-485c-887a-60416ee3011a
-  StoreAllComponents: 1
-  Components: []
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,22 +399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: .0199999996
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 6a711079-de1c-4c23-a489-5b5cc1c732e2
-  classId: 1229db07-46dd-4162-89f0-71caac8668cb
-  StoreAllComponents: 1
-  Components: []
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -509,38 +439,6 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7956d6efc67d19f4690cafb3aa17d95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: bca3015e-8508-41ab-8947-ce87d2d80c2f
-  classId: 1a930993-012e-4b06-8a3c-afd1e37ea7d3
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a32f73ef33a6b4b8850f6697a9abf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 17d9aa2d-a0ba-4217-86aa-496e6866894f
-  StoreAllComponents: 1
-  Components: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

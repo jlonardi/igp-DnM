@@ -3,29 +3,29 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 	
-	
+	private SaveSerializer serializer;
   	public GUISkin guiSkin; //public GUISkin skin
 	
 	private delegate void GUIMethod(); //takes care of desiding what menu screen i shown
     private GUIMethod currentGUIMethod;
 	
-//	public bool paused=false; //tells if game is paused
-	
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
 	
 	private string save_name="Name your game"; //name of the saved game
-	private int max_saved_games =5; //max amount of games saved
+	private int maxSaveSlots = 5; //max amount of games saved
+	private int currentSaveSlot = 0;
+	private int skipUpdateFrames = 0;
 	
-	void Awake()
-	{
-		LevelSerializer.MaxGames = max_saved_games;
-		
+	void Awake(){
+		serializer = new SaveSerializer();		
 	}
 	
 	void Update(){
+		//workaround for relaxing recently instantiated ragdolls for load game
+		SkipUpdateFrames();
 		
-		if(GameManager.instance.paused){                       //when game is paused time stops and the cursour shows
+		if(GameManager.instance.paused){	//when game is paused time stops and the cursour shows
 			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
@@ -37,18 +37,17 @@ public class PauseMenu : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){  //to get pause on and off pres ESC
 			GameManager.instance.paused =!GameManager.instance.paused;
-			this.currentGUIMethod=PauseScreen;
-			
+			this.currentGUIMethod=PauseScreen;			
 		}
-	
-	
 	}
+	
 	//OnGUI calls the right GUI screen metod when the game is paused
 	void OnGUI()
 	{
-		if (Event.current.keyCode == KeyCode.Return && this.currentGUIMethod==SaveGame) //in save game screen if enter is pressed game is saved
+		// if savegame selected, return will save
+		if (this.currentGUIMethod == SaveGame && Event.current.keyCode == KeyCode.Return)
 		{
-    		LevelSerializer.SaveGame(save_name);
+			serializer.Save(currentSaveSlot, save_name);
 			this.currentGUIMethod=PauseScreen;
    		}
 		if (GameManager.instance.paused && GameManager.instance.gameRunning)
@@ -92,73 +91,57 @@ public class PauseMenu : MonoBehaviour {
 		GUILayout.EndArea ();
 	}
 	
-	// LoadScreen() takes care of loadning the game
+	// LoadScreen() takes care of loading the game
 	void LoadScreen()
 	{
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
 		GUI.Box(new Rect((screen_width *0.5f)-138, (Screen.height*0.5f)-100,275,250),"Load Game", myStyle);
 		
-		int i=0;
 		GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
-		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
-		{
-			string saveSlotText= getSaveSlotText(sg);
-			if(GUILayout.Button(saveSlotText))
-			{
-				sg.Load();
-				Time.timeScale = 1;
-				    
+		for (int i = 1; i <= maxSaveSlots; i++){
+			string saveSlotText= serializer.GetSavename(i);
+			if (saveSlotText.Equals("Empty")){
+				if (GUILayout.Button("Empty")){
+					Debug.Log("Empty save");
+				}
 			}
-			i++;
-        }
-		while(i<5)
-		{
-			GUILayout.Button ("Empty");
-			i++;
-		}
-		
+			if (!saveSlotText.Equals("Empty")){
+				if(GUILayout.Button(saveSlotText))
+				{
+					serializer.Load(i);
+					this.currentGUIMethod=PauseScreen;
+					
+					//workaround for relaxing recently instantiated ragdolls for load game
+					Time.timeScale = 1;	//allow TimeScale = 1 for next two frames
+					skipUpdateFrames = 2;	
+				}
+			}
+		}			
 		if(GUILayout.Button ("Return"))
 		{
 			this.currentGUIMethod=PauseScreen;
 		}
 		GUILayout.EndArea ();			
 	}
-	
+		
 	// SaveGame() takes care of saving the game
 	void SaveGameScreen()
 	{
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
 		
-		int i=0;
 		GUI.Box(new Rect((screen_width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Save Game", myStyle);
 				GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
-		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
-		{
-			string saveSlotText= getSaveSlotText(sg);
+
+		for (int i = 1; i <= maxSaveSlots; i++){
+			string saveSlotText= serializer.GetSavename(i);
 			if(GUILayout.Button(saveSlotText))
-			{
-				save_name=sg.Name;
-				sg.Delete();
+			{				
+				currentSaveSlot = i;
 				this.currentGUIMethod = SaveGame;
-				break;
 			}
-			i++;
-				
-			
-		}
-		while(i<5)
-		{
-			if(GUILayout.Button ("Empty"))
-			{
-				save_name="Empty";
-				this.currentGUIMethod= SaveGame;
-			}
-			
-			i++;
-		}
-        
+		}					        
 		if(GUILayout.Button ("Return"))
 		{
 			this.currentGUIMethod=PauseScreen;
@@ -177,28 +160,28 @@ public class PauseMenu : MonoBehaviour {
 		
 		if (GUI.Button(new Rect ((screen_width *0.5f)-50, (screen_height*0.5f)+25, 100, 20),"save game"))
 		{
-			//temp fix for gun saving
-			for (int i=0; i<2; i++){
-				GunManager.instance.guns[i].gun.enabled = true;
-				GunManager.instance.guns[i].gun.gameObject.SetActive(true);
-			}//
-			
-			
-			LevelSerializer.SaveGame(save_name);
-			
-			//temp fix for gun saving
-			for (int i=0; i<2; i++){
-				GunManager.instance.guns[i].gun.enabled = false;
-				GunManager.instance.guns[i].gun.gameObject.SetActive(false);
-			}		
-			GunManager.instance.ChangeToGun(GunManager.instance.currentGunIndex);
-			//
-			
+			serializer.Save(currentSaveSlot, save_name);
 			this.currentGUIMethod=PauseScreen;
 		}
 	}
 	
-	//Get saveslot text with formatted date and time
+	
+	//workaround for relaxing recently instantiated ragdolls for load game
+	private void SkipUpdateFrames(){
+		if (skipUpdateFrames>1){
+			skipUpdateFrames--;
+		} else if (skipUpdateFrames==1){
+			foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[]){
+	   			if(go.name.Equals("orc ragdoll(Clone)")){	
+					go.Serializable().disableKinematic(go.transform);
+				}
+			}
+			skipUpdateFrames = 0;
+			Time.timeScale = 0;
+		}		
+	}
+	
+/*	//Get saveslot text with formatted date and time
 	private string getSaveSlotText(LevelSerializer.SaveEntry se){	
 		return 	se.Name + "  (" +
 				string.Format("{0:00}", se.When.Day) + "." +
@@ -206,5 +189,5 @@ public class PauseMenu : MonoBehaviour {
 				se.When.Year + ", " +
 				string.Format("{0:00}", se.When.Hour) + ":" + 
 				string.Format("{0:00}", se.When.Minute) + ")";
-	}
+	}*/
 }

@@ -1605,7 +1605,6 @@ GameObject:
   - 4: {fileID: 400192}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   m_Layer: 10
   m_Name: arkku
   m_TagString: wood
@@ -4236,7 +4235,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100192}
   m_LocalRotation: {x: 0, y: -.72127682, z: 0, w: .692646921}
-  m_LocalPosition: {x: 0, y: -.560000002, z: 1.70000005}
+  m_LocalPosition: {x: -.180000007, y: -.5600003, z: 1.5}
   m_LocalScale: {x: 1.42857146, y: 1.42857146, z: 1.42857146}
   m_Children:
   - {fileID: 400154}
@@ -9083,7 +9082,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100220}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .889999986, y: 1.28999996, z: .49000001}
@@ -9113,22 +9112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 100
   onGround: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a32f73ef33a6b4b8850f6697a9abf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 4f7cb2cf-bf9d-4e50-aa8a-09ebee148ec3
-  StoreAllComponents: 1
-  Components: []
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -9136,7 +9119,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100164}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .150000006
   m_Height: 1.53999996

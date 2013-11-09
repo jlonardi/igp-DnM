@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemyLogic : MonoBehaviour {
+	public EnemyType enemyType = EnemyType.ORC;
 	
 	public int health = 100;
 	public int orcKillScore = 100;
@@ -189,7 +190,7 @@ public class EnemyLogic : MonoBehaviour {
 		BodyAndScoreCount.instance.score += orcKillScore;
 		
 		//make enemy a ragdoll
-		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(this.gameObject);
+		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(enemyType, this.gameObject);
 		
 		// apply impact to ragdoll
 		if (power != 0f){

@@ -4,9 +4,9 @@ using System.Collections;
 public class LoadLevelMenu : MonoBehaviour {
 	
 	public bool showLoadLevelMenu;
-	
 	private float screen_width=Screen.width;
 	private float screen_height=Screen.height; //putting screen size here to optimaze code
+	private SaveSerializer serializer;
 	
 	public Texture background_texture;
 
@@ -22,24 +22,27 @@ public class LoadLevelMenu : MonoBehaviour {
 	// LoadScreen() takes care of loadning the game
 	void LoadScreen()
 	{
-		int i=0;
+		serializer = new SaveSerializer();
 		GUILayout.BeginArea(new Rect((screen_width *0.5f)-125, (screen_height*0.5f)-50,250,200));
-		foreach(var sg in LevelSerializer.SavedGames[LevelSerializer.PlayerName]) 
-		{
-			string saveSlotText= getSaveSlotText(sg);
-			if(GUILayout.Button(saveSlotText))
-			{
-				sg.Load();
-				Time.timeScale = 1;
-				    
+		
+		for (int i = 1; i <= 5; i++){
+			string saveSlotText= serializer.GetSavename(i);
+			if (saveSlotText.Equals("Empty")){
+				if (GUILayout.Button("Empty")){
+					Debug.Log("Empty save");
+				}
 			}
-			i++;
-        }
-		while(i<5)
-		{
-			GUILayout.Button ("Empty");
-			i++;
-		}
+			if (!saveSlotText.Equals("Empty")){
+				if(GUILayout.Button(saveSlotText))
+				{
+//					serializer.Load(i);
+					
+					//workaround for relaxing recently instantiated ragdolls for load game
+//					Time.timeScale = 1;	//allow TimeScale = 1 for next two frames
+//					skipUpdateFrames = 2;	
+				}
+			}
+		}			
 		
 		if(GUILayout.Button ("Return"))
 		{
@@ -47,14 +50,5 @@ public class LoadLevelMenu : MonoBehaviour {
 		}
 		GUILayout.EndArea ();			
 	}
-	
-	//Get saveslot text with formatted date and time
-	private string getSaveSlotText(LevelSerializer.SaveEntry se){	
-		return 	se.Name + "  (" +
-				string.Format("{0:00}", se.When.Day) + "." +
-				string.Format("{0:00}", se.When.Month) + "." +
-				se.When.Year + ", " +
-				string.Format("{0:00}", se.When.Hour) + ":" + 
-				string.Format("{0:00}", se.When.Minute) + ")";
-	}	
+
 }

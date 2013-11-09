@@ -5,10 +5,16 @@ using System.Collections;
 // by Francis R. Griffiths-Keam - www.runningdimensions.com
      
 [AddComponentMenu("Camera/Simple Smooth Mouse Look ")]
-[SerializeAll]
 public class SimpleSmoothMouseLook : MonoBehaviour
 {
-    Vector2 _mouseAbsolute;
+	//use singleton since only we need once instance of this class
+	public static SimpleSmoothMouseLook instance;
+    public void Awake()
+    {
+        SimpleSmoothMouseLook.instance = this;
+    }	
+	
+    public Vector2 _mouseAbsolute;
     Vector2 _smoothMouse;
      
     public Vector2 clampInDegrees = new Vector2(360, 180);
@@ -34,7 +40,8 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
     void Update()
 	{
-		if (Time.timeScale==0 || !GameManager.instance.gameRunning || GameManager.instance.paused){ //Mouse look do not work if game is paused or over
+		//Mouse look do not work if game is paused or over
+		if (Time.timeScale==0 || !GameManager.instance.gameRunning || GameManager.instance.paused){
 			return;
 		}
 
@@ -70,17 +77,17 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 			_mouseAbsolute.y = Mathf.Clamp(_mouseAbsolute.y, -clampInDegrees.y * 0.5f, clampInDegrees.y * 0.5f);
 
 		transform.localRotation *= targetOrientation;
-
+		
 		// If there's a character body that acts as a parent to the camera
 		if (characterBody)
 		{
-			var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, characterBody.transform.up);
+			Quaternion yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, characterBody.transform.up);
 			characterBody.transform.localRotation = yRotation;
 			characterBody.transform.localRotation *= targetCharacterOrientation;
 		}
 		else
 		{
-			var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
+			Quaternion yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
 			transform.localRotation *= yRotation;
 		}
 	}
