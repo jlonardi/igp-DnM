@@ -29,7 +29,7 @@ public class FPSInputController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!GameManager.instance.gameRunning || GameManager.instance.paused){ //Mouse look do not work if game is paused or over
+		if(GameManager.instance.gameState != GameState.RUNNING){
 			return;
 		}
 		
@@ -76,7 +76,7 @@ public class FPSInputController : MonoBehaviour {
 		
 //		firing = (firingTimer <= 0.0f && fire);
 		
-		if(GunManager.instance != null && Treasure.instance.onGround)
+		if(Treasure.instance.onGround)
 		{
 			GunManager.instance.currentGun.fire = firing;
 			reloading = GunManager.instance.currentGun.reloading;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using UnityEngine;
+using UnityEditor;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary; 
 
@@ -26,7 +28,7 @@ public class SaveSerializer {
 	{
 		string filePath = saveDirectory + "\\savegame" + saveIndex + ".dat";
 		
-		SaveData data = new SaveData(saveName);	
+		SaveData data = new SaveData(saveName, EditorApplication.currentScene, null);	
 		Stream stream = File.Open(filePath, FileMode.Create);
 		BinaryFormatter bformatter = new BinaryFormatter();
 		bformatter.Binder = new VersionDeserializationBinder();
@@ -47,14 +49,25 @@ public class SaveSerializer {
 	}
 	
 	// Call this to get the savegame name
-	public string GetSavename(int saveIndex) { 
+	public SaveInfo GetSaveInfo(int saveIndex, ref Texture2D screenshot, ref DateTime dateTime) { 
+		SaveInfo saveInfo = new SaveInfo();
+
 		string filePath = saveDirectory + "\\savegame" + saveIndex + ".dat";
 		if (!File.Exists(filePath)){
-			return "Empty";
+			saveInfo.name = "Empty";
+			saveInfo.dateTime = new DateTime();
+			saveInfo.screenshot = null;					
+		} else {
+			saveInfo.name = "Savegame " + saveIndex;
+			saveInfo.dateTime = new DateTime();
+			saveInfo.screenshot = null;		
 		}
-		
-		return "Savegame " + saveIndex;
+		return saveInfo;
 	}
-	 
 }
 	 
+public class SaveInfo{
+	public string name;
+	public DateTime dateTime;
+	public Texture2D screenshot;
+}

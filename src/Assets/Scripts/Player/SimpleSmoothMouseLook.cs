@@ -41,7 +41,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     void Update()
 	{
 		//Mouse look do not work if game is paused or over
-		if (Time.timeScale==0 || !GameManager.instance.gameRunning || GameManager.instance.paused){
+		if(GameManager.instance.gameState != GameState.RUNNING){
 			return;
 		}
 

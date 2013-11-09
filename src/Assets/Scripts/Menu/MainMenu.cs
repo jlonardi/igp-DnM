@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuObjekt : MonoBehaviour 
-{
+public class MainMenu : MonoBehaviour {
 	public bool isQuit =false; //tells what will happen when pressing buttons
 	public bool isLoadLevel=false;
 	
@@ -34,13 +33,14 @@ public class MenuObjekt : MonoBehaviour
 		else if(isLoadLevel) 
 		{
 			
-			GetComponent<LoadLevelMenu>().showLoadLevelMenu=true;
+			//GetComponent<LoadLevelMenu>().showLoadLevelMenu=true;
 			
 		}
 		
 		else
 		{
 			Application.LoadLevel("GameLevel");  // loads main level
+			GameManager.instance.NewGame();
 		}
 	}
 

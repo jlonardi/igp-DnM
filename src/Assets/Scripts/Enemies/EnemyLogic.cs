@@ -5,7 +5,7 @@ public class EnemyLogic : MonoBehaviour {
 	public EnemyType enemyType = EnemyType.ORC;
 	
 	public int health = 100;
-	public int orcKillScore = 100;
+
 	//how long enemy chases player if player shoots (s)
 	private float focusTime = 20f;
 	
@@ -186,8 +186,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
-		BodyAndScoreCount.instance.bodyCount++;
-		BodyAndScoreCount.instance.score += orcKillScore;
+		GameManager.instance.statistics.Kill(this.enemyType);
 		
 		//make enemy a ragdoll
 		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(enemyType, this.gameObject);

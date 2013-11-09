@@ -12,6 +12,11 @@ public class PlayerHealth : MonoBehaviour {
 	public int health = 100;
 	public float armor = 0.0f; // armor scale 0-1.0f
 		
+	void Start(){
+		// workaround if we are testing a scene directly in editor and not via Main Menu
+        GameManager.instance.NewGame();
+	}
+	
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.K)) {
 			TakeDamage(20, DamageType.HIT);

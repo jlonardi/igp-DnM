@@ -3,7 +3,7 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - 3D_text
+  - Game Manager
   - Ground
   - 
   - enemy
@@ -16,6 +16,9 @@ TagManager:
   - water
   - 
   - 3D_text
+  - 
+  - 3D text
+  - 
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

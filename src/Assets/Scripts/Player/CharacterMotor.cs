@@ -45,7 +45,7 @@ public class CharacterMotor : MonoBehaviour {
 	}
 
 	private void UpdateFunction () {				
-		if(!GameManager.instance.gameRunning || GameManager.instance.paused){ //Mouse look do not work if game is paused or over
+		if(GameManager.instance.gameState != GameState.RUNNING){
 			return;
 		}
 		

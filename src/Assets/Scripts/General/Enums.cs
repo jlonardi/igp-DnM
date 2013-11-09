@@ -1,4 +1,15 @@
-﻿public enum HitType
+﻿public enum GameState {
+	RUNNING,
+	PAUSE_MENU,
+	MAIN_MENU,
+	LOAD_MENU_MAIN,
+	LOAD_MENU_PAUSE,
+	SAVE_MENU,
+	SAVE_DIALOG,
+	GAME_OVER,
+}
+
+public enum HitType
 {
 	ENEMY,
 	CONCRETE,

@@ -15,37 +15,44 @@ public class SaveData : ISerializable {
 	private List<sGameObject> sObjects;	
 	private List<GameObject> Objects = new List<GameObject>();	
 	private string saveName;
+	private string levelName;
+	private Texture2D screenShot;
 	
 	// constructor, do not remove!
 	public SaveData(){
 	}
 
-	public SaveData(string saveName){
+	public SaveData(string saveName, string levelName, Texture2D screenShot){
 		this.saveName = saveName;
+		this.levelName = levelName;
+		this.screenShot = screenShot;
 	}
 	
 	public SaveData(SerializationInfo info, StreamingContext ctxt)
-	{
+	{						
+		// restore general variables
+		RestoreVar("name", ref saveName, info);
+		RestoreVar("level", ref levelName, info);
+		RestoreVar("screen", ref levelName, info);
+		
 		// clear items before load
 		BeforeLoad();
-						
-		// restore general variables
-		RestoreVar("savename", ref saveName, info);
+		
 		RestoreVar("spawnsLastWave", ref EnemySpawnManager.instance.timeOfLastWave, info);
 		RestoreVar("treasureAmount", ref Treasure.instance.amount, info);
 		RestoreVar("treasureOnGround", ref Treasure.instance.onGround, info);
 		RestoreVar("playerArmor", ref PlayerHealth.instance.armor, info);
 		RestoreVar("playerHealth", ref PlayerHealth.instance.health, info);
-		RestoreVar("gamePlayTime", ref GameManager.instance.playTime, info);
-		RestoreVar("gameWave", ref GameManager.instance.wave, info);
-		RestoreVar("gunsCanUseWeapons", ref GunManager.instance.canUseWeapons, info);
-		RestoreVar("gunsCurrentGunIndex", ref GunManager.instance.currentGunIndex, info);
+		RestoreVar("playTime", ref GameManager.instance.statistics.playTime, info);
+		RestoreVar("wave", ref GameManager.instance.wave, info);
+		RestoreVar("canUseWeapons", ref GunManager.instance.canUseWeapons, info);
+		RestoreVar("currentGunIndex", ref GunManager.instance.currentGunIndex, info);
 		RestoreVar("gun0_rounds", ref GunManager.instance.guns[0].gun.currentRounds, info);
 		RestoreVar("gun1_rounds", ref GunManager.instance.guns[1].gun.currentRounds, info);
 		RestoreVar("gun0_clips", ref GunManager.instance.guns[0].gun.totalClips, info);
 		RestoreVar("gun1_clips", ref GunManager.instance.guns[1].gun.totalClips, info);
-		RestoreVar("bodycount", ref BodyAndScoreCount.instance.bodyCount, info);
-		RestoreVar("score", ref BodyAndScoreCount.instance.score, info);
+		RestoreVar("bodycount", ref GameManager.instance.statistics.bodycount, info);
+		RestoreVar("score", ref GameManager.instance.statistics.score, info);
 		
 		// restore serialized GameObject lists
 		RestoreVar("miscObjects", ref sObjects, info);
@@ -81,25 +88,24 @@ public class SaveData : ISerializable {
 		info.AddValue("mouseAbsolute", (SimpleSmoothMouseLook.instance._mouseAbsolute.Serializable()));	
 		
 		// save regular variable here
-		info.AddValue("savename", (saveName));
+		info.AddValue("name", (saveName));
+		info.AddValue("levelname", (levelName));
+		info.AddValue("screen", (screenShot));
 		info.AddValue("spawnsLastWave", (EnemySpawnManager.instance.timeOfLastWave));
 		info.AddValue("playerArmor", (PlayerHealth.instance.armor));
 		info.AddValue("playerHealth", (PlayerHealth.instance.health));
 		info.AddValue("treasureAmount", (Treasure.instance.amount));
 		info.AddValue("treasureOnGround", (Treasure.instance.onGround));
-		info.AddValue("gamePlayTime", (GameManager.instance.playTime));
-		info.AddValue("gameScore", (GameManager.instance.score));
-		info.AddValue("gameBodyCount", (GameManager.instance.bodyCount));
-		info.AddValue("gameWave", (GameManager.instance.wave));
-		info.AddValue("gunsCanUseWeapons", (GunManager.instance.canUseWeapons));
+		info.AddValue("playTime", (GameManager.instance.statistics.playTime));
+		info.AddValue("wave", (GameManager.instance.wave));
 		info.AddValue("gun0_rounds", (GunManager.instance.guns[0].gun.currentRounds));
 		info.AddValue("gun1_rounds", (GunManager.instance.guns[1].gun.currentRounds));
 		info.AddValue("gun0_clips", (GunManager.instance.guns[0].gun.totalClips));
 		info.AddValue("gun1_clips", (GunManager.instance.guns[1].gun.totalClips));
-		info.AddValue("gun1", (GunManager.instance.guns[1].gun));
-		info.AddValue("gunsCurrentGunIndex", (GunManager.instance.currentGunIndex));
-		info.AddValue("bodycount", (BodyAndScoreCount.instance.bodyCount));
-		info.AddValue("score", (BodyAndScoreCount.instance.score));
+		info.AddValue("canUseWeapons", (GunManager.instance.canUseWeapons));
+		info.AddValue("currentGunIndex", (GunManager.instance.currentGunIndex));
+		info.AddValue("bodycount", (GameManager.instance.statistics.bodycount));
+		info.AddValue("score", (GameManager.instance.statistics.score));
 		
 		// save lists here
 		info.AddValue("enemies", (sEnemies));

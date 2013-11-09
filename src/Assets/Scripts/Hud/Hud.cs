@@ -1,28 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Hud : MonoBehaviour {
-	// no need for singleton as hud only checks other objects
-	// hud is not used in any other gameobject
-	
+[System.Serializable]
+public class Hud {
 	public Texture2D crosshairTexture;
 	
 	private Rect crosshairPosition;
 	private Rect helpPosition;
 	private int crosshairSize;
-		
-	
-	void Start () {		
+			
+	public Hud() {		
 		//size and alignment for gun crosshair
 		crosshairSize = Screen.height/30;
 	    crosshairPosition = CalculateGUIRect(crosshairSize, crosshairSize, 0, 0);
 	    helpPosition = CalculateGUIRect(500, 40, 0, -40);
 	}
 	
-    void OnGUI() {
-
-		
-    	if(Time.timeScale == 0 || !GameManager.instance.gameRunning || GameManager.instance.paused){
+	// this get's called from game manager when GameState.RUNNING
+    public void Show() {
+		// failsafe check	
+		if (!Treasure.instance || !GunManager.instance){
 			return;
 		}
 		
@@ -39,8 +36,8 @@ public class Hud : MonoBehaviour {
 		GUI.Box(new Rect(5,5,105,125),"");	
 		GUI.Label(new Rect(10,10,100,20), "Health: " + PlayerHealth.instance.health);
 		GUI.Label(new Rect(10,25,100,20), "Treasure: " + Treasure.instance.amount);
-
-		GUI.Label (new Rect(10,40,100,20),"Score: " +BodyAndScoreCount.instance.score);
+		GUI.Label (new Rect(10,40,100,20),"Score: " + GameManager.instance.statistics.score);
+		
 		if (gun.enabled){
 			GUI.Label(new Rect(10,55,100,20), "Gun: " + gun.gunName);			
 			GUI.Label(new Rect(10,70,100,20), "Ammo: " + gun.currentRounds);
