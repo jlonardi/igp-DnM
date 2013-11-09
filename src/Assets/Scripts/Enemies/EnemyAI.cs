@@ -6,6 +6,9 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour {
 	
+	//Minimum distance that AI tries to move
+	public float minDistance = 1.6f;
+	
 	public float movementSpeed = 0f;	
 	private float prevMovementSpeed = 0f;	
 	private List<Vector3> movementPositions = new List<Vector3>();
@@ -168,7 +171,6 @@ public class EnemyAI : MonoBehaviour {
 	private bool targetReached() {
 		
 		float distanceFromPlayer = Vector3.Distance(transform.position, target.position);
-		float minDistance = 1f;
 		
 		//Used if the object is doing a long travel
 		if(onLongDistanceTravel) {

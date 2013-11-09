@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyLogic : MonoBehaviour {
 	
 	public int health = 100;
-	
+	public int orcKillScore = 100;
 	//how long enemy chases player if player shoots (s)
 	private float focusTime = 20f;
 	
@@ -33,10 +33,12 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeOfLastAction = 0f;	
 	private int attacks = 0;
 	private bool treasureAvailable = false;
+	private GameObject treasureFocusPoint;
 	
 	public void Start() {
 		ai = GetComponent<EnemyAI>();
 		//treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
+		treasureFocusPoint = Treasure.instance.gameObject.transform.FindChild("focusPoint").gameObject;
 
 		player = GameObject.Find("Player");	
 		target = focusTarget.PLAYER;
@@ -128,7 +130,7 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			ai.setTarget(Treasure.instance.gameObject);
+			ai.setTarget(treasureFocusPoint);
 			target = focusTarget.TRESAURE;
 			Debug.Log("New target is tresaure");
 			return;
@@ -184,7 +186,8 @@ public class EnemyLogic : MonoBehaviour {
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
 		BodyAndScoreCount.instance.bodyCount++;
-		BodyAndScoreCount.instance.score+=100;
+		BodyAndScoreCount.instance.score += orcKillScore;
+		
 		//make enemy a ragdoll
 		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(this.gameObject);
 		

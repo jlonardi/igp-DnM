@@ -65,6 +65,14 @@ public class Treasure : MonoBehaviour {
 		}
 		animator.SetBool("onGround",true);
 		
+		// set back to normal colliders when on ground 
+		GameObject treasureTop = GameObject.Find("krishka");
+		GameObject treasureBottom = GameObject.Find("osnSunduk");
+		if (treasureBottom != null && treasureTop != null){
+			treasureBottom.collider.isTrigger = false;
+			treasureTop.collider.isTrigger = false;
+		}
+		
 		GunManager.instance.EnableWeapons();
 		mouseLook.clampInDegrees = new Vector2(360, 180);
 	}

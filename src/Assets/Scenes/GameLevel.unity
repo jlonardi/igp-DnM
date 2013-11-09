@@ -223,6 +223,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13600000, guid: ca87b35ac937fa54eaefaa58526c885b, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: ca87b35ac937fa54eaefaa58526c885b, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca87b35ac937fa54eaefaa58526c885b, type: 2}
   m_RootGameObject: {fileID: 989846007}
@@ -2945,44 +2953,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 471778481}
   m_GameObject: {fileID: 369471432}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &370375286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries:
-  - gameObject: {fileID: 499643140}
-    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
-  - gameObject: {fileID: 2118666200}
-    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
-  - gameObject: {fileID: 1675929635}
-    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
-  - gameObject: {fileID: 1927726302}
-    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
-  - gameObject: {fileID: 291724319}
-    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
-  - gameObject: {fileID: 989846007}
-    Id: 1170f645-49c3-4867-ac5d-1d2c50a659cb
-  - gameObject: {fileID: 1918092085}
-    Id: f910f1cb-abe0-4c61-b80e-21178584e947
-  - gameObject: {fileID: 1451586292}
-    Id: f7e2d31e-58fc-444c-ac99-937af70ccbeb
-  - gameObject: {fileID: 741690645}
-    Id: 4c663d45-7715-485a-b01b-ba7cfcc597cb
-  - gameObject: {fileID: 192545804}
-    Id: b2f69794-50d0-4735-9833-cfb2923726ee
-  - gameObject: {fileID: 1455416398}
-    Id: bca3015e-8508-41ab-8947-ce87d2d80c2f
-  - gameObject: {fileID: 500703018}
-    Id: f125858c-8106-4529-90c9-4d277b2e6399
-  - gameObject: {fileID: 1173328506}
-    Id: 69124c6c-39cc-4ba2-a26e-2f795041ab65
 --- !u!1 &376214708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6894,7 +6864,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 803576218}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .150000006
   m_Height: 1.53999996
@@ -9064,7 +9034,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 1133542255}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .889999986, y: 1.28999996, z: .49000001}
@@ -9232,7 +9202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 370375286}
+  Reference: {fileID: 1655565344}
 --- !u!4 &1173328508
 Transform:
   m_ObjectHideFlags: 0
@@ -12165,6 +12135,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 11913200}
   m_GameObject: {fileID: 1655171210}
   m_Mesh: {fileID: 4300014, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!114 &1655565344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857cf231f1f4be74699e33279055d979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries:
+  - gameObject: {fileID: 499643140}
+    Id: 9d3abdeb-b27e-4bed-8036-4f058aaaccfe
+  - gameObject: {fileID: 2118666200}
+    Id: f1313d6f-6356-4a72-8f6d-89e9baa87bc5
+  - gameObject: {fileID: 1675929635}
+    Id: b8dd1a2e-822e-488e-9c4e-6e9cc6df5c4b
+  - gameObject: {fileID: 1927726302}
+    Id: 586e1763-bc3d-46fb-8bdb-6db2331865a9
+  - gameObject: {fileID: 291724319}
+    Id: 53a98ff2-4756-429a-aa23-6cc97cd129a2
+  - gameObject: {fileID: 989846007}
+    Id: 1170f645-49c3-4867-ac5d-1d2c50a659cb
+  - gameObject: {fileID: 1918092085}
+    Id: f910f1cb-abe0-4c61-b80e-21178584e947
+  - gameObject: {fileID: 1451586292}
+    Id: f7e2d31e-58fc-444c-ac99-937af70ccbeb
+  - gameObject: {fileID: 741690645}
+    Id: 4c663d45-7715-485a-b01b-ba7cfcc597cb
+  - gameObject: {fileID: 192545804}
+    Id: b2f69794-50d0-4735-9833-cfb2923726ee
+  - gameObject: {fileID: 1455416398}
+    Id: bca3015e-8508-41ab-8947-ce87d2d80c2f
+  - gameObject: {fileID: 500703018}
+    Id: f125858c-8106-4529-90c9-4d277b2e6399
+  - gameObject: {fileID: 1173328506}
+    Id: 69124c6c-39cc-4ba2-a26e-2f795041ab65
 --- !u!1 &1659971595
 GameObject:
   m_ObjectHideFlags: 0
