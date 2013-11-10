@@ -582,7 +582,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   fireRate: 1.5
   fireRange: 50
-  maxDamage: 50
+  maxDamage: 70
   projectileSpeed: 15
   clipSize: 6
   totalClips: 100
