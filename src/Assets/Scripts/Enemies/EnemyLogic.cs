@@ -5,7 +5,7 @@ public class EnemyLogic : MonoBehaviour {
 	public EnemyType enemyType = EnemyType.ORC;
 	
 	public int health = 100;
-
+	
 	//how long enemy chases player if player shoots (s)
 	private float focusTime = 20f;
 	
@@ -25,14 +25,17 @@ public class EnemyLogic : MonoBehaviour {
 	public bool looting = false;
 	public float attackInterval = 2f;
 	public float lootInterval = 2f;
+	private float attackDistance = 2.4f;
+	private float lootDistance = 2.7f;
+	private float timeFromAttack;
+	private float timeFromLoot;
 		
 	private EnemyMovement enemyMovement;
 	private GameObject player;
 
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
-	private float timeOfLastAction = 0f;	
-	private int attacks = 0;
+	
 	private bool treasureAvailable = false;
 	private GameObject treasureFocusPoint;
 	
@@ -56,51 +59,48 @@ public class EnemyLogic : MonoBehaviour {
 		checkFocus();
 		checkActions();
 	}
+		
+	
+	private float getPlayerDistance(){
+		return Vector3.Distance(player.transform.position, transform.position);
+	}
+	private float getTreasureDistance(){
+		return Vector3.Distance(Treasure.instance.gameObject.transform.position, transform.position);
+	}
 	
 	private void checkActions() {
 		//The object is at target and ready to do some actions
 		if(enemyMovement.atTarget) {
-			
 			if(target == focusTarget.PLAYER) {
-				if(!attacking && enemyMovement.atTarget) {
+				if(!attacking && getPlayerDistance() <= attackDistance) {
 					attacking = true;
 					Debug.Log("attacking set to true");
 				}
-				if((timeOfLastAction + attackInterval) < Time.time && attacking) {
-					
-					
+ 				if (getPlayerDistance() > attackDistance){
+					attacking = false;
+				}
+				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
 					PlayerHealth.instance.TakeDamage(1, DamageType.HIT);
-					timeOfLastAction = Time.time;
+					timeFromAttack = Time.time;
 				}
 			} 
 			
 			if(target == focusTarget.TRESAURE) {
-				if(!looting) {
+				if(!looting && getTreasureDistance() <= lootDistance) {
 					looting = true;	
 				}
-				if((timeOfLastAction + attackInterval) < Time.time && looting) {
-					
+ 				if (getTreasureDistance() > lootDistance){
+					looting = false;
+				}
+				if(looting && (timeFromLoot + lootInterval) < Time.time) {					
 					Treasure.instance.Loot(1);
-
-					timeOfLastAction = Time.time;
+					timeFromLoot = Time.time;
 				}
 			}
-
-			
-			
-
 		} else {
 			attacking = false;	
 			looting = false;
 		}
-
-		//if(attacking && (timeOfLastAction + attackInterval) < Time.time) {
-		//		attacking = false;	
-		//}
-			
-		//if(looting && (timeOfLastAction + attackInterval) < Time.time) {
-		//		looting = false;	
-		//}
 	}
 	
 	private void checkFocus() {
