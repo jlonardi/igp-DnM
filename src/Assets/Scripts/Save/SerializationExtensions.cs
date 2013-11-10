@@ -31,9 +31,4 @@ public static class SerializationExtensions {
 	public static GameObject fromSerialized(this GameObject go, sGameObject sgo) {
         return sgo.toGameObject(ref go);
     }
-	
-	public static GameObject fromSerializedWithoutChild(this GameObject go, sGameObject sgo) {
-        return sgo.toGameObject(ref go, false);
-    }	
-
 }

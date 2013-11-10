@@ -34,17 +34,9 @@ public class sGameObject {
 	}
 	
 	public GameObject toGameObject(ref GameObject go) { 
-		return toGameObject(ref go, true);
-	}
-	
-	public GameObject toGameObject(ref GameObject go, bool restoreChildTransform) { 
 		go.SetActive(activeSelf);
 		go.name = name;
 		go.tag = tag;
-		transform.toTransform(ref go);
-		if (restoreChildTransform){
-			restoreChildTransforms(go.transform);
-		}
 		
 		// if parents do not match, find correct parent and change it
 		string goParentStr = "";
@@ -61,17 +53,38 @@ public class sGameObject {
 				go.transform.parent = realParent.transform;
 			}
 		}
+		
+		//set transformation after we made sure we have the correct parent
+		transform.toTransform(ref go);
+		restoreChildTransforms(go.transform);
 		return go;
 	}
 	
 	public void restoreChildTransforms(Transform parent){
 		List<Transform> currentRecursiveTransforms = new List<Transform>();
+		Transform rParent;
+		sTransform bParent;
+		string rParentStr, bParentStr;
 		
 		storeChildTransforms(parent, currentRecursiveTransforms);
 		
 		foreach (sTransform b in recursiveTransforms){
 			foreach(Transform r in currentRecursiveTransforms){
-				if (r.name == b.name){
+				//get parents too to make sure we have the same exact same object and not only similarly named
+				rParent = r.parent;
+				bParent = b.parent;
+				if (rParent == null){
+					rParentStr = "null";
+				} else {
+					rParentStr = rParent.name;
+				}
+				if (bParent == null){
+					bParentStr = "null";
+				} else {
+					bParentStr = bParent.name;
+				}
+				
+				if (r.name.Equals(b.name) && rParentStr.Equals(bParentStr)){
 					r.rotation = b.rotation.toQuaternion;					
 					r.position = b.position.toVector3;
 					if (r.rigidbody != null){						

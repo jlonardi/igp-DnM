@@ -35,6 +35,9 @@ public class SaveData : ISerializable {
 		RestoreVar("level", ref levelName, info);
 		RestoreVar("screen", ref levelName, info);
 		
+		// first get correct level
+		//Application.LoadLevel(levelName);
+		
 		// clear items before load
 		BeforeLoad();
 		
@@ -63,7 +66,7 @@ public class SaveData : ISerializable {
 		RestoreGameObject("playerGO", player, info);
 		
 		// restore GameObject without child transforms
-		RestoreGameObjectWithoutChild("treasureGO", Treasure.instance.gameObject, info);
+		RestoreGameObject("treasureGO", Treasure.instance.gameObject, info);
 
 		// restore Vector2
 		RestoreVector2("mouseAbsolute", ref SimpleSmoothMouseLook.instance._mouseAbsolute, info);		
@@ -89,7 +92,7 @@ public class SaveData : ISerializable {
 		
 		// save regular variable here
 		info.AddValue("name", (saveName));
-		info.AddValue("levelname", (levelName));
+		info.AddValue("level", (levelName));
 		info.AddValue("screen", (screenShot));
 		info.AddValue("spawnsLastWave", (EnemySpawnManager.instance.timeOfLastWave));
 		info.AddValue("playerArmor", (PlayerHealth.instance.armor));
@@ -123,15 +126,6 @@ public class SaveData : ISerializable {
 		try{
 			sGameObject savedObj = (sGameObject)info.GetValue(value, typeof(sGameObject));
 			go.fromSerialized(savedObj);
-		} catch {
-			Debug.LogWarning("Coudn't find value for " + value + ", saved game may be using an older save format");
-		}		
-    }	
-	
-	public void RestoreGameObjectWithoutChild(string value, GameObject go, SerializationInfo info){
-		try{
-			sGameObject savedObj = (sGameObject)info.GetValue(value, typeof(sGameObject));
-			go.fromSerializedWithoutChild(savedObj);
 		} catch {
 			Debug.LogWarning("Coudn't find value for " + value + ", saved game may be using an older save format");
 		}		
@@ -194,8 +188,8 @@ public class SaveData : ISerializable {
     	}		
 	}
 	
-	private void BeforeLoad(){
-		// clear enemy objects before loading save
+	private void BeforeLoad(){		
+		// clear enemy objects before loading save 
 		EnemySpawnManager.instance.ClearEnemies();
 		RagdollManager.instance.ClearBodies();
 	}
