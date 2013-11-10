@@ -1971,7 +1971,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.0243149, y: 3.46004772, z: 68.6586456}
+  m_LocalPosition: {x: 68.8649902, y: 5.30999994, z: 66.1170349}
   m_LocalScale: {x: .180000007, y: .180000007, z: .180000007}
   m_Children:
   - {fileID: 400140}
@@ -2152,8 +2152,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6500001, y: 2.1099999, z: 1.60000002}
-  m_Center: {x: -.360000014, y: 0, z: -.349999994}
+  m_Size: {x: 2.18000007, y: 1.99000001, z: 2.01999998}
+  m_Center: {x: .639999986, y: 0, z: -.460000008}
 --- !u!65 &6500002
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2164,8 +2164,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.98385644, y: 1.59742558, z: 1.59742558}
-  m_Center: {x: -.458653808, y: .79871279, z: -.00500112772}
+  m_Size: {x: 2.5999999, y: 1.85000002, z: 2.01999998}
+  m_Center: {x: .109999999, y: 0, z: -.00500112772}
 --- !u!114 &11400142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2214,7 +2214,7 @@ CapsuleCollider:
   m_Radius: .46285671
   m_Height: 1.85142684
   m_Direction: 0
-  m_Center: {x: -.92571342, y: 0, z: 0}
+  m_Center: {x: -.330000013, y: 0, z: 0}
 --- !u!136 &13600004
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2240,7 +2240,7 @@ CapsuleCollider:
   m_Radius: .462858379
   m_Height: 1.85143352
   m_Direction: 0
-  m_Center: {x: -.925716758, y: 0, z: 0}
+  m_Center: {x: -.330000013, y: 0, z: 0}
 --- !u!136 &13600008
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2266,7 +2266,7 @@ CapsuleCollider:
   m_Radius: .491796225
   m_Height: 1.63932073
   m_Direction: 0
-  m_Center: {x: -.819660366, y: 0, z: 0}
+  m_Center: {x: -.5, y: 0, z: 0}
 --- !u!136 &13600012
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2292,7 +2292,7 @@ CapsuleCollider:
   m_Radius: .491796166
   m_Height: 1.63932049
   m_Direction: 0
-  m_Center: {x: -.819660246, y: 0, z: 0}
+  m_Center: {x: -.5, y: 0, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
