@@ -15,8 +15,13 @@ public class GunManager : MonoBehaviour {
 	public Gun currentGun;
 	public bool canUseWeapons;
 	public HitParticles hitParticles = new HitParticles();
+
+	[HideInInspector]
+	public GameObject shootFrom;
 	
 	void Start () {	
+		shootFrom = transform.FindChild("ShootFrom").gameObject;
+
 		// set to false until weapons enabled
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;

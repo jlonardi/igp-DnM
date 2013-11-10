@@ -6459,6 +6459,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1432576712}
   m_GameObject: {fileID: 791245418}
   m_Mesh: {fileID: 4300028, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+--- !u!1 &801982100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 801982101}
+  m_Layer: 0
+  m_Name: ShootFrom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801982101
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801982100}
+  m_LocalRotation: {x: 0, y: 1.70647474e-09, z: 0, w: 1}
+  m_LocalPosition: {x: .25999999, y: -.204000041, z: -.119003296}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1451586293}
 --- !u!1 &828841634
 GameObject:
   m_ObjectHideFlags: 0
@@ -10139,6 +10165,7 @@ Transform:
   m_Children:
   - {fileID: 741690647}
   - {fileID: 1455416399}
+  - {fileID: 801982101}
   m_Father: {fileID: 1543014822}
 --- !u!114 &1451586294
 MonoBehaviour:
@@ -10168,6 +10195,7 @@ MonoBehaviour:
     sandParticle: {fileID: 100000, guid: 49ee2758d5bd8644da7b06bc1840189e, type: 2}
     waterParticle: {fileID: 100000, guid: 8689397df27cefa41b178bd7f7188db9, type: 2}
     hitParticles: {fileID: 100000, guid: d385378cca39ba444a14ab4238a1625b, type: 2}
+  shootFrom: {fileID: 0}
 --- !u!82 &1451586295
 AudioSource:
   m_ObjectHideFlags: 0
