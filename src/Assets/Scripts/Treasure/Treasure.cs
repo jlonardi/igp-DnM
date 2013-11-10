@@ -72,14 +72,18 @@ public class Treasure : MonoBehaviour {
 		
 		this.onGround = true;	
 		
-		// align treasure on terrain
-	    transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z); //first move up to make sure it doesn't go through terrain
+		// =========== align treasure on terrain ======================
+		
+		 //first move up to make sure it doesn't go through terrain
+	    transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
  		RaycastHit hit = new RaycastHit();		
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
-			float yValue = terrain.SampleHeight(transform.position);
-		    transform.position = new Vector3(transform.position.x, yValue + 0.01f, transform.position.z); // align just above terrain
+			// align just above terrain		    
+			transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.001f, transform.position.z);
+			// rotate to correct angle
  			Vector3 proj = transform.forward - (Vector3.Dot(transform.forward, hit.normal)) * hit.normal;
 			transform.rotation = Quaternion.LookRotation(proj, hit.normal);
-		}		
+		}
+		//=============================================================
 	}
 }
