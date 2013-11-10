@@ -26,7 +26,7 @@ public class EnemyLogic : MonoBehaviour {
 	public float attackInterval = 2f;
 	public float lootInterval = 2f;
 		
-	private EnemyPathfind pathfind;
+	private EnemyMovement enemyMovement;
 	private GameObject player;
 
 	private focusTarget target;
@@ -37,13 +37,13 @@ public class EnemyLogic : MonoBehaviour {
 	private GameObject treasureFocusPoint;
 	
 	public void Start() {
-		pathfind = GetComponent<EnemyPathfind>();
+		enemyMovement = GetComponent<EnemyMovement>();
 		//treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 		treasureFocusPoint = Treasure.instance.gameObject.transform.FindChild("focusPoint").gameObject;
 
 		player = GameObject.Find("Player");	
 		target = focusTarget.PLAYER;
-		pathfind.init(player.transform);
+		enemyMovement.init(player.transform);
 	}
 	
 	public void Update() {
@@ -59,10 +59,10 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkActions() {
 		//The object is at target and ready to do some actions
-		if(pathfind.isAtTarget()) {
+		if(enemyMovement.atTarget) {
 			
 			if(target == focusTarget.PLAYER) {
-				if(!attacking) {
+				if(!attacking && enemyMovement.atTarget) {
 					attacking = true;
 					Debug.Log("attacking set to true");
 				}
@@ -131,14 +131,14 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			pathfind.setTarget(treasureFocusPoint);
+			enemyMovement.setTarget(treasureFocusPoint);
 			target = focusTarget.TRESAURE;
 			Debug.Log("New target is tresaure");
 			return;
 		} 
 		
 		if (target == focusTarget.TRESAURE){
-			pathfind.setTarget(player);
+			enemyMovement.setTarget(player);
 			target = focusTarget.PLAYER;
 			Debug.Log("New target is player");
 			return;
@@ -173,7 +173,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
-		pathfind.setTarget(player);
+		enemyMovement.setTarget(player);
 		
 		Debug.Log("Enemy health left: " + health);
 	}

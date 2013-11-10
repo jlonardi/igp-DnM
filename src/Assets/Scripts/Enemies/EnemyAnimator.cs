@@ -4,13 +4,13 @@ using System.Collections;
 public class EnemyAnimator : MonoBehaviour {
 
 	private Animator animator;
-	private EnemyPathfind astar;
+	private EnemyMovement movement;
 	private EnemyLogic logic;
 	
 	
 	void Start () {
 		animator = GetComponent<Animator>();
-		astar = GetComponent<EnemyPathfind>();
+		movement = GetComponent<EnemyMovement>();
 		logic = GetComponent<EnemyLogic>();
 		animator.SetBool("Jumping",false);
 		animator.SetLayerWeight(1,1);
@@ -23,7 +23,7 @@ public class EnemyAnimator : MonoBehaviour {
 		} else {
 			animator.speed = 1;
 		}		
-		animator.SetFloat("Speed", astar.movementSpeed);
+		animator.SetFloat("Speed", movement.movementSpeed);
 		animator.SetBool("Attacking", logic.attacking);
 		animator.SetBool("Looting", logic.looting);
 	}

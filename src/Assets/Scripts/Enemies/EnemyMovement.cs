@@ -4,15 +4,21 @@ using System.Collections.Generic;
 
 using Pathfinding;
 
-public class EnemyPathfind : MonoBehaviour {
+public class EnemyMovement : MonoBehaviour {
 	
-	//Minimum distance that AI tries to move
-	public float minDistance = 2.0f;
+	// AI stops moving below this distance
+	public float moveStopDistance = 2.0f;
+	
+	// AI starts moving above this distance
+	public float moveAllowDistance = 2.3f;
 	
 	public float movementSpeed = 0f;	
 	private float prevMovementSpeed = 0f;	
 	private List<Vector3> movementPositions = new List<Vector3>();
+	
+	//Use stuck values to determine if stuck and how long
 	private bool stuck = false;
+	private float timeStuck = 0f;
 	
 	//The point to move to
     public Vector3 targetPosition;
@@ -120,21 +126,27 @@ public class EnemyPathfind : MonoBehaviour {
 			mesh.renderer.enabled = true;	
 		}
 		
+		atTarget = targetReached();
+		
 		//If the last waypoint has been reach reset the current way point
 		//and mark us so that we are at the target
-		if (path != null && currentWaypoint >= path.vectorPath.Count) {
-            //Debug.Log ("End Of Path Reached")
+		if (!atTarget && path != null && currentWaypoint >= path.vectorPath.Count) {
+           	//Debug.Log ("End Of Path Reached")
 			currentWaypoint = 0;
 			if(onLongDistanceTravel) {
+				atTarget = false;
 				startNewPathfinding();
 				return;
 			}
 			atTarget = true;
-            return;
-        }
-		
-		//Check if we are at the target yet
-		atTarget = targetReached();
+			faceTarget();
+           	return;
+       	}
+				
+		//if we are at target, always face enemy towards the target
+		if(atTarget){
+			faceTarget();
+		}
 		
 		//Perform a new pathfind if needed
 		if(pathCalculationComplete && newPathNeeded()) {
@@ -145,12 +157,11 @@ public class EnemyPathfind : MonoBehaviour {
                  startNewPathfinding();
 			}
 		} 
-		
+				
 		//If we have a path we have to move the object
 		if(path != null) {
 			moveObject();
 		}
-		
     }
 	
 	public void OnDisable () {
@@ -163,9 +174,11 @@ public class EnemyPathfind : MonoBehaviour {
 		targetPosition = target.position;
 		startNewPathfinding();
 	}
-	
-	public bool isAtTarget() {
-		return atTarget;	
+		
+	// face enemy towards the target, just don't change y value so enemy will look straight
+	private void faceTarget(){
+		Vector3 enemyLookTarget = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+	    this.transform.LookAt(enemyLookTarget);
 	}
 	
 	private bool targetReached() {
@@ -174,12 +187,12 @@ public class EnemyPathfind : MonoBehaviour {
 		
 		//Used if the object is doing a long travel
 		if(onLongDistanceTravel) {
-			if(Vector3.Distance(transform.position, longDistanceTarget) < minDistance) {
+			if(Vector3.Distance(transform.position, longDistanceTarget) < moveStopDistance) {
 				longDistanceTarget = target.position;
 			} 
 		}
 		
-		if(distanceFromPlayer > minDistance) {
+		if(distanceFromPlayer >= moveAllowDistance) {
 			return false;
 		} else {
 			return true;
@@ -262,6 +275,23 @@ public class EnemyPathfind : MonoBehaviour {
 
 	}
 	
+	private void setStuck(bool isStuck){
+		if (isStuck){
+			//Vector3 newWaypoint = terrainLocation(new Vector3(transform.position.x + Random.Range(-1f, 1f),
+			//							transform.position.y, transform.position.z + Random.Range(-1f, 1f)));
+			
+			//Debug.Log("Stuck - speed: " + movementSpeed);
+			if (!stuck){
+				timeStuck = Time.time;
+			}
+			stuck = true;
+		}
+		if (!isStuck){
+			//Debug.Log("Free again");
+			stuck = false;
+		}
+	}
+	
 	//Chekcs if there is a need to calculate a new path
 	private bool newPathNeeded() {		
 		float distanceFromTarget = Vector3.Distance(transform.position, target.position);
@@ -270,23 +300,17 @@ public class EnemyPathfind : MonoBehaviour {
 		
 		if(!atTarget) {
 						
-			if(distanceFromTarget > 10){
-				//Since not at target and speed is low object is most likely stuck
-				if ((stuck && movementSpeed < 0.5f) || (prevMovementSpeed>= 0.5f && movementSpeed < 0.5f)) {
-					stuck = true;
-//					Debug.Log("Stuck - speed: " + movementSpeed);
-/*
-					Vector3 newLocation = terrainLocation(new Vector3(transform.position.x + Random.Range(-1f, 1f),
-												transform.position.y, transform.position.z + Random.Range(-1f, 1f)));
-					transform.position = new Vector3(newLocation.x, newLocation.y + 2, newLocation.z);
-*/
-					return true;	
-				} else {
-					stuck = false;
+			//Since not at target and speed is low object is most likely stuck
+			if ((stuck && movementSpeed < 0.5f) || prevMovementSpeed>= 0.5f && movementSpeed < 0.5f) {
+				setStuck(true);
+				if (timeStuck + 1 < Time.time){
+					// get a new path since we are still stuck after 1 second
+					return true;
 				}
-				
+			} else if (stuck && movementSpeed > 0.5f) {
+				setStuck(false); // unstuck if moving faster again
 			}
-						
+				
 			//If on a long pathfind we get close enogh to the target we need to start a normal pathfinding routine
 			
 			if(onLongDistanceTravel) {
