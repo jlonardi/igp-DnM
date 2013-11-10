@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyAnimator : MonoBehaviour {
 
 	private Animator animator;
-	private EnemyAI astar;
+	private EnemyPathfind astar;
 	private EnemyLogic logic;
 	
 	
 	void Start () {
 		animator = GetComponent<Animator>();
-		astar = GetComponent<EnemyAI>();
+		astar = GetComponent<EnemyPathfind>();
 		logic = GetComponent<EnemyLogic>();
 		animator.SetBool("Jumping",false);
 		animator.SetLayerWeight(1,1);

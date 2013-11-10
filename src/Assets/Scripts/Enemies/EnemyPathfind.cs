@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 using Pathfinding;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyPathfind : MonoBehaviour {
 	
 	//Minimum distance that AI tries to move
-	public float minDistance = 1.6f;
+	public float minDistance = 2.0f;
 	
 	public float movementSpeed = 0f;	
 	private float prevMovementSpeed = 0f;	

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyLogic : MonoBehaviour {
@@ -26,7 +26,7 @@ public class EnemyLogic : MonoBehaviour {
 	public float attackInterval = 2f;
 	public float lootInterval = 2f;
 		
-	private EnemyAI ai;
+	private EnemyPathfind pathfind;
 	private GameObject player;
 
 	private focusTarget target;
@@ -37,13 +37,13 @@ public class EnemyLogic : MonoBehaviour {
 	private GameObject treasureFocusPoint;
 	
 	public void Start() {
-		ai = GetComponent<EnemyAI>();
+		pathfind = GetComponent<EnemyPathfind>();
 		//treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
 		treasureFocusPoint = Treasure.instance.gameObject.transform.FindChild("focusPoint").gameObject;
 
 		player = GameObject.Find("Player");	
 		target = focusTarget.PLAYER;
-		ai.init(player.transform);
+		pathfind.init(player.transform);
 	}
 	
 	public void Update() {
@@ -59,7 +59,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkActions() {
 		//The object is at target and ready to do some actions
-		if(ai.isAtTarget()) {
+		if(pathfind.isAtTarget()) {
 			
 			if(target == focusTarget.PLAYER) {
 				if(!attacking) {
@@ -131,14 +131,14 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			ai.setTarget(treasureFocusPoint);
+			pathfind.setTarget(treasureFocusPoint);
 			target = focusTarget.TRESAURE;
 			Debug.Log("New target is tresaure");
 			return;
 		} 
 		
 		if (target == focusTarget.TRESAURE){
-			ai.setTarget(player);
+			pathfind.setTarget(player);
 			target = focusTarget.PLAYER;
 			Debug.Log("New target is player");
 			return;
@@ -173,7 +173,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
-		ai.setTarget(player);
+		pathfind.setTarget(player);
 		
 		Debug.Log("Enemy health left: " + health);
 	}
