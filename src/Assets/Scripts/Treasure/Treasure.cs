@@ -1,13 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum TreasureType {
+	CHEST,
+	NONE
+}
 public class Treasure : MonoBehaviour {	
 	//use singleton since only we need once instance of this class
 	public static Treasure instance;
+	
+	public TreasureType treasureType = TreasureType.NONE;
+	public int treasureAmount = 100;
 
-	public int amount = 100;
+	//orig amount is used for calculation current percentage of the treasure	
+	public int treasureFullAmount;
+	
 	public bool onGround;
 	private Animator animator;
+	
+	//object which describes how much treasure is left
+	public GameObject treasureLevel;
+	
+	//marks treasure level y position
+	public Vector3 treasureLevelPosition = Vector3.zero;
+	
 	
     public void Awake()
     {
@@ -15,8 +31,11 @@ public class Treasure : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		animator.speed = 4;	// animation playback speed
 		animator.SetBool("onGround",false);
+		treasureFullAmount = treasureAmount;
+		if (treasureType == TreasureType.CHEST){
+			treasureLevelPosition = treasureLevel.transform.position;
+		}
     }
-	
 	
 	public int Loot(int lootAmount){
 		// no loot allowed if player is still carrying treasure
@@ -24,14 +43,23 @@ public class Treasure : MonoBehaviour {
 			return 0;
 		}
 		
-		if (amount > lootAmount){
-			amount -= lootAmount;
+		if (treasureAmount > lootAmount){
+			treasureAmount -= lootAmount;
 		} 
 		else {
-			lootAmount = amount;
-			amount = 0;
+			lootAmount = treasureAmount;
+			treasureAmount = 0;
 		}
-		if (amount <= 0){			
+		
+		if (treasureType == TreasureType.CHEST){
+			// change visible money position on chest so treasure seems smaller after every loot.
+			// chest's treasure y range is from -0.03 to 0.2371817 (0.2671817 total).
+			treasureLevel.transform.position -= new Vector3(0, 0.2671817f * lootAmount/treasureFullAmount, 0);				
+			treasureLevelPosition = treasureLevel.transform.position;
+		}
+		
+		// if all taken, game over
+		if (treasureAmount <= 0){			
 			GameManager.instance.GameOver();
 		}
 		return lootAmount;
@@ -42,6 +70,10 @@ public class Treasure : MonoBehaviour {
 	public void RestoreTreasureOnGround(){
 		animator.speed = 100;
 		SetTreasureOnGround();
+		if (treasureType == TreasureType.CHEST){
+			//change treasure level
+			treasureLevel.transform.position = treasureLevelPosition;
+		}		
 	}
 	
 	// called when player sets treasure on ground	

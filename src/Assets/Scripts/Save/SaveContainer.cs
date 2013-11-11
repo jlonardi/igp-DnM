@@ -13,7 +13,9 @@ public class SaveContainer {
 	public float timeOfLastWave;
 	public float playerArmor;
 	public int playerHealth;
+	public TreasureType treasureType;
 	public int treasureAmount;
+	public int treasureFullAmount;
 	public bool treasureOnGround;
 	public float playTime;
 	public int wave;
@@ -26,6 +28,7 @@ public class SaveContainer {
 	public int score;
 	
 	// Vector2, Vector3, Quaternion and GameObjects need prefix 's' to use serialized versions
+	public sVector3 sTreasureLevelPosition = new sVector3(0,0,0);
 	public sGameObject sPlayer = new sGameObject();
 	public sGameObject sTreasure = new sGameObject();
 	public List<sGameObject> sEnemies = new List<sGameObject>();
@@ -42,6 +45,7 @@ public class SaveContainer {
 		// save GameObject, Transform, Vector3 and Quaternion by adding .Serializable() extension
 		sPlayer = player.Serializable();
 		sTreasure = Treasure.instance.gameObject.Serializable();
+		sTreasureLevelPosition = Treasure.instance.treasureLevelPosition.Serializable();
 
 		// clear lists
 		sEnemies.Clear();
@@ -68,7 +72,8 @@ public class SaveContainer {
 		timeOfLastWave = EnemySpawnManager.instance.timeOfLastWave;
 		playerArmor = PlayerHealth.instance.armor;
 		playerHealth = PlayerHealth.instance.health;
-		treasureAmount = Treasure.instance.amount;
+		treasureAmount = Treasure.instance.treasureAmount;
+		treasureFullAmount = Treasure.instance.treasureFullAmount;
 		treasureOnGround = Treasure.instance.onGround;
 		playTime = GameManager.instance.statistics.playTime;
 		wave = GameManager.instance.waves.wave;
@@ -89,7 +94,9 @@ public class SaveContainer {
 		EnemySpawnManager.instance.timeOfLastWave = timeOfLastWave;
 		PlayerHealth.instance.armor = playerArmor;
 		PlayerHealth.instance.health = playerHealth;
-		Treasure.instance.amount = treasureAmount;
+		Treasure.instance.treasureType = treasureType;
+		Treasure.instance.treasureAmount = treasureAmount;
+		Treasure.instance.treasureFullAmount = treasureFullAmount;
 		Treasure.instance.onGround = treasureOnGround;
 		GameManager.instance.statistics.playTime = playTime;
 		GameManager.instance.waves.wave = wave;
@@ -101,6 +108,9 @@ public class SaveContainer {
 		GameManager.instance.statistics.bodycount = bodycount;
 		GameManager.instance.statistics.score = score;
 		
+		// restore treasurelevel position
+		Treasure.instance.treasureLevelPosition = sTreasureLevelPosition.toVector3;
+
 		// restore player gameobject
 		GameObject player = GameObject.Find("Player");		
 		player.fromSerialized(sPlayer);

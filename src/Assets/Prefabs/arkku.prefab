@@ -5306,8 +5306,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100368}
-  m_LocalRotation: {x: 0, y: .72127682, z: 0, w: -.692646921}
-  m_LocalPosition: {x: -.180000007, y: -.5600003, z: 1.5}
+  m_LocalRotation: {x: 0, y: .708463132, z: 0, w: -.705747843}
+  m_LocalPosition: {x: -.150000006, y: -.5, z: 1.49999654}
   m_LocalScale: {x: 1.42857099, y: 1.42857099, z: 1.42857099}
   m_Children:
   - {fileID: 400366}
@@ -9097,7 +9097,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
   m_Controller: {fileID: 9100000, guid: 57790106ff977e54ba13d3c690ced729, type: 2}
   m_CullingMode: 1
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -9110,8 +9110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91287e02fe6dd342a80f5932131aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 100
+  treasureType: 0
+  treasureAmount: 100
+  treasureFullAmount: 0
   onGround: 0
+  treasureLevel: {fileID: 100366}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
