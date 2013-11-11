@@ -4085,18 +4085,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 499643140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2536cd0f8b846a449962de675cb392c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 16e814dfe0058f44f96f9090e983a38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 1
-  mouseSensitivityX: 15
-  mouseSensitivityY: 15
-  joySensitivityX: 3
-  joySensitivityY: 3
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
+  sensitivity: 5
+  smoothing: 2
+  position: 0
 --- !u!1 &500703018
 GameObject:
   m_ObjectHideFlags: 0
@@ -10911,18 +10905,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543014821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2536cd0f8b846a449962de675cb392c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 19c7971d6c1ee5c469417fe1a90a5c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 2
-  mouseSensitivityX: 15
-  mouseSensitivityY: 15
-  joySensitivityX: 3
-  joySensitivityY: 3
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
+  sensitivity: 5
+  smoothing: 2
+  position: 0
 --- !u!124 &1543014825
 Behaviour:
   m_ObjectHideFlags: 0

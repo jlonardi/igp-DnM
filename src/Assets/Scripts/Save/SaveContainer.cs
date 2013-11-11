@@ -8,6 +8,8 @@ public class SaveContainer {
 	public int saveSlot;
 	public byte[] screenshot;
 	public int level;
+	public float mouseX;
+	public float mouseY;
 	public float timeOfLastWave;
 	public float playerArmor;
 	public int playerHealth;
@@ -60,7 +62,9 @@ public class SaveContainer {
     	}				
 
 		// save regular variable here
-		level =  GameManager.instance.statistics.level;
+		mouseX = SmoothMouseLookX.instance.position;
+		mouseY = SmoothMouseLookY.instance.position;
+		level = GameManager.instance.statistics.level;
 		timeOfLastWave = EnemySpawnManager.instance.timeOfLastWave;
 		playerArmor = PlayerHealth.instance.armor;
 		playerHealth = PlayerHealth.instance.health;
@@ -79,6 +83,8 @@ public class SaveContainer {
 
 	public void RestoreValues(){		
 		// restore variables
+		SmoothMouseLookX.instance.position = mouseX;
+		SmoothMouseLookY.instance.position = mouseY;
 		GameManager.instance.statistics.level = level;
 		EnemySpawnManager.instance.timeOfLastWave = timeOfLastWave;
 		PlayerHealth.instance.armor = playerArmor;
