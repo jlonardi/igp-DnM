@@ -35,7 +35,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,8 +104,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .560000002, y: .330000013, z: 6.26000023}
+  m_LocalRotation: {x: -8.74227766e-08, y: -7.64274186e-15, z: -8.74227766e-08, w: 1}
+  m_LocalPosition: {x: .560000002, y: .330000013, z: 10.9099998}
   m_LocalScale: {x: .509183466, y: .996760845, z: -.505943716}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: -.707106888, z: 0, w: .707106769}
-  m_LocalPosition: {x: .00716116698, y: .883999169, z: .658300579}
+  m_LocalPosition: {x: .00716116698, y: .109999999, z: 1.05999994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -182,7 +182,7 @@ ParticleAnimator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  Does Animate Color?: 1
+  Does Animate Color?: 0
   colorAnimation[0]:
     serializedVersion: 2
     rgba: 184549375
@@ -241,7 +241,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100002}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 0
+  m_Emit: 1
   minSize: 7
   maxSize: 7
   minEnergy: .800000012
@@ -256,7 +256,7 @@ EllipsoidParticleEmitter:
   angularVelocity: 0
   rndAngularVelocity: 0
   rndRotation: 0
-  Simulate in Worldspace?: 1
+  Simulate in Worldspace?: 0
   m_OneShot: 0
   m_Ellipsoid: {x: 0, y: 0, z: 0}
   m_MinEmitterRange: 0
@@ -351,7 +351,7 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: 1, g: .974137902, b: .625, a: 1}
-  m_Intensity: 1
+  m_Intensity: .409999996
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10

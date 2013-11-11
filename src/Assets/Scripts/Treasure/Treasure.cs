@@ -4,30 +4,19 @@ using System.Collections;
 public class Treasure : MonoBehaviour {	
 	//use singleton since only we need once instance of this class
 	public static Treasure instance;
+
+	public int amount = 100;
+	public bool onGround;
+	private Animator animator;
+	
     public void Awake()
     {
         Treasure.instance = this;
-    }
-	
-	public int amount = 100;
-	public bool onGround;
-	private Terrain terrain;
-	private Animator animator;
-	private SimpleSmoothMouseLook mouseLook;
-	
-	void Start () {
 		animator = GetComponent<Animator>();
 		animator.speed = 4;	// animation playback speed
 		animator.SetBool("onGround",false);
-		
-		terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-		mouseLook = GameObject.FindObjectOfType(typeof(SimpleSmoothMouseLook)) as SimpleSmoothMouseLook;
-		
-		//temp fix for saving
-		if (onGround){
-			GunManager.instance.EnableWeapons();
-		}//
-	}
+    }
+	
 	
 	public int Loot(int lootAmount){
 		// no loot allowed if player is still carrying treasure
@@ -49,12 +38,18 @@ public class Treasure : MonoBehaviour {
 		
 	}
 	
+	// called when savegame restores and treasure is already on ground
+	public void RestoreTreasureOnGround(){
+		animator.speed = 100;
+		SetTreasureOnGround();
+	}
+	
+	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){		
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
-		this.transform.parent = treasureOnScene.transform;	
+		transform.parent = treasureOnScene.transform;	
 
-		GunManager.instance.EnableWeapons();
-		mouseLook.clampInDegrees = new Vector2(360, 180);
+		
 		animator.SetBool("onGround",true);
 
 		// set back to normal colliders when on ground 
@@ -70,7 +65,11 @@ public class Treasure : MonoBehaviour {
 			return;	
 		}
 		
-		this.onGround = true;	
+		this.onGround = true;
+		
+		// call gunmanager to enable current weapon
+		GunManager.instance.ChangeToCurrentWeapon();
+		
 		
 		// =========== align treasure on terrain ======================
 		

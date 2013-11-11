@@ -3,12 +3,12 @@ using System.Collections;
 
 [System.Serializable]
 public class Hud {
-	public Texture2D crosshairTexture;
-	
+	public Texture2D crosshairTexture;	
+
 	private Rect crosshairPosition;
 	private Rect helpPosition;
 	private int crosshairSize;
-			
+	
 	public Hud() {		
 		//size and alignment for gun crosshair
 		crosshairSize = Screen.height/30;

@@ -35,27 +35,36 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
-		if(Time.timeScale==1){  //Mouse look do not work if game is paused 
-			if (axes == RotationAxes.MouseXAndY)
-			{
-				float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivityX;
-				
-				rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
-				
-				transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-			}
-			else if (axes == RotationAxes.MouseX)
-			{
-				transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivityX, 0);
-			}
-			else
-			{
-				rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
-				
-				transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
-			}
+ 		//Mouse look do not work if game is paused or over
+		if(GameManager.instance.gameState != GameState.RUNNING){
+			return;
+		}
+		
+		if(Treasure.instance.onGround){
+			minimumY = -60f;
+			maximumY = 60f;
+		} else {
+			minimumY = -20f;
+			maximumY = 45f;
+		}
+			
+		
+		if (axes == RotationAxes.MouseXAndY) {
+			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivityX;
+			
+			rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			
+			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+			
+		} else if (axes == RotationAxes.MouseX) {
+			transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivityX, 0);
+			
+		} else {
+			rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			
+			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
 	}
 	

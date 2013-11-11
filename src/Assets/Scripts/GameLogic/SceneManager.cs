@@ -2,6 +2,8 @@
 using UnityEditor;
 using System.Collections;
 
+// whole purpose of having a separate scene manager, is that since scene manager is not preserved
+// during level loading, it's script will always trigger OnLevelWasLoaded
 public class SceneManager : MonoBehaviour {
 	public GameObject gameManagerPrefab;
 	
@@ -13,13 +15,20 @@ public class SceneManager : MonoBehaviour {
 	}
 	
 	void OnLevelWasLoaded(int level) {
-		// level 1 = GameLevel.scene
 		switch (level){
 		case 0:	// main menu
 			GameManager.instance.gameState = GameState.MAIN_MENU;
 			break;
-		case 1: // level 1 = GameLevel.scene
-            GameManager.instance.NewGame();
+		default: // others are levels
+			if (GameManager.instance.levelState == LevelState.LOADING_NEXT){
+				GameManager.instance.levelState = LevelState.LOADED;				
+				GameManager.instance.NewGame();
+			}
+			if (GameManager.instance.levelState == LevelState.LOADING_SAVE){
+				GameManager.instance.levelState = LevelState.LOADED;
+				SaveManager.instance.container.RestoreValues();	
+			}
+
 			break;
 		}        
     }

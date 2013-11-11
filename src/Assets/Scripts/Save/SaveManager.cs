@@ -5,6 +5,10 @@ using System.Collections;
 public class SaveManager : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SaveManager instance;
+
+	[HideInInspector]	
+	public SaveContainer container = new SaveContainer();
+	
     public void Awake()
     {
 		// never destroy Save Manager on scene load
@@ -16,8 +20,6 @@ public class SaveManager : MonoBehaviour {
 	
 	private int skipUpdateFrames = 3;
 	public int maxSaveSlots = 5; //max amount of games saved
-	public int currentSaveSlot;
-	public string currentSaveName;
 		
 	void Update(){
 		//workaround for relaxing recently instantiated ragdolls for load game
@@ -30,19 +32,19 @@ public class SaveManager : MonoBehaviour {
 	
 	
 	public void Save(){
-		serializer.Save(currentSaveSlot, currentSaveName);
+		container.SaveValues();
+		serializer.Save(SaveManager.instance.container.saveSlot);
 		GameManager.instance.gameState = GameState.PAUSE_MENU;
 	}
 	
 	public void Load(){		
-		serializer.Load(currentSaveSlot);
+		serializer.Load(SaveManager.instance.container.saveSlot);
 		
 		// allow 3 frames to be skipped after save to fix ragdoll bug
 		skipUpdateFrames = 3;
 		Time.timeScale = 1;
 		GameManager.instance.gameState = GameState.RUNNING;	
 	}
-	
 		
 /*	//Get saveslot text with formatted date and time
 	private string getSaveSlotText(LevelSerializer.SaveEntry se){	
@@ -77,5 +79,19 @@ public class SaveManager : MonoBehaviour {
 		return false;
 	}
 	
+	public void GrabScreenShot(){
+		StartCoroutine(rdp());
+	}		
+	
+	IEnumerator rdp() {
+		Texture2D tex = new Texture2D(Screen.width, Screen.height);
+		yield return new WaitForEndOfFrame();
+		tex.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);
+    	yield return null;
+		tex.Apply();
+		container.SaveTexture(tex);
+    	//var bytes = tex.EncodeToPNG();
+    	Destroy (tex);
+    }
 	
 }

@@ -88,6 +88,8 @@ public class Gun : MonoBehaviour {
 	}
 	
 	public void OnDisable(){
+		SetRenderer(this.gameObject, false);
+
 		if(gunParticles != null){
 			gunParticles.ChangeState(false);
 		}
@@ -106,6 +108,8 @@ public class Gun : MonoBehaviour {
 	
 	public void OnEnable()
 	{
+		SetRenderer(this.gameObject, true);
+		
 		reloadTimer = 0.0f;
 		reloading = false;
 		freeToShoot = true;
@@ -129,6 +133,14 @@ public class Gun : MonoBehaviour {
 			}
 		}
 	}
+	
+	private void SetRenderer(GameObject go, bool enableRenderer){
+    	var renderers = go.GetComponentsInChildren<Renderer>();
+	    foreach (Renderer r in renderers) {
+		    r.enabled = enableRenderer;
+    	}					
+	}
+
 	
 	public void ShotTheTarget(){
 		if(fire && !reloading){

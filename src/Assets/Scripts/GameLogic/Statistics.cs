@@ -3,9 +3,11 @@ using System.Collections;
 
 [System.Serializable]
 public class Statistics {
+	public int level = 1;
 	public int score = 0;
 	public int bodycount = 0;
 	public float playTime;
+
 	
 	//scores for different enemy types:
 	private int orcKillScore = 100;

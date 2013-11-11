@@ -9,6 +9,12 @@
 	GAME_OVER,
 }
 
+public enum LevelState {
+	LOADING_SAVE,
+	LOADING_NEXT,
+	LOADED
+}
+	
 public enum HitType
 {
 	ENEMY,

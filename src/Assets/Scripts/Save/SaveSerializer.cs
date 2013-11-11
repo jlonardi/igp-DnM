@@ -24,11 +24,11 @@ public class SaveSerializer {
 	}
 	
 	// Call this to write data
-	public void Save(int saveIndex, string saveName)
+	public void Save(int saveIndex)
 	{
 		string filePath = saveDirectory + "\\savegame" + saveIndex + ".dat";
 		
-		SaveData data = new SaveData(saveName, EditorApplication.currentScene, null);	
+		SaveData data = new SaveData();	
 		Stream stream = File.Open(filePath, FileMode.Create);
 		BinaryFormatter bformatter = new BinaryFormatter();
 		bformatter.Binder = new VersionDeserializationBinder();

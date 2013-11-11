@@ -41,7 +41,7 @@ public class sGameObject {
 		// if parents do not match, find correct parent and change it
 		string goParentStr = "";
 		string thisParentStr = "";
-		if (go.transform.parent != null){
+		if (go.transform.parent !=  null){
 			goParentStr = go.transform.parent.name;
 		}
 		if (transform.parent != null){

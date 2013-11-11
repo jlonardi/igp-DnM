@@ -25,7 +25,7 @@ public class LoadMenu {
 			if (!saveInfo.name.Equals("Empty")){
 				if(GUILayout.Button(saveInfo.name))
 				{
-					SaveManager.instance.currentSaveSlot = i;
+					SaveManager.instance.container.saveSlot = i;
 					SaveManager.instance.Load();
 				}
 			}
