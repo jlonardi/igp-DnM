@@ -18,7 +18,7 @@ public class LoadMenu {
 		for (int i = 1; i <= SaveManager.instance.maxSaveSlots; i++){
 			SaveInfo saveInfo = SaveManager.instance.GetSaveInfo(i, ref screenshot[i-1], ref date[i-1]);
 			if (saveInfo.name.Equals("Empty")){
-				if (GUILayout.Button("Empty")){
+				if (GUILayout.Button("Empty")){					
 					Debug.Log("Empty save");
 				}
 			}

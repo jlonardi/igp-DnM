@@ -79,18 +79,30 @@ public class SaveManager : MonoBehaviour {
 		return false;
 	}
 	
+	public void SaveScreenshot(Texture2D source,int targetWidth,int targetHeight) {
+    	Texture2D result=new Texture2D(targetWidth,targetHeight,source.format,true);
+    	Color[] rpixels=result.GetPixels(0);
+    	float incX=(1.0f / (float)targetWidth);
+    	float incY=(1.0f / (float)targetHeight);
+    	for(int px=0; px<rpixels.Length; px++) {
+        	rpixels[px] = source.GetPixelBilinear(incX*((float)px%targetWidth), incY*((float)Mathf.Floor(px/targetWidth)));
+	    }
+    	result.SetPixels(rpixels,0);
+	    result.Apply();
+    	container.screenshot = result.EncodeToPNG();
+	}	
+	
 	public void GrabScreenShot(){
 		StartCoroutine(rdp());
 	}		
-	
+		
 	IEnumerator rdp() {
 		Texture2D tex = new Texture2D(Screen.width, Screen.height);
 		yield return new WaitForEndOfFrame();
 		tex.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);
     	yield return null;
 		tex.Apply();
-		container.SaveTexture(tex);
-    	//var bytes = tex.EncodeToPNG();
+		SaveScreenshot(tex, 320, 180);
     	Destroy (tex);
     }
 	

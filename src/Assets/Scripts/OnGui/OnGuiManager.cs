@@ -13,7 +13,12 @@ public class OnGuiManager {
 	public LoadMenu loadMenu = new LoadMenu();
 	public Hud hud = new Hud();
 	
-	public void MenuUpdate(){
+	//constructor
+	public OnGuiManager(){
+	}	
+	
+	// this gets called from GameManager Update()
+	public void Update(){
 		switch (GameManager.instance.gameState)
 		{
 		case GameState.RUNNING:

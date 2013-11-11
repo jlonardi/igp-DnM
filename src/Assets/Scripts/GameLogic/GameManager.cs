@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour {
 	}	
 
 	void Update(){
-		// let OnGuiManager handle menu navigations
-		onGuiManager.MenuUpdate();
+		// call updates on child managers
+		onGuiManager.Update();
+		statistics.Update();
+		waves.Update();
 	}
 }
