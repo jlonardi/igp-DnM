@@ -16,6 +16,11 @@ public class SmoothMouseLookX : MonoBehaviour {
 	private float input;
     private float deltaSmooth;
 	
+	void Start(){
+		//preserve initial player rotation when level starts
+		position = transform.eulerAngles.y;	
+	}
+	
 	void Update(){			
  		// mouse look doesn't work if game not running
 		if(GameManager.instance.gameState != GameState.RUNNING){
