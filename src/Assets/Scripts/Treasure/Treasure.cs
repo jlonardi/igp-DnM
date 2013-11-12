@@ -62,10 +62,6 @@ public class Treasure : MonoBehaviour {
 	public void RestoreTreasureOnGround(){
 		animator.speed = 100;
 		SetTreasureOnGround();
-		if (treasureType == TreasureType.CHEST){
-			treasureLevel.transform.localPosition -= new Vector3(0, 
-			               0.2671817f * treasureAmount/treasureFullAmount, 0);				
-		}
 	}
 	
 	// called when player sets treasure on ground	
