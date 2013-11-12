@@ -62,7 +62,7 @@ public class OnGuiManager {
 				GameManager.instance.gameState = GameState.PAUSE_MENU;
 			}
 			break;
-			
+
 		case GameState.SAVE_DIALOG:
 			// if menu key pressed, return to save menu
 			if (Input.GetButtonDown("Menu")){
@@ -77,6 +77,9 @@ public class OnGuiManager {
 			Screen.lockCursor=false;
 			break;
 			
+		case GameState.SAVE_SCREENSHOT:
+			break;
+
 		default:
 			break;
 		}			
@@ -98,6 +101,9 @@ public class OnGuiManager {
 			break;
 		case GameState.SAVE_DIALOG:
 			saveDialog.Show();
+			break;
+		case GameState.SAVE_SCREENSHOT:
+			//hud.Show();
 			break;
 		case GameState.MAIN_MENU:
 			break;

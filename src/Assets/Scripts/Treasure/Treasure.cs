@@ -19,24 +19,17 @@ public class Treasure : MonoBehaviour {
 	private Animator animator;
 	
 	//object which describes how much treasure is left
-	public GameObject treasureLevel;
+	public GameObject treasureLevel;	
 	
-	//marks treasure level y position
-	public Vector3 treasureLevelPosition = Vector3.zero;
-	
-	
-    public void Awake()
+    void Awake()
     {
         Treasure.instance = this;
 		animator = GetComponent<Animator>();
 		animator.speed = 4;	// animation playback speed
 		animator.SetBool("onGround",false);
 		treasureFullAmount = treasureAmount;
-		if (treasureType == TreasureType.CHEST){
-			treasureLevelPosition = treasureLevel.transform.position;
-		}
     }
-	
+
 	public int Loot(int lootAmount){
 		// no loot allowed if player is still carrying treasure
 		if (!onGround){	
@@ -54,10 +47,9 @@ public class Treasure : MonoBehaviour {
 		if (treasureType == TreasureType.CHEST){
 			// change visible money position on chest so treasure seems smaller after every loot.
 			// chest's treasure y range is from -0.03 to 0.2371817 (0.2671817 total).
-			treasureLevel.transform.position -= new Vector3(0, 0.2671817f * lootAmount/treasureFullAmount, 0);				
-			treasureLevelPosition = treasureLevel.transform.position;
+			treasureLevel.transform.localPosition -= new Vector3(0, 0.2671817f * lootAmount/treasureFullAmount, 0);				
 		}
-		
+
 		// if all taken, game over
 		if (treasureAmount <= 0){			
 			GameManager.instance.GameOver();
@@ -71,9 +63,9 @@ public class Treasure : MonoBehaviour {
 		animator.speed = 100;
 		SetTreasureOnGround();
 		if (treasureType == TreasureType.CHEST){
-			//change treasure level
-			treasureLevel.transform.position = treasureLevelPosition;
-		}		
+			treasureLevel.transform.localPosition -= new Vector3(0, 
+			               0.2671817f * treasureAmount/treasureFullAmount, 0);				
+		}
 	}
 	
 	// called when player sets treasure on ground	

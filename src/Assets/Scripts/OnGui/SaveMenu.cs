@@ -20,12 +20,12 @@ public class SaveMenu {
 			SaveInfo saveInfo = SaveManager.instance.GetSaveInfo(i, ref screenshot[i-1], ref date[i-1]);
 			if(GUILayout.Button(saveInfo.name))
 			{				
+				GameManager.instance.gameState = GameState.SAVE_SCREENSHOT;
 				// take screenshot now as it takes additional frame to complete
 				SaveManager.instance.GrabScreenShot();
 				
 				SaveManager.instance.container.saveSlot = i;
 				SaveManager.instance.container.name = saveInfo.name;
-				GameManager.instance.gameState = GameState.SAVE_DIALOG;
 			}
 		}					        
 		if(GUILayout.Button ("Return"))	{

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
 	
-	public void Awake()
+	void Awake()
     {
 		// never destroy Game Manager on scene load
 		DontDestroyOnLoad (this);	
