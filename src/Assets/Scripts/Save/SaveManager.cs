@@ -7,12 +7,8 @@ using System.Collections.Generic;
 public class SaveManager : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SaveManager instance;
-	public void Awake()
-	{
-		// never destroy Save Manager on scene load
-		SaveManager.instance = this;
-		DontDestroyOnLoad (this);
-	}
+	public int maxSaveSlots = 5; //max amount of games saved
+	public SaveInfo[] saveInfo;
 
 	[HideInInspector]	
 	public SaveContainer container = new SaveContainer();
@@ -20,15 +16,25 @@ public class SaveManager : MonoBehaviour {
 	private SaveSerializer serializer = new SaveSerializer();
 	
 	private int skipUpdateFrames = 3;
-	public int maxSaveSlots = 5; //max amount of games saved
 		
+	public void Awake()
+	{
+		// never destroy Save Manager on scene load
+		SaveManager.instance = this;
+		DontDestroyOnLoad (this);
+		saveInfo = new SaveInfo[maxSaveSlots];
+	}
+
 	void Update(){
 		//workaround for relaxing recently instantiated ragdolls for load game
 		SkipUpdateFrames();
 	}		
 
-	public SaveInfo GetSaveInfo(int saveSlot, ref Texture2D screenshot, ref DateTime dateTime){
-		return serializer.GetSaveInfo(saveSlot, ref screenshot, ref dateTime);
+	// fill saveInfo array with headeredata from savegames
+	public void GetSaveInfo(){
+		for (int i=0; i<maxSaveSlots; i++){
+			saveInfo[i] = serializer.GetSaveInfo(i);
+		}
 	}
 	
 	
@@ -46,18 +52,7 @@ public class SaveManager : MonoBehaviour {
 		Time.timeScale = 1;
 		GameManager.instance.gameState = GameState.RUNNING;	
 	}
-		
-/*	//Get saveslot text with formatted date and time
-	private string getSaveSlotText(LevelSerializer.SaveEntry se){	
-		return 	se.Name + "  (" +
-				string.Format("{0:00}", se.When.Day) + "." +
-				string.Format("{0:00}", se.When.Month) + "." +
-				se.When.Year + ", " +
-				string.Format("{0:00}", se.When.Hour) + ":" + 
-				string.Format("{0:00}", se.When.Minute) + ")";
-	}*/
-	
-	
+
 	//workaround for relaxing recently instantiated ragdolls for load game
 	private bool SkipUpdateFrames(){
 		if (skipUpdateFrames==0){
@@ -137,10 +132,3 @@ public class SaveManager : MonoBehaviour {
 	}	
 	
 }
-
-public class SaveInfo{
-	public string name;
-	public DateTime dateTime;
-	public Texture2D screenshot;
-}
-		 

@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public class OnGuiManager {
+public class OnGuiManager : MonoBehaviour {
 	// skin for all menu items
   	public GUISkin guiSkin;
 
@@ -13,12 +13,42 @@ public class OnGuiManager {
 	public LoadMenu loadMenu = new LoadMenu();
 	public Hud hud = new Hud();
 	
-	//constructor
-	public OnGuiManager(){
-	}	
-	
+
+	// select which gui items are shown by game state
+	void OnGUI(){
+		switch (GameManager.instance.gameState)
+		{		
+		case GameState.PAUSE_MENU:
+			pauseMenu.Show();
+			break;
+		case GameState.LOAD_MENU_MAIN:
+		case GameState.LOAD_MENU_PAUSE:
+			loadMenu.Show();
+			break;
+		case GameState.SAVE_MENU:
+			saveMenu.Show();
+			break;
+		case GameState.SAVE_DIALOG:
+			saveDialog.Show();
+			break;
+		case GameState.SAVE_SCREENSHOT:
+			//hud.Show();
+			break;
+		case GameState.MAIN_MENU:
+			break;
+		case GameState.GAME_OVER:
+			gameOverScreen.Show();
+			break;
+		case GameState.RUNNING:
+			hud.Show();
+			break;
+		default:
+			break;
+		}
+	}
+
 	// this gets called from GameManager Update()
-	public void Update(){
+	void Update(){
 		switch (GameManager.instance.gameState)
 		{
 		case GameState.RUNNING:
@@ -83,38 +113,5 @@ public class OnGuiManager {
 		default:
 			break;
 		}			
-	}
-	
-	// select which gui items are shown by game state
-	public void Show(){
-		switch (GameManager.instance.gameState)
-		{		
-		case GameState.PAUSE_MENU:
-			pauseMenu.Show();
-			break;
-		case GameState.LOAD_MENU_MAIN:
-		case GameState.LOAD_MENU_PAUSE:
-			loadMenu.Show();
-			break;
-		case GameState.SAVE_MENU:
-			saveMenu.Show();
-			break;
-		case GameState.SAVE_DIALOG:
-			saveDialog.Show();
-			break;
-		case GameState.SAVE_SCREENSHOT:
-			//hud.Show();
-			break;
-		case GameState.MAIN_MENU:
-			break;
-		case GameState.GAME_OVER:
-			gameOverScreen.Show();
-			break;
-		case GameState.RUNNING:
-			hud.Show();
-			break;
-		default:
-			break;
-		}
-	}
+	}	
 }

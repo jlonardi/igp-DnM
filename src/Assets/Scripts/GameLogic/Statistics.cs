@@ -3,9 +3,9 @@ using System.Collections;
 
 [System.Serializable]
 public class Statistics {
-	public int level = 1;
-	public int score = 0;
-	public int bodycount = 0;
+	public int level;
+	public int score;
+	public int bodycount;
 	public float playTime;
 
 	//scores for different enemy types:
@@ -41,5 +41,6 @@ public class Statistics {
 	public void Reset(){
 		score = 0;
 		bodycount = 0;
+		level = 1;
 	}
 }

@@ -5,8 +5,9 @@ using UnitySerialization;
 
 public class SaveContainer {
 	// define all variables to be saved here
-	public string name;
 	public int saveSlot;
+	public string name;
+	public string dateTime;
 	public byte[] screenshot;
 	public int level;
 	public float mouseX;
@@ -52,7 +53,10 @@ public class SaveContainer {
     			sGameObjects.Add(go.Serializable());
     		}
     	}				
-		
+
+		// save current time and date
+		dateTime = System.DateTime.Now.ToString("MM/dd/yyyy, HH:mm");
+
 		// save regular variable here
 		mouseX = SmoothMouseLookX.instance.position;
 		mouseY = SmoothMouseLookY.instance.position;

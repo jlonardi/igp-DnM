@@ -26,11 +26,15 @@ public class PauseMenu {
 		}
 		if(GUILayout.Button ("Save game"))
 		{
+			// load previous save details
+			SaveManager.instance.GetSaveInfo();
 			// show save game menu
 			GameManager.instance.gameState = GameState.SAVE_MENU;
 		}
 		if(GUILayout.Button ("Load game"))
 		{
+			// load previous save details
+			SaveManager.instance.GetSaveInfo();
 			// show load game menu
 			GameManager.instance.gameState = GameState.LOAD_MENU_PAUSE;
 		}

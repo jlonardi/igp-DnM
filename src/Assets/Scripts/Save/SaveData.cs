@@ -18,18 +18,19 @@ namespace UnitySerialization {
 		{		
 			// use reflection to restore all public variables from save container
 			foreach (FieldInfo field in SaveManager.instance.container.GetType().GetFields(bindingFlags)){
-				// get field type
-				Type type = Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType;
-				// get field value
-				var val = info.GetValue(field.Name, type);
-				// convert value to correct type
-				object convertedValue = (val == null) ? null : Convert.ChangeType(val, type);
-				// set value into game's save container
-				field.SetValue(SaveManager.instance.container, convertedValue);			
-			}				
-			// when are saved data is stored in save container, load level
-			GameManager.instance.levelState = LevelState.LOADING_SAVE;
-			Application.LoadLevel(1); //levelNumber							
+				try {
+					// get field type
+					Type type = Nullable.GetUnderlyingType(field.FieldType) ?? field.FieldType;
+					// get field value
+					var val = info.GetValue(field.Name, type);
+					// convert value to correct type
+					object convertedValue = (val == null) ? null : Convert.ChangeType(val, type);
+					// set value into game's save container
+					field.SetValue(SaveManager.instance.container, convertedValue);			
+				} catch {
+					Debug.LogWarning("Savegame doesn't contain value for " + field.Name + ", maybe you are loading from older savegame format?");
+				}
+			}
 		}
 		
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

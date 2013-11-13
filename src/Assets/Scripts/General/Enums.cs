@@ -11,6 +11,7 @@
 }
 
 public enum LevelState {
+	LOADING_NEWGAME,
 	LOADING_SAVE,
 	LOADING_NEXT,
 	LOADED

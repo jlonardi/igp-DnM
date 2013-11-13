@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour {
 
 	public LevelState levelState;	
 	public GameState gameState = GameState.MAIN_MENU;	
-	public OnGuiManager onGuiManager = new OnGuiManager();
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
 	
@@ -19,9 +18,12 @@ public class GameManager : MonoBehaviour {
        	GameManager.instance = this;
     }	
 	
-	void Start () {
+	void Update(){
+		// call updates on child managers
+		statistics.Update();
+		waves.Update();
 	}
-	
+
 	public void NewGame(){
 		// wait until all gameobjects are loaded
 		gameState = GameState.RUNNING;
@@ -33,14 +35,4 @@ public class GameManager : MonoBehaviour {
 		gameState = GameState.GAME_OVER;
 	}
 	
-	void OnGUI(){
-		onGuiManager.Show();
-	}	
-
-	void Update(){
-		// call updates on child managers
-		onGuiManager.Update();
-		statistics.Update();
-		waves.Update();
-	}
 }

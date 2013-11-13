@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour {
 			
 		} else {
 			//loads first level
-			GameManager.instance.levelState = LevelState.LOADING_NEXT;
+			GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
 			Application.LoadLevel("GameLevel");
 		}
 	}

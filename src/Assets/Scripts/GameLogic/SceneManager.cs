@@ -20,11 +20,14 @@ public class SceneManager : MonoBehaviour {
 			GameManager.instance.gameState = GameState.MAIN_MENU;
 			break;
 		default: // others are levels
-			if (GameManager.instance.levelState == LevelState.LOADING_NEXT){
-				GameManager.instance.levelState = LevelState.LOADED;				
+			if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
+				GameManager.instance.levelState = LevelState.LOADED;
 				GameManager.instance.NewGame();
-			}
-			if (GameManager.instance.levelState == LevelState.LOADING_SAVE){
+				
+			} else if (GameManager.instance.levelState == LevelState.LOADING_NEXT){
+				GameManager.instance.levelState = LevelState.LOADED;
+
+			} else if (GameManager.instance.levelState == LevelState.LOADING_SAVE){
 				GameManager.instance.levelState = LevelState.LOADED;
 				SaveManager.instance.container.RestoreValues();	
 			}
