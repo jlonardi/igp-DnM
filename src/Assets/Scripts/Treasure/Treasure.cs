@@ -79,7 +79,8 @@ public class Treasure : MonoBehaviour {
 	}
 	
 	// called when player sets treasure on ground	
-	public void SetTreasureOnGround(){		
+	public void SetTreasureOnGround(){
+		audio.Play();
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
 
