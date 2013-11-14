@@ -37,7 +37,7 @@ public class SmoothMouseLookY : MonoBehaviour {
         position += deltaSmooth;
 		
 		//if carrying treasure, restrict mouse look angle
-		if(GameManager.instance.treasureState == TreasureState.CARRYING){
+		if(GameManager.instance.treasureState == TreasureState.SET_ON_GROUND){
 			minimumY = -80f;
 			maximumY = 80f;
 		} else {

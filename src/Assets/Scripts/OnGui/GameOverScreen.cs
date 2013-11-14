@@ -6,7 +6,7 @@ public class GameOverScreen {
 
 	// this get's called from game manager when GameState.GAME_OVER
 	public void Show(){
-		if (game = null){
+		if (game == null){
 			game = GameManager.instance;
 		}
 
