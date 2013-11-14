@@ -91,15 +91,12 @@ public class SaveContainer {
 			SmoothMouseLookX.instance.position = mouseX;
 			SmoothMouseLookY.instance.position = mouseY;
 			GameManager.instance.statistics.level = level;
-			EnemySpawnManager.instance.timeOfLastWave = timeOfLastWave;
 			PlayerHealth.instance.armor = playerArmor;
 			PlayerHealth.instance.health = playerHealth;
 			Treasure.instance.treasureType = treasureType;
 			Treasure.instance.treasureAmount = treasureAmount;
 			Treasure.instance.treasureFullAmount = treasureFullAmount;
 			Treasure.instance.onGround = treasureOnGround;
-			GameManager.instance.statistics.playTime = playTime;
-			GameManager.instance.waves.wave = wave;
 			GunManager.instance.guns[0].gun.currentRounds = gun0_rounds;
 			GunManager.instance.guns[1].gun.currentRounds = gun1_rounds;
 			GunManager.instance.guns[0].gun.totalClips = gun0_clips;
@@ -107,7 +104,12 @@ public class SaveContainer {
 			GunManager.instance.currentGunIndex = currentGunIndex;
 			GameManager.instance.statistics.bodycount = bodycount;
 			GameManager.instance.statistics.score = score;
-				
+			GameManager.instance.statistics.playTime = playTime;
+			GameManager.instance.waves.wave = wave;
+
+			// calculate time of last enemy wave
+			EnemySpawnManager.instance.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
+
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
 			if (Treasure.instance.onGround){
 				Treasure.instance.RestoreTreasureOnGround();

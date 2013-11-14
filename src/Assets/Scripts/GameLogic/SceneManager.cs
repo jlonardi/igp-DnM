@@ -5,6 +5,9 @@ using System.Collections;
 // during level loading, it's script will always trigger OnLevelWasLoaded
 public class SceneManager : MonoBehaviour {
 	public GameObject gameManagerPrefab;
+
+	// set this to true on scene editor, so we can start level on editor without going to main menu
+	public bool GameLevel = false;
 	
 	void Start(){
 
@@ -13,14 +16,16 @@ public class SceneManager : MonoBehaviour {
 			GameObject gameManager = (GameObject)Instantiate(gameManagerPrefab, Vector3.zero, Quaternion.identity);
 			gameManager.name = "Game Manager";
 
-			// workaround if we are testing a scene directly in editor and game is running
-			if (GameManager.instance.gameState == GameState.RUNNING){
+			// this is only for testing level on editor
+			if (GameLevel == true && GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
+				GameManager.instance.levelState = LevelState.LOADED;
 				GameManager.instance.NewGame();
 			}
 		}				
 	}
 	
 	void OnLevelWasLoaded(int level) {
+		SaveManager.instance.container.level = level;
 		switch (level){
 		case 0:	// main menu
 			GameManager.instance.gameState = GameState.MAIN_MENU;

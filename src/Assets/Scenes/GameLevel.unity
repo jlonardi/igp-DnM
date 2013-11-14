@@ -2122,6 +2122,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 236861284}
   - 114: {fileID: 236861285}
+  - 114: {fileID: 236861287}
+  - 114: {fileID: 236861286}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -2152,6 +2154,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManagerPrefab: {fileID: 100000, guid: cd2e284da2aa6644d83be8a771fd56f1, type: 2}
+  GameLevel: 1
+--- !u!114 &236861286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236861283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90099eb967fc5034b8dc34ec6c648cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orcRagdollPrefab: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
+  maxRagdolls: 20
+--- !u!114 &236861287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236861283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caee8f5291651a84586e4130f37b28e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orcPrefab: {fileID: 100142, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
+  maxEnemies: 20
+  areas: []
+  timeOfLastWave: 0
+  waveInterval: 5
 --- !u!1001 &264319231
 Prefab:
   m_ObjectHideFlags: 0
@@ -11981,63 +12013,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 773427037}
   m_GameObject: {fileID: 1607784575}
   m_Mesh: {fileID: 4300060, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
---- !u!1 &1610316991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1610316992}
-  - 114: {fileID: 1610316993}
-  - 114: {fileID: 1610316994}
-  m_Layer: 0
-  m_Name: Enemy Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1610316992
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610316991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 68.2146683, y: 7.36199951, z: 64.6901627}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &1610316993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610316991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caee8f5291651a84586e4130f37b28e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orcPrefab: {fileID: 100142, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
-  maxEnemies: 20
-  areas: []
-  timeOfLastWave: 0
-  waveInterval: 5
---- !u!114 &1610316994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610316991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90099eb967fc5034b8dc34ec6c648cb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orcRagdollPrefab: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
-  maxRagdolls: 20
 --- !u!1 &1617571854
 GameObject:
   m_ObjectHideFlags: 0
