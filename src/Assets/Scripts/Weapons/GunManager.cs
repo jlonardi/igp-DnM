@@ -55,9 +55,13 @@ public class GunManager : MonoBehaviour {
 	}
 	
 	public void ChangeToGun(int gunIndex){	
+		bool oldEnabled = currentGun.enabled;
 		currentGun.enabled = false;
 		currentGun = guns[gunIndex].gun;
 		currentGunIndex = gunIndex;
+		if (oldEnabled){
+			currentGun.enabled = true;
+		}
 	}	
 }
 
