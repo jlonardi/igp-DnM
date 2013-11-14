@@ -11,7 +11,7 @@ public class LoadMenu {
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
 
-		GUI.Box(new Rect((Screen.width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Save Game", myStyle);
+		GUI.Box(new Rect((Screen.width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Load Game", myStyle);
 		GUILayout.BeginArea(new Rect((Screen.width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
