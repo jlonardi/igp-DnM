@@ -7,9 +7,16 @@ public class SceneManager : MonoBehaviour {
 	public GameObject gameManagerPrefab;
 	
 	void Start(){
+
+		// if not Game Manager already, create one
 	    if (!(GameObject.FindWithTag("Game Manager"))){
 			GameObject gameManager = (GameObject)Instantiate(gameManagerPrefab, Vector3.zero, Quaternion.identity);
 			gameManager.name = "Game Manager";
+
+			// workaround if we are testing a scene directly in editor and game is running
+			if (GameManager.instance.gameState == GameState.RUNNING){
+				GameManager.instance.NewGame();
+			}
 		}				
 	}
 	
