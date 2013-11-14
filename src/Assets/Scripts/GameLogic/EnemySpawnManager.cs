@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemySpawnManager : MonoBehaviour {
-	//use singleton since only we need once instance of this class
+	//use singleton since only we need one instance of this class
 	public static EnemySpawnManager instance;
-    public void Awake()
-    {
-        EnemySpawnManager.instance = this;
-    }	
 
 	public GameObject orcPrefab;
-	
-	public List<GameObject> enemies = new List<GameObject>();
+	public int maxEnemies = 20;
+	private int enemyCount = 0;
 
 	public Transform[] areas;	
 	public float timeOfLastWave = -5f;
 	public float waveInterval = 5f;
 		
 	private GameObject player;
+	
+	void Awake()
+	{
+		EnemySpawnManager.instance = this;
+	}	
 	
 	void Start () {	
 		player = GameObject.Find("Player");	
@@ -36,9 +37,9 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	private bool newWaveNeeded() {
 		
-		if( (timeOfLastWave + waveInterval) < Time.timeSinceLevelLoad) {
+		if( (timeOfLastWave + waveInterval) < Time.time) {
 			//Debug.Log("New wave needed");
-			timeOfLastWave = Time.timeSinceLevelLoad;
+			timeOfLastWave = Time.time;
 			return true;	
 		}
 		
@@ -46,6 +47,11 @@ public class EnemySpawnManager : MonoBehaviour {
 	}
 	
 	private void createSpawnWave() {
+		// don't add enemies if we have already a maximum number we can handle
+		if (enemyCount >= maxEnemies){
+			return;
+		}
+
 		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
 		
 		while(Vector3.Distance( areas[index].position, player.transform.position) < 50) {
@@ -53,48 +59,46 @@ public class EnemySpawnManager : MonoBehaviour {
 		}
 		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));
-		
-		GameObject newEnemy = instantiateEnemy(EnemyType.ORC, areas[index].position + offset);
 
+		// create a new enemy instance
+		GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
+
+		// use raycast to set enemy above the terrain
 		RaycastHit hit = new RaycastHit();
-		Ray ray = new Ray(newEnemy.transform.position, -Vector3.up);
-		
-        Physics.Raycast(ray,out hit);
-		newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, hit.point.y + 3, newEnemy.transform.position.z);
-		//Debug.Log("Orc instantiated");
+		Ray ray = new Ray(enemy.transform.position, -Vector3.up);		
+		Physics.Raycast(ray,out hit);
+		enemy.transform.position = new Vector3(enemy.transform.position.x, hit.point.y + 3, enemy.transform.position.z);
 	}
 	
-	public void ClearEnemies(){
-		enemies.Clear();
-		foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[]){
-    		if(go.name.Equals("orc(Clone)")){
-				Destroy(go);
-    		}
-    	}
+	// make a new enemy with prefab's rotation
+	public GameObject CreateEnemy(EnemyType enemyType, Vector3 position){
+		return CreateEnemy(enemyType, position, Quaternion.identity);
 	}
-	
-	
-	// use prefabs rotation when creating a new enemy
-	public GameObject instantiateEnemy(EnemyType enemyType, Vector3 position){
-		switch(enemyType) {
-        	case EnemyType.ORC:
-			default:
-				return instantiateEnemy(enemyType, position, orcPrefab.transform.rotation);				
-   		}
-		
-	}
-	
-	// rotation can be also defined (mainly for restoring saved enemys location)
-	public GameObject instantiateEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation){
+
+	// make a new enemy and apply given rotation if applyRotation is set
+	public GameObject CreateEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation){
+		GameObject enemyObject;		
 		GameObject enemyPrefab;
+
+		// add enemycount
+		enemyCount++;
+
+		// select correct prefab by enemy type
 		switch(enemyType) {
         	case EnemyType.ORC:
 			default:
 				enemyPrefab = orcPrefab;
 				break;			
-   		}
-		GameObject enemyObject = (GameObject)Instantiate(enemyPrefab, position, rotation);
-		enemies.Add(enemyObject);
+		}
+
+		//if rotation is not set to null, apply it
+		if (rotation != Quaternion.identity){
+			enemyObject = (GameObject)Instantiate(enemyPrefab, position, rotation);
+
+		// else use prefabs rotation
+		} else {
+			enemyObject = (GameObject)Instantiate(enemyPrefab, position, enemyPrefab.transform.rotation);
+		}
 		return enemyObject;
 	}
 }

@@ -12021,7 +12021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orcPrefab: {fileID: 100142, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
-  enemies: []
+  maxEnemies: 20
   areas: []
   timeOfLastWave: 0
   waveInterval: 5
@@ -12037,8 +12037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orcRagdollPrefab: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
-  maxRagdolls: 50
-  bodies: []
+  maxRagdolls: 20
 --- !u!1 &1617571854
 GameObject:
   m_ObjectHideFlags: 0

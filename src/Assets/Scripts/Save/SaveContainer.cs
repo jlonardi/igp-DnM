@@ -57,6 +57,9 @@ public class SaveContainer {
 		// save current time and date
 		dateTime = System.DateTime.Now.ToString("MM/dd/yyyy, HH:mm");
 
+		// save playtime with previous value + time since level load
+		playTime = GameManager.instance.statistics.playTime + Time.timeSinceLevelLoad;
+
 		// save regular variable here
 		mouseX = SmoothMouseLookX.instance.position;
 		mouseY = SmoothMouseLookY.instance.position;
@@ -67,7 +70,6 @@ public class SaveContainer {
 		treasureAmount = Treasure.instance.treasureAmount;
 		treasureFullAmount = Treasure.instance.treasureFullAmount;
 		treasureOnGround = Treasure.instance.onGround;
-		playTime = GameManager.instance.statistics.playTime;
 		wave = GameManager.instance.waves.wave;
 		gun0_rounds = GunManager.instance.guns[0].gun.currentRounds;
 		gun1_rounds = GunManager.instance.guns[1].gun.currentRounds;
@@ -140,7 +142,7 @@ public class SaveContainer {
 					sgo.restoreChildTransforms(go.transform);
 					
 				} else if(sgo.name.Equals("orc(Clone)")) {
-					EnemySpawnManager.instance.instantiateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
+					EnemySpawnManager.instance.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
 														sgo.transform.rotation.toQuaternion);
 
 				} else if(sgo.name.Equals("1x1x1m Box")) {

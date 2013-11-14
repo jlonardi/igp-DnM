@@ -3,28 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RagdollManager : MonoBehaviour {
-	//use singleton since only we need once instance of this class
+	//use singleton since only we need one instance of this class
 	public static RagdollManager instance;
-    public void Awake()
-    {
-        RagdollManager.instance = this;
-    }	
 
 	public GameObject orcRagdollPrefab;
-	public int maxRagdolls = 50;
+	public int maxRagdolls = 20;
 
-	public List<GameObject> bodies = new List<GameObject>();
+	private List<GameObject> bodies = new List<GameObject>();
 
+	void Awake()
+	{
+		RagdollManager.instance = this;
+	}	
 	
-	public void ClearBodies(){
-		foreach(GameObject go in bodies){
-			Destroy(go);
-		}
-		bodies.Clear();
-	}
-
 	public GameObject MakeRagdoll(EnemyType enemyType, GameObject enemyObject, bool copyPose){		
 		GameObject ragdollPrefab;
+
+		// if too many dead bodies, remove the oldest
+		if (bodies.Count >= maxRagdolls){
+			GameObject killObj = bodies[0];
+			bodies.RemoveAt(0);
+			Destroy(killObj);
+		}
 
 		// select correct ragdoll prefab by enemytype
 		switch(enemyType) {
@@ -32,13 +32,6 @@ public class RagdollManager : MonoBehaviour {
 		default:
 			ragdollPrefab = orcRagdollPrefab;
 			break;			
-		}
-
-		// if too many dead bodies, remove the oldest
-		if (bodies.Count >= maxRagdolls){
-			GameObject killObj = bodies[0];
-			bodies.RemoveAt(0);
-			Destroy(killObj);
 		}
 
 		// instantiate ragdoll and copy the hosts position and bone rotations for ragdoll replacement
