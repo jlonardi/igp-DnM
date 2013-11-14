@@ -1107,6 +1107,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400142}
   - 114: {fileID: 11400142}
+  - 114: {fileID: 11400000}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: orc ragdoll
   m_TagString: enemy
@@ -2166,6 +2168,81 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5999999, y: 1.85000002, z: 2.01999998}
   m_Center: {x: .109999999, y: 0, z: -.00500112772}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100142}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3695600aa79986c4e98e66e1f01bc9b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathSounds:
+  - {fileID: 8300000, guid: adf14584fcd8c0548baa47b4a9c7e130, type: 3}
+  - {fileID: 8300000, guid: 50a2c39316978a64ca0c603cb5b081f4, type: 3}
+  - {fileID: 8300000, guid: 4a7537b2ed857f746a2ecbeb65dc4e82, type: 3}
+  - {fileID: 8300000, guid: 57667d0c83118f24ba4991526ad723d7, type: 3}
+  - {fileID: 8300000, guid: 100328634a3b9cd4f81e8905e3689ca7, type: 3}
 --- !u!114 &11400142
 MonoBehaviour:
   m_ObjectHideFlags: 1

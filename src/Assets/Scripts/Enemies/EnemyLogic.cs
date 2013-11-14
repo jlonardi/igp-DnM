@@ -44,6 +44,8 @@ public class EnemyLogic : MonoBehaviour {
 	private RagdollManager ragdolls;
 
 	private PlayerHealth playerVitals;
+
+	public AudioClip[] painSounds;
 	
 	public void Start() {
 		enemyMovement = GetComponent<EnemyMovement>();
@@ -185,6 +187,8 @@ public class EnemyLogic : MonoBehaviour {
 		if(health <= 0) {
 			Die(hit, direction, power);
 		}
+
+		PlaySound(painSounds);
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
@@ -228,5 +232,20 @@ public class EnemyLogic : MonoBehaviour {
 				} 			
 			}
 		}
+	}
+
+	private void PlaySound(AudioClip clip)
+	{
+		if (!audio.isPlaying)
+		{
+			audio.clip = clip;
+			audio.Play();
+		}
+	}
+
+	private void PlaySound(AudioClip[] clips)
+	{
+		int clipNum = Random.Range(0, clips.Length - 1);
+		PlaySound(clips[clipNum]);
 	}
 }
