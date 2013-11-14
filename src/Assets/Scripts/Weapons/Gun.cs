@@ -2,9 +2,11 @@
 using System;
 using System.Collections;
 
-enum FireType {
-	RAYCAST,
-	PHYSIC_PROJECTILE,
+public enum GunType {
+	SINGLE_FIRE,
+	SERIAL_FIRE,
+	MINIGUN,
+	PROJECTILE
 }
 
 public class Gun : MonoBehaviour {
@@ -21,25 +23,25 @@ public class Gun : MonoBehaviour {
 	
 	//Max damage on optimal hit
 	public float maxDamage = 50.0f;
-	
+
+	public GunType gunType = GunType.SINGLE_FIRE;
+
 	//Speed of the projectile in m/s
 	public float projectileSpeed;
 	
-	public int clipSize;
-	public int totalClips;
+	//only for minigun!!
+	public float startDelay = 0;
 
-	public bool useGravity;
-	
-	public bool isExplosive;
+	public int clipSize = 30;
+	public int totalClips = 20;
+
 	//Time to reload the weapon in seconds
 	public float reloadTime;
 	
-	public bool autoReload;
 	public int currentRounds;
 
 	public float pushPower = 3.0f;	
 
-//	public SoldierCamera soldierCamera;
 	private Camera cam;
 
 	public GameObject bulletMark;
@@ -56,7 +58,9 @@ public class Gun : MonoBehaviour {
 	public AudioClip shootSound;
 	public AudioClip reloadSound;	
 	public AudioClip outOfAmmoSound;
-	
+	public AudioClip miniGunStartSound;
+	public AudioClip miniGunStopSound;
+
 	[HideInInspector]
 	public bool freeToShoot;
 	
@@ -66,25 +70,67 @@ public class Gun : MonoBehaviour {
 	[HideInInspector]
 	public bool fire;
 
-	private Transform weaponTransformReference;
-	private FireType fireType;	
+//	private Transform weaponTransformReference;
 	private float reloadTimer;
 	private float lastShootTime;
+	private float startShootTime = -1f;
+
+	//minigun barrelspin speed
+	public float spinSpeed = 0f;
 	private float shootDelay;
-	
-	private AudioSource shootSoundSource;
-	private AudioSource reloadSoundSource;
-	private AudioSource outOfAmmoSoundSource;
+
+	private AudioSource audio;
+//	private AudioSource shootSoundSource;
+//	private AudioSource reloadSoundSource;
+//	private AudioSource outOfAmmoSoundSource;
 	
 	private Transform shootingParticles;
 	private float timerToCreateDecal;
 	
 	private HitParticles hitParticles;
+	private GunManager gunManager;
 	
 	void Start(){		
-		weaponTransformReference = this.transform;
+		gunManager = GunManager.instance;
 		cam = Camera.main.camera;
 		hitParticles = GunManager.instance.hitParticles;
+	}
+	
+	void Update (){
+		timerToCreateDecal -= Time.deltaTime;
+		if(Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
+			PlayOutOfAmmoSound();
+		}
+		if (gunType == GunType.MINIGUN){
+			if(Input.GetButtonDown("Fire1") && currentRounds > 0 && !reloading && freeToShoot){
+				// mark time for minigun windup
+				if (startShootTime == -1){
+					startShootTime = Time.time;
+					audio.PlayOneShot(miniGunStartSound);
+				}
+			}
+			if(fire && !reloading){
+				if (spinSpeed < 1000){
+					spinSpeed += 600 * Time.deltaTime;
+				} else {
+					spinSpeed = 1000;
+				}
+			} else {
+				if (spinSpeed > 0){
+					spinSpeed -= 600 * Time.deltaTime;
+				} else {
+					spinSpeed = 0;
+				}
+			}
+			this.transform.Rotate(Vector3.forward * spinSpeed * Time.deltaTime, Space.Self);
+		}
+
+		if(Input.GetButtonUp("Fire1")){
+			startShootTime = -1;
+			freeToShoot = true;
+		}
+		HandleReloading();
+		ShootTheTarget();
 	}
 	
 	public void OnDisable(){
@@ -108,16 +154,14 @@ public class Gun : MonoBehaviour {
 	
 	public void OnEnable()
 	{
+		if (audio == null){
+			audio = transform.parent.gameObject.audio;
+		}
 		SetRenderer(this.gameObject, true);
-		
 		reloadTimer = 0.0f;
 		reloading = false;
 		freeToShoot = true;
 		shootDelay = 1.0f / fireRate;
-		
-		if(projectilePrefab != null){
-			fireType = FireType.PHYSIC_PROJECTILE;
-		}
 		
 		if(shotLight != null){
 			shotLight.enabled = false;
@@ -142,10 +186,14 @@ public class Gun : MonoBehaviour {
 	}
 
 	
-	public void ShotTheTarget(){
-		if(fire && !reloading){
+	public void ShootTheTarget(){
+		if(fire && !reloading){				
 			if(currentRounds > 0){
 				if(Time.time > lastShootTime && freeToShoot){
+					if(Time.time < startShootTime + startDelay){
+						return;
+					}
+
 					lastShootTime = Time.time + shootDelay;			
 					
 					if(capsuleEmitter != null){
@@ -164,14 +212,12 @@ public class Gun : MonoBehaviour {
 						shotLight.enabled = true;
 					}
 					
-					switch(fireType){
-						case FireType.RAYCAST:
-							CheckRaycastHit();
-							break;
-						case FireType.PHYSIC_PROJECTILE:
-							LaunchProjectile();
-							break;
-					}					
+					if (gunType == GunType.PROJECTILE){
+						LaunchProjectile();
+					} else {
+						CheckRaycastHit();
+					}
+
 					currentRounds--;
 					
 					if(currentRounds <= 0){
@@ -179,7 +225,7 @@ public class Gun : MonoBehaviour {
 					}
 				}
 			}
-			else if(autoReload && freeToShoot){
+			else if(freeToShoot){
 				if(gunParticles != null){
 					gunParticles.ChangeState(false);
 				}
@@ -194,6 +240,12 @@ public class Gun : MonoBehaviour {
 			}
 		}
 		else{
+			//end minigunsounds when not firing
+			if (audio.loop){
+				audio.loop = false;
+				audio.Stop();
+				audio.PlayOneShot(miniGunStopSound);
+			}
 			if(gunParticles != null){
 				gunParticles.ChangeState(false);
 			}
@@ -209,7 +261,8 @@ public class Gun : MonoBehaviour {
 		
 		Vector3 startPosition;
 		
-		startPosition = weaponTransformReference.position;
+		//startPosition = weaponTransformReference.position;
+		startPosition = GunManager.instance.shootFrom.transform.position;
 		//startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
 		
 		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);
@@ -224,16 +277,16 @@ public class Gun : MonoBehaviour {
 		if(projectile.rigidbody == null){
 			projectileRigidbody = (Rigidbody)projectile.AddComponent("Rigidbody");	
 		}
-		projectileRigidbody.useGravity = useGravity;
+		projectileRigidbody.useGravity = true;
 		
 		RaycastHit hit;
 		Ray camRay2 = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 0f));
 		
 		if(Physics.Raycast(camRay2.origin, camRay2.direction, out hit, fireRange, hitLayer)){
-			projectileRigidbody.velocity = (hit.point - weaponTransformReference.position).normalized * projectileSpeed;
+			projectileRigidbody.velocity = (hit.point - this.transform.position).normalized * projectileSpeed;
 		}
 		else{
-			projectileRigidbody.velocity = (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f)) - weaponTransformReference.position).normalized * projectileSpeed;
+			projectileRigidbody.velocity = (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f)) - this.transform.position).normalized * projectileSpeed;
 		}
 	}
 	
@@ -246,33 +299,23 @@ public class Gun : MonoBehaviour {
 		Vector3 dir;
 		Vector3 glassDir = new Vector3(0f,0f,0f);;
 		
-		if(weaponTransformReference == null){
-			camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
-			origin = camRay.origin;
-			dir = camRay.direction;
-			origin += dir * 0.1f;
-		}
-		else{
-			camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
-			origin = GunManager.instance.shootFrom.transform.position;
-//			origin = weaponTransformReference.position + (weaponTransformReference.right * 0.2f);
-//			origin = weaponTransformReference.position - (weaponTransformReference.forward * 1.5f);
-			if(Physics.Raycast(camRay.origin + camRay.direction * 0.1f, camRay.direction, out hit, fireRange, hitLayer))	{
-				dir = (hit.point - origin).normalized;
-				if(hit.collider.tag == "glass")	{
-					glassOrigin = hit.point + dir * 0.05f;
-					if(Physics.Raycast(glassOrigin, camRay.direction, out glassHit, fireRange - hit.distance, hitLayer)){
-						glassDir = glassHit.point - glassOrigin;
-					}
+		camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
+		origin = GunManager.instance.shootFrom.transform.position;
+		if(Physics.Raycast(camRay.origin + camRay.direction * 0.1f, camRay.direction, out hit, fireRange, hitLayer))	{
+			dir = (hit.point - origin).normalized;
+			if(hit.collider.tag == "glass")	{
+				glassOrigin = hit.point + dir * 0.05f;
+				if(Physics.Raycast(glassOrigin, camRay.direction, out glassHit, fireRange - hit.distance, hitLayer)){
+					glassDir = glassHit.point - glassOrigin;
 				}
 			}
-			else{
-				dir = weaponTransformReference.forward;
-			}
+		} else{
+			dir = this.transform.forward;
 		}
 		
 		if(shootingParticles != null){
-			shootingParticles.rotation = Quaternion.FromToRotation(Vector3.forward, (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, cam.farClipPlane)) - weaponTransformReference.position).normalized);
+			shootingParticles.rotation = Quaternion.FromToRotation(Vector3.forward, (cam.ScreenToWorldPoint(
+				new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, cam.farClipPlane)) - this.transform.position).normalized);
 		}
 		
 		if(Physics.Raycast(origin, dir, out hit, fireRange, hitLayer)){
@@ -306,7 +349,7 @@ public class Gun : MonoBehaviour {
 			}
 		
 			if(!body.isKinematic){
-   				Vector3 direction = hit.collider.transform.position - weaponTransformReference.position;
+   				Vector3 direction = hit.collider.transform.position - this.transform.position;
 				body.AddForceAtPosition(direction.normalized * pushPower, hit.point, ForceMode.Impulse);
 			}
 		}
@@ -361,18 +404,6 @@ public class Gun : MonoBehaviour {
 		}
 	}
 	
-	void Update (){
-		timerToCreateDecal -= Time.deltaTime;
-		if(Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
-			PlayOutOfAmmoSound();
-		}
-		if(Input.GetButtonUp("Fire1")){
-			freeToShoot = true;
-		}
-		HandleReloading();
-		ShotTheTarget();
-	}
-	
 	public void HandleReloading(){
 		if(Input.GetKeyDown(KeyCode.R) && !reloading){
 			Reload();
@@ -405,7 +436,7 @@ public class Gun : MonoBehaviour {
 		
 		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
 		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
-		Vector3 direction = hit.collider.transform.position - weaponTransformReference.position;	
+		Vector3 direction = hit.collider.transform.position - this.transform.position;	
 		enemyObject.TakeDamage((int)damageAmount, DamageType.BULLET, hit, direction, pushPower);
 		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
@@ -424,6 +455,15 @@ public class Gun : MonoBehaviour {
 	
 	public void PlayShootSound()
 	{
-		transform.parent.gameObject.audio.PlayOneShot(shootSound);
+		if (gunType == GunType.MINIGUN){
+			if (audio.loop == false){
+				audio.Stop();
+				audio.clip = shootSound;
+				audio.loop = true;
+				audio.Play();
+			}
+		} else {
+			audio.PlayOneShot(shootSound);
+		}
 	}	
 }
