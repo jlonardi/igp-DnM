@@ -11,6 +11,7 @@ src/*.suo
 src/*.user
 src/*.userprefs
 src/Assembly*.*
+src/ProjectSettings/Physics2DSettings.asset
 
 #Un-ignore these specific files
 !src/Library/*.asset
