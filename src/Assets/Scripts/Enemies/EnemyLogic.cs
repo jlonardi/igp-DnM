@@ -189,7 +189,8 @@ public class EnemyLogic : MonoBehaviour {
 		GameManager.instance.statistics.Kill(this.enemyType);
 		
 		//make enemy a ragdoll
-		Rigidbody ragdollRigidBody = RagdollManager.instance.MakeRagdoll(enemyType, this.gameObject);
+		GameObject ragdoll = RagdollManager.instance.MakeRagdoll(enemyType, this.gameObject, true);
+		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
 		
 		// apply impact to ragdoll
 		if (power != 0f){

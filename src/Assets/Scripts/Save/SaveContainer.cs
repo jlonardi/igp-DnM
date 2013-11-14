@@ -136,8 +136,7 @@ public class SaveContainer {
 					break;
 				}
 				if(sgo.name.Equals("orc ragdoll(Clone)")) {
-					GameObject go = RagdollManager.instance.instantiateRagdoll(EnemyType.ORC, 
-														sgo.transform.position.toVector3, sgo.transform.rotation.toQuaternion);
+					GameObject go = RagdollManager.instance.MakeRagdoll(EnemyType.ORC, sgo.toGameObject(), false);
 					sgo.restoreChildTransforms(go.transform);
 					
 				} else if(sgo.name.Equals("orc(Clone)")) {

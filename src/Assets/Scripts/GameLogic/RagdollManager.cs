@@ -23,33 +23,40 @@ public class RagdollManager : MonoBehaviour {
 		bodies.Clear();
 	}
 
-	public Rigidbody MakeRagdoll(EnemyType enemyType, GameObject enemyObject){		
+	public GameObject MakeRagdoll(EnemyType enemyType, GameObject enemyObject, bool copyPose){		
+		GameObject ragdollPrefab;
+
+		// select correct ragdoll prefab by enemytype
+		switch(enemyType) {
+		case EnemyType.ORC:
+		default:
+			ragdollPrefab = orcRagdollPrefab;
+			break;			
+		}
+
 		// if too many dead bodies, remove the oldest
 		if (bodies.Count >= maxRagdolls){
 			GameObject killObj = bodies[0];
 			bodies.RemoveAt(0);
 			Destroy(killObj);
 		}
-		
+
 		// instantiate ragdoll and copy the hosts position and bone rotations for ragdoll replacement
-		Ragdoll ragdoll = instantiateRagdoll(enemyType, enemyObject.transform.position, enemyObject.transform.rotation).GetComponent<Ragdoll>();
-		ragdoll.CopyPose(enemyObject.transform);
-		Destroy(enemyObject);		
-		
-		return ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+		GameObject ragdollGo = (GameObject)Instantiate(ragdollPrefab, enemyObject.transform.position, 
+		                                               enemyObject.transform.rotation);
+
+		// add body to ragdoll-list so we can keep track of them
+		bodies.Add(ragdollGo);
+
+		// copy pose of enemy used as ragdoll base
+		if (copyPose){
+			Ragdoll ragdoll = (Ragdoll)ragdollGo.GetComponent<Ragdoll>();
+			ragdoll.CopyPose(enemyObject.transform);
+		}
+		// destroy to old object
+		Destroy(enemyObject);
+
+		return ragdollGo;			
 	}
-	
-	public GameObject instantiateRagdoll(EnemyType enemyType, Vector3 position, Quaternion rotation){
-		GameObject ragdollPrefab;
-		switch(enemyType) {
-        	case EnemyType.ORC:
-			default:
-				ragdollPrefab = orcRagdollPrefab;
-				break;			
-   		}
-		GameObject ragdollObject = (GameObject)Instantiate(ragdollPrefab, position, rotation);		
-		bodies.Add(ragdollObject.gameObject);
-		return ragdollObject;
-	}
-	
+
 }
