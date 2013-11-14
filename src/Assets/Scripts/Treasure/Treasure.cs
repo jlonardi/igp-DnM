@@ -5,21 +5,23 @@ public enum TreasureType {
 	CHEST,
 	NONE
 }
-public class Treasure : MonoBehaviour {	
-	//use singleton since only we need once instance of this class
-	public static Treasure instance;
-	
-	public TreasureType treasureType = TreasureType.NONE;
-	public int treasureAmount = 100;
 
-	//orig amount is used for calculation current percentage of the treasure	
-	public int treasureFullAmount;
-	
-	public bool onGround;
-	private Animator animator;
-	
-	//object which describes how much treasure is left
+public class Treasure : MonoBehaviour {	
+	// use singleton since only we need one instance of this class
+	public static Treasure instance;
+
+	// define treasure type
+	public TreasureType treasureType = TreasureType.NONE;
+
+	// object which describes how much treasure is left
 	public GameObject treasureLevel;	
+
+	// animator handles animation played when treasure is set on ground
+	private Animator animator;
+
+	private bool setOnGround = false;
+
+	private GameManager game;
 	
     void Awake()
     {
@@ -27,31 +29,42 @@ public class Treasure : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		animator.speed = 4;	// animation playback speed
 		animator.SetBool("onGround",false);
-		treasureFullAmount = treasureAmount;
     }
+
+	void Update(){
+		if (game == null){
+			game = GameManager.instance;
+		}
+
+		if (!setOnGround && game.gameState == GameState.RUNNING &&
+		    game.levelState == LevelState.LOADED && game.treasureState == TreasureState.SET_ON_GROUND){
+			SetTreasureOnGround();
+		}
+
+	}
 
 	public int Loot(int lootAmount){
 		// no loot allowed if player is still carrying treasure
-		if (!onGround){	
+		if (game.treasureState != TreasureState.SET_ON_GROUND){	
 			return 0;
 		}
 		
-		if (treasureAmount > lootAmount){
-			treasureAmount -= lootAmount;
+		if (game.statistics.treasureAmount > lootAmount){
+			game.statistics.treasureAmount -= lootAmount;
 		} 
 		else {
-			lootAmount = treasureAmount;
-			treasureAmount = 0;
+			lootAmount = game.statistics.treasureAmount;
+			game.statistics.treasureAmount = 0;
 		}
 		
 		if (treasureType == TreasureType.CHEST){
 			// change visible money position on chest so treasure seems smaller after every loot.
 			// chest's treasure y range is from -0.03 to 0.2371817 (0.2671817 total).
-			treasureLevel.transform.localPosition -= new Vector3(0, 0.2671817f * lootAmount/treasureFullAmount, 0);				
+			treasureLevel.transform.localPosition -= new Vector3(0, 0.2671817f * lootAmount/game.statistics.treasureFullAmount, 0);				
 		}
 
 		// if all taken, game over
-		if (treasureAmount <= 0){			
+		if (game.statistics.treasureAmount <= 0){			
 			GameManager.instance.GameOver();
 		}
 		return lootAmount;
@@ -61,6 +74,7 @@ public class Treasure : MonoBehaviour {
 	// called when savegame restores and treasure is already on ground
 	public void RestoreTreasureOnGround(){
 		animator.speed = 100;
+		setOnGround = true;
 		SetTreasureOnGround();
 	}
 	
@@ -69,7 +83,8 @@ public class Treasure : MonoBehaviour {
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
 
-		
+		GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
+
 		animator.SetBool("onGround",true);
 
 		// set back to normal colliders when on ground 
@@ -81,12 +96,12 @@ public class Treasure : MonoBehaviour {
 		}		
 
 		// if already on ground, do nothing else
-		if (onGround){
+		if (setOnGround){
 			return;	
 		}
 		
-		this.onGround = true;
-		
+		setOnGround = true;
+
 		// call gunmanager to enable current weapon
 		GunManager.instance.ChangeToCurrentWeapon();
 		

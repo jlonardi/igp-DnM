@@ -12,6 +12,7 @@ public class GunManager : MonoBehaviour {
 	public HitParticles hitParticles = new HitParticles();
 	[HideInInspector]
 	public GameObject shootFrom;
+	public GameManager game;
 
 	public void Awake(){
         GunManager.instance = this;
@@ -26,14 +27,27 @@ public class GunManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (!currentGun.enabled){
-			ChangeToGun(currentGunIndex);
+		if (game == null){
+			game = GameManager.instance;
 		}
+
+		if (!currentGun.enabled && game.treasureState != TreasureState.CARRYING){
+			currentGun.enabled = true;
+		}
+
 		for (int i=0; i<guns.Length; i++){
 			if (Input.GetKeyDown(guns[i].keyToActivate)){
 				ChangeToGun(i);
 			}
-		}				
+		}
+
+		game.statistics.gunEnabled = currentGun.enabled;
+		game.statistics.gunName = currentGun.gunName;
+		game.statistics.gunUnlimitedClips = currentGun.unlimited;
+		game.statistics.gunClips = currentGun.totalClips;
+		game.statistics.gunRounds = currentGun.currentRounds;
+		game.statistics.gunReloading = currentGun.reloading;
+
 	}
 	
 	public void ChangeToCurrentWeapon(){
@@ -44,9 +58,6 @@ public class GunManager : MonoBehaviour {
 		currentGun.enabled = false;
 		currentGun = guns[gunIndex].gun;
 		currentGunIndex = gunIndex;
-		if (Treasure.instance.onGround){
-			currentGun.enabled = true;
-		}
 	}	
 }
 

@@ -3,8 +3,7 @@ using System.Collections;
 
 [System.Serializable]
 public class WaveManager {
-	public int wave = 0;
-	
+
 	//constructor
 	public WaveManager(){
 	}

@@ -168,10 +168,10 @@ public class EnemyMovement : MonoBehaviour {
     	seeker.pathCallback -= OnPathComplete;
 	} 
 	
-	public void setTarget(GameObject targetObject) {
+	public void setTarget(Transform targetTransform) {
 		//Debug.Log ("Setting a new target, new target location is at " + t.position);
-		target = targetObject.transform;
-		targetPosition = target.position;
+		target = targetTransform;
+		targetPosition = targetTransform.position;
 		startNewPathfinding();
 	}
 		

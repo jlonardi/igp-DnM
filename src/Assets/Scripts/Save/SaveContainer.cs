@@ -10,15 +10,16 @@ public class SaveContainer {
 	public string dateTime;
 	public byte[] screenshot;
 	public int level;
-	public float mouseX;
-	public float mouseY;
+	public float mousePositionX;
+	public float mousePositionY;
+	public float mouseSensitivity;
+	public float mouseSmoothing;
 	public float timeOfLastWave;
 	public float playerArmor;
 	public int playerHealth;
-	public TreasureType treasureType;
+	public TreasureState treasureState;
 	public int treasureAmount;
 	public int treasureFullAmount;
-	public bool treasureOnGround;
 	public float playTime;
 	public int wave;
 	public int gun0_rounds;
@@ -39,11 +40,17 @@ public class SaveContainer {
 	}
 	
 	public void SaveValues(){		
+		GameManager game = GameManager.instance;
+		GunManager gunManager = GunManager.instance;
+		EnemySpawnManager enemySpawnManager = EnemySpawnManager.instance;
+		GameObject treasure = Treasure.instance.gameObject;
 		GameObject player = GameObject.Find("Player");
+		SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
+		SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
 
 		// save GameObject, Transform, Vector3 and Quaternion by adding .Serializable() extension
 		sPlayer = player.Serializable();
-		sTreasure = Treasure.instance.gameObject.Serializable();
+		sTreasure = treasure.Serializable();
 
 		// save enemies and misc objects by listing them
 		sGameObjects = new List<sGameObject>();
@@ -58,65 +65,78 @@ public class SaveContainer {
 		dateTime = System.DateTime.Now.ToString("MM/dd/yyyy, HH:mm");
 
 		// save playtime with previous value + time since level load
-		playTime = GameManager.instance.statistics.playTime + Time.timeSinceLevelLoad;
+		playTime = game.statistics.playTime + Time.timeSinceLevelLoad;
 
 		// save regular variable here
-		mouseX = SmoothMouseLookX.instance.position;
-		mouseY = SmoothMouseLookY.instance.position;
-		level = GameManager.instance.statistics.level;
-		timeOfLastWave = EnemySpawnManager.instance.timeOfLastWave;
-		playerArmor = PlayerHealth.instance.armor;
-		playerHealth = PlayerHealth.instance.health;
-		treasureAmount = Treasure.instance.treasureAmount;
-		treasureFullAmount = Treasure.instance.treasureFullAmount;
-		treasureOnGround = Treasure.instance.onGround;
-		wave = GameManager.instance.waves.wave;
-		gun0_rounds = GunManager.instance.guns[0].gun.currentRounds;
-		gun1_rounds = GunManager.instance.guns[1].gun.currentRounds;
-		gun0_clips = GunManager.instance.guns[0].gun.totalClips;
-		gun1_clips = GunManager.instance.guns[1].gun.totalClips;
-		currentGunIndex = GunManager.instance.currentGunIndex;
-		bodycount = GameManager.instance.statistics.bodycount;
-		score = GameManager.instance.statistics.score;
+		mousePositionX = mouseX.position;
+		mousePositionY = mouseY.position;
+		mouseSensitivity = mouseX.sensitivity;
+		mouseSmoothing = mouseX.smoothing;
+		level = game.statistics.level;
+		bodycount = game.statistics.bodycount;
+		score = game.statistics.score;
+		playerArmor = game.statistics.playerArmor;
+		playerHealth = game.statistics.playerHealth;
+		treasureAmount = game.statistics.treasureAmount;
+		treasureFullAmount = game.statistics.treasureFullAmount;
+		treasureState = game.treasureState;
+		wave = game.statistics.wave;
+		timeOfLastWave = enemySpawnManager.timeOfLastWave;
+		gun0_rounds = gunManager.guns[0].gun.currentRounds;
+		gun1_rounds = gunManager.guns[1].gun.currentRounds;
+		gun0_clips = gunManager.guns[0].gun.totalClips;
+		gun1_clips = gunManager.guns[1].gun.totalClips;
+		currentGunIndex = gunManager.currentGunIndex;
 	}
 
 	public void RestoreValues(){
 		try{
-			GameObject playerOnScene = GameObject.Find("Player");
-			playerOnScene.GetValuesFrom(sPlayer);
+			GameManager game = GameManager.instance;
+			GunManager gunManager = GunManager.instance;
+			EnemySpawnManager enemySpawnManager = EnemySpawnManager.instance;
+			RagdollManager ragdollManager = RagdollManager.instance;
+			Treasure treasure = Treasure.instance;
+			SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
+			SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
 
-			Treasure.instance.gameObject.GetValuesFrom(sTreasure);
+			GameObject player = GameObject.Find("Player");
+			player.GetValuesFrom(sPlayer);
+
+			treasure.gameObject.GetValuesFrom(sTreasure);
 
 			// restore variables
-			SmoothMouseLookX.instance.position = mouseX;
-			SmoothMouseLookY.instance.position = mouseY;
-			GameManager.instance.statistics.level = level;
-			PlayerHealth.instance.armor = playerArmor;
-			PlayerHealth.instance.health = playerHealth;
-			Treasure.instance.treasureType = treasureType;
-			Treasure.instance.treasureAmount = treasureAmount;
-			Treasure.instance.treasureFullAmount = treasureFullAmount;
-			Treasure.instance.onGround = treasureOnGround;
-			GunManager.instance.guns[0].gun.currentRounds = gun0_rounds;
-			GunManager.instance.guns[1].gun.currentRounds = gun1_rounds;
-			GunManager.instance.guns[0].gun.totalClips = gun0_clips;
-			GunManager.instance.guns[1].gun.totalClips = gun1_clips;
-			GunManager.instance.currentGunIndex = currentGunIndex;
-			GameManager.instance.statistics.bodycount = bodycount;
-			GameManager.instance.statistics.score = score;
-			GameManager.instance.statistics.playTime = playTime;
-			GameManager.instance.waves.wave = wave;
+			mouseX.position = mousePositionX;
+			mouseY.position = mousePositionY;
+			mouseX.sensitivity = mouseSensitivity;
+			mouseY.sensitivity = mouseSensitivity;
+			mouseX.smoothing = mouseSmoothing;
+			mouseY.smoothing = mouseSmoothing;
+			gunManager.guns[0].gun.currentRounds = gun0_rounds;
+			gunManager.guns[1].gun.currentRounds = gun1_rounds;
+			gunManager.guns[0].gun.totalClips = gun0_clips;
+			gunManager.guns[1].gun.totalClips = gun1_clips;
+			gunManager.currentGunIndex = currentGunIndex;
+			game.statistics.level = level;
+			game.statistics.playerArmor = playerArmor;
+			game.statistics.playerHealth = playerHealth;
+			game.statistics.bodycount = bodycount;
+			game.statistics.score = score;
+			game.statistics.playTime = playTime;
+			game.statistics.wave = wave;
+			game.statistics.treasureAmount = treasureAmount;
+			game.statistics.treasureFullAmount = treasureFullAmount;
+			game.treasureState = treasureState;
 
 			// calculate time of last enemy wave
-			EnemySpawnManager.instance.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
+			enemySpawnManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
 
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
-			if (Treasure.instance.onGround){
-				Treasure.instance.RestoreTreasureOnGround();
+			if (game.treasureState == TreasureState.SET_ON_GROUND){
+				treasure.RestoreTreasureOnGround();
 			}
 			
 			// select correct gun after loading savegame
-			GunManager.instance.ChangeToCurrentWeapon();
+			gunManager.ChangeToCurrentWeapon();
 			
 			// if no objects to process, stop here
 			if (sGameObjects.Count == 0){
@@ -140,11 +160,11 @@ public class SaveContainer {
 					break;
 				}
 				if(sgo.name.Equals("orc ragdoll(Clone)")) {
-					GameObject go = RagdollManager.instance.MakeRagdoll(EnemyType.ORC, sgo.toGameObject(), false);
+					GameObject go = ragdollManager.MakeRagdoll(EnemyType.ORC, sgo.toGameObject(), false);
 					sgo.restoreChildTransforms(go.transform);
 					
 				} else if(sgo.name.Equals("orc(Clone)")) {
-					EnemySpawnManager.instance.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
+					enemySpawnManager.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
 														sgo.transform.rotation.toQuaternion);
 
 				} else if(sgo.name.Equals("1x1x1m Box")) {

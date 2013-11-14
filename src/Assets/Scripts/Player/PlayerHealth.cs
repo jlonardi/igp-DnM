@@ -4,15 +4,19 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static PlayerHealth instance;
+
+	private GameManager game;
+
     public void Awake()
     {
         PlayerHealth.instance = this;
     }	
-	
-	public int health = 100;
-	public float armor = 0.0f; // armor scale 0-1.0f
-		
+
 	void Update(){
+		if (game == null){
+			game = GameManager.instance;
+		}
+
 		if(Input.GetKeyDown(KeyCode.K)) {
 			TakeDamage(20, DamageType.HIT);
 		}
@@ -20,15 +24,15 @@ public class PlayerHealth : MonoBehaviour {
 	
 	public void TakeDamage(int damageAmount, DamageType damageType){
 		//if player has an armor, take less damage
-		float tempHealth = health - (damageAmount - (damageAmount*armor));
-		if(!Treasure.instance.onGround){
-			Treasure.instance.SetTreasureOnGround();
+		float tempHealth = game.statistics.playerHealth - (damageAmount - (damageAmount * game.statistics.playerArmor));
+		if(GameManager.instance.treasureState == TreasureState.CARRYING){
+			GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
 		}
 		if (tempHealth <= 0){
-			health = 0;
-			GameManager.instance.GameOver();	
+			game.statistics.playerHealth = 0;
+			game.GameOver();	
 		} else {
-			health = (int)Mathf.Round(tempHealth);
+			game.statistics.playerHealth = (int)Mathf.Round(tempHealth);
 		}
 	}	
 }

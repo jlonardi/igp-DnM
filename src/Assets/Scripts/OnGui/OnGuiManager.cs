@@ -12,10 +12,15 @@ public class OnGuiManager : MonoBehaviour {
 	public SaveDialog saveDialog = new SaveDialog();
 	public LoadMenu loadMenu = new LoadMenu();
 	public Hud hud = new Hud();
-	
+	public GameManager game;
 
 	// select which gui items are shown by game state
 	void OnGUI(){
+		// if game manager not ready, do nothing
+		if (game == null){
+			return;
+		}
+
 		switch (GameManager.instance.gameState)
 		{		
 		case GameState.PAUSE_MENU:
@@ -47,9 +52,13 @@ public class OnGuiManager : MonoBehaviour {
 		}
 	}
 
-	// this gets called from GameManager Update()
 	void Update(){
-		switch (GameManager.instance.gameState)
+		// if game manager not set, do it
+		if (game == null){
+			game = GameManager.instance;
+		}
+
+		switch (game.gameState)
 		{
 		case GameState.RUNNING:
   			//when game is not paused time runs normally and the cursor is hidden and locked
@@ -58,7 +67,7 @@ public class OnGuiManager : MonoBehaviour {
 			Screen.lockCursor=true;
 			// if menu key pressed, open pause menu
 			if (Input.GetButtonDown("Menu")){
-				GameManager.instance.gameState = GameState.PAUSE_MENU;
+				game.gameState = GameState.PAUSE_MENU;
 			}
 			break;
 			
@@ -68,7 +77,7 @@ public class OnGuiManager : MonoBehaviour {
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			if (Input.GetButtonDown("Menu")){
-				GameManager.instance.gameState = GameState.RUNNING;
+				game.gameState = GameState.RUNNING;
 			}
 			break;
 			
@@ -81,7 +90,7 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.LOAD_MENU_MAIN:					
 			// if menu key pressed, return to main menu
 			if (Input.GetButtonDown("Menu")){
-				GameManager.instance.gameState = GameState.MAIN_MENU;
+				game.gameState = GameState.MAIN_MENU;
 			}			
 			break;
 			
@@ -89,14 +98,14 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.SAVE_MENU:
 			// if menu key pressed, return to pause menu
 			if (Input.GetButtonDown("Menu")){
-				GameManager.instance.gameState = GameState.PAUSE_MENU;
+				game.gameState = GameState.PAUSE_MENU;
 			}
 			break;
 
 		case GameState.SAVE_DIALOG:
 			// if menu key pressed, return to save menu
 			if (Input.GetButtonDown("Menu")){
-				GameManager.instance.gameState = GameState.SAVE_MENU;
+				game.gameState = GameState.SAVE_MENU;
 			}			
 			break;
 			

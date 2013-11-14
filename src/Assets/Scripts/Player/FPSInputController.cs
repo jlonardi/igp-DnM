@@ -21,6 +21,7 @@ public class FPSInputController : MonoBehaviour {
 	public int currentWeapon;
 	
 	private CharacterMotor motor;
+	private GameManager game;
 	
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,10 @@ public class FPSInputController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(GameManager.instance.gameState != GameState.RUNNING){
+		if (game == null){
+			game = GameManager.instance;
+		}
+		if(game.gameState != GameState.RUNNING){
 			return;
 		}
 		
@@ -58,7 +62,8 @@ public class FPSInputController : MonoBehaviour {
 		motor.inputJump = Input.GetButton("Jump");	
 				
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire1") && Treasure.instance.onGround && GunManager.instance.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire1") && GameManager.instance.treasureState == TreasureState.SET_ON_GROUND &&
+						GunManager.instance.currentGun.freeToShoot;
 			
 		idleTimer += Time.deltaTime;
 		
@@ -76,8 +81,7 @@ public class FPSInputController : MonoBehaviour {
 		
 //		firing = (firingTimer <= 0.0f && fire);
 		
-		if(Treasure.instance.onGround)
-		{
+		if(game.treasureState == TreasureState.SET_ON_GROUND){
 			GunManager.instance.currentGun.fire = firing;
 			reloading = GunManager.instance.currentGun.reloading;
 			currentWeaponName = GunManager.instance.currentGun.gunName;
@@ -85,8 +89,8 @@ public class FPSInputController : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetButton("Use") && !Treasure.instance.onGround){
-			Treasure.instance.SetTreasureOnGround();
+		if (Input.GetButton("Use") && game.treasureState == TreasureState.CARRYING){
+			game.treasureState = TreasureState.SET_ON_GROUND;
 		}
 
 	}

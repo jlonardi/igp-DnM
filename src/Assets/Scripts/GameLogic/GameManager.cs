@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;	
 
 	public LevelState levelState;	
-	public GameState gameState = GameState.MAIN_MENU;	
+	public GameState gameState = GameState.MAIN_MENU;
+	public TreasureState treasureState = TreasureState.NOT_PICKED_UP;
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
 	
@@ -26,8 +27,8 @@ public class GameManager : MonoBehaviour {
 
 	public void NewGame(){
 		// wait until all gameobjects are loaded
+		treasureState = TreasureState.CARRYING;
 		gameState = GameState.RUNNING;
-		waves.wave = 1;
 		statistics.Reset();
 	}
 	

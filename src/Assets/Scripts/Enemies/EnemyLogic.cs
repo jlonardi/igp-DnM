@@ -31,22 +31,35 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeFromLoot;
 		
 	private EnemyMovement enemyMovement;
-	private GameObject player;
+
+	private Treasure treasure;
+	private Transform playerTransform;
+	private Transform treasureTransform;
 
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
 	
 	private bool treasureAvailable = false;
-	private GameObject treasureFocusPoint;
+	private GameManager game;
+	private RagdollManager ragdolls;
+
+	private PlayerHealth playerVitals;
 	
 	public void Start() {
 		enemyMovement = GetComponent<EnemyMovement>();
-		//treasure = GameObject.FindObjectOfType(typeof(Treasure)) as Treasure;
-		treasureFocusPoint = Treasure.instance.gameObject.transform.FindChild("focusPoint").gameObject;
+		game = GameManager.instance;
+		playerVitals = PlayerHealth.instance;
+		ragdolls = RagdollManager.instance;
+		treasure = Treasure.instance;
 
-		player = GameObject.Find("Player");	
+		GameObject player = GameObject.Find("Player");	
+		GameObject focusPoint = treasure.gameObject.transform.FindChild("focusPoint").gameObject;
+
+		playerTransform = player.transform;
+		treasureTransform = focusPoint.transform;
+
 		target = focusTarget.PLAYER;
-		enemyMovement.init(player.transform);
+		enemyMovement.init(playerTransform);
 	}
 	
 	public void Update() {
@@ -62,10 +75,10 @@ public class EnemyLogic : MonoBehaviour {
 		
 	
 	private float getPlayerDistance(){
-		return Vector3.Distance(player.transform.position, transform.position);
+		return Vector3.Distance(playerTransform.position, transform.position);
 	}
 	private float getTreasureDistance(){
-		return Vector3.Distance(Treasure.instance.gameObject.transform.position, transform.position);
+		return Vector3.Distance(treasureTransform.position, transform.position);
 	}
 	
 	private void checkActions() {
@@ -80,7 +93,7 @@ public class EnemyLogic : MonoBehaviour {
 					attacking = false;
 				}
 				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
-					PlayerHealth.instance.TakeDamage(1, DamageType.HIT);
+					playerVitals.TakeDamage(1, DamageType.HIT);
 					timeFromAttack = Time.time;
 				}
 			} 
@@ -93,7 +106,7 @@ public class EnemyLogic : MonoBehaviour {
 					looting = false;
 				}
 				if(looting && (timeFromLoot + lootInterval) < Time.time) {					
-					Treasure.instance.Loot(1);
+					treasure.Loot(1);
 					timeFromLoot = Time.time;
 				}
 			}
@@ -105,7 +118,9 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkFocus() {
 		if (!treasureAvailable){
-			treasureAvailable = Treasure.instance.onGround;
+			if (game.treasureState == TreasureState.SET_ON_GROUND){
+				treasureAvailable = true;
+			}
 			if (treasureAvailable){
 				swapTarget();
 			}
@@ -116,7 +131,7 @@ public class EnemyLogic : MonoBehaviour {
 				swapTarget();
 			}
 		} else { // if focus not in player, check if player nearby
-			if (Vector3.Distance(player.transform.position, transform.position)<= detectDistance){				
+			if (Vector3.Distance(playerTransform.position, transform.position)<= detectDistance){				
 				// add timeDifference to timeWhenFocusedPlayer so that we actually check nearbyTime if enemy haven't been shot
 				float timeDifference = focusTime - nearbyTime;
 				if (timeDifference < 0){
@@ -129,18 +144,18 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	private void swapTarget() {
-		Debug.Log("Swapping focus target");
+		//Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			enemyMovement.setTarget(treasureFocusPoint);
+			enemyMovement.setTarget(treasureTransform);
 			target = focusTarget.TRESAURE;
-			Debug.Log("New target is tresaure");
+			//Debug.Log("New target is tresaure");
 			return;
 		} 
 		
 		if (target == focusTarget.TRESAURE){
-			enemyMovement.setTarget(player);
+			enemyMovement.setTarget(playerTransform);
 			target = focusTarget.PLAYER;
-			Debug.Log("New target is player");
+			//Debug.Log("New target is player");
 			return;
 		}
 	}
@@ -173,7 +188,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
-		enemyMovement.setTarget(player);
+		enemyMovement.setTarget(playerTransform);
 		
 		Debug.Log("Enemy health left: " + health);
 	}
@@ -186,10 +201,10 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force
 	public void Die(RaycastHit hit, Vector3 direction, float power){
-		GameManager.instance.statistics.Kill(this.enemyType);
+		game.statistics.Kill(this.enemyType);
 		
 		//make enemy a ragdoll
-		GameObject ragdoll = RagdollManager.instance.MakeRagdoll(enemyType, this.gameObject, true);
+		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
 		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
 		
 		// apply impact to ragdoll
@@ -202,7 +217,7 @@ public class EnemyLogic : MonoBehaviour {
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
 		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
-		float distanceToTreasure = Vector3.Distance(Treasure.instance.transform.position, this.transform.position);
+		float distanceToTreasure = Vector3.Distance(treasureTransform.position, this.transform.position);
 		if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
 			// if not near the treasure, just join the chase
 			// else use greedyness to choose whether to chase the player or not
@@ -212,14 +227,6 @@ public class EnemyLogic : MonoBehaviour {
 					swapTarget();
 				} 			
 			}
-		}
-	}
-	
-	public GameObject getTarget() {
-		if(target == focusTarget.PLAYER) {
-			return player;
-		} else {
-			return Treasure.instance.gameObject;
 		}
 	}
 }

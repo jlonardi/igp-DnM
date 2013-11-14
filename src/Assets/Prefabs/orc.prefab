@@ -1946,7 +1946,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71.9892197, y: 5.13000011, z: 65.0389709}
+  m_LocalPosition: {x: 220.321472, y: 4.14101982, z: 131.799988}
   m_LocalScale: {x: .180000007, y: .180000007, z: .180000007}
   m_Children:
   - {fileID: 400140}
@@ -2053,7 +2053,6 @@ MonoBehaviour:
   moveStopDistance: 2
   moveAllowDistance: 2.29999995
   movementSpeed: 0
-  targetPosition: {x: 0, y: 0, z: 0}
   atTarget: 0
   speed: 200
   turnSpeed: 10
