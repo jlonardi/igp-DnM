@@ -38,9 +38,11 @@ public class CharacterMotor : MonoBehaviour {
 	public CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
 	public CharacterMotorSliding sliding = new CharacterMotorSliding();
 
+	private PlayerSounds sounds;
 	
 	public void Awake () {
 		controller = GetComponent<CharacterController>();
+		sounds = GetComponent<PlayerSounds>();
 		tr = transform;
 	}
 
@@ -158,6 +160,7 @@ public class CharacterMotor : MonoBehaviour {
 			SubstractNewPlatformVelocity();
 			
 			SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
+			sounds.PlayJumpSound();
 		}
 		
 		// Moving platforms support

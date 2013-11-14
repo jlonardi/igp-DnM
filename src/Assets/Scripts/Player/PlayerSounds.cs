@@ -6,6 +6,7 @@ public class PlayerSounds : MonoBehaviour {
 	public AudioClip[] painSounds;
 	public AudioClip deathSound;
 	public AudioClip[] walkSounds;
+	public AudioClip[] jumpSounds;
 
 	private float walkSoundTimer = 0;
 
@@ -42,5 +43,10 @@ public class PlayerSounds : MonoBehaviour {
 			audio.PlayOneShot(walkSounds[clipNum]);
 			walkSoundTimer = 0.5f;
 		}
+	}
+
+	public void PlayJumpSound() {
+		int clipNum = Random.Range(0, jumpSounds.Length - 1);
+		audio.PlayOneShot(jumpSounds[clipNum]);
 	}
 }

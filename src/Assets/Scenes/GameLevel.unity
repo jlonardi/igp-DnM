@@ -4927,6 +4927,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 07d25706ef3f3a548b4d193c6c387176, type: 3}
   - {fileID: 8300000, guid: e5c988d31349a5f44a72a37359a49ebd, type: 3}
   - {fileID: 8300000, guid: 9fffe66297a902b4390237f3701171ba, type: 3}
+  jumpSounds:
+  - {fileID: 8300000, guid: 9c08cab5511a350499889f96cb8cb01d, type: 3}
+  - {fileID: 8300000, guid: fff43fec379ca664295c5546e566ee1d, type: 3}
+  - {fileID: 8300000, guid: 239002325bb2a3e41a283b81422df0ae, type: 3}
 --- !u!1 &500703018
 GameObject:
   m_ObjectHideFlags: 0
