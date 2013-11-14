@@ -6,13 +6,12 @@ public class PlayerHealth : MonoBehaviour {
 	public static PlayerHealth instance;
 
 	private GameManager game;
-
-	public AudioClip[] painSounds;
-	public AudioClip deathSound;
+	private PlayerSounds sounds;
 
     public void Awake()
     {
         PlayerHealth.instance = this;
+		sounds = GetComponent<PlayerSounds>();
     }	
 
 	void Update(){
@@ -34,20 +33,12 @@ public class PlayerHealth : MonoBehaviour {
 		if (tempHealth <= 0){
 			game.statistics.playerHealth = 0;
 			game.GameOver();	
-			audio.clip = deathSound;
-			audio.Play();
+			sounds.PlayDeathSound();
 		} else {
 			game.statistics.playerHealth = (int)Mathf.Round(tempHealth);
-			PlayPainSound();
+			sounds.PlayPainSound();
 		}
 	}
 
-	private void PlayPainSound() {
 
-		if (!audio.isPlaying) {
-			int clipNum = Random.Range(0, painSounds.Length - 1);
-			audio.clip = painSounds[clipNum];
-			audio.Play();
-		}
-	}
 }
