@@ -37,6 +37,9 @@ public class MainMenu : MonoBehaviour {
 			Application.Quit();
 			
 		} else if(isLoadLevel){
+			// load previous save details
+			SaveManager.instance.GetSaveInfo();
+
 			//show load menu
 			GameManager.instance.gameState = GameState.LOAD_MENU_MAIN;
 			
