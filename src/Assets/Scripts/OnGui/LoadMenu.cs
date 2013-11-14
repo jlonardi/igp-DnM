@@ -7,11 +7,12 @@ public class LoadMenu {
 	// this get's called from game manager when GameState.LOAD_MENU_MAIN or GameState.LOAD_LEVEL_PAUSE	
 	public void Show(){
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
+
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
-		GUI.Box(new Rect((Screen.width *0.5f)-300, (Screen.height*0.5f)-100,600,250),"Load Game", myStyle);
-		
-		GUILayout.BeginArea(new Rect((Screen.width *0.5f)-250, (Screen.height*0.5f)-50,500,200));
+
+		GUI.Box(new Rect((Screen.width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Save Game", myStyle);
+		GUILayout.BeginArea(new Rect((Screen.width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			if (saveInfo[i].name == null){
@@ -29,7 +30,7 @@ public class LoadMenu {
 					SaveManager.instance.Load();
 				}
 				if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)){
-					GUILayout.Window(i, new Rect(Screen.width *0.5f,10,330,290), ShowDetails, "");
+					GUILayout.Window(i, new Rect((Screen.width *0.5f)+148, (Screen.height*0.5f)-100,330,250), ShowDetails, "");
 				}
 			}
 		}	
@@ -43,23 +44,15 @@ public class LoadMenu {
 		}
 		GUILayout.EndArea();		
 	}
-	private void ShowDetails(int windowID) {
-		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
-		if (saveInfo[windowID].name == null || saveInfo[windowID].dateTime == null || saveInfo[windowID].screenshot == null){
-			return;
-		}
-		GUI.DrawTexture(new Rect(10,10,320,180), saveInfo[windowID].screenshot);
-		GUI.Label(new Rect(40,200,200,40), ConvertLevelName(saveInfo[windowID].level));
-		GUI.Label(new Rect(40,220,200,40), ConvertPlayTime(saveInfo[windowID].playTime));
-		GUI.Label(new Rect(40,240,200,40), saveInfo[windowID].dateTime);
-	}
 
-	public string ConvertPlayTime(float playTime){
+	//get actual playing time from float value
+	private string ConvertPlayTime(float playTime){
 		TimeSpan t = TimeSpan.FromSeconds(playTime);
 		return string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
 	}
 
-	public string ConvertLevelName(int levelNumber) {
+	//get actual level name from level number
+	private string ConvertLevelName(int levelNumber) {
 		switch(levelNumber){
 		case 1:
 			return "Level 1 - Desert";
@@ -71,5 +64,19 @@ public class LoadMenu {
 			return levelNumber.ToString();
 		}
 	}
+
+	private void ShowDetails(int windowID) {
+		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
+		if (saveInfo[windowID].name == null || saveInfo[windowID].dateTime == null || saveInfo[windowID].screenshot == null){
+			return;
+		}
+
+		GUI.DrawTexture(new Rect(5,5,320,180), saveInfo[windowID].screenshot);
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		GUI.Label(new Rect(0,190,330,20), ConvertLevelName(saveInfo[windowID].level));
+		GUI.Label(new Rect(0,208,330,20), ConvertPlayTime(saveInfo[windowID].playTime));
+		GUI.Label(new Rect(0,226,330,20), saveInfo[windowID].dateTime);
+		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+	}	
 
 }

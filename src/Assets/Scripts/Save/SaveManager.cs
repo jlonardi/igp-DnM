@@ -77,10 +77,12 @@ public class SaveManager : MonoBehaviour {
 
 	//routine to save screenshot
 	public void SaveScreenshot(Texture2D source,int targetWidth,int targetHeight) {
-    	Texture2D result=new Texture2D(targetWidth,targetHeight,source.format,true);
-    	Color[] rpixels=result.GetPixels(0);
+		Texture2D result=new Texture2D(targetWidth,targetHeight, TextureFormat.RGB24 ,true);
+		//Texture2D result=new Texture2D(targetWidth,targetHeight,source.format,true);
+		Color[] rpixels=result.GetPixels(0);
     	float incX=(1.0f / (float)targetWidth);
     	float incY=(1.0f / (float)targetHeight);
+		//scale texture into target width & height
     	for(int px=0; px<rpixels.Length; px++) {
         	rpixels[px] = source.GetPixelBilinear(incX*((float)px%targetWidth), incY*((float)Mathf.Floor(px/targetWidth)));
 	    }
