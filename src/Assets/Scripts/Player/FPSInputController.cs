@@ -22,10 +22,12 @@ public class FPSInputController : MonoBehaviour {
 	
 	private CharacterMotor motor;
 	private GameManager game;
+	private PlayerSounds sounds;
 	
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
+		sounds = GetComponent<PlayerSounds>();
 	}
 	
 	// Update is called once per frame
@@ -55,6 +57,8 @@ public class FPSInputController : MonoBehaviour {
 			
 			// Multiply the normalized direction vector by the modified length
 			directionVector = directionVector * directionLength;
+
+			sounds.PlayWalkSound();
 		}
 		
 		// Apply the direction to the CharacterMotor
