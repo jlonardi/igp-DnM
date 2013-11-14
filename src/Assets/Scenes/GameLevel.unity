@@ -4544,8 +4544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e814dfe0058f44f96f9090e983a38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 5
-  smoothing: 2
+  sensitivity: 4
+  smoothing: 1.5
   position: 0
 --- !u!1 &500703018
 GameObject:
@@ -11596,8 +11596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c7971d6c1ee5c469417fe1a90a5c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 5
-  smoothing: 2
+  sensitivity: 4
+  smoothing: 1.5
   position: 0
 --- !u!124 &1543014825
 Behaviour:
