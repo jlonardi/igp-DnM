@@ -166,6 +166,7 @@ public class Gun : MonoBehaviour {
 	public void HandleMinigun(){
 		int maxSpeed = 1000;
 		int accelSpeed = 1000;
+		int decSpeed = 500;
 		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot){
 			if (mgState == MiniGunState.IDLE){
 				PlayWindUpSound();
@@ -182,7 +183,7 @@ public class Gun : MonoBehaviour {
 			if (mgState != MiniGunState.IDLE){
 				mgState = MiniGunState.WIND_DOWN;
 				if (spinSpeed > 0){
-					spinSpeed -= maxSpeed * Time.deltaTime;
+					spinSpeed -= decSpeed * Time.deltaTime;
 				} else {
 					spinSpeed = 0;
 					mgState = MiniGunState.IDLE;
