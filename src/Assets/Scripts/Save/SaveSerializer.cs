@@ -78,11 +78,7 @@ namespace UnitySerialization {
 				} else {
 					saveInfo.dateTime = "";
 				}
-				if (SaveManager.instance.container.playTime != null){
-					saveInfo.playTime = SaveManager.instance.container.playTime;
-				} else {
-					saveInfo.playTime = 0f;
-				}
+				saveInfo.playTime = SaveManager.instance.container.playTime;
 				if (SaveManager.instance.container.screenshot != null){
 					saveInfo.screenshot.LoadImage(SaveManager.instance.container.screenshot);
 				}
