@@ -4770,10 +4770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c855b1f8853d4a43b3b284711c8dfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hud:
-    crosshairTexture: {fileID: 0}
-    bloodSplatter: {fileID: 0}
-    fadeSpeed: .0500000007
 --- !u!143 &499643144
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6350,7 +6346,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}
-  windDownStopSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0
@@ -7092,7 +7088,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}
-  windDownStopSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0
@@ -9210,6 +9206,10 @@ Prefab:
       propertyPath: totalClips
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: windDownSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c999668498583343bf5518c00cf8275, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
   m_RootGameObject: {fileID: 1271987599}
@@ -10217,7 +10217,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: d0f7f57b2a2fedc4192f99bc91ca8359, type: 3}
   windUpSound: {fileID: 8300000, guid: 7f5e4cee0c4f552459132527b1086b7c, type: 3}
-  windDownStopSound: {fileID: 8300000, guid: 5c999668498583343bf5518c00cf8275, type: 3}
+  windDownSound: {fileID: 8300000, guid: 5c999668498583343bf5518c00cf8275, type: 3}
   freeToShoot: 0
   reloading: 0
   fire: 0
@@ -12067,7 +12067,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}
-  windDownStopSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0

@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour {
 	public AudioClip reloadSound;	
 	public AudioClip outOfAmmoSound;
 	public AudioClip windUpSound;
-	public AudioClip windDownStopSound;
+	public AudioClip windDownSound;
 
 	[HideInInspector]
 	public bool freeToShoot;
@@ -165,10 +165,10 @@ public class Gun : MonoBehaviour {
 	
 	public void HandleMinigun(){
 		int maxSpeed = 1000;
-		int accelSpeed = 1000;
+		int accelSpeed = 2000;
 		int decSpeed = 500;
 		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot){
-			if (mgState == MiniGunState.IDLE){
+			if (mgState == MiniGunState.IDLE || mgState == MiniGunState.WIND_DOWN){
 				PlayWindUpSound();
 				mgState = MiniGunState.WIND_UP;
 			}
@@ -477,7 +477,7 @@ public class Gun : MonoBehaviour {
 	public void PlayWindDownSound() {
 		audioSource.loop = false;
 		audioSource.Stop();
-		audioSource.PlayOneShot(windDownStopSound);
+		audioSource.PlayOneShot(windDownSound);
 	}
 
 	public void PlayOutOfAmmoSound() {

@@ -3,6 +3,9 @@ using System.Collections;
 
 [System.Serializable]
 public class OnGuiManager : MonoBehaviour {
+	//use singleton since only we need one instance of this class
+	public static OnGuiManager instance;
+
 	// skin for all menu items
   	public GUISkin guiSkin;
 
@@ -12,7 +15,12 @@ public class OnGuiManager : MonoBehaviour {
 	public SaveDialog saveDialog = new SaveDialog();
 	public LoadMenu loadMenu = new LoadMenu();
 	public Hud hud = new Hud();
+	public BloodSplatter bloodSplatter = new BloodSplatter();
 	public GameManager game;
+
+	public void Awake(){
+		OnGuiManager.instance = this;
+	}	
 
 	// select which gui items are shown by game state
 	void OnGUI(){
@@ -42,9 +50,11 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.MAIN_MENU:
 			break;
 		case GameState.GAME_OVER:
+			bloodSplatter.Show();
 			gameOverScreen.Show();
 			break;
 		case GameState.RUNNING:
+			bloodSplatter.Show();
 			hud.Show();
 			break;
 		default:

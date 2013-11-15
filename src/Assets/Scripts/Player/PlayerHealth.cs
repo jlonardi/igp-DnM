@@ -6,20 +6,22 @@ public class PlayerHealth : MonoBehaviour {
 	public static PlayerHealth instance;
 
 	private GameManager game;
+	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
 
-	public Hud hud;
-
-    public void Awake()
-    {
+    public void Awake() {
         PlayerHealth.instance = this;
     }	
 
 	void Update(){
 		if (game == null){
 			game = GameManager.instance;
-			hud = game.GetComponent<OnGuiManager>().hud;
 		}
+		if (guiManager == null){
+			guiManager = OnGuiManager.instance;
+		}
+
+
 		if (sounds == null){
 			sounds = PlayerSounds.instance;
 		}
@@ -34,6 +36,10 @@ public class PlayerHealth : MonoBehaviour {
 		if(GameManager.instance.treasureState == TreasureState.CARRYING){
 			GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
 		}
+
+		// visualize the pain
+		guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
+
 		if (tempHealth <= 0){
 			game.statistics.playerHealth = 0;
 			game.GameOver();	
@@ -42,7 +48,6 @@ public class PlayerHealth : MonoBehaviour {
 			game.statistics.playerHealth = (int)Mathf.Round(tempHealth);
 			sounds.PlayPainSound();
 		}
-		hud.setSplatterVisible( (1f-(tempHealth/100f)));
 	}
 
 
