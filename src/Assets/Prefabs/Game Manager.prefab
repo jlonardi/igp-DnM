@@ -89,6 +89,7 @@ MonoBehaviour:
   bloodSplatter:
     bloodSplatter: {fileID: 2800000, guid: fedd6fab6196ad84eb825b95181daddc, type: 3}
     fadeSpeed: .0500000007
+    bloodAlpha: 0
   game: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
