@@ -42,7 +42,6 @@ public class BloodSplatter {
 
 	public void setSplatterVisible(float a) {
 		if(a < 0.2f) a = 0.2f;
-		if(a > 0.9f) a = 0.9f;
 		bloodAlpha = a;
 		fadeBloodSplatterOut();
 	}
