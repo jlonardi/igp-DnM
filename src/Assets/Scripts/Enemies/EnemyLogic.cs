@@ -165,22 +165,14 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	// TakeDamage without adding force
-	public void TakeDamage(int damageAmount, DamageType damageType){
-		TakeDamage(damageAmount, damageType, new RaycastHit(), new Vector3(), 0f);
+	public void TakeDamage(int damageAmount){
+		TakeDamage(damageAmount, new RaycastHit(), new Vector3(), 0f);
 	}
 
 	// TakeDamage from explosion
 	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
-		Debug.Log("Explosion detected");
-		
 		// alert nearby enemies about hostile player
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-		if (enemies.Length!=0) {
-			foreach (GameObject enemy in enemies) {
-				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);
-			}
-		}
-
+		AlertNearbyEnemies();
 		health -= damageAmount;
 
 		if(health <= 0) {
@@ -197,22 +189,11 @@ public class EnemyLogic : MonoBehaviour {
 	}
 
 	// TakeDamage with applying damage force
-	public void TakeDamage(int damageAmount, DamageType damageType, RaycastHit hit, Vector3 direction, float power){
-		Debug.Log("Hit detected");
-
+	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
 		// alert nearby enemies about hostile player
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-		if (enemies.Length!=0) {
-			foreach (GameObject enemy in enemies) {
-				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);		
-			}
-		}
-		
-		
-		if (damageType == DamageType.BULLET) {
-			health -= damageAmount;
-		}
-		
+		AlertNearbyEnemies();
+
+		health -= damageAmount;
 		if(health <= 0) {
 			Die(hit, direction, power);
 		}
@@ -225,10 +206,20 @@ public class EnemyLogic : MonoBehaviour {
 		
 		Debug.Log("Enemy health left: " + health);
 	}
-	
+
+	private void AlertNearbyEnemies(){
+		// alert nearby enemies about hostile player
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		if (enemies.Length!=0) {
+			foreach (GameObject enemy in enemies) {
+				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);
+			}
+		}
+	}
+
+
 	// enemy death without force
 	public void Die(){
-		
 		Die(new RaycastHit(), new Vector3(), 0f);
 	}
 	
@@ -236,7 +227,7 @@ public class EnemyLogic : MonoBehaviour {
 	public void Die(Vector3 explosionPosition, float power){
 		game.statistics.AddKillStats(this.enemyType);
 		enemyManager.currentEnemyCount--;
-		
+
 		//make enemy a ragdoll
 		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
 		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
@@ -248,14 +239,15 @@ public class EnemyLogic : MonoBehaviour {
 	// enemy death with force from gunshot
 	public void Die(RaycastHit hit, Vector3 direction, float power){
 		game.statistics.AddKillStats(this.enemyType);
-		
+		enemyManager.currentEnemyCount--;
+
 		//make enemy a ragdoll
 		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
 		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
 		
 		// apply impact to ragdoll
 		if (power != 0f){
-			ragdollRigidBody.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
+			ragdollRigidBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
 		}
 	}	
 

@@ -109,12 +109,28 @@ public class Grenade : MonoBehaviour {
 					}
 				}
 				
-				if(body != null) {
-					body.AddExplosionForce(power, _explosionPosition, explosionRadius, 3.0f);
-				}
-
 				if(col[c].collider.tag == "glass") {
 					col[c].gameObject.SendMessage("BreakAll", SendMessageOptions.DontRequireReceiver);
+				}
+			}
+		}
+
+		col = Physics.OverlapSphere(_explosionPosition, explosionRadius);
+		if(col != null) {
+			for(int c = 0; c < col.Length; c++) {
+				body = null;
+				body = col[c].gameObject.rigidbody;
+				if(body != null) {
+					body.isKinematic = false;
+				} else if(col[c].gameObject.transform.parent != null) {
+					body = col[c].gameObject.transform.parent.rigidbody;
+					if(body != null) {
+						body.isKinematic = false;
+					}
+				}
+				
+				if(body != null) {
+					body.AddExplosionForce(power, _explosionPosition, explosionRadius, 3.0f);
 				}
 			}
 		}
