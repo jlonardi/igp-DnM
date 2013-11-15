@@ -38,19 +38,53 @@ public class CharacterMotor : MonoBehaviour {
 	public CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
 	public CharacterMotorSliding sliding = new CharacterMotorSliding();
 
+	private GameManager game;
 	private PlayerSounds sounds;
-	
+
 	public void Awake () {
 		controller = GetComponent<CharacterController>();
-		sounds = GetComponent<PlayerSounds>();
 		tr = transform;
 	}
 
-	private void UpdateFunction () {				
-		if(GameManager.instance.gameState != GameState.RUNNING){
-			return;
+	void Update () {
+		if (!useFixedUpdate)
+			UpdateFunction();
+	}
+
+	void FixedUpdate () {
+		if (movingPlatform.enabled) {
+			if (movingPlatform.activePlatform != null) {
+				if (!movingPlatform.newPlatform) {
+					//Vector3 lastVelocity = movingPlatform.platformVelocity;
+					
+					movingPlatform.platformVelocity = (
+						movingPlatform.activePlatform.localToWorldMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
+						- movingPlatform.lastMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
+						) / Time.deltaTime;
+				}
+				movingPlatform.lastMatrix = movingPlatform.activePlatform.localToWorldMatrix;
+				movingPlatform.newPlatform = false;
+			}
+			else {
+				movingPlatform.platformVelocity = Vector3.zero;	
+			}
 		}
 		
+		if (useFixedUpdate)
+			UpdateFunction();
+	}
+	
+	private void UpdateFunction () {				
+		if (game == null){
+			game = GameManager.instance;
+		}
+		if (sounds == null){
+			sounds = PlayerSounds.instance;
+		}
+		if(game.gameState != GameState.RUNNING){
+			return;
+		}
+
 		Vector3 velocity = movement.velocity;			// We copy the actual velocity into a temporary variable that we can manipulate.
 		velocity = ApplyInputVelocityChange(velocity);	// Update velocity based on input		
 		velocity = ApplyGravityAndJumping (velocity);	// Apply gravity and jumping force
@@ -174,36 +208,8 @@ public class CharacterMotor : MonoBehaviour {
 	        movingPlatform.activeGlobalRotation = tr.rotation;
 	        movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
 		}
-	}
-	
-	void FixedUpdate () {
-		if (movingPlatform.enabled) {
-			if (movingPlatform.activePlatform != null) {
-				if (!movingPlatform.newPlatform) {
-					//Vector3 lastVelocity = movingPlatform.platformVelocity;
-					
-					movingPlatform.platformVelocity = (
-						movingPlatform.activePlatform.localToWorldMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
-						- movingPlatform.lastMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
-					) / Time.deltaTime;
-				}
-				movingPlatform.lastMatrix = movingPlatform.activePlatform.localToWorldMatrix;
-				movingPlatform.newPlatform = false;
-			}
-			else {
-				movingPlatform.platformVelocity = Vector3.zero;	
-			}
-		}
-		
-		if (useFixedUpdate)
-			UpdateFunction();
-	}
-	
-	void Update () {
-		if (!useFixedUpdate)
-			UpdateFunction();
-	}
-	
+	}	
+
 	private Vector3 ApplyInputVelocityChange(Vector3 velocity) {	
 		if (!canControl)
 			inputMoveDirection = Vector3.zero;

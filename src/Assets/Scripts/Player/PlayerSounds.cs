@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PlayerSounds : MonoBehaviour {
-
+	//use singleton since only we need one instance of this class
+	public static PlayerSounds instance;
+	
 	public AudioClip[] painSounds;
 	public AudioClip deathSound;
 	public AudioClip[] walkSounds;
@@ -11,6 +13,11 @@ public class PlayerSounds : MonoBehaviour {
 	private float walkSoundTimer = 0;
 
 	private CharacterMotor motor;
+	
+	public void Awake()
+	{
+		PlayerSounds.instance = this;
+	}	
 	
 	void Start () {
 		motor = GetComponent<CharacterMotor>();

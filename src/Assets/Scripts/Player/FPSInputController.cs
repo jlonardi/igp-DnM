@@ -27,7 +27,7 @@ public class FPSInputController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
-		sounds = GetComponent<PlayerSounds>();
+		sounds = PlayerSounds.instance;
 	}
 	
 	// Update is called once per frame

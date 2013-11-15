@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
-	//use singleton since only we need once instance of this class
+	//use singleton since only we need one instance of this class
 	public static PlayerHealth instance;
 
 	private GameManager game;
@@ -11,12 +11,14 @@ public class PlayerHealth : MonoBehaviour {
     public void Awake()
     {
         PlayerHealth.instance = this;
-		sounds = GetComponent<PlayerSounds>();
     }	
 
 	void Update(){
 		if (game == null){
 			game = GameManager.instance;
+		}
+		if (sounds == null){
+			sounds = PlayerSounds.instance;
 		}
 
 		if(Input.GetKeyDown(KeyCode.K)) {
