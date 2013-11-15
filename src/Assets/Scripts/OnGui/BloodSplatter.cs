@@ -13,6 +13,8 @@ public class BloodSplatter {
 	[HideInInspector]
 	public float bloodAlpha;
 
+	public float pulseTreshold = 0f;
+
 	private float fadeDir;
 
 	// constructor
@@ -26,23 +28,29 @@ public class BloodSplatter {
 
 	// Show() gets called from OnGuiManager
 	public void Show() {
-		bloodColor = GUI.color;
-		originalColor = GUI.color;
-		bloodColor.a = bloodAlpha;
-		
-		bloodAlpha = bloodAlpha + fadeDir * fadeSpeed * Time.deltaTime;	
-		bloodAlpha = Mathf.Clamp01(bloodAlpha);	
-		bloodColor.a = bloodAlpha;
-		
+
+
+			bloodColor = GUI.color;
+			originalColor = GUI.color;
+			bloodColor.a = bloodAlpha;
+			
+			
+		if(bloodAlpha >= pulseTreshold) {
+			bloodAlpha = bloodAlpha + fadeDir * fadeSpeed * Time.deltaTime;	
+			bloodAlpha = Mathf.Clamp01(bloodAlpha);
+			bloodColor.a = bloodAlpha;
+		}
 		GUI.color = bloodColor;
-		GUI.DrawTexture(splatterPosition, bloodSplatter);
-		GUI.color = originalColor;
-	}	
+			GUI.DrawTexture(splatterPosition, bloodSplatter);
+			GUI.color = originalColor;
+		
+	}
 	
 
 	public void setSplatterVisible(float a) {
 		if(a < 0.35f) a = 0.35f;
 		bloodAlpha = a;
+		pulseTreshold = a - 0.1f;
 		fadeBloodSplatterOut();
 	}
 	
