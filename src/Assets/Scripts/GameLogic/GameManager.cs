@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
 	public TreasureState treasureState = TreasureState.NOT_PICKED_UP;
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
-	
 	void Awake()
     {
 		// never destroy Game Manager on scene load
@@ -17,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	
 		//use singleton since only we need once instance of this class
        	GameManager.instance = this;
+	
     }	
 	
 	void Update(){

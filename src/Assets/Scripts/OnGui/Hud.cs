@@ -11,11 +11,27 @@ public class Hud {
 
 	private GameManager game;
 
+	public Texture2D bloodSplatter;
+
+	private Rect splatterPosition;
+	private Color bloodColor;
+	private Color originalColor;
+
+	public float fadeSpeed = 0.05f;
+
+	private float bloodAlpha; 
+	private float fadeDir;
+
 	public Hud() {		
 		//size and alignment for gun crosshair
 		crosshairSize = Screen.height/30;
 	    crosshairPosition = CalculateGUIRect(crosshairSize, crosshairSize, 0, 0);
 	    helpPosition = CalculateGUIRect(500, 40, 0, -40);
+
+		splatterPosition = new Rect(0, 0, Screen.width, Screen.height);
+
+		bloodAlpha = 0f;
+		fadeDir = -1f;
 	}
 	
 	// this get's called from game manager when GameState.RUNNING
@@ -34,6 +50,7 @@ public class Hud {
 		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
     		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 		}
+
 		GUI.Box(new Rect(5,5,105,125),"");	
 		GUI.Label(new Rect(10,10,100,20), "Health: " + game.statistics.playerHealth);
 		GUI.Label(new Rect(10,25,100,20), "Treasure: " + game.statistics.treasureAmount);
@@ -53,6 +70,8 @@ public class Hud {
 				GUI.Label(new Rect(10,100,100,20), "Reloading...");
 			}
 		}
+
+		drawBloodSplatter();
 	}	
 	
 	
@@ -62,5 +81,35 @@ public class Hud {
 	
 	public Rect CalculateGUIRect(int width, int height, int xOffset, int yOffset){
 		return new Rect((Screen.width-width)/2 + xOffset, (Screen.height-height)/2 + yOffset, width, height);
+	}
+
+	public void drawBloodSplatter() {
+
+		bloodColor = GUI.color;
+		originalColor = GUI.color;
+		bloodColor.a = bloodAlpha;
+
+		bloodAlpha = bloodAlpha + fadeDir * fadeSpeed * Time.deltaTime;	
+		bloodAlpha = Mathf.Clamp01(bloodAlpha);	
+		bloodColor.a = bloodAlpha;
+
+		GUI.color = bloodColor;
+		GUI.DrawTexture(splatterPosition, bloodSplatter);
+		GUI.color = originalColor;
+	}
+
+	public void setSplatterVisible(float a) {
+		if(a < 0.2f) a = 0.2f;
+		if(a > 0.9f) a = 0.9f;
+		bloodAlpha = a;
+		fadeBloodSplatterOut();
+	}
+	
+	public void fadeBloodSplatterIn() {
+		fadeDir = 1;	
+	}
+
+	public void fadeBloodSplatterOut() {
+		fadeDir = -1;	
 	}
 }
