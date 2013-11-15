@@ -5,6 +5,8 @@ public class EnemyLogic : MonoBehaviour {
 	public EnemyType enemyType = EnemyType.ORC;
 	
 	public int health = 100;
+
+	public int damage = 7;
 	
 	//how long enemy chases player if player shoots (s)
 	private float focusTime = 20f;
@@ -97,7 +99,7 @@ public class EnemyLogic : MonoBehaviour {
 					attacking = false;
 				}
 				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
-					playerVitals.TakeDamage(7, DamageType.HIT);
+					playerVitals.TakeDamage(damage, DamageType.HIT);
 					timeFromAttack = Time.time;
 				}
 			} 
