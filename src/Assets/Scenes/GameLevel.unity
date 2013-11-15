@@ -970,6 +970,10 @@ Prefab:
       propertyPath: currentRounds
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: d1d6dbf0d44ba9846ae3846f3544a456, type: 2}
+      propertyPath: pushPower
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1d6dbf0d44ba9846ae3846f3544a456, type: 2}
   m_RootGameObject: {fileID: 652827452}
@@ -6394,7 +6398,7 @@ MonoBehaviour:
   totalClips: 6
   reloadTime: 2.5999999
   currentRounds: 5
-  pushPower: 2
+  pushPower: 200
   bulletMark: {fileID: 100000, guid: bd181b1a8dad9384895dd24e2547233a, type: 2}
   projectilePrefab: {fileID: 100002, guid: a546d611197b8754fbea5ad947814fbf, type: 2}
   gunParticles: {fileID: 2132568803}
