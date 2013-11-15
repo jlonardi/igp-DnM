@@ -59,6 +59,7 @@ MonoBehaviour:
     gunUnlimitedClips: 0
     gunReloading: 0
     gunEnabled: 0
+    grenadeCount: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,7 +86,7 @@ MonoBehaviour:
   guiSkin: {fileID: 0}
   hud:
     crosshairTexture: {fileID: 2800000, guid: 86c73534e81ffb14cb3d5f53a989ab08, type: 3}
-    bloodSplatter: {fileID: 2800000, guid: 5c7ad9725b7d55c44a52b9030abbe04b, type: 3}
+    bloodSplatter: {fileID: 2800000, guid: fedd6fab6196ad84eb825b95181daddc, type: 3}
     fadeSpeed: .0500000007
   game: {fileID: 0}
 --- !u!1001 &100100000
