@@ -97,7 +97,7 @@ public class EnemyLogic : MonoBehaviour {
 					attacking = false;
 				}
 				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
-					playerVitals.TakeDamage(1, DamageType.HIT);
+					playerVitals.TakeDamage(7, DamageType.HIT);
 					timeFromAttack = Time.time;
 				}
 			} 
