@@ -24,8 +24,13 @@ public class SaveContainer {
 	public int wave;
 	public int gun0_rounds;
 	public int gun1_rounds;
+	public int gun2_rounds;
+	public int gun3_rounds;
 	public int gun0_clips;
 	public int gun1_clips;
+	public int gun2_clips;
+	public int gun3_clips;
+	public int grenades;
 	public int currentGunIndex;
 	public int bodycount;
 	public int score;
@@ -42,7 +47,7 @@ public class SaveContainer {
 	public void SaveValues(){		
 		GameManager game = GameManager.instance;
 		GunManager gunManager = GunManager.instance;
-		EnemySpawnManager enemySpawnManager = EnemySpawnManager.instance;
+		EnemyManager enemyManager = EnemyManager.instance;
 		GameObject treasure = Treasure.instance.gameObject;
 		GameObject player = GameObject.Find("Player");
 		SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
@@ -81,11 +86,16 @@ public class SaveContainer {
 		treasureFullAmount = game.statistics.treasureFullAmount;
 		treasureState = game.treasureState;
 		wave = game.statistics.wave;
-		timeOfLastWave = enemySpawnManager.timeOfLastWave;
+		timeOfLastWave = enemyManager.timeOfLastWave;
 		gun0_rounds = gunManager.guns[0].gun.currentRounds;
 		gun1_rounds = gunManager.guns[1].gun.currentRounds;
+		gun2_rounds = gunManager.guns[2].gun.currentRounds;
+		gun3_rounds = gunManager.guns[3].gun.currentRounds;
 		gun0_clips = gunManager.guns[0].gun.totalClips;
 		gun1_clips = gunManager.guns[1].gun.totalClips;
+		gun2_clips = gunManager.guns[2].gun.totalClips;
+		gun3_clips = gunManager.guns[3].gun.totalClips;
+		grenades = gunManager.grenadeCount;
 		currentGunIndex = gunManager.currentGunIndex;
 	}
 
@@ -93,7 +103,7 @@ public class SaveContainer {
 		try{
 			GameManager game = GameManager.instance;
 			GunManager gunManager = GunManager.instance;
-			EnemySpawnManager enemySpawnManager = EnemySpawnManager.instance;
+			EnemyManager enemyManager = EnemyManager.instance;
 			RagdollManager ragdollManager = RagdollManager.instance;
 			Treasure treasure = Treasure.instance;
 			SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
@@ -113,8 +123,13 @@ public class SaveContainer {
 			mouseY.smoothing = mouseSmoothing;
 			gunManager.guns[0].gun.currentRounds = gun0_rounds;
 			gunManager.guns[1].gun.currentRounds = gun1_rounds;
+			gunManager.guns[2].gun.currentRounds = gun2_rounds;
+			gunManager.guns[3].gun.currentRounds = gun3_rounds;
 			gunManager.guns[0].gun.totalClips = gun0_clips;
 			gunManager.guns[1].gun.totalClips = gun1_clips;
+			gunManager.guns[2].gun.totalClips = gun2_clips;
+			gunManager.guns[3].gun.totalClips = gun3_clips;
+			gunManager.grenadeCount = grenades;
 			gunManager.currentGunIndex = currentGunIndex;
 			game.statistics.level = level;
 			game.statistics.playerArmor = playerArmor;
@@ -128,7 +143,7 @@ public class SaveContainer {
 			game.treasureState = treasureState;
 
 			// calculate time of last enemy wave
-			enemySpawnManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
+			enemyManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
 
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
 			if (game.treasureState == TreasureState.SET_ON_GROUND){
@@ -164,7 +179,7 @@ public class SaveContainer {
 					sgo.restoreChildTransforms(go.transform);
 					
 				} else if(sgo.name.Equals("orc(Clone)")) {
-					enemySpawnManager.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
+					enemyManager.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
 														sgo.transform.rotation.toQuaternion);
 
 				} else if(sgo.name.Equals("1x1x1m Box")) {

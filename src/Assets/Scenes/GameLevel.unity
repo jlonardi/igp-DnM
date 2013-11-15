@@ -148,6 +148,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .70340538
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1d04b78b5c4ec2e4781499ae31b47628, type: 2}
+      propertyPath: totalClips
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d04b78b5c4ec2e4781499ae31b47628, type: 2}
   m_RootGameObject: {fileID: 652827452}
@@ -1138,6 +1142,10 @@ Prefab:
     - target: {fileID: 400008, guid: d1d6dbf0d44ba9846ae3846f3544a456, type: 2}
       propertyPath: m_LocalRotation.w
       value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: d1d6dbf0d44ba9846ae3846f3544a456, type: 2}
+      propertyPath: totalClips
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1d6dbf0d44ba9846ae3846f3544a456, type: 2}
@@ -2437,8 +2445,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orcPrefab: {fileID: 100142, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
   maxEnemies: 20
+  currentEnemyCount: 0
   areas: []
-  timeOfLastWave: 0
+  timeOfLastWave: -5
   waveInterval: 5
 --- !u!1 &244283847
 GameObject:
@@ -6322,7 +6331,7 @@ MonoBehaviour:
   projectileSpeed: 30
   startDelay: 0
   clipSize: 5
-  totalClips: 6
+  totalClips: 10
   reloadTime: 2.5999999
   currentRounds: 5
   pushPower: 200
@@ -9193,6 +9202,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: totalClips
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
   m_RootGameObject: {fileID: 1271987599}
@@ -10185,7 +10198,7 @@ MonoBehaviour:
   projectileSpeed: 0
   startDelay: 1
   clipSize: 1000
-  totalClips: 100
+  totalClips: 5
   reloadTime: 5
   currentRounds: 1000
   pushPower: 1
@@ -12035,7 +12048,7 @@ MonoBehaviour:
   projectileSpeed: 15
   startDelay: 0
   clipSize: 30
-  totalClips: 6
+  totalClips: 20
   reloadTime: 3
   currentRounds: 30
   pushPower: 2

@@ -52,7 +52,7 @@ public class GunManager : MonoBehaviour {
 		game.statistics.gunClips = currentGun.totalClips;
 		game.statistics.gunRounds = currentGun.currentRounds;
 		game.statistics.gunReloading = currentGun.reloading;
-
+		game.statistics.grenadeCount = grenadeCount;
 	}
 	
 	public void ChangeToCurrentWeapon(){

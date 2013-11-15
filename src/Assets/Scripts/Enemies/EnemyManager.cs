@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemySpawnManager : MonoBehaviour {
+public class EnemyManager : MonoBehaviour {
 	//use singleton since only we need one instance of this class
-	public static EnemySpawnManager instance;
+	public static EnemyManager instance;
 
 	public GameObject orcPrefab;
 	public int maxEnemies = 20;
-	private int enemyCount = 0;
+
+	[HideInInspector]
+	public int currentEnemyCount = 0;
 
 	public Transform[] areas;	
 	public float timeOfLastWave = -5f;
@@ -18,7 +20,7 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	void Awake()
 	{
-		EnemySpawnManager.instance = this;
+		EnemyManager.instance = this;
 	}	
 	
 	void Start () {	
@@ -48,7 +50,7 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	private void createSpawnWave() {
 		// don't add enemies if we have already a maximum number we can handle
-		if (enemyCount >= maxEnemies){
+		if (currentEnemyCount >= maxEnemies){
 			return;
 		}
 
@@ -81,7 +83,7 @@ public class EnemySpawnManager : MonoBehaviour {
 		GameObject enemyPrefab;
 
 		// add enemycount
-		enemyCount++;
+		currentEnemyCount++;
 
 		// select correct prefab by enemy type
 		switch(enemyType) {

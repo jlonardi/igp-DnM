@@ -42,6 +42,7 @@ public class EnemyLogic : MonoBehaviour {
 	private bool treasureAvailable = false;
 	private GameManager game;
 	private RagdollManager ragdolls;
+	private EnemyManager enemyManager;
 
 	private PlayerHealth playerVitals;
 
@@ -53,6 +54,7 @@ public class EnemyLogic : MonoBehaviour {
 		playerVitals = PlayerHealth.instance;
 		ragdolls = RagdollManager.instance;
 		treasure = Treasure.instance;
+		enemyManager = EnemyManager.instance;
 
 		GameObject player = GameObject.Find("Player");	
 		GameObject focusPoint = treasure.gameObject.transform.FindChild("focusPoint").gameObject;
@@ -232,7 +234,8 @@ public class EnemyLogic : MonoBehaviour {
 	
 	// enemy death with force from explosion
 	public void Die(Vector3 explosionPosition, float power){
-		game.statistics.Kill(this.enemyType);
+		game.statistics.AddKillStats(this.enemyType);
+		enemyManager.currentEnemyCount--;
 		
 		//make enemy a ragdoll
 		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
@@ -244,7 +247,7 @@ public class EnemyLogic : MonoBehaviour {
 
 	// enemy death with force from gunshot
 	public void Die(RaycastHit hit, Vector3 direction, float power){
-		game.statistics.Kill(this.enemyType);
+		game.statistics.AddKillStats(this.enemyType);
 		
 		//make enemy a ragdoll
 		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
