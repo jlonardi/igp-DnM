@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour {
 	private GameManager game;
 	private PlayerSounds sounds;
 
+	public Hud hud;
+
     public void Awake()
     {
         PlayerHealth.instance = this;
@@ -16,11 +18,11 @@ public class PlayerHealth : MonoBehaviour {
 	void Update(){
 		if (game == null){
 			game = GameManager.instance;
+			hud = game.GetComponent<OnGuiManager>().hud;
 		}
 		if (sounds == null){
 			sounds = PlayerSounds.instance;
 		}
-
 		if(Input.GetKeyDown(KeyCode.K)) {
 			TakeDamage(20, DamageType.HIT);
 		}
@@ -40,6 +42,7 @@ public class PlayerHealth : MonoBehaviour {
 			game.statistics.playerHealth = (int)Mathf.Round(tempHealth);
 			sounds.PlayPainSound();
 		}
+		hud.setSplatterVisible( (1f-(tempHealth/100f)));
 	}
 
 
