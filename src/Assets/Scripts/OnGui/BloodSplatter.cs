@@ -50,7 +50,7 @@ public class BloodSplatter {
 	public void setSplatterVisible(float a) {
 		if(a < 0.35f) a = 0.35f;
 		bloodAlpha = a;
-		pulseTreshold = a - 0.1f;
+		pulseTreshold = a - 0.3f;
 		fadeBloodSplatterOut();
 	}
 	
