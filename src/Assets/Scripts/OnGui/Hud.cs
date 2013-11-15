@@ -41,17 +41,18 @@ public class Hud {
 		GUI.Label (new Rect(10,40,100,20),"Score: " + game.statistics.score);
 		
 		if (game.statistics.gunEnabled){
-			GUI.Label(new Rect(10,55,100,20), "Gun: " + game.statistics.gunName);			
-			GUI.Label(new Rect(10,70,100,20), "Ammo: " + game.statistics.gunRounds);
+			GUI.Label(new Rect(10,55,100,20), "Grenades: " + game.statistics.grenadeCount);
+			GUI.Label(new Rect(10,70,100,20), "Gun: " + game.statistics.gunName);			
+			GUI.Label(new Rect(10,85,100,20), "Ammo: " + game.statistics.gunRounds);
 			string clips;
 			if (game.statistics.gunUnlimitedClips){
 				clips = "unlimited";
 			} else {
 				clips = game.statistics.gunClips.ToString();
 			}
-			GUI.Label(new Rect(10,85,100,20), "Clips: " + clips);
+			GUI.Label(new Rect(10,100,100,20), "Clips: " + clips);
 			if (game.statistics.gunReloading){
-				GUI.Label(new Rect(10,100,100,20), "Reloading...");
+				GUI.Label(new Rect(10,115,100,20), "Reloading...");
 			}
 		}
 

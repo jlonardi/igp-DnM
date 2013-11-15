@@ -293,8 +293,7 @@ public class Gun : MonoBehaviour {
 		Ray camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 0f));
 		projectile.transform.rotation = Quaternion.LookRotation(camRay.direction);
 
-		Rigidbody projectileRigidbody = projectile.rigidbody;
-		projectileRigidbody.velocity = controller.velocity + (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f))
+		projectile.rigidbody.velocity = controller.velocity + (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f))
 		                                                      	- shootFrom.transform.position).normalized * projectileSpeed;
 	}
 	
