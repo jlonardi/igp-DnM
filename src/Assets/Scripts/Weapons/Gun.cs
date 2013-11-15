@@ -185,7 +185,10 @@ public class Gun : MonoBehaviour {
 			
 		} else {
 			if (mgState != MiniGunState.IDLE){
-				mgState = MiniGunState.WIND_DOWN;
+				if (mgState != MiniGunState.WIND_DOWN){
+					PlayWindDownSound();
+					mgState = MiniGunState.WIND_DOWN;
+				}
 				if (spinSpeed > 0){
 					spinSpeed -= decSpeed * Time.deltaTime;
 				} else {
@@ -264,11 +267,6 @@ public class Gun : MonoBehaviour {
 			}
 		}
 		else{
-			//end minigun sounds when not firing
-			if (gunType == GunType.MINIGUN && audioSource.loop){
-				PlayWindDownSound();
-			}
-
 			if(gunParticles != null){
 				gunParticles.ChangeState(false);
 			}
