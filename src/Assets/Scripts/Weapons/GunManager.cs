@@ -15,8 +15,6 @@ public class GunManager : MonoBehaviour {
 	public int currentGunIndex;
 	public Gun currentGun;
 	public HitParticles hitParticles = new HitParticles();
-	[HideInInspector]
-	public GameObject shootFrom;
 	public GameManager game;
 
 	public void Awake(){
@@ -24,7 +22,6 @@ public class GunManager : MonoBehaviour {
     }	
 	
 	void Start () {	
-		shootFrom = transform.FindChild("ShootFrom").gameObject;
 		// set to false at start
 		for (int i=0; i<guns.Length; i++){
 			guns[i].gun.enabled = false;

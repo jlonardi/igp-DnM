@@ -6,11 +6,9 @@ using Pathfinding;
 public class GraphManager : MonoBehaviour {
 	
 	private GridGraph levelGraph;
-	private GridGraph playerGraph;
-	private GridGraph tresaureGraph;
-	
-	private Transform player;
-	private Transform tresaure;
+
+//	private Transform player;
+//	private Transform tresaure;
 	
 	private float timeOfLastGraphUpdate = 0f;
 	
@@ -18,11 +16,10 @@ public class GraphManager : MonoBehaviour {
 	
 	void Start () {
 		
-		GameObject playerObject = GameObject.Find("Player");
-		player = playerObject.transform;
+//		GameObject playerObject = GameObject.Find("Player");
+//		player = playerObject.transform;
 		
-		GameObject trsaureObject = GameObject.Find("arkku");
-		tresaure = trsaureObject.transform;
+//		tresaure = Treasure.instance.gameObject.transform;
 	
 		init();
 		
@@ -44,14 +41,6 @@ public class GraphManager : MonoBehaviour {
 			if(levelGraph != null) {
 				updateGraph(levelGraph, new Vector3(160, -0.1f, 150));
 			}
-			if(playerGraph != null) {
-				//Debug.Log("Updating the player graph!");
-				updateGraph(playerGraph, new Vector3(player.position.x, -0.1f, player.position.z));
-			}
-			if(tresaureGraph != null) {
-				//Debug.Log("Updating the player graph!");
-				updateGraph(tresaureGraph, new Vector3(tresaure.position.x, -0.1f, tresaure.position.z));
-			}
 			timeOfLastGraphUpdate = Time.fixedTime;
 			AstarPath.active.Scan();
 		}
@@ -62,8 +51,8 @@ public class GraphManager : MonoBehaviour {
 		levelGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		initGraph(levelGraph, new Vector3(160, -0.1f, 150), 130, 130, 2);
 		
-		Vector3 playerCenter = player.position;
-		playerCenter.y = -0.1f;
+//		Vector3 playerCenter = player.position;
+//		playerCenter.y = -0.1f;
 		
 		//playerGraph = (GridGraph)AstarPath.active.astarData.CreateGraph(typeof(GridGraph));
 		//initGraph(playerGraph, playerCenter, 50, 50, 1);

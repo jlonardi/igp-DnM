@@ -153,6 +153,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400018}
+  m_Layer: 0
+  m_Name: ShootFrom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -224,6 +239,7 @@ Transform:
   - {fileID: 400014}
   - {fileID: 400004}
   - {fileID: 400012}
+  - {fileID: 400018}
   m_Father: {fileID: 0}
 --- !u!4 &400012
 Transform:
@@ -259,6 +275,17 @@ Transform:
   m_Children:
   - {fileID: 400006}
   - {fileID: 400000}
+  m_Father: {fileID: 400010}
+--- !u!4 &400018
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -.5, y: .150000006, z: -.589999974}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 400010}
 --- !u!12 &1200000
 ParticleAnimator:
@@ -594,7 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97af0ab24e01d244e9af61805762b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunName: Colt
+  gunType: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -602,12 +629,10 @@ MonoBehaviour:
   fireRange: 50
   maxDamage: 70
   projectileSpeed: 15
+  startDelay: 0
   clipSize: 6
   totalClips: 100
-  useGravity: 0
-  isExplosive: 0
   reloadTime: 2.5
-  autoReload: 1
   currentRounds: 6
   pushPower: 3
   bulletMark: {fileID: 100000, guid: bd181b1a8dad9384895dd24e2547233a, type: 2}
@@ -620,6 +645,8 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: ca3ecaf0c8ce85c4eadee30fde98727c, type: 3}
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
+  windUpSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0

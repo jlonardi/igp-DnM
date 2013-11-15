@@ -18,10 +18,7 @@ public class Gun : MonoBehaviour {
 		WIND_DOWN,
 	}
 
-	public float grenadeYOffset = 95f;
-
-	public float grenadeXOffset = 30f;
-
+	public GunType gunType = GunType.SINGLE_FIRE;	
 	public LayerMask hitLayer;
 
 	//How many shots the gun can take in one second
@@ -33,8 +30,6 @@ public class Gun : MonoBehaviour {
 	//Max damage on optimal hit
 	public float maxDamage = 50.0f;
 
-	public GunType gunType = GunType.SINGLE_FIRE;
-	
 	//Speed of the projectile in m/s
 	public float projectileSpeed;
 	
@@ -52,6 +47,7 @@ public class Gun : MonoBehaviour {
 	public float pushPower = 3.0f;	
 
 	private Camera cam;
+	private GameObject shootFrom;
 
 	public GameObject bulletMark;
 	public GameObject projectilePrefab;
@@ -95,10 +91,16 @@ public class Gun : MonoBehaviour {
 	
 	private HitParticles hitParticles;
 	private GunManager gunManager;
-	
-	void Start(){		
-		gunManager = GunManager.instance;
+	private CharacterController controller;
+
+	void Awake(){
+		shootFrom = transform.FindChild("ShootFrom").gameObject;
+	}
+
+	void Start(){
 		cam = Camera.main.camera;
+		gunManager = GunManager.instance;
+		controller = transform.root.GetComponent<CharacterController>();
 		hitParticles = GunManager.instance.hitParticles;
 	}
 
@@ -166,19 +168,24 @@ public class Gun : MonoBehaviour {
 			shotLight.enabled = false;
 		}
 	}
-	
+
+	// handles minigun states, audio and barrel movement
 	public void HandleMinigun(){
 		int maxSpeed = 1000;
 		int accelSpeed = 2000;
 		int decSpeed = 500;
 		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot){
 			if (mgState == MiniGunState.IDLE || mgState == MiniGunState.WIND_DOWN){
+				// if player tries to fire and minigun is not ready, start spinning the barrels
 				PlayWindUpSound();
 				mgState = MiniGunState.WIND_UP;
 			}
+
 			if (spinSpeed < maxSpeed){
-				spinSpeed += accelSpeed * Time.deltaTime;
+				// if not at max rotation speed, add speed with acceleration * deltaTime
+				spinSpeed += accelSpeed * Time.deltaTime;			
 			} else {
+				// if at max rotation speed, allow firing
 				spinSpeed = maxSpeed;
 				mgState = MiniGunState.FIRING;
 			}
@@ -186,12 +193,15 @@ public class Gun : MonoBehaviour {
 		} else {
 			if (mgState != MiniGunState.IDLE){
 				if (mgState != MiniGunState.WIND_DOWN){
+					//when not shooting, minigun starts to slow down
 					PlayWindDownSound();
 					mgState = MiniGunState.WIND_DOWN;
 				}
 				if (spinSpeed > 0){
+					// is still spinning, reduce rotation with deceleration * deltaTime
 					spinSpeed -= decSpeed * Time.deltaTime;
 				} else {
+					// if stopped, minigun is at idle state
 					spinSpeed = 0;
 					mgState = MiniGunState.IDLE;
 				}
@@ -277,36 +287,15 @@ public class Gun : MonoBehaviour {
 		}
 	}
 	public void LaunchProjectile()	{
-		//Get the launch position (weapon related)
-		Ray camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.6f, 0f));
-		
-		Vector3 startPosition;
-		
-		//startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
-		startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f + grenadeXOffset, Screen.height * 0.5f - grenadeYOffset, 1.8f));
+		Vector3 startPosition = shootFrom.transform.position;
+		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);		
 
-		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);
-		
-		Grenade grenadeObj = projectile.GetComponent("Grenade") as Grenade;
-
+		Ray camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 0f));
 		projectile.transform.rotation = Quaternion.LookRotation(camRay.direction);
-		
+
 		Rigidbody projectileRigidbody = projectile.rigidbody;
-		
-		if(projectile.rigidbody == null){
-			projectileRigidbody = (Rigidbody)projectile.AddComponent("Rigidbody");	
-		}
-		projectileRigidbody.useGravity = true;
-		
-		RaycastHit hit;
-		Ray camRay2 = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 0f));
-		
-		if(Physics.Raycast(camRay2.origin, camRay2.direction, out hit, fireRange, hitLayer)){
-			projectileRigidbody.velocity = (hit.point - this.transform.position).normalized * projectileSpeed;
-		}
-		else{
-			projectileRigidbody.velocity = (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f)) - this.transform.position).normalized * projectileSpeed;
-		}
+		projectileRigidbody.velocity = controller.velocity + (cam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.55f, 40f))
+		                                                      	- shootFrom.transform.position).normalized * projectileSpeed;
 	}
 	
 	public void CheckRaycastHit(){
@@ -319,7 +308,7 @@ public class Gun : MonoBehaviour {
 		Vector3 glassDir = new Vector3(0f,0f,0f);;
 		
 		camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
-		origin = GunManager.instance.shootFrom.transform.position;
+		origin = shootFrom.transform.position;
 		if(Physics.Raycast(camRay.origin + camRay.direction * 0.1f, camRay.direction, out hit, fireRange, hitLayer))	{
 			dir = (hit.point - origin).normalized;
 			if(hit.collider.tag == "glass")	{

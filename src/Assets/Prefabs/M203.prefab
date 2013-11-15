@@ -18,17 +18,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400002}
+  m_Layer: 0
+  m_Name: ShootFrom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -.0722556338, y: .70340538, z: -.0722556338, w: .70340538}
-  m_LocalPosition: {x: .449996948, y: -.369999737, z: -.150001526}
+  m_LocalRotation: {x: .0616285168, y: -.704416037, z: .0616285168, w: -.704416037}
+  m_LocalPosition: {x: .449996948, y: -.430000007, z: -.150001526}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children:
+  - {fileID: 400002}
+  m_Father: {fileID: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: .0616284125, y: -.704416037, z: .0616284125, w: .704416037}
+  m_LocalPosition: {x: 0, y: .0599999987, z: .899999976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 400000}
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -68,17 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97af0ab24e01d244e9af61805762b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 3
   hitLayer:
     serializedVersion: 2
     m_Bits: 0
   fireRate: 2
   fireRange: 50
   maxDamage: 200
-  gunType: 3
   projectileSpeed: 30
   startDelay: 0
   clipSize: 5
-  totalClips: 6
+  totalClips: 10
   reloadTime: 2.5999999
   currentRounds: 5
   pushPower: 200
@@ -93,7 +120,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}
-  windDownStopSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0
