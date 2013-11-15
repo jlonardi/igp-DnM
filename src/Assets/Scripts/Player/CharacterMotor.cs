@@ -32,7 +32,10 @@ public class CharacterMotor : MonoBehaviour {
 	private Vector3 lastGroundNormal  = Vector3.zero;	
 	private Transform tr;	
 	private CharacterController controller;
-	
+
+	public Vector3 characterVelocity;
+	private Vector3 lastPosition;
+
 	public CharacterMotorMovement movement = new CharacterMotorMovement();	
 	public CharacterMotorJumping jumping = new CharacterMotorJumping();
 	public CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
@@ -46,7 +49,14 @@ public class CharacterMotor : MonoBehaviour {
 		tr = transform;
 	}
 
+	public void UpdateVelocity(){		
+		Vector3 movement = transform.position - lastPosition;
+		lastPosition = transform.position;
+		characterVelocity = movement / Time.deltaTime;
+	}
+
 	void Update () {
+		UpdateVelocity();
 		if (!useFixedUpdate)
 			UpdateFunction();
 	}

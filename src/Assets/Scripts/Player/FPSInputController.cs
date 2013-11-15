@@ -23,9 +23,16 @@ public class FPSInputController : MonoBehaviour {
 	private CharacterMotor motor;
 	private GameManager game;
 	private PlayerSounds sounds;
-	
+	private Camera playerCam;
+	private GunManager gunManager;
+	private CharacterController controller;
+	private float timeOfLastGrenade;
+
 	// Use this for initialization
 	void Start () {
+		playerCam = PlayerCamera.instance.camera;
+		controller = GetComponent<CharacterController>();
+		gunManager = GunManager.instance;
 		motor = GetComponent<CharacterMotor>();
 		sounds = PlayerSounds.instance;
 	}
@@ -67,8 +74,8 @@ public class FPSInputController : MonoBehaviour {
 				
 		//Check if the user if firing the weapon
 		fire = Input.GetButton("Fire1") && GameManager.instance.treasureState == TreasureState.SET_ON_GROUND &&
-						GunManager.instance.currentGun.freeToShoot;
-			
+			GunManager.instance.currentGun.freeToShoot;
+
 		idleTimer += Time.deltaTime;
 		
 		if(fire)
@@ -82,7 +89,12 @@ public class FPSInputController : MonoBehaviour {
 			firing = false;
 			firingTimer = 0.3f;
 		}
-		
+		if (Input.GetButton("Grenade") && (timeOfLastGrenade + gunManager.grenadeThrowDelay) < Time.time && gunManager.grenadeCount > 0){
+			timeOfLastGrenade = Time.time;
+			gunManager.grenadeCount--;
+			ThrowGrenade();
+		}
+
 //		firing = (firingTimer <= 0.0f && fire);
 		
 		if(game.treasureState == TreasureState.SET_ON_GROUND){
@@ -97,5 +109,19 @@ public class FPSInputController : MonoBehaviour {
 			game.treasureState = TreasureState.SET_ON_GROUND;
 		}
 
+	}
+
+	public void ThrowGrenade(){
+		Ray camRay = playerCam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.6f, 0f));
+		Vector3 startPosition = playerCam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.6f, 0.8f));
+		GameObject grenade = (GameObject)Instantiate(gunManager.handGrenadePrefab, startPosition, Quaternion.identity);
+		grenade.transform.rotation = Quaternion.LookRotation(camRay.direction);
+		Rigidbody grenadeRigidbody = grenade.rigidbody;
+
+		Vector3 grenadeDirection = (playerCam.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.3f, 1f)) 
+			- this.transform.position).normalized;
+
+		// add player movement to the grenadde throw velocity
+		grenadeRigidbody.velocity = controller.velocity + grenadeDirection * gunManager.grenadeSpeed;
 	}
 }

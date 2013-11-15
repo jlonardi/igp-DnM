@@ -11,7 +11,7 @@ public class Grenade : MonoBehaviour {
 	public float power = 3200f;
 	private float timer;
 	
-	private PlayerCamera camera;
+	private PlayerCamera playerCam;
 	
 	public AudioClip[] nearSounds;
 	public AudioClip[] farSounds;
@@ -19,23 +19,14 @@ public class Grenade : MonoBehaviour {
 	
 	private bool exploded;
 	private RaycastHit hit;
-	private float maxDamage;
+	public float maxDamage = 300f;
 	
 
 	void Start () {
-		camera = PlayerCamera.instance;
-		GunManager gunManager = GunManager.instance;
-
+		playerCam = PlayerCamera.instance;
 		exploded = false;
 		timer = 0.0f;
 		thisTransform = transform;
-
-		for (int i = 0; i < gunManager.guns.Length; i++){
-			if (gunManager.guns[0].gun.name == "M203"){
-				maxDamage = gunManager.guns[0].gun.maxDamage;
-				break;
-			}
-		}
 	}
 	
 	void Update () {
@@ -95,8 +86,8 @@ public class Grenade : MonoBehaviour {
 		Vector3 _explosionPosition = thisTransform.position;
 		Collider[] col = Physics.OverlapSphere(_explosionPosition, explosionRadius);
 		
-		float distance = Vector3.Distance(camera.transform.position, _explosionPosition);
-		camera.Shake(distance);
+		float distance = Vector3.Distance(playerCam.transform.position, _explosionPosition);
+		playerCam.Shake(distance);
 		
 		Rigidbody body;
 		if(col != null) {

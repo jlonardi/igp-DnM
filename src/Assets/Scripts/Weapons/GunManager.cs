@@ -5,7 +5,12 @@ using System.Collections;
 public class GunManager : MonoBehaviour {	
 	//use singleton since only we need once instance of this class
 	public static GunManager instance;
-	
+
+	public GameObject handGrenadePrefab;
+	public float grenadeSpeed = 10f;
+	public float grenadeThrowDelay = 1f;
+	public int grenadeCount = 10;
+
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
