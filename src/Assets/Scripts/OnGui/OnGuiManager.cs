@@ -32,19 +32,26 @@ public class OnGuiManager : MonoBehaviour {
 		switch (GameManager.instance.gameState)
 		{		
 		case GameState.PAUSE_MENU:
+			bloodSplatter.Show();
 			pauseMenu.Show();
 			break;
 		case GameState.LOAD_MENU_MAIN:
+			loadMenu.Show();
+			break;
 		case GameState.LOAD_MENU_PAUSE:
+			bloodSplatter.Show();
 			loadMenu.Show();
 			break;
 		case GameState.SAVE_MENU:
+			bloodSplatter.Show();
 			saveMenu.Show();
 			break;
 		case GameState.SAVE_DIALOG:
+			bloodSplatter.Show();
 			saveDialog.Show();
 			break;
 		case GameState.SAVE_SCREENSHOT:
+			bloodSplatter.Show();
 			//hud.Show();
 			break;
 		case GameState.MAIN_MENU:

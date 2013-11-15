@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PauseMenu {
 	
-	// this get's called from game manager when GameState.PAUSE_MENU
+	// Show() gets called from OnGuiManager
 	public void Show()
 	{
 		GUIStyle myStyle = new GUIStyle("Box");

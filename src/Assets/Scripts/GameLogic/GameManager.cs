@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 		treasureState = TreasureState.CARRYING;
 		gameState = GameState.RUNNING;
 		statistics.Reset();
+		OnGuiManager.instance.bloodSplatter.bloodAlpha = 0f;
 	}
 	
 	public void GameOver(){

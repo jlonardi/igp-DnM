@@ -9,12 +9,14 @@ public class BloodSplatter {
 	private Color originalColor;
 	
 	public float fadeSpeed = 0.05f;
-	
-	private float bloodAlpha; 
+
+	[HideInInspector]
+	public float bloodAlpha;
+
 	private float fadeDir;
 
+	// constructor
 	public BloodSplatter() {		
-
 		splatterPosition = new Rect(0, 0, Screen.width, Screen.height);
 		
 		bloodAlpha = 0f;
@@ -22,7 +24,7 @@ public class BloodSplatter {
 	}
 
 
-	// this get's called from game manager when GameState.RUNNING
+	// Show() gets called from OnGuiManager
 	public void Show() {
 		bloodColor = GUI.color;
 		originalColor = GUI.color;

@@ -34,7 +34,7 @@ public class SceneManager : MonoBehaviour {
 			if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
 				GameManager.instance.levelState = LevelState.LOADED;
 				GameManager.instance.NewGame();
-				
+
 			} else if (GameManager.instance.levelState == LevelState.LOADING_NEXT){
 				GameManager.instance.levelState = LevelState.LOADED;
 

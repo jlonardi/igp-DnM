@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SaveDialog {	
 		
-	// this get's called from game manager when GameState.SAVE_DIALOG
+	// Show() gets called from OnGuiManager
 	public void Show(){
 		string saveName;
 		if (SaveManager.instance.container.name != null){

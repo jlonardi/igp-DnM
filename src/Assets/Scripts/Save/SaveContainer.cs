@@ -10,6 +10,7 @@ public class SaveContainer {
 	public string dateTime;
 	public byte[] screenshot;
 	public int level;
+	public float bloodAlpha;
 	public float mousePositionX;
 	public float mousePositionY;
 	public float mouseSensitivity;
@@ -48,6 +49,7 @@ public class SaveContainer {
 		GameManager game = GameManager.instance;
 		GunManager gunManager = GunManager.instance;
 		EnemyManager enemyManager = EnemyManager.instance;
+		OnGuiManager onGuiManager = OnGuiManager.instance;
 		GameObject treasure = Treasure.instance.gameObject;
 		GameObject player = GameObject.Find("Player");
 		SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
@@ -80,6 +82,7 @@ public class SaveContainer {
 		level = game.statistics.level;
 		bodycount = game.statistics.bodycount;
 		score = game.statistics.score;
+		bloodAlpha = onGuiManager.bloodSplatter.bloodAlpha;
 		playerArmor = game.statistics.playerArmor;
 		playerHealth = game.statistics.playerHealth;
 		treasureAmount = game.statistics.treasureAmount;
@@ -104,6 +107,7 @@ public class SaveContainer {
 			GameManager game = GameManager.instance;
 			GunManager gunManager = GunManager.instance;
 			EnemyManager enemyManager = EnemyManager.instance;
+			OnGuiManager onGuiManager = OnGuiManager.instance;
 			RagdollManager ragdollManager = RagdollManager.instance;
 			Treasure treasure = Treasure.instance;
 			SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
@@ -121,6 +125,7 @@ public class SaveContainer {
 			mouseY.sensitivity = mouseSensitivity;
 			mouseX.smoothing = mouseSmoothing;
 			mouseY.smoothing = mouseSmoothing;
+			onGuiManager.bloodSplatter.bloodAlpha = bloodAlpha;
 			gunManager.guns[0].gun.currentRounds = gun0_rounds;
 			gunManager.guns[1].gun.currentRounds = gun1_rounds;
 			gunManager.guns[2].gun.currentRounds = gun2_rounds;

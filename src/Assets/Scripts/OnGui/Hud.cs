@@ -18,8 +18,8 @@ public class Hud {
 		helpPosition = CalculateGUIRect(500, 40, 0, -40);
 	}
 
-	// this get's called from game manager when GameState.RUNNING
-    public void Show() {
+	// Show() gets called from OnGuiManager
+	public void Show() {
 		if (game == null){
 			game = GameManager.instance;
 		}

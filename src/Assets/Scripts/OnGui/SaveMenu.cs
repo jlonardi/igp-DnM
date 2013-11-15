@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SaveMenu {
 
-	// this get's called from game manager when GameState.SAVE_MENU
+	// Show() gets called from OnGuiManager
 	public void Show(){
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
 

@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class LoadMenu {	
 
-	// this get's called from game manager when GameState.LOAD_MENU_MAIN or GameState.LOAD_LEVEL_PAUSE	
+	// Show() gets called from OnGuiManager
 	public void Show(){
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
 

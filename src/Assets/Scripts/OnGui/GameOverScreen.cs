@@ -4,7 +4,7 @@ using System.Collections;
 public class GameOverScreen {
 	private GameManager game;
 
-	// this get's called from game manager when GameState.GAME_OVER
+	// Show() gets called from OnGuiManager
 	public void Show(){
 		if (game == null){
 			game = GameManager.instance;
