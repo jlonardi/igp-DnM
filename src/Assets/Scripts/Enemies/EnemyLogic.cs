@@ -166,11 +166,38 @@ public class EnemyLogic : MonoBehaviour {
 	public void TakeDamage(int damageAmount, DamageType damageType){
 		TakeDamage(damageAmount, damageType, new RaycastHit(), new Vector3(), 0f);
 	}
-	
+
+	// TakeDamage from explosion
+	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
+		Debug.Log("Explosion detected");
+		
+		// alert nearby enemies about hostile player
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		if (enemies.Length!=0) {
+			foreach (GameObject enemy in enemies) {
+				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);
+			}
+		}
+
+		health -= damageAmount;
+
+		if(health <= 0) {
+			Die(explosionPosition, power);
+		}
+		
+		PlaySound(painSounds);
+		
+		target = focusTarget.PLAYER;
+		timeWhenFocusedPlayer = Time.time;
+		enemyMovement.setTarget(playerTransform);
+		
+		Debug.Log("Enemy health left: " + health);
+	}
+
 	// TakeDamage with applying damage force
 	public void TakeDamage(int damageAmount, DamageType damageType, RaycastHit hit, Vector3 direction, float power){
 		Debug.Log("Hit detected");
-		
+
 		// alert nearby enemies about hostile player
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enemies.Length!=0) {
@@ -203,7 +230,19 @@ public class EnemyLogic : MonoBehaviour {
 		Die(new RaycastHit(), new Vector3(), 0f);
 	}
 	
-	// enemy death with force
+	// enemy death with force from explosion
+	public void Die(Vector3 explosionPosition, float power){
+		game.statistics.Kill(this.enemyType);
+		
+		//make enemy a ragdoll
+		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
+		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+		
+		ragdollRigidBody.AddExplosionForce(power, explosionPosition, 10f, 3.0f);
+		Debug.Log("Explosion position: " +explosionPosition+ ", Enemy position: " + this.transform.position + ", Explosion power: " +power);
+	}	
+
+	// enemy death with force from gunshot
 	public void Die(RaycastHit hit, Vector3 direction, float power){
 		game.statistics.Kill(this.enemyType);
 		
@@ -216,7 +255,7 @@ public class EnemyLogic : MonoBehaviour {
 			ragdollRigidBody.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
 		}
 	}	
-	
+
 	
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){

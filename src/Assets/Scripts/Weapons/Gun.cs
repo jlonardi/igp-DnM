@@ -2,17 +2,22 @@
 using System;
 using System.Collections;
 
-public enum GunType {
-	SINGLE_FIRE,
-	SERIAL_FIRE,
-	MINIGUN,
-	PROJECTILE
-}
-
 public class Gun : MonoBehaviour {
 	
-	public string gunName;
-	
+	public enum GunType {
+		SINGLE_FIRE,
+		SERIAL_FIRE,
+		MINIGUN,
+		PROJECTILE
+	}
+
+	public enum MiniGunState {
+		IDLE,
+		WIND_UP,
+		FIRING,
+		WIND_DOWN,
+	}
+
 	public LayerMask hitLayer;
 
 	//How many shots the gun can take in one second
@@ -25,7 +30,7 @@ public class Gun : MonoBehaviour {
 	public float maxDamage = 50.0f;
 
 	public GunType gunType = GunType.SINGLE_FIRE;
-
+	
 	//Speed of the projectile in m/s
 	public float projectileSpeed;
 	
@@ -58,8 +63,8 @@ public class Gun : MonoBehaviour {
 	public AudioClip shootSound;
 	public AudioClip reloadSound;	
 	public AudioClip outOfAmmoSound;
-	public AudioClip miniGunStartSound;
-	public AudioClip miniGunStopSound;
+	public AudioClip windUpSound;
+	public AudioClip windDownStopSound;
 
 	[HideInInspector]
 	public bool freeToShoot;
@@ -70,20 +75,17 @@ public class Gun : MonoBehaviour {
 	[HideInInspector]
 	public bool fire;
 
-//	private Transform weaponTransformReference;
 	private float reloadTimer;
 	private float lastShootTime;
-	private float startShootTime = -1f;
 
 	//minigun barrelspin speed
-	public float spinSpeed = 0f;
+	private float spinSpeed = 0f;
+	private MiniGunState mgState = MiniGunState.IDLE;
+
 	private float shootDelay;
 
-	private AudioSource audio;
-//	private AudioSource shootSoundSource;
-//	private AudioSource reloadSoundSource;
-//	private AudioSource outOfAmmoSoundSource;
-	
+	private AudioSource audioSource;
+
 	private Transform shootingParticles;
 	private float timerToCreateDecal;
 	
@@ -95,67 +97,29 @@ public class Gun : MonoBehaviour {
 		cam = Camera.main.camera;
 		hitParticles = GunManager.instance.hitParticles;
 	}
-	
+
 	void Update (){
 		timerToCreateDecal -= Time.deltaTime;
-		if(Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
-			PlayOutOfAmmoSound();
-		}
-		if (gunType == GunType.MINIGUN){
-			if(Input.GetButtonDown("Fire1") && currentRounds > 0 && !reloading && freeToShoot){
-				// mark time for minigun windup
-				if (startShootTime == -1){
-					startShootTime = Time.time;
-					audio.PlayOneShot(miniGunStartSound);
-				}
-			}
-			if(fire && !reloading){
-				if (spinSpeed < 1000){
-					spinSpeed += 600 * Time.deltaTime;
-				} else {
-					spinSpeed = 1000;
-				}
-			} else {
-				if (spinSpeed > 0){
-					spinSpeed -= 600 * Time.deltaTime;
-				} else {
-					spinSpeed = 0;
-				}
-			}
-			this.transform.Rotate(Vector3.forward * spinSpeed * Time.deltaTime, Space.Self);
+		if (Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
+				PlayOutOfAmmoSound();
 		}
 
+		HandleMinigun();
+
 		if(Input.GetButtonUp("Fire1")){
-			startShootTime = -1;
 			freeToShoot = true;
 		}
 		HandleReloading();
 		ShootTheTarget();
 	}
 	
-	public void OnDisable(){
-		SetRenderer(this.gameObject, false);
-
-		if(gunParticles != null){
-			gunParticles.ChangeState(false);
-		}
-		
-		if(capsuleEmitter != null) {
-			for(int i = 0; i < capsuleEmitter.Length; i++) {
-				if (capsuleEmitter[i] != null)
-                    capsuleEmitter[i].emit = false;
-			}
-		}
-		
-		if(shotLight != null){
-			shotLight.enabled = false;
-		}
-	}
-	
 	public void OnEnable()
 	{
-		if (audio == null){
-			audio = transform.parent.gameObject.audio;
+		if (audioSource == null){
+			audioSource = transform.parent.gameObject.audio;
+			//make sure we don't have old sounds here
+			audioSource.Stop();
+			audioSource.loop = false;
 		}
 		SetRenderer(this.gameObject, true);
 		reloadTimer = 0.0f;
@@ -177,6 +141,61 @@ public class Gun : MonoBehaviour {
 			}
 		}
 	}
+
+	public void OnDisable(){
+		SetRenderer(this.gameObject, false);
+		StopSounds();
+		spinSpeed = 0;
+		
+		if(gunParticles != null){
+			gunParticles.ChangeState(false);
+		}
+		
+		if(capsuleEmitter != null) {
+			for(int i = 0; i < capsuleEmitter.Length; i++) {
+				if (capsuleEmitter[i] != null)
+					capsuleEmitter[i].emit = false;
+			}
+		}
+		
+		if(shotLight != null){
+			shotLight.enabled = false;
+		}
+	}
+	
+	public void HandleMinigun(){
+		int maxSpeed = 1000;
+		int accelSpeed = 1000;
+		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot){
+			if (mgState == MiniGunState.IDLE){
+				PlayWindUpSound();
+				mgState = MiniGunState.WIND_UP;
+			}
+			if (spinSpeed < maxSpeed){
+				spinSpeed += accelSpeed * Time.deltaTime;
+			} else {
+				spinSpeed = maxSpeed;
+				mgState = MiniGunState.FIRING;
+			}
+			
+		} else {
+			if (mgState != MiniGunState.IDLE){
+				mgState = MiniGunState.WIND_DOWN;
+				if (spinSpeed > 0){
+					spinSpeed -= maxSpeed * Time.deltaTime;
+				} else {
+					spinSpeed = 0;
+					mgState = MiniGunState.IDLE;
+				}
+			}
+		}
+
+		// animate minigun barrelspin when minigun selected
+		if (gunType == GunType.MINIGUN && enabled){
+			this.transform.Rotate(Vector3.forward * spinSpeed * Time.deltaTime, Space.Self);
+		}
+	}
+
 	
 	private void SetRenderer(GameObject go, bool enableRenderer){
     	var renderers = go.GetComponentsInChildren<Renderer>();
@@ -190,7 +209,7 @@ public class Gun : MonoBehaviour {
 		if(fire && !reloading){				
 			if(currentRounds > 0){
 				if(Time.time > lastShootTime && freeToShoot){
-					if(Time.time < startShootTime + startDelay){
+					if (gunType == GunType.MINIGUN && mgState != MiniGunState.FIRING){
 						return;
 					}
 
@@ -240,12 +259,11 @@ public class Gun : MonoBehaviour {
 			}
 		}
 		else{
-			//end minigunsounds when not firing
-			if (audio.loop){
-				audio.loop = false;
-				audio.Stop();
-				audio.PlayOneShot(miniGunStopSound);
+			//end minigun sounds when not firing
+			if (gunType == GunType.MINIGUN && audioSource.loop){
+				PlayWindDownSound();
 			}
+
 			if(gunParticles != null){
 				gunParticles.ChangeState(false);
 			}
@@ -261,15 +279,13 @@ public class Gun : MonoBehaviour {
 		
 		Vector3 startPosition;
 		
-		//startPosition = weaponTransformReference.position;
-		startPosition = GunManager.instance.shootFrom.transform.position;
 		//startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
-		
+		startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 1f));
+
 		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);
 		
 		Grenade grenadeObj = projectile.GetComponent("Grenade") as Grenade;
-//		grenadeObj.soldierCamera = soldierCamera;
-		
+
 		projectile.transform.rotation = Quaternion.LookRotation(camRay.direction);
 		
 		Rigidbody projectileRigidbody = projectile.rigidbody;
@@ -443,27 +459,48 @@ public class Gun : MonoBehaviour {
 		
 	//---------------AUDIO METHODS--------
 	// These require Audio Source to be available on Gun Manager object
-	public void PlayOutOfAmmoSound()
-	{
-		transform.parent.gameObject.audio.PlayOneShot(outOfAmmoSound, 1.5f);
+
+	//called when gun is disabled
+	public void StopSounds(){
+		if (gunType == GunType.MINIGUN && mgState != MiniGunState.IDLE){
+			PlayWindDownSound();
+		}
+	}
+
+	public void PlayWindUpSound() {
+		audioSource.loop = false;
+		audioSource.Stop();
+		audioSource.PlayOneShot(windUpSound);
 	}
 	
-	public void PlayReloadSound()
-	{
-		transform.parent.gameObject.audio.PlayOneShot(reloadSound, 1.5f);
+	public void PlayWindDownSound() {
+		audioSource.loop = false;
+		audioSource.Stop();
+		audioSource.PlayOneShot(windDownStopSound);
+	}
+
+	public void PlayOutOfAmmoSound() {
+		audioSource.loop = false;
+		audioSource.Stop();
+		audioSource.PlayOneShot(outOfAmmoSound, 1.5f);
 	}
 	
-	public void PlayShootSound()
-	{
+	public void PlayReloadSound() {
+		audioSource.loop = false;
+		audioSource.Stop();
+		audioSource.PlayOneShot(reloadSound, 1.5f);
+	}
+	
+	public void PlayShootSound() {
 		if (gunType == GunType.MINIGUN){
-			if (audio.loop == false){
-				audio.Stop();
-				audio.clip = shootSound;
-				audio.loop = true;
-				audio.Play();
+			if (audioSource.loop == false){
+				audioSource.Stop();
+				audioSource.clip = shootSound;
+				audioSource.loop = true;
+				audioSource.Play();
 			}
 		} else {
-			audio.PlayOneShot(shootSound);
+			audioSource.PlayOneShot(shootSound);
 		}
 	}	
 }

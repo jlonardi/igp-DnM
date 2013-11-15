@@ -88,7 +88,7 @@ public class FPSInputController : MonoBehaviour {
 		if(game.treasureState == TreasureState.SET_ON_GROUND){
 			GunManager.instance.currentGun.fire = firing;
 			reloading = GunManager.instance.currentGun.reloading;
-			currentWeaponName = GunManager.instance.currentGun.gunName;
+			currentWeaponName = GunManager.instance.currentGun.name;
 			currentWeapon = GunManager.instance.currentGunIndex;
 		}
 		

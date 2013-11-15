@@ -42,7 +42,7 @@ public class GunManager : MonoBehaviour {
 		}
 
 		game.statistics.gunEnabled = currentGun.enabled;
-		game.statistics.gunName = currentGun.gunName;
+		game.statistics.gunName = currentGun.name;
 		game.statistics.gunUnlimitedClips = currentGun.unlimited;
 		game.statistics.gunClips = currentGun.totalClips;
 		game.statistics.gunRounds = currentGun.currentRounds;
