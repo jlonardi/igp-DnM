@@ -140,8 +140,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: .449999988, y: -.370000005, z: -.150000006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: .449999988, y: -.49000001, z: -.150000006}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400004}
   - {fileID: 400006}
@@ -419,6 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97af0ab24e01d244e9af61805762b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeYOffset: 100
+  grenadeXOffset: 100
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -444,7 +446,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}
-  windDownStopSound: {fileID: 0}
+  windDownSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0

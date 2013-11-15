@@ -18,6 +18,10 @@ public class Gun : MonoBehaviour {
 		WIND_DOWN,
 	}
 
+	public float grenadeYOffset = 95f;
+
+	public float grenadeXOffset = 30f;
+
 	public LayerMask hitLayer;
 
 	//How many shots the gun can take in one second
@@ -281,7 +285,7 @@ public class Gun : MonoBehaviour {
 		Vector3 startPosition;
 		
 		//startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.5f));
-		startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 1f));
+		startPosition = cam.ScreenToWorldPoint(new Vector3 (Screen.width * 0.5f + grenadeXOffset, Screen.height * 0.5f - grenadeYOffset, 1.8f));
 
 		GameObject projectile = (GameObject)Instantiate(projectilePrefab, startPosition, Quaternion.identity);
 		
