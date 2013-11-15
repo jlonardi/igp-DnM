@@ -419,20 +419,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97af0ab24e01d244e9af61805762b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunName: M4
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   fireRate: 13
   fireRange: 50
   maxDamage: 20
+  gunType: 1
   projectileSpeed: 15
+  startDelay: 0
   clipSize: 30
   totalClips: 6
-  useGravity: 0
-  isExplosive: 0
   reloadTime: 3
-  autoReload: 1
   currentRounds: 30
   pushPower: 2
   bulletMark: {fileID: 100000, guid: bd181b1a8dad9384895dd24e2547233a, type: 2}
@@ -445,6 +443,8 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: ca3ecaf0c8ce85c4eadee30fde98727c, type: 3}
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
+  windUpSound: {fileID: 0}
+  windDownStopSound: {fileID: 0}
   freeToShoot: 0
   reloading: 0
   fire: 0

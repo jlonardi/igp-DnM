@@ -42,6 +42,7 @@ public class EnemyLogic : MonoBehaviour {
 	private bool treasureAvailable = false;
 	private GameManager game;
 	private RagdollManager ragdolls;
+	private EnemyManager enemyManager;
 
 	private PlayerHealth playerVitals;
 
@@ -53,6 +54,7 @@ public class EnemyLogic : MonoBehaviour {
 		playerVitals = PlayerHealth.instance;
 		ragdolls = RagdollManager.instance;
 		treasure = Treasure.instance;
+		enemyManager = EnemyManager.instance;
 
 		GameObject player = GameObject.Find("Player");	
 		GameObject focusPoint = treasure.gameObject.transform.FindChild("focusPoint").gameObject;
@@ -162,32 +164,57 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}
 	
-	// TakeDamage without adding force
-	public void TakeDamage(int damageAmount, DamageType damageType){
-		TakeDamage(damageAmount, damageType, new RaycastHit(), new Vector3(), 0f);
+	// TakeDamage without aplying force
+	public void TakeDamage(int damageAmount){
+		TakeDamage(damageAmount, new RaycastHit(), new Vector3(), 0f);
 	}
-	
-	// TakeDamage with applying damage force
-	public void TakeDamage(int damageAmount, DamageType damageType, RaycastHit hit, Vector3 direction, float power){
-		Debug.Log("Hit detected");
-		
-		// alert nearby enemies about hostile player
+
+	// TakeDamage and apply explosive force
+	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
+		AlertNearbyEnemies();
+
+		health -= damageAmount;
+		if(health <= 0) {
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddExplosionForce(power, explosionPosition, 10f, 2.0f);
+		}		
+		AfterTakeDamage();
+	}
+
+	// TakeDamage and apply damage force
+	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
+		AlertNearbyEnemies();
+
+		health -= damageAmount;
+		if(health <= 0) {
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
+		}
+		AfterTakeDamage();
+	}
+
+	// alert nearby enemies about hostile player
+	private void AlertNearbyEnemies(){
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enemies.Length!=0) {
 			foreach (GameObject enemy in enemies) {
-				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);		
+				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);
 			}
 		}
-		
-		
-		if (damageType == DamageType.BULLET) {
-			health -= damageAmount;
-		}
-		
-		if(health <= 0) {
-			Die(hit, direction, power);
-		}
+	}
 
+	// turn living into dead
+	public Rigidbody MakeDead(){
+		game.statistics.AddKillStats(this.enemyType);
+		enemyManager.currentEnemyCount--;
+		
+		// actually make enemy a ragdoll
+		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
+		return ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+	}
+
+	// run this after taking a shot or explosive damage
+	public void AfterTakeDamage(){
 		PlaySound(painSounds);
 		
 		target = focusTarget.PLAYER;
@@ -196,28 +223,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		Debug.Log("Enemy health left: " + health);
 	}
-	
-	// enemy death without force
-	public void Die(){
-		
-		Die(new RaycastHit(), new Vector3(), 0f);
-	}
-	
-	// enemy death with force
-	public void Die(RaycastHit hit, Vector3 direction, float power){
-		game.statistics.Kill(this.enemyType);
-		
-		//make enemy a ragdoll
-		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
-		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
-		
-		// apply impact to ragdoll
-		if (power != 0f){
-			ragdollRigidBody.AddForceAtPosition(direction.normalized * power *10, hit.point, ForceMode.Impulse);
-		}
-	}	
-	
-	
+
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
 		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);

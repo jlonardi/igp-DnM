@@ -3,10 +3,10 @@ using System.Collections;
 
 [System.Serializable]
 public class Statistics {
-	public int playerHealth = 100;
+	public int playerHealth;
 	public float playerArmor = 0.0f; // armor scale 0-1.0f
 
-	public int treasureAmount = 100;
+	public int treasureAmount;
 
 	//orig amount is used for calculation current percentage of the treasure	
 	public int treasureFullAmount;
@@ -23,6 +23,7 @@ public class Statistics {
 	public bool gunUnlimitedClips;
 	public bool gunReloading;
 	public bool gunEnabled;
+	public int grenadeCount;
 
 	//scores for different enemy types:
 	private int orcKillScore = 100;
@@ -45,21 +46,24 @@ public class Statistics {
 			}
 		}
 	}
-	
-	public void Kill(EnemyType et){
-		bodycount++;
-		switch (et){
-			case(EnemyType.ORC):
-			default:
-				score += orcKillScore;
-				break;		
-		}
-	}
-	
+
 	public void Reset(){
+		playerHealth = 100;
+		treasureAmount = 100;
 		level = 1;
 		score = 0;
 		bodycount = 0;
 		wave = 0;
 	}
+
+	public void AddKillStats(EnemyType et){
+		bodycount++;
+		switch (et){
+		case(EnemyType.ORC):
+		default:
+			score += orcKillScore;
+			break;		
+		}
+	}
+
 }

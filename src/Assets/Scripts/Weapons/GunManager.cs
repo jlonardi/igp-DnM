@@ -5,7 +5,12 @@ using System.Collections;
 public class GunManager : MonoBehaviour {	
 	//use singleton since only we need once instance of this class
 	public static GunManager instance;
-	
+
+	public GameObject handGrenadePrefab;
+	public float grenadeSpeed = 10f;
+	public float grenadeThrowDelay = 1f;
+	public int grenadeCount = 10;
+
 	public GunKeyBinder[] guns;	
 	public int currentGunIndex;
 	public Gun currentGun;
@@ -42,12 +47,12 @@ public class GunManager : MonoBehaviour {
 		}
 
 		game.statistics.gunEnabled = currentGun.enabled;
-		game.statistics.gunName = currentGun.gunName;
+		game.statistics.gunName = currentGun.name;
 		game.statistics.gunUnlimitedClips = currentGun.unlimited;
 		game.statistics.gunClips = currentGun.totalClips;
 		game.statistics.gunRounds = currentGun.currentRounds;
 		game.statistics.gunReloading = currentGun.reloading;
-
+		game.statistics.grenadeCount = grenadeCount;
 	}
 	
 	public void ChangeToCurrentWeapon(){
