@@ -164,51 +164,37 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}
 	
-	// TakeDamage without adding force
+	// TakeDamage without aplying force
 	public void TakeDamage(int damageAmount){
 		TakeDamage(damageAmount, new RaycastHit(), new Vector3(), 0f);
 	}
 
-	// TakeDamage from explosion
+	// TakeDamage and apply explosive force
 	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
-		// alert nearby enemies about hostile player
 		AlertNearbyEnemies();
-		health -= damageAmount;
 
+		health -= damageAmount;
 		if(health <= 0) {
-			Die(explosionPosition, power);
-		}
-		
-		PlaySound(painSounds);
-		
-		target = focusTarget.PLAYER;
-		timeWhenFocusedPlayer = Time.time;
-		enemyMovement.setTarget(playerTransform);
-		
-		Debug.Log("Enemy health left: " + health);
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddExplosionForce(power, explosionPosition, 10f, 2.0f);
+		}		
+		AfterTakeDamage();
 	}
 
-	// TakeDamage with applying damage force
+	// TakeDamage and apply damage force
 	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
-		// alert nearby enemies about hostile player
 		AlertNearbyEnemies();
 
 		health -= damageAmount;
 		if(health <= 0) {
-			Die(hit, direction, power);
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
 		}
-
-		PlaySound(painSounds);
-		
-		target = focusTarget.PLAYER;
-		timeWhenFocusedPlayer = Time.time;
-		enemyMovement.setTarget(playerTransform);
-		
-		Debug.Log("Enemy health left: " + health);
+		AfterTakeDamage();
 	}
 
+	// alert nearby enemies about hostile player
 	private void AlertNearbyEnemies(){
-		// alert nearby enemies about hostile player
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enemies.Length!=0) {
 			foreach (GameObject enemy in enemies) {
@@ -217,41 +203,27 @@ public class EnemyLogic : MonoBehaviour {
 		}
 	}
 
-
-	// enemy death without force
-	public void Die(){
-		Die(new RaycastHit(), new Vector3(), 0f);
+	// turn living into dead
+	public Rigidbody MakeDead(){
+		game.statistics.AddKillStats(this.enemyType);
+		enemyManager.currentEnemyCount--;
+		
+		// actually make enemy a ragdoll
+		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
+		return ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
 	}
-	
-	// enemy death with force from explosion
-	public void Die(Vector3 explosionPosition, float power){
-		game.statistics.AddKillStats(this.enemyType);
-		enemyManager.currentEnemyCount--;
 
-		//make enemy a ragdoll
-		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
-		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+	// run this after taking a shot or explosive damage
+	public void AfterTakeDamage(){
+		PlaySound(painSounds);
 		
-		ragdollRigidBody.AddExplosionForce(power, explosionPosition, 10f, 3.0f);
-		Debug.Log("Explosion position: " +explosionPosition+ ", Enemy position: " + this.transform.position + ", Explosion power: " +power);
-	}	
-
-	// enemy death with force from gunshot
-	public void Die(RaycastHit hit, Vector3 direction, float power){
-		game.statistics.AddKillStats(this.enemyType);
-		enemyManager.currentEnemyCount--;
-
-		//make enemy a ragdoll
-		GameObject ragdoll = ragdolls.MakeRagdoll(enemyType, this.gameObject, true);
-		Rigidbody ragdollRigidBody = ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+		target = focusTarget.PLAYER;
+		timeWhenFocusedPlayer = Time.time;
+		enemyMovement.setTarget(playerTransform);
 		
-		// apply impact to ragdoll
-		if (power != 0f){
-			ragdollRigidBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
-		}
-	}	
+		Debug.Log("Enemy health left: " + health);
+	}
 
-	
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
 		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
