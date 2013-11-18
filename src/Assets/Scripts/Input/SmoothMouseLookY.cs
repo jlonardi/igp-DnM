@@ -11,6 +11,7 @@ public class SmoothMouseLookY : MonoBehaviour {
 	
 	public float sensitivity = 5f;
 	public float smoothing = 2f;
+	public bool invertMouse = false;
 
 	public float position = 0f;	
 	private float input;
@@ -26,6 +27,11 @@ public class SmoothMouseLookY : MonoBehaviour {
 		}
 		// get raw mouse data
    	    input = Input.GetAxisRaw("Mouse Y");
+
+		// if invert selected, invert input
+		if (invertMouse){
+			input *= -1;
+		}
 
         // scale input against the sensitivity multiply against smoothing value.
         input *= (sensitivity * smoothing);

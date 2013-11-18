@@ -32,7 +32,11 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeFromAttack;
 	private float timeFromLoot;
 		
-	private EnemyMovement enemyMovement;
+	private GameManager game;
+	private RagdollManager ragdolls;
+	private EnemyManager enemyManager;
+	private EnemyNavigation navigation;
+	private PlayerHealth playerVitals;
 
 	private Treasure treasure;
 	private Transform playerTransform;
@@ -42,21 +46,16 @@ public class EnemyLogic : MonoBehaviour {
 	private float timeWhenFocusedPlayer = 0f;
 	
 	private bool treasureAvailable = false;
-	private GameManager game;
-	private RagdollManager ragdolls;
-	private EnemyManager enemyManager;
-
-	private PlayerHealth playerVitals;
 
 	public AudioClip[] painSounds;
 	
 	public void Start() {
-		enemyMovement = GetComponent<EnemyMovement>();
 		game = GameManager.instance;
-		playerVitals = PlayerHealth.instance;
+		navigation = GetComponent<EnemyNavigation>();
+		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
 		treasure = Treasure.instance;
-		enemyManager = EnemyManager.instance;
+		playerVitals = PlayerHealth.instance;
 
 		GameObject player = GameObject.Find("Player");	
 		GameObject focusPoint = treasure.gameObject.transform.FindChild("focusPoint").gameObject;
@@ -65,7 +64,7 @@ public class EnemyLogic : MonoBehaviour {
 		treasureTransform = focusPoint.transform;
 
 		target = focusTarget.PLAYER;
-		enemyMovement.init(playerTransform);
+		navigation.init(playerTransform);
 	}
 	
 	public void Update() {
@@ -89,7 +88,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkActions() {
 		//The object is at target and ready to do some actions
-		if(enemyMovement.atTarget) {
+		if(navigation.atTarget) {
 			if(target == focusTarget.PLAYER) {
 				if(!attacking && getPlayerDistance() <= attackDistance) {
 					attacking = true;
@@ -152,14 +151,14 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		//Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			enemyMovement.setTarget(treasureTransform);
+			navigation.setTarget(treasureTransform);
 			target = focusTarget.TRESAURE;
 			//Debug.Log("New target is tresaure");
 			return;
 		} 
 		
 		if (target == focusTarget.TRESAURE){
-			enemyMovement.setTarget(playerTransform);
+			navigation.setTarget(playerTransform);
 			target = focusTarget.PLAYER;
 			//Debug.Log("New target is player");
 			return;
@@ -221,7 +220,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
-		enemyMovement.setTarget(playerTransform);
+		navigation.setTarget(playerTransform);
 		
 		Debug.Log("Enemy health left: " + health);
 	}

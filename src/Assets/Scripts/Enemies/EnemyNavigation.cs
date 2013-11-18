@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using Pathfinding;
 
-public class EnemyMovement : MonoBehaviour {
+public class EnemyNavigation : MonoBehaviour {
 	
 	// AI stops moving below this distance
 	public float moveStopDistance = 2.0f;
@@ -12,8 +12,8 @@ public class EnemyMovement : MonoBehaviour {
 	// AI starts moving above this distance
 	public float moveAllowDistance = 2.3f;
 	
-	public float movementSpeed = 0f;	
-	private float prevMovementSpeed = 0f;	
+	public float movementSpeed = 0f;        
+	private float prevMovementSpeed = 0f;        
 	private List<Vector3> movementPositions = new List<Vector3>();
 	
 	//Use stuck values to determine if stuck and how long
@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour {
 	
 	//Controller to handle the objects movement
     private CharacterController controller;
-	
+
 	//The object that contains the mesh of the object
 	private Transform mesh;
 	
@@ -65,16 +65,6 @@ public class EnemyMovement : MonoBehaviour {
 	public bool onLongDistanceTravel = false;
 	public Vector3 longDistanceTarget;
 	
-    public void Start () {	
-		
-		//Get a reference to the object that is targeted
-		//GameObject p = GameObject.Find("arkku");
-		//targetPosition = p.transform.position;
-		
-        
-		
-    }
-    
     public void OnPathComplete (Path p) {
         //Debug.Log ("Yey, we got a path back. Did it have an error? "+p.error);
 		if (!p.error) {
@@ -90,7 +80,7 @@ public class EnemyMovement : MonoBehaviour {
 		
 		//Get a reference to the CharacterController component
 		controller = GetComponent<CharacterController>();
-		
+
 		//Turn of the rendered of this objects mesh
 		//we don't want to draw it before the first path has been calculated
 		mesh = transform.FindChild("Sinbad");
@@ -272,7 +262,6 @@ public class EnemyMovement : MonoBehaviour {
 			movementPositions.RemoveAt(0);
 			//Debug.Log(movementSpeed);
 		}
-
 	}
 	
 	private void setStuck(bool isStuck){

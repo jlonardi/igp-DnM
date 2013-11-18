@@ -1081,8 +1081,8 @@ GameObject:
   - 114: {fileID: 11400148}
   - 114: {fileID: 11400146}
   - 114: {fileID: 11400144}
-  - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400000}
   m_Layer: 10
   m_Name: orc
   m_TagString: enemy
@@ -1963,7 +1963,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2037,12 +2037,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canControl: 0
-  useFixedUpdate: 1
-  pushPower: 2
+  useFixedUpdate: 0
+  pushPower: 3
+  characterVelocity: {x: 0, y: 0, z: 0}
   movement:
-    maxForwardSpeed: 10
-    maxSidewaysSpeed: 10
-    maxBackwardsSpeed: 10
+    maxForwardSpeed: 6
+    maxSidewaysSpeed: 6
+    maxBackwardsSpeed: 6
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -2063,21 +2064,21 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 30
+    maxGroundAcceleration: 200
     maxAirAcceleration: 20
-    gravity: 10
-    maxFallSpeed: 20
+    gravity: 15
+    maxFallSpeed: 10
   jumping:
     enabled: 1
-    baseHeight: 1
-    extraHeight: 4.0999999
+    baseHeight: .5
+    extraHeight: .300000012
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
-    enabled: 1
+    enabled: 0
     movementTransfer: 2
   sliding:
-    enabled: 1
+    enabled: 0
     slidingSpeed: 15
     sidewaysControl: 1
     speedControl: .400000006
@@ -2094,6 +2095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   health: 100
+  damage: 7
   attacking: 0
   looting: 0
   attackInterval: 1
@@ -2111,7 +2113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f314b6bed817795448d80376967eff89, type: 3}
+  m_Script: {fileID: 11500000, guid: e08c5fd536898b94284ee37b3bda250c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveStopDistance: 2
