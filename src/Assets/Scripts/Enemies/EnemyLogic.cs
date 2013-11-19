@@ -48,9 +48,8 @@ public class EnemyLogic : MonoBehaviour {
 	private bool treasureAvailable = false;
 
 	public AudioClip[] painSounds;
-	
+
 	public void Start() {
-		game = GameManager.instance;
 		navigation = GetComponent<EnemyNavigation>();
 		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
@@ -68,7 +67,10 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	public void Update() {
-		
+		if (game == null){
+			game = GameManager.instance;
+		}
+
 		if(Input.GetKeyDown(KeyCode.T)) {
 			swapTarget();
 		}

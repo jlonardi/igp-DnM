@@ -29,9 +29,6 @@ public class EnemyNavigation : MonoBehaviour {
 	//Controller to handle the objects movement
     private CharacterController controller;
 
-	//The object that contains the mesh of the object
-	private Transform mesh;
-	
 	//The players transform
 	private Transform target;
 	
@@ -61,7 +58,9 @@ public class EnemyNavigation : MonoBehaviour {
  
     //The waypoint we are currently moving towards
     public int currentWaypoint = 0;
-	
+
+	public bool hideRenderer = true;
+
 	public bool onLongDistanceTravel = false;
 	public Vector3 longDistanceTarget;
 	
@@ -73,7 +72,14 @@ public class EnemyNavigation : MonoBehaviour {
             currentWaypoint = 1;
         }
     }
-	
+
+	private void SetRenderer(GameObject go, bool enableRenderer){
+		hideRenderer = !enableRenderer;
+		var renderers = go.GetComponentsInChildren<Renderer>();
+		foreach (Renderer r in renderers) {
+			r.enabled = enableRenderer;
+		}					
+	}	
 	public void init(Transform t) {
 		//Get a reference to the Seeker component
         seeker = GetComponent<Seeker>();
@@ -83,8 +89,10 @@ public class EnemyNavigation : MonoBehaviour {
 
 		//Turn of the rendered of this objects mesh
 		//we don't want to draw it before the first path has been calculated
-		mesh = transform.FindChild("Sinbad");
-		mesh.renderer.enabled = false;
+//		renderer = transform.FindChild<Renderer>();
+//		mesh = transform.FindChild("Sinbad");
+		SetRenderer(gameObject, false);
+//		renderer.enabled = false;
 		
 		target = t;
 		targetPosition = target.position;
@@ -112,8 +120,8 @@ public class EnemyNavigation : MonoBehaviour {
 		}
 			
 		//When the path has been found draw the mesh
-		if (path != null && mesh.renderer.enabled == false) {
-			mesh.renderer.enabled = true;	
+		if (path != null && hideRenderer == true) {
+			SetRenderer(gameObject, true);
 		}
 		
 		atTarget = targetReached();
