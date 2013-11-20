@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [System.Serializable]
 public class Hud {
-	public Texture2D crosshairTexture;	
+	public Texture2D crosshairTexture;
+	public Texture2D healthbar;
+	public Texture2D health;	
 
 	private Rect crosshairPosition;
 	private Rect helpPosition;
 	private int crosshairSize;
+
+	private Rect healthPosition;
+	private float currentHealth;
 
 	private GameManager game;
 
@@ -16,6 +21,8 @@ public class Hud {
 		crosshairSize = Screen.height/30;
 		crosshairPosition = CalculateGUIRect(crosshairSize, crosshairSize, 0, 0);
 		helpPosition = CalculateGUIRect(500, 40, 0, -40);
+		//healthbar position and size
+		healthPosition = new Rect(10,200,193,34);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -34,6 +41,14 @@ public class Hud {
 		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
     		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 		}
+
+		GUI.DrawTexture(healthPosition, healthbar);
+		currentHealth = game.statistics.playerHealth;
+		currentHealth = currentHealth*1.76f;
+		GUI.BeginGroup(new Rect(18,207,currentHealth,20)); 
+		GUI.DrawTexture(new Rect(0,0,176,20), health);
+		GUI.EndGroup();
+
 
 		GUI.Box(new Rect(5,5,105,125),"");	
 		GUI.Label(new Rect(10,10,100,20), "Health: " + game.statistics.playerHealth);

@@ -86,6 +86,8 @@ MonoBehaviour:
   guiSkin: {fileID: 0}
   hud:
     crosshairTexture: {fileID: 2800000, guid: 86c73534e81ffb14cb3d5f53a989ab08, type: 3}
+    healthbar: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2, type: 3}
+    health: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
   bloodSplatter:
     bloodSplatter: {fileID: 2800000, guid: 60a598934c3b5bb4eac1a7a33a428995, type: 3}
     fadeSpeed: .0500000007
