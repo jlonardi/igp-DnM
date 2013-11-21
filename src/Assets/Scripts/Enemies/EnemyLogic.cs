@@ -53,15 +53,15 @@ public class EnemyLogic : MonoBehaviour {
 		navigation = GetComponent<EnemyNavigation>();
 		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
-		treasure = Treasure.instance;
 		playerVitals = PlayerHealth.instance;
 
-		GameObject player = GameObject.Find("Player");	
-		GameObject focusPoint = treasure.gameObject.transform.FindChild("focusPoint").gameObject;
-
-		playerTransform = player.transform;
+		treasure = Treasure.instance;
+		GameObject player = GameObject.Find("Main Camera");	
+		GameObject treasureObj = GameObject.Find("arkku");
+		GameObject focusPoint = treasureObj.transform.FindChild("focusPoint").gameObject;
+			
 		treasureTransform = focusPoint.transform;
-
+		playerTransform = player.transform;
 		target = focusTarget.PLAYER;
 		navigation.init(playerTransform);
 	}

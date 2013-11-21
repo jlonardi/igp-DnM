@@ -94,7 +94,7 @@ public class EnemyNavigation : MonoBehaviour {
 		SetRenderer(gameObject, false);
 //		renderer.enabled = false;
 		
-		target = t;
+/*		target = t;
 		targetPosition = target.position;
 		oldTargetPosition = target.position;
 		
@@ -106,6 +106,7 @@ public class EnemyNavigation : MonoBehaviour {
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		startNewPathfinding();
         //seeker.StartPath (transform.position,targetPosition, OnPathComplete);
+        */
 	}
 	
 	public void FixedUpdate () {
