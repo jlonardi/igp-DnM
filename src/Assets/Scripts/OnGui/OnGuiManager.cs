@@ -20,11 +20,11 @@ public class OnGuiManager : MonoBehaviour {
 	private Matrix4x4 matrix;
 	
 	// resolition which OnGui elements use as target
-	public int nativeWidth = 1920;
-	public int nativeHeight = 1080;
+	private int nativeWidth = 1920;
+	private int nativeHeight = 1080;
 
 	// if screen aspect differs from 16:9, use marginal to fix locations
-	public int padWidth = 0;
+	private int padWidth = 0;
 
 	public void Awake(){
 		OnGuiManager.instance = this;
@@ -46,6 +46,7 @@ public class OnGuiManager : MonoBehaviour {
 		{		
 		case GameState.PAUSE_MENU:
 			bloodSplatter.Show();
+			hud.Show();
 			pauseMenu.Show();
 			break;
 		case GameState.LOAD_MENU_MAIN:
@@ -53,14 +54,17 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.LOAD_MENU_PAUSE:
 			bloodSplatter.Show();
+			hud.Show();
 			loadMenu.Show();
 			break;
 		case GameState.SAVE_MENU:
 			bloodSplatter.Show();
+			hud.Show();
 			saveMenu.Show();
 			break;
 		case GameState.SAVE_DIALOG:
 			bloodSplatter.Show();
+			hud.Show();
 			saveDialog.Show();
 			break;
 		case GameState.SAVE_SCREENSHOT:
@@ -154,4 +158,23 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		}			
 	}	
+
+	public int GetLeft(){
+		return padWidth;
+	}
+	public int GetCenterX(){
+		return (nativeWidth + padWidth)/2;
+	}
+	public int GetWidth(){
+		return nativeWidth + padWidth;
+	}
+	public int GetTop(){
+		return 0;
+	}
+	public int GetCenterY(){
+		return nativeHeight/2;
+	}
+	public int GetHeight(){
+		return nativeHeight;
+	}
 }

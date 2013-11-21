@@ -3,15 +3,13 @@ using System.Collections;
 
 public class SaveDialog {
 	private OnGuiManager gui;
-	private int nativeWidth;
-	private int nativeHeight;
-	private int padWidth;
-	
+	private int centerX;
+	private int centerY;
+
 	public void Initialize(){
 		gui = OnGuiManager.instance;
-		nativeWidth = gui.nativeWidth;
-		nativeHeight = gui.nativeHeight;
-		padWidth = gui.padWidth;
+		centerX = gui.GetCenterX();
+		centerY = gui.GetCenterY();
 	}
 
 	// Show() gets called from OnGuiManager
@@ -27,11 +25,11 @@ public class SaveDialog {
 			saveName = "Savegame " + (SaveManager.instance.container.saveSlot + 1);
 		}
 
-		GUI.Box(new Rect(((nativeWidth+padWidth) *0.5f)-125, (nativeHeight*0.5f)-25,250,100), "Give the name of your game");
-		SaveManager.instance.container.name = GUI.TextArea (new Rect (((nativeWidth+padWidth) *0.5f)-100, (nativeHeight*0.5f), 200, 20),
+		GUI.Box(new Rect(centerX-125, centerY-25,250,100), "Give the name of your game");
+		SaveManager.instance.container.name = GUI.TextArea (new Rect (centerX-100, centerY, 200, 20),
 		                                                    saveName, 20);
 		
-		if (GUI.Button(new Rect (((nativeWidth+padWidth) *0.5f)-50, (nativeHeight*0.5f)+25, 100, 20),"save game"))
+		if (GUI.Button(new Rect (centerX-50, centerY+25, 100, 20),"save game"))
 		{			
 			SaveManager.instance.Save();
 		}

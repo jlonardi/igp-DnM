@@ -14,8 +14,8 @@ public class Crosshair {
 		gui = OnGuiManager.instance;
 
 		// get screen center coordinates
-		centerX = gui.nativeWidth/2 + gui.padWidth/2;
-		centerY = gui.nativeHeight/2;
+		centerX = gui.GetCenterX();
+		centerY = gui.GetCenterY();
 	}
 
 	// Show() gets called from OnGuiManager

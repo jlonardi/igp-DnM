@@ -13,16 +13,17 @@ public class Hud {
 
 	private GameManager game;
 	private OnGuiManager gui;
-	private int nativeWidth;
-	private int nativeHeight;
-	
+	private int centerX;
+	private int centerY;
+
 	public void Initialize(){
 		game = GameManager.instance;
 		gui = OnGuiManager.instance;
-		nativeWidth = gui.nativeWidth;
-		nativeHeight = gui.nativeHeight;
 
-		helpPosition = CalculateGUIRect(500, 40, 0, -40);
+		centerX = gui.GetCenterX();
+		centerY = gui.GetCenterY();
+
+		helpPosition = CalculateGUIRect(500, 40, 0, -80);
 		//healthbar position and size
 		healthPosition = new Rect(10,200,193,34);
 	}
@@ -76,6 +77,6 @@ public class Hud {
 	}
 	
 	public Rect CalculateGUIRect(int width, int height, int xOffset, int yOffset){
-		return new Rect((nativeWidth-width)/2 + xOffset, (nativeHeight-height)/2 + yOffset, width, height);
+		return new Rect(centerX-(width/2) + xOffset, centerY-(height/2) + yOffset, width, height);
 	}
 }

@@ -20,7 +20,7 @@ public class BloodSplatter {
 
 	public void Initialize(){
 		gui = OnGuiManager.instance;
-		splatterPosition = new Rect(0, 0, gui.nativeWidth + gui.padWidth, gui.nativeHeight);
+		splatterPosition = new Rect(0, 0, gui.GetWidth(), gui.GetHeight());
 		bloodAlpha = 0f;
 		fadeDir = -1f;
 	}
