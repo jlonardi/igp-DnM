@@ -2535,7 +2535,7 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  fireRate: 33
+  fireRate: 30
   fireRange: 100
   maxDamage: 10
   projectileSpeed: 0
@@ -2560,6 +2560,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -124,6 +124,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
