@@ -5994,6 +5994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canControl: 1
   useFixedUpdate: 1
+  movementSpeed: 0
   pushPower: 3
   characterVelocity: {x: 0, y: 0, z: 0}
   movement:
@@ -8268,6 +8269,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!23 &652827455
 Renderer:
   m_ObjectHideFlags: 0
@@ -9242,6 +9244,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!1 &745526452
 GameObject:
   m_ObjectHideFlags: 0
@@ -13533,6 +13536,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!95 &1267150286
 Animator:
   serializedVersion: 2
@@ -15958,6 +15962,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  currentAccuracy: 0
 --- !u!23 &1455416401
 Renderer:
   m_ObjectHideFlags: 0

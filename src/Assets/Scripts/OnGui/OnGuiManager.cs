@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [System.Serializable]
 public class OnGuiManager : MonoBehaviour {
@@ -15,11 +14,23 @@ public class OnGuiManager : MonoBehaviour {
 	public SaveDialog saveDialog = new SaveDialog();
 	public LoadMenu loadMenu = new LoadMenu();
 	public Hud hud = new Hud();
+	public Crosshair crosshair = new Crosshair();
 	public BloodSplatter bloodSplatter = new BloodSplatter();
 	public GameManager game;
+	private Matrix4x4 matrix;
+	
+	// resolition which OnGui elements use as target
+	public int nativeWidth = 1920;
+	public int nativeHeight = 1080;
+
+	// if screen aspect differs from 16:9, use marginal to fix locations
+	public int padWidth = 0;
 
 	public void Awake(){
 		OnGuiManager.instance = this;
+		float scale = 1.0f * Screen.height / nativeHeight;
+		padWidth = (int)(Screen.width/scale) - nativeWidth;
+		matrix = Matrix4x4.TRS (new Vector3(0, 0, 0), Quaternion.identity, new Vector3 (scale, scale, 1f));
 	}	
 
 	// select which gui items are shown by game state
@@ -28,8 +39,10 @@ public class OnGuiManager : MonoBehaviour {
 		if (game == null){
 			return;
 		}
+		//set up scaling for OnGui elements
+		GUI.matrix = matrix;
 
-		switch (GameManager.instance.gameState)
+		switch (game.gameState)
 		{		
 		case GameState.PAUSE_MENU:
 			bloodSplatter.Show();
@@ -63,6 +76,7 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.RUNNING:
 			bloodSplatter.Show();
 			hud.Show();
+			crosshair.Show();
 			break;
 		default:
 			break;

@@ -85,15 +85,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guiSkin: {fileID: 0}
   hud:
-    crosshairTexture: {fileID: 2800000, guid: 86c73534e81ffb14cb3d5f53a989ab08, type: 3}
     healthbar: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2, type: 3}
     health: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
+  crosshair:
+    crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
+    crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
+      type: 3}
   bloodSplatter:
-    bloodSplatter: {fileID: 2800000, guid: 60a598934c3b5bb4eac1a7a33a428995, type: 3}
+    bloodSplatter: {fileID: 2800000, guid: 87fc8b49508c504478c2a462edec702b, type: 3}
     fadeSpeed: .0500000007
     bloodAlpha: 0
     pulseTreshold: 0
   game: {fileID: 0}
+  nativeWidth: 1920
+  nativeHeight: 1080
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -43,7 +43,13 @@ public class FPSInputController : MonoBehaviour {
 		
 		// Get the input vector from kayboard or analog stick
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-		
+
+/*		if (Vector3.Distance(directionVector, Vector3.zero) > 0.1f){
+			game.statistics.playerMoving = true;
+		} else {
+			game.statistics.playerMoving = false;
+		}
+*/
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway

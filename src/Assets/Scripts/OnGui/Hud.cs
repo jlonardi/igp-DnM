@@ -3,23 +3,25 @@ using System.Collections;
 
 [System.Serializable]
 public class Hud {
-	public Texture2D crosshairTexture;
 	public Texture2D healthbar;
 	public Texture2D health;	
 
-	private Rect crosshairPosition;
 	private Rect helpPosition;
-	private int crosshairSize;
 
 	private Rect healthPosition;
 	private float currentHealth;
 
 	private GameManager game;
+	private OnGuiManager gui;
+	private int nativeWidth;
+	private int nativeHeight;
+	
+	public void Initialize(){
+		game = GameManager.instance;
+		gui = OnGuiManager.instance;
+		nativeWidth = gui.nativeWidth;
+		nativeHeight = gui.nativeHeight;
 
-	public Hud() {		
-		//size and alignment for gun crosshair
-		crosshairSize = Screen.height/30;
-		crosshairPosition = CalculateGUIRect(crosshairSize, crosshairSize, 0, 0);
 		helpPosition = CalculateGUIRect(500, 40, 0, -40);
 		//healthbar position and size
 		healthPosition = new Rect(10,200,193,34);
@@ -28,7 +30,7 @@ public class Hud {
 	// Show() gets called from OnGuiManager
 	public void Show() {
 		if (game == null){
-			game = GameManager.instance;
+			Initialize();
 		}
 
 		if (GameManager.instance.treasureState == TreasureState.CARRYING){
@@ -37,11 +39,6 @@ public class Hud {
 			GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 		}
 			
-		Gun gun = GunManager.instance.currentGun;
-		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
-    		GUI.DrawTexture(crosshairPosition, crosshairTexture);
-		}
-
 		GUI.DrawTexture(healthPosition, healthbar);
 		currentHealth = game.statistics.playerHealth;
 		currentHealth = currentHealth*1.76f;
@@ -79,6 +76,6 @@ public class Hud {
 	}
 	
 	public Rect CalculateGUIRect(int width, int height, int xOffset, int yOffset){
-		return new Rect((Screen.width-width)/2 + xOffset, (Screen.height-height)/2 + yOffset, width, height);
+		return new Rect((nativeWidth-width)/2 + xOffset, (nativeHeight-height)/2 + yOffset, width, height);
 	}
 }

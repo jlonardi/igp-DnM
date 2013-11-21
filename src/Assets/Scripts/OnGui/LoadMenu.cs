@@ -3,16 +3,31 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary; 
 
 public class LoadMenu {	
+	private OnGuiManager gui;
+	private int nativeWidth;
+	private int nativeHeight;
+	private int padWidth;
+	
+	public void Initialize(){
+		gui = OnGuiManager.instance;
+		nativeWidth = gui.nativeWidth;
+		nativeHeight = gui.nativeHeight;
+		padWidth = gui.padWidth;
+	}
 
 	// Show() gets called from OnGuiManager
 	public void Show(){
+		if (gui == null){
+			Initialize();
+		}
+
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
 
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
 
-		GUI.Box(new Rect((Screen.width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Load Game", myStyle);
-		GUILayout.BeginArea(new Rect((Screen.width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
+		GUI.Box(new Rect(((nativeWidth+padWidth) *0.5f)-138, (nativeHeight*0.5f)-100,275,250), "Load Game", myStyle);
+		GUILayout.BeginArea(new Rect(((nativeWidth+padWidth) *0.5f)-125, (nativeHeight*0.5f)-50,250,200));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			if (saveInfo[i].name == null){
@@ -30,7 +45,7 @@ public class LoadMenu {
 					SaveManager.instance.Load();
 				}
 				if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)){
-					GUILayout.Window(i, new Rect((Screen.width *0.5f)+148, (Screen.height*0.5f)-100,330,250), ShowDetails, "");
+					GUILayout.Window(i, new Rect(((nativeWidth+padWidth) *0.5f)+148, (nativeHeight*0.5f)-100,330,250), ShowDetails, "");
 				}
 			}
 		}	

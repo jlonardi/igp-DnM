@@ -92,6 +92,13 @@ public class Gun : MonoBehaviour {
 	private HitParticles hitParticles;
 	private GunManager gunManager;
 	private CharacterController controller;
+	private GameManager game;
+
+	// defines how accurate can weapon shoot
+	private float accuracy = 40f;
+	[HideInInspector]
+	// current accuracy is calculated by accuracy and player movement
+	public float currentAccuracy;
 
 	void Awake(){
 		shootFrom = transform.FindChild("ShootFrom").gameObject;
@@ -100,6 +107,7 @@ public class Gun : MonoBehaviour {
 	void Start(){
 		cam = Camera.main.camera;
 		gunManager = GunManager.instance;
+		game = GameManager.instance;
 		controller = transform.root.GetComponent<CharacterController>();
 		hitParticles = GunManager.instance.hitParticles;
 	}
@@ -118,7 +126,33 @@ public class Gun : MonoBehaviour {
 		HandleReloading();
 		ShootTheTarget();
 	}
-	
+
+	void FixedUpdate(){
+		CalculateAccuracy();
+	}
+
+	private void CalculateAccuracy(){
+		float targetAccuracy;
+
+		if (game.statistics.playerSpeed < 1f){
+			targetAccuracy = accuracy;
+		} else {
+			targetAccuracy = accuracy + 70;
+		}
+		if (targetAccuracy < currentAccuracy){
+			currentAccuracy -= (currentAccuracy - targetAccuracy)  * 0.2f;
+			if (targetAccuracy > currentAccuracy){
+				currentAccuracy = targetAccuracy;
+			}
+		}
+		if (targetAccuracy > currentAccuracy){
+			currentAccuracy += (targetAccuracy - currentAccuracy) * 0.05f;
+			if (targetAccuracy < currentAccuracy){
+				currentAccuracy = targetAccuracy;
+			}
+		}
+	}
+
 	public void OnEnable()
 	{
 		if (audioSource == null){

@@ -70,11 +70,13 @@ public class GunManager : MonoBehaviour {
 		ChangeToGun(currentGunIndex);
 	}
 	
-	public void ChangeToGun(int gunIndex){	
+	public void ChangeToGun(int gunIndex){
+		float accuracy = currentGun.currentAccuracy;
 		bool oldEnabled = currentGun.enabled;
 		currentGun.enabled = false;
 		currentGun = guns[gunIndex].gun;
 		currentGunIndex = gunIndex;
+		currentGun.currentAccuracy = accuracy;
 		if (oldEnabled){
 			currentGun.enabled = true;
 		}

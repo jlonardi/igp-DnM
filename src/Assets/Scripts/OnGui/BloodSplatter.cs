@@ -16,24 +16,24 @@ public class BloodSplatter {
 	public float pulseTreshold = 0f;
 
 	private float fadeDir;
+	private OnGuiManager gui;
 
-	// constructor
-	public BloodSplatter() {		
-		splatterPosition = new Rect(0, 0, Screen.width, Screen.height);
-		
+	public void Initialize(){
+		gui = OnGuiManager.instance;
+		splatterPosition = new Rect(0, 0, gui.nativeWidth + gui.padWidth, gui.nativeHeight);
 		bloodAlpha = 0f;
 		fadeDir = -1f;
 	}
 
-
 	// Show() gets called from OnGuiManager
 	public void Show() {
+		if (gui == null){
+			Initialize();
+		}
 
-
-			bloodColor = GUI.color;
-			originalColor = GUI.color;
-			bloodColor.a = bloodAlpha;
-			
+		bloodColor = GUI.color;
+		originalColor = GUI.color;
+		bloodColor.a = bloodAlpha;
 			
 		if(bloodAlpha >= pulseTreshold) {
 			bloodAlpha = bloodAlpha + fadeDir * fadeSpeed * Time.deltaTime;	

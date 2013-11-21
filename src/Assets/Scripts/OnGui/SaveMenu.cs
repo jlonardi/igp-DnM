@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
+
 
 public class SaveMenu {
+	private SaveInfo[] saveInfo;
+	private OnGuiManager gui;
+	private int nativeWidth;
+	private int nativeHeight;
+	private int padWidth;
+
+	public void Initialize(){
+		gui = OnGuiManager.instance;
+		nativeWidth = gui.nativeWidth;
+		nativeHeight = gui.nativeHeight;
+		padWidth = gui.padWidth;
+		saveInfo = SaveManager.instance.saveInfo;
+	}
 
 	// Show() gets called from OnGuiManager
 	public void Show(){
-		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
+		if (gui == null){
+			Initialize();
+		}
 
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
 		
-		GUI.Box(new Rect((Screen.width *0.5f)-138, (Screen.height*0.5f)-100,275,250), "Save Game", myStyle);
-		GUILayout.BeginArea(new Rect((Screen.width *0.5f)-125, (Screen.height*0.5f)-50,250,200));
+		GUI.Box(new Rect(((nativeWidth+padWidth) *0.5f)-138, (nativeHeight*0.5f)-100,275,250), "Save Game", myStyle);
+		GUILayout.BeginArea(new Rect(((nativeWidth+padWidth) *0.5f)-125, (nativeHeight*0.5f)-50,250,200));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			string saveName;

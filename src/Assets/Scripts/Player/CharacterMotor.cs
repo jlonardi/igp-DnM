@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum MovementTransferOnJump {
 		None, // The jump is not affected by velocity of floor at all.
@@ -16,6 +17,10 @@ public class CharacterMotor : MonoBehaviour {
 	
 	public bool canControl = true;
 	public bool useFixedUpdate = true;
+
+	public float movementSpeed = 0f;        
+	private float prevMovementSpeed = 0f;        
+	private List<Vector3> movementPositions = new List<Vector3>();
 
 	public float pushPower = 2.0f;
 	
@@ -53,6 +58,17 @@ public class CharacterMotor : MonoBehaviour {
 		Vector3 movement = transform.position - lastPosition;
 		lastPosition = transform.position;
 		characterVelocity = movement / Time.deltaTime;
+
+		//calculate current speed for animations
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>7){
+			prevMovementSpeed = movementSpeed;
+			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
+			movementPositions.RemoveAt(0);
+			if (canControl){
+				game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[4]) * 30;
+			}
+		}
 	}
 
 	void Update () {

@@ -24,6 +24,7 @@ public class Statistics {
 	public bool gunReloading;
 	public bool gunEnabled;
 	public int grenadeCount;
+	public float playerSpeed = 0f;
 
 	//scores for different enemy types:
 	private int orcKillScore = 100;
