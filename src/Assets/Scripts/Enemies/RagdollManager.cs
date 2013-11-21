@@ -7,6 +7,8 @@ public class RagdollManager : MonoBehaviour {
 	public static RagdollManager instance;
 
 	public GameObject orcRagdollPrefab;
+	public GameObject lizardRagdollPrefab;
+	public GameObject wolfRagdollPrefab;
 	public int maxRagdolls = 20;
 	public GameObject player;
 
@@ -55,6 +57,12 @@ public class RagdollManager : MonoBehaviour {
 
 		// select correct ragdoll prefab by enemytype
 		switch(enemyType) {
+		case EnemyType.LIZARD:
+			ragdollPrefab = lizardRagdollPrefab;
+			break;
+		case EnemyType.WEREWOLF:
+			ragdollPrefab = wolfRagdollPrefab;
+			break;
 		case EnemyType.ORC:
 		default:
 			ragdollPrefab = orcRagdollPrefab;

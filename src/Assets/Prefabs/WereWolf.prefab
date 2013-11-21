@@ -2379,7 +2379,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: a9fa1d6c3df0e054e9d2bc8670b97dec, type: 3}
   m_Controller: {fileID: 9100000, guid: ce2d2e826033edd499748b3a19f5ad85, type: 2}
   m_CullingMode: 1
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
 --- !u!114 &11400000
@@ -2456,8 +2456,11 @@ MonoBehaviour:
   damage: 7
   attacking: 1
   looting: 1
-  attackInterval: 1
   lootInterval: 1
+  attackDistance: 2.4000001
+  lootDistance: 2.70000005
+  canLoot: 1
+  canAttack: 1
   painSounds:
   - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
@@ -2492,7 +2495,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100168}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 279bc9e311f949a479ab360744b1240d, type: 3}
   m_Name: 

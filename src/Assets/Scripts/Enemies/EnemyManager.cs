@@ -7,6 +7,8 @@ public class EnemyManager : MonoBehaviour {
 	public static EnemyManager instance;
 
 	public GameObject orcPrefab;
+	public GameObject lizardPrefab;
+	public GameObject wolfPrefab;
 	public int maxEnemies = 20;
 
 	[HideInInspector]
@@ -64,14 +66,21 @@ public class EnemyManager : MonoBehaviour {
 
 		// create a new enemy instance
 		GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
+		AlignEnemy(enemy);
+		enemy = CreateEnemy(EnemyType.LIZARD, areas[index].position + offset);
+		AlignEnemy(enemy);
+		enemy = CreateEnemy(EnemyType.WEREWOLF, areas[index].position + offset);
+		AlignEnemy(enemy);
+	}
 
+	public void AlignEnemy(GameObject enemy){
 		// use raycast to set enemy above the terrain
 		RaycastHit hit = new RaycastHit();
 		Ray ray = new Ray(enemy.transform.position, -Vector3.up);		
 		Physics.Raycast(ray,out hit);
 		enemy.transform.position = new Vector3(enemy.transform.position.x, hit.point.y + 3, enemy.transform.position.z);
 	}
-	
+
 	// make a new enemy with prefab's rotation
 	public GameObject CreateEnemy(EnemyType enemyType, Vector3 position){
 		return CreateEnemy(enemyType, position, Quaternion.identity);
@@ -87,7 +96,13 @@ public class EnemyManager : MonoBehaviour {
 
 		// select correct prefab by enemy type
 		switch(enemyType) {
-        	case EnemyType.ORC:
+		case EnemyType.LIZARD:
+			enemyPrefab = lizardPrefab;
+			break;
+		case EnemyType.WEREWOLF:
+			enemyPrefab = wolfPrefab;
+			break;
+		case EnemyType.ORC:
 			default:
 				enemyPrefab = orcPrefab;
 				break;			

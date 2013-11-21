@@ -25,12 +25,13 @@ public class EnemyLogic : MonoBehaviour {
 
 	public bool attacking = false;
 	public bool looting = false;
-	public float attackInterval = 2f;
 	public float lootInterval = 2f;
-	private float attackDistance = 2.4f;
-	private float lootDistance = 2.7f;
+	public float attackDistance = 2.4f;
+	public float lootDistance = 2.7f;
 	private float timeFromAttack;
 	private float timeFromLoot;
+	public bool canLoot = false;
+	public bool canAttack = true;
 		
 	private GameManager game;
 	private RagdollManager ragdolls;
@@ -99,10 +100,9 @@ public class EnemyLogic : MonoBehaviour {
  				if (getPlayerDistance() > attackDistance){
 					attacking = false;
 				}
-				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
-					playerVitals.TakeDamage(damage, DamageType.HIT);
-					timeFromAttack = Time.time;
-				}
+//				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
+//					timeFromAttack = Time.time;
+//				}
 			} 
 			
 			if(target == focusTarget.TRESAURE) {
@@ -128,7 +128,7 @@ public class EnemyLogic : MonoBehaviour {
 			if (game.treasureState == TreasureState.SET_ON_GROUND){
 				treasureAvailable = true;
 			}
-			if (treasureAvailable){
+			if (treasureAvailable && canLoot){
 				swapTarget();
 			}
 		}
@@ -256,5 +256,17 @@ public class EnemyLogic : MonoBehaviour {
 	{
 		int clipNum = Random.Range(0, clips.Length - 1);
 		PlaySound(clips[clipNum]);
+	}
+
+	private void AttackTrigger(string message){
+		if(getPlayerDistance() > attackDistance) {
+			return;
+		}
+
+		int hitdamage = damage;
+		if (message.Equals("standing")){
+			hitdamage = damage+2;
+		}
+		playerVitals.TakeDamage(damage, DamageType.HIT);	
 	}
 }

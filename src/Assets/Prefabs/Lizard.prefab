@@ -5130,8 +5130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08c5fd536898b94284ee37b3bda250c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveStopDistance: 2
-  moveAllowDistance: 2.29999995
+  moveStopDistance: 2.70000005
+  moveAllowDistance: 3
   movementSpeed: 0
   targetPosition: {x: 0, y: 0, z: 0}
   atTarget: 0
@@ -5276,8 +5276,11 @@ MonoBehaviour:
   damage: 7
   attacking: 0
   looting: 0
-  attackInterval: 2
   lootInterval: 2
+  attackDistance: 3
+  lootDistance: 3
+  canLoot: 0
+  canAttack: 1
   painSounds:
   - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}

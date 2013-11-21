@@ -2099,8 +2099,11 @@ MonoBehaviour:
   damage: 7
   attacking: 1
   looting: 0
-  attackInterval: 1
   lootInterval: 1
+  attackDistance: 2.29999995
+  lootDistance: 2.29999995
+  canLoot: 1
+  canAttack: 1
   painSounds:
   - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
