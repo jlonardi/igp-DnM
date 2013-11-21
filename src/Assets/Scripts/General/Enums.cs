@@ -48,4 +48,7 @@ public enum focusTarget {
 
 public enum EnemyType {
 	ORC,
+	LIZARD,
+	WEREWOLF,
+	DRAGON
 }

@@ -1947,8 +1947,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 220.321472, y: 4.14101982, z: 131.799988}
-  m_LocalScale: {x: .180000007, y: .180000007, z: .180000007}
+  m_LocalPosition: {x: 77.753273, y: 6.59000015, z: 64.9749146}
+  m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
   - {fileID: 400140}
   - {fileID: 400138}
@@ -2038,6 +2038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canControl: 0
   useFixedUpdate: 0
+  movementSpeed: 0
   pushPower: 3
   characterVelocity: {x: 0, y: 0, z: 0}
   movement:
@@ -2096,7 +2097,7 @@ MonoBehaviour:
   enemyType: 0
   health: 100
   damage: 7
-  attacking: 0
+  attacking: 1
   looting: 0
   attackInterval: 1
   lootInterval: 1
@@ -2125,6 +2126,7 @@ MonoBehaviour:
   turnSpeed: 10
   nextWaypointDistance: 3
   currentWaypoint: 0
+  hideRenderer: 1
   onLongDistanceTravel: 0
   longDistanceTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &11400148
