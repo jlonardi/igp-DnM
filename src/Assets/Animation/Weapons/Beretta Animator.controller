@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M4 Animator
+  m_Name: Beretta Animator
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: fire
@@ -50,14 +50,14 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: movement
   m_Childs:
-  - m_Motion: {fileID: 7400000, guid: 35e0b391247fd13469548cea16e377bd, type: 2}
+  - m_Motion: {fileID: 7400000, guid: 5a86e74b64b61594c911cc35cefbe906, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 07733dd5ea6c39c4ab5651d9260b1576, type: 2}
+  - m_Motion: {fileID: 7400000, guid: 1f7a8e966911acd41b852951ff4dd407, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -106,6 +106,24 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
+--- !u!1101 &110193005
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: fire
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
 --- !u!1101 &110197050
 Transition:
   m_ObjectHideFlags: 3
@@ -129,13 +147,43 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M4_shoot
+  m_Name: Beretta_shoot
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 03a596cf125f5ee409fed796a4c191d1, type: 2}
+  - {fileID: 7400000, guid: 356ccb6432b23494288b6039594ee0ab, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 144, y: -108, z: 0}
+  m_Position: {x: 221, y: -121, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110206080
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Beretta_idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 5a86e74b64b61594c911cc35cefbe906, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 256, y: -56, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110221653
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Beretta_run
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 1f7a8e966911acd41b852951ff4dd407, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 291, y: 9, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -179,16 +227,17 @@ StateMachine:
   m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110200000}
-  - {fileID: 110247097}
+  - {fileID: 110206080}
+  - {fileID: 110221653}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
       second:
-      - {fileID: 110197050}
+      - {fileID: 110193005}
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 0}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}

@@ -112,12 +112,17 @@ public class Gun : MonoBehaviour {
 	void Start(){
 		cam = Camera.main.camera;
 		gunManager = GunManager.instance;
-		game = GameManager.instance;
 		controller = transform.root.GetComponent<CharacterController>();
 		hitParticles = GunManager.instance.hitParticles;
 	}
 
 	void Update (){
+		if (game == null){
+			game = GameManager.instance;
+		}
+
+		CalculateAccuracy();
+
 		timerToCreateDecal -= Time.deltaTime;
 		if (Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
 				PlayOutOfAmmoSound();
@@ -137,7 +142,6 @@ public class Gun : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		CalculateAccuracy();
 	}
 
 	private void CalculateAccuracy(){

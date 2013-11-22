@@ -17,7 +17,7 @@ public class GunManager : MonoBehaviour {
 	public int currentGunIndex;
 	public Gun currentGun;
 	public HitParticles hitParticles = new HitParticles();
-	public GameManager game;
+	private GameManager game;
 	private Camera playerCam;
 	private CharacterController controller;
 	private GameObject throwFrom;
