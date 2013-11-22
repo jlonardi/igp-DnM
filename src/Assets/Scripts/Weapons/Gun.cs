@@ -93,6 +93,7 @@ public class Gun : MonoBehaviour {
 	private GunManager gunManager;
 	private CharacterController controller;
 	private GameManager game;
+	private Animator animator;
 
 	// defines how accurate can weapon shoot
 	private float accuracy = 40f;
@@ -102,6 +103,10 @@ public class Gun : MonoBehaviour {
 
 	void Awake(){
 		shootFrom = transform.FindChild("ShootFrom").gameObject;
+		animator = GetComponent<Animator>();
+		if (animator != null){
+			animator.SetLayerWeight(1,0.5f);
+		}
 	}
 
 	void Start(){
@@ -116,6 +121,10 @@ public class Gun : MonoBehaviour {
 		timerToCreateDecal -= Time.deltaTime;
 		if (Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
 				PlayOutOfAmmoSound();
+		}
+		if (animator != null){
+			animator.SetBool("fire", false);
+			animator.SetFloat("speed", game.statistics.playerSpeed);
 		}
 
 		HandleMinigun();
@@ -271,7 +280,12 @@ public class Gun : MonoBehaviour {
 						for(int i = 0; i < capsuleEmitter.Length; i++){
 							capsuleEmitter[i].Emit();
 						}
-					}					
+					}
+
+					if (animator != null){
+						animator.SetBool("fire", true);
+					}
+
 					PlayShootSound();
 					
 					if(gunParticles != null){
@@ -318,6 +332,7 @@ public class Gun : MonoBehaviour {
 			if(shotLight != null){
 				shotLight.enabled = false;
 			}
+
 		}
 	}
 	public void LaunchProjectile()	{
