@@ -26,7 +26,7 @@ public class Crosshair {
 
 		Gun gun = GunManager.instance.currentGun;
 		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
-			DrawCrosshair((int)gun.currentAccuracy);
+			DrawCrosshair((int)(gun.currentAccuracy+10)*2);
 		}
 	}
 

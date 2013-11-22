@@ -7961,6 +7961,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  accuracy: 40
   currentAccuracy: 0
 --- !u!23 &652827455
 Renderer:
@@ -9641,6 +9642,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  accuracy: 30
   currentAccuracy: 0
 --- !u!95 &807159193
 Animator:
@@ -9946,6 +9948,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 891251794be38864896e7dc7a0f74143, type: 2}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: accuracy
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
   m_RootGameObject: {fileID: 1267150283}
@@ -11995,6 +12001,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 29df17c8c1d18fe47a5393ac5ffa668b, type: 2}
+    - target: {fileID: 11400000, guid: 3dcf1527309d9c5479413ba5ad2973de, type: 2}
+      propertyPath: accuracy
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dcf1527309d9c5479413ba5ad2973de, type: 2}
   m_RootGameObject: {fileID: 807159190}
@@ -13396,6 +13406,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  accuracy: 20
   currentAccuracy: 0
 --- !u!95 &1267150286
 Animator:
@@ -16030,6 +16041,7 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  accuracy: 40
   currentAccuracy: 0
 --- !u!23 &1455416401
 Renderer:

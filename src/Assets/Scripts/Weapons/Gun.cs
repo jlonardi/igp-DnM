@@ -66,6 +66,9 @@ public class Gun : MonoBehaviour {
 	public AudioClip windUpSound;
 	public AudioClip windDownSound;
 
+	private int centerX;
+	private int centerY;
+
 	[HideInInspector]
 	public bool freeToShoot;
 	
@@ -96,7 +99,7 @@ public class Gun : MonoBehaviour {
 	private Animator animator;
 
 	// defines how accurate can weapon shoot
-	private float accuracy = 40f;
+	public float accuracy = 20f;
 	[HideInInspector]
 	// current accuracy is calculated by accuracy and player movement
 	public float currentAccuracy;
@@ -110,6 +113,8 @@ public class Gun : MonoBehaviour {
 	}
 
 	void Start(){
+		centerX = Screen.width / 2;
+		centerY = Screen.height / 2;
 		cam = Camera.main.camera;
 		gunManager = GunManager.instance;
 		controller = transform.root.GetComponent<CharacterController>();
@@ -150,7 +155,7 @@ public class Gun : MonoBehaviour {
 		if (game.statistics.playerSpeed < 1f){
 			targetAccuracy = accuracy;
 		} else {
-			targetAccuracy = accuracy + 70;
+			targetAccuracy = accuracy + 40;
 		}
 		if (targetAccuracy < currentAccuracy){
 			currentAccuracy -= (currentAccuracy - targetAccuracy)  * 0.2f;
@@ -357,9 +362,12 @@ public class Gun : MonoBehaviour {
 		Vector3 origin;
 		Vector3 glassOrigin = new Vector3(0f,0f,0f);
 		Vector3 dir;
-		Vector3 glassDir = new Vector3(0f,0f,0f);;
+		Vector3 glassDir = new Vector3(0f,0f,0f);
+
+		float shootX = centerX + UnityEngine.Random.Range(-currentAccuracy, currentAccuracy);
+		float shootY = centerY + UnityEngine.Random.Range(-currentAccuracy, currentAccuracy);
 		
-		camRay = cam.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
+		camRay = cam.ScreenPointToRay(new Vector3(shootX, shootY, 0f));
 		origin = shootFrom.transform.position;
 		if(Physics.Raycast(camRay.origin + camRay.direction * 0.1f, camRay.direction, out hit, fireRange, hitLayer))	{
 			dir = (hit.point - origin).normalized;
