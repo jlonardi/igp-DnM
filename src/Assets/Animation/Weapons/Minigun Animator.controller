@@ -5,17 +5,17 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M203 Animator
+  m_Name: Minigun Animator
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: fire
-    m_Type: 4
+  - m_Name: speed
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: speed
-    m_Type: 1
+  - m_Name: fire
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -40,7 +40,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - serializedVersion: 3
     m_Name: Movement
-    m_StateMachine: {fileID: 110776461}
+    m_StateMachine: {fileID: 110767374}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -51,7 +51,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - serializedVersion: 3
     m_Name: Jumping
-    m_StateMachine: {fileID: 110747834}
+    m_StateMachine: {fileID: 110723736}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -65,16 +65,16 @@ BlendTree:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Movement
   m_Childs:
-  - m_Motion: {fileID: 7400000, guid: 35e0b391247fd13469548cea16e377bd, type: 2}
+  - m_Motion: {fileID: 7400000, guid: 2e3f885975f018d44885113d763255e2, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 07733dd5ea6c39c4ab5651d9260b1576, type: 2}
+  - m_Motion: {fileID: 7400000, guid: cd9fcbf8bdcdbd64e86c09e3e345f0d2, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -105,32 +105,50 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
---- !u!1101 &110123887
+--- !u!1101 &110105221
 Transition:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110240692}
-  m_DstState: {fileID: 110263355}
-  m_TransitionDuration: .159574464
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110264880}
+  m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: hitGround
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .840425551
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
---- !u!1101 &110174007
+--- !u!1101 &110118611
 Transition:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110263355}
-  m_DstState: {fileID: 110240692}
+  m_SrcState: {fileID: 110261279}
+  m_DstState: {fileID: 110264880}
+  m_TransitionDuration: .75
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hitGround
+    m_EventTreshold: 0
+    m_ExitTime: .25
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+--- !u!1101 &110140674
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110264880}
+  m_DstState: {fileID: 110261279}
   m_TransitionDuration: .25
   m_TransitionOffset: 0
   m_Conditions:
@@ -141,21 +159,21 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
---- !u!1101 &110189950
+--- !u!1101 &110180404
 Transition:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_SrcState: {fileID: 0}
-  m_DstState: {fileID: 110263355}
+  m_DstState: {fileID: 110270889}
   m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -164,58 +182,58 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M203_shoot
+  m_Name: Minigun_shoot
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 323b9b24981f3e044bedaefc2cbed5f6, type: 2}
+  - {fileID: 7400000, guid: 5a0fb7e13ae1f624face2688a4cd6509, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 120, y: -72, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110240692
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: M4_ground
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: ac93aae958a5c7f4c83447ea61995159, type: 2}
-  m_ParentStateMachine: {fileID: 110747834}
   m_Position: {x: 132, y: -84, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110263355
+--- !u!1102 &110261279
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M4_idle
+  m_Name: Minigun_ground
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 35e0b391247fd13469548cea16e377bd, type: 2}
-  m_ParentStateMachine: {fileID: 110747834}
-  m_Position: {x: 240, y: 0, z: 0}
+  - {fileID: 7400000, guid: cebb01133f04d524aa424196dc1eefce, type: 2}
+  m_ParentStateMachine: {fileID: 110723736}
+  m_Position: {x: 144, y: -72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110298837
+--- !u!1102 &110264880
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Minigun_idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 2e3f885975f018d44885113d763255e2, type: 2}
+  m_ParentStateMachine: {fileID: 110723736}
+  m_Position: {x: 144, y: 36, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110270889
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Movement
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 20600000}
-  m_ParentStateMachine: {fileID: 110776461}
-  m_Position: {x: 96, y: -48, z: 0}
+  m_ParentStateMachine: {fileID: 110767374}
+  m_Position: {x: 36, y: 0, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -226,67 +244,63 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Handling
-  m_DefaultState: {fileID: 110200000}
-  m_States:
-  - {fileID: 110200000}
+  m_DefaultState: {fileID: 0}
+  m_States: []
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
-      second:
-      - {fileID: 110100000}
-    data:
-      first: {fileID: 110200000}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
---- !u!1107 &110747834
+--- !u!1107 &110723736
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Jumping
-  m_DefaultState: {fileID: 110240692}
+  m_DefaultState: {fileID: 110261279}
   m_States:
-  - {fileID: 110240692}
-  - {fileID: 110263355}
+  - {fileID: 110261279}
+  - {fileID: 110264880}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110263355}
+      first: {fileID: 110264880}
       second:
-      - {fileID: 110174007}
+      - {fileID: 110140674}
     data:
-      first: {fileID: 110240692}
+      first: {fileID: 110261279}
       second:
-      - {fileID: 110123887}
+      - {fileID: 110118611}
     data:
       first: {fileID: 0}
       second:
-      - {fileID: 110189950}
+      - {fileID: 110105221}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: -36, y: 24, z: 0}
+  m_AnyStatePosition: {x: -72, y: 36, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
---- !u!1107 &110776461
+--- !u!1107 &110767374
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Movement
-  m_DefaultState: {fileID: 110298837}
+  m_DefaultState: {fileID: 110270889}
   m_States:
-  - {fileID: 110298837}
+  - {fileID: 110270889}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110298837}
-      second: []
+      first: {fileID: 0}
+      second:
+      - {fileID: 110180404}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: -60, y: 84, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

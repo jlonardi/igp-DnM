@@ -145,6 +145,7 @@ public class CharacterMotor : MonoBehaviour {
 		// when walking down a step or over a sharp change in slope.
 		float pushDownOffset = Mathf.Max(controller.stepOffset, new Vector3(currentMovementOffset.x, 0f, currentMovementOffset.z).magnitude);
 		if (grounded){
+			GunManager.instance.currentGun.animator.SetBool("hitGround", false);
 			currentMovementOffset -= pushDownOffset * Vector3.up;
 		}
 		
@@ -198,7 +199,7 @@ public class CharacterMotor : MonoBehaviour {
 		// We were grounded but just loosed grounding
 		if (grounded && !IsGroundedTest()) {
 			grounded = false;
-			
+
 			// Apply inertia from platform
 			if (movingPlatform.enabled &&
 				(movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
@@ -221,6 +222,7 @@ public class CharacterMotor : MonoBehaviour {
 			
 			SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
 			sounds.PlayJumpSound();
+			GunManager.instance.currentGun.animator.SetBool("hitGround", true);
 		}
 		
 		// Moving platforms support

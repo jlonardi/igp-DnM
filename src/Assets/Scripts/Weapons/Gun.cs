@@ -96,7 +96,8 @@ public class Gun : MonoBehaviour {
 	private GunManager gunManager;
 	private CharacterController controller;
 	private GameManager game;
-	private Animator animator;
+	[HideInInspector]
+	public Animator animator;
 
 	// defines how accurate can weapon shoot
 	public float accuracy = 20f;
@@ -109,6 +110,7 @@ public class Gun : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		if (animator != null){
 			animator.SetLayerWeight(1,0.5f);
+			animator.SetLayerWeight(2,0.5f);
 		}
 	}
 
@@ -291,10 +293,7 @@ public class Gun : MonoBehaviour {
 						}
 					}
 
-					if (animator != null){
-						animator.SetBool("fire", true);
-					}
-
+					animator.SetBool("fire", true);
 					PlayShootSound();
 					
 					if(gunParticles != null){
