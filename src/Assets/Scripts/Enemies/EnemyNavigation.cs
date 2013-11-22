@@ -236,8 +236,17 @@ public class EnemyNavigation : MonoBehaviour {
 			
 			//Direction to the next waypoint
 	        Vector3 dir = (path.vectorPath[currentWaypoint]-terrainLocation(transform.position)).normalized;
-	        dir *= speed * Time.fixedDeltaTime;
-			
+			float targetDistance = Vector3.Distance(transform.position, targetPosition);
+
+			//slow quick enemy down if nearby so it won't run past target
+			if (targetDistance<10 && speed > 300){
+				dir *= 300 * Time.fixedDeltaTime;
+			} else if (targetDistance<5 && speed > 200){
+				dir *= 200 * Time.fixedDeltaTime;
+			} else {
+				dir *= speed * Time.fixedDeltaTime;
+			}
+
 			Vector3 positionBeforeMove = transform.position;		
 			controller.SimpleMove (dir);
 			
