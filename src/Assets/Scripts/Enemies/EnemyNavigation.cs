@@ -256,7 +256,6 @@ public class EnemyNavigation : MonoBehaviour {
 	        }	
 		} else {
 			//If we have allready reached the target we need only to turn the object to face hes target
-			
 			//Direction to the player
 	        Vector3 dir = (target.transform.position-transform.position).normalized;
 			
