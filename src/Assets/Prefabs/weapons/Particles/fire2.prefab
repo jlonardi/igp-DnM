@@ -12,7 +12,7 @@ GameObject:
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
   m_Layer: 0
-  m_Name: bullet_trace
+  m_Name: fire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,9 +24,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .589999974, y: .330000013, z: 5.78999996}
-  m_LocalScale: {x: .509183466, y: .996760845, z: -.505943716}
+  m_LocalRotation: {x: 1.75523134e-08, y: -7.33522576e-09, z: -1.65690373e-09, w: 1}
+  m_LocalPosition: {x: 3.06395814e-05, y: .02495078, z: .00872671604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!12 &1200000
@@ -35,7 +35,7 @@ ParticleAnimator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  Does Animate Color?: 1
+  Does Animate Color?: 0
   colorAnimation[0]:
     serializedVersion: 2
     rgba: 184549375
@@ -50,7 +50,7 @@ ParticleAnimator:
     rgba: 3036676095
   colorAnimation[4]:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 184549375
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
   sizeGrow: 0
@@ -68,21 +68,21 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 0
-  minSize: 7
-  maxSize: 7
-  minEnergy: .800000012
-  maxEnergy: .899999976
+  minSize: .600000024
+  maxSize: .699999988
+  minEnergy: .00999999978
+  maxEnergy: .100000001
   minEmission: 10
-  maxEmission: 10
+  maxEmission: 15
   worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 0, z: 130}
+  localVelocity: {x: 0, y: .100000001, z: 0}
   rndVelocity: {x: 0, y: 0, z: 0}
-  emitterVelocityScale: 0
+  emitterVelocityScale: .0500000007
   tangentVelocity: {x: 0, y: 0, z: 0}
-  angularVelocity: 0
+  angularVelocity: 1.5
   rndAngularVelocity: 0
   rndRotation: 0
-  Simulate in Worldspace?: 1
+  Simulate in Worldspace?: 0
   m_OneShot: 1
   m_Ellipsoid: {x: 0, y: 0, z: 0}
   m_MinEmitterRange: 0
@@ -93,21 +93,24 @@ ParticleRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c9a5c9a4754f4fc4d9c1fdf787f9c47f, type: 2}
+  - {fileID: 2100000, guid: d191a8e8111b7064db02b9b3447a17f4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
   serializedVersion: 2
   m_CameraVelocityScale: 0
-  m_StretchParticles: 3
-  m_LengthScale: 1.29999995
+  m_StretchParticles: 0
+  m_LengthScale: 1
   m_VelocityScale: 0
   m_MaxParticleSize: 1
   UV Animation:

@@ -6,7 +6,16 @@ public class Ragdoll : MonoBehaviour {
 	
 	private List<Transform> poseBones = new List<Transform>();
 	private List<Transform> ragdollBones = new List<Transform>();
-	
+
+	public AudioClip[] deathSounds;
+
+	void Start () {
+		// play randdom deathsound when ragdoll has been made
+		int clipNum = Random.Range(0, deathSounds.Length - 1);
+		audio.clip = deathSounds[clipNum];
+		audio.Play();
+	}	
+
 	public void CopyPose(Transform pose){
 		AddChildren(pose, poseBones);
 		AddChildren(this.transform, ragdollBones);

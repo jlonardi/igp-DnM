@@ -1107,8 +1107,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400142}
   - 114: {fileID: 11400142}
-  - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: orc ragdoll
   m_TagString: enemy
@@ -2228,7 +2228,7 @@ AudioSource:
     m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100142}
@@ -2254,6 +2254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7535c8d3db2846542b5ba39bcd511d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSounds:
+  - {fileID: 8300000, guid: adf14584fcd8c0548baa47b4a9c7e130, type: 3}
+  - {fileID: 8300000, guid: 50a2c39316978a64ca0c603cb5b081f4, type: 3}
+  - {fileID: 8300000, guid: 4a7537b2ed857f746a2ecbeb65dc4e82, type: 3}
+  - {fileID: 8300000, guid: 57667d0c83118f24ba4991526ad723d7, type: 3}
+  - {fileID: 8300000, guid: 100328634a3b9cd4f81e8905e3689ca7, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

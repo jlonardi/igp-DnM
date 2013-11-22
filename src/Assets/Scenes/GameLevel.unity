@@ -7962,7 +7962,7 @@ MonoBehaviour:
   reloading: 0
   fire: 0
   animator: {fileID: 0}
-  accuracy: 40
+  accuracy: 20
   currentAccuracy: 0
 --- !u!23 &652827455
 Renderer:
@@ -16049,7 +16049,7 @@ MonoBehaviour:
   reloading: 0
   fire: 0
   animator: {fileID: 0}
-  accuracy: 40
+  accuracy: 20
   currentAccuracy: 0
 --- !u!23 &1455416401
 Renderer:

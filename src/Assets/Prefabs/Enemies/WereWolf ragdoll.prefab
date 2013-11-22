@@ -2593,6 +2593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7535c8d3db2846542b5ba39bcd511d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSounds:
+  - {fileID: 8300000, guid: adf14584fcd8c0548baa47b4a9c7e130, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

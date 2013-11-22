@@ -490,6 +490,8 @@ MonoBehaviour:
   freeToShoot: 0
   reloading: 0
   fire: 0
+  animator: {fileID: 0}
+  accuracy: 20
   currentAccuracy: 0
 --- !u!1001 &100100000
 Prefab:
