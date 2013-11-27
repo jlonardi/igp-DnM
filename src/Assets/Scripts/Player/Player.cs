@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class Player : MonoBehaviour {
 	//use singleton since only we need one instance of this class
-	public static PlayerHealth instance;
+	public static Player instance;
 
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
 
     public void Awake() {
-        PlayerHealth.instance = this;
+        Player.instance = this;
     }	
 
 	void Update(){

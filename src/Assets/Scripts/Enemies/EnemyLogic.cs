@@ -37,7 +37,7 @@ public class EnemyLogic : MonoBehaviour {
 	private RagdollManager ragdolls;
 	private EnemyManager enemyManager;
 	private EnemyNavigation navigation;
-	private PlayerHealth playerVitals;
+	private Player playerVitals;
 
 	private Treasure treasure;
 	private Transform playerTransform;
@@ -54,7 +54,7 @@ public class EnemyLogic : MonoBehaviour {
 		navigation = GetComponent<EnemyNavigation>();
 		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
-		playerVitals = PlayerHealth.instance;
+		playerVitals = Player.instance;
 
 		treasure = Treasure.instance;
 		GameObject player = GameObject.Find("Main Camera");	
