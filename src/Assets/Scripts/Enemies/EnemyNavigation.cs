@@ -236,21 +236,21 @@ public class EnemyNavigation : MonoBehaviour {
 			
 			//Direction to the next waypoint
 	        Vector3 dir = (path.vectorPath[currentWaypoint]-terrainLocation(transform.position)).normalized;
+			dir *= speed * Time.fixedDeltaTime;
+
+			float magnitude = Vector3.Magnitude(dir);
 			float targetDistance = Vector3.Distance(transform.position, targetPosition);
 
-			//slow quick enemy down if nearby so it won't run past target
-			if (targetDistance<5 && speed > 200){
-				dir *= 200 * Time.fixedDeltaTime;
-			} else if (targetDistance<10 && speed > 300){
-				dir *= 300 * Time.fixedDeltaTime;
-			} else {
-				dir *= speed * Time.fixedDeltaTime;
+			//if target is close and current speed puts enemy past target, decrease direction speed
+			if (targetDistance < magnitude && magnitude != 0f){
+				dir*= (targetDistance/magnitude);
+				//Debug.Log("Speed corrected to " + (targetDistance/magnitude) + "x");
 			}
 
 			Vector3 positionBeforeMove = transform.position;		
 			controller.SimpleMove (dir);
 			
-			//Start moving the objoects facing towards the direction over time
+			//Rotate the enemy to face toward the direction over time
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
 			      
 	        //Check if we are close enough to the next waypoint
@@ -354,7 +354,7 @@ public class EnemyNavigation : MonoBehaviour {
 	//Chekcs if enough time has passed since the last pathfind, too frequent pathfinds causes
 	//severe performance issues
 	private bool eligibleToNewPathfind() {
-		float updateInterval = 0.2f;
+		float updateInterval = 0.5f;
 		if(timeOfLastPathFind + updateInterval < Time.fixedTime) {
 			//Debug.Log ("Eligible to find a new path.");
 			return true;
