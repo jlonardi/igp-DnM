@@ -19,7 +19,10 @@ public class EnemyNavigation : MonoBehaviour {
 	//Use stuck values to determine if stuck and how long
 	private bool stuck = false;
 	private float timeStuck = 0f;
-	
+
+	//Navigation is calculated always if previous navigation is older than maxInterval (s)
+	private float maxInterval = 10f;
+
 	//The point to move to
     public Vector3 targetPosition;
     
@@ -302,8 +305,7 @@ public class EnemyNavigation : MonoBehaviour {
 	private bool newPathNeeded() {		
 		float distanceFromTarget = Vector3.Distance(transform.position, target.position);
 		float distanceRatio = distanceFromTarget/10;
-		float maxInterval = 10f;
-		
+
 		if(!atTarget) {
 						
 			//Since not at target and speed is low object is most likely stuck
@@ -334,14 +336,15 @@ public class EnemyNavigation : MonoBehaviour {
 				return true;
 			}
 			//If the player has moved enough related to the distance between this object and him
-			//perform a new pathfind to get a more accurate path
-			if (Vector3.Distance(oldTargetPosition, target.position) > distanceRatio)  {
+			//perform a new pathfind to get a more accurate path, but ignore if player hasn't moved much
+			float movedDistance = Vector3.Distance(oldTargetPosition, target.position);
+			if (movedDistance > distanceRatio && movedDistance > 1f) {
 				return true;
 			}
 			//If the object is allready pretty close to the player we need frequent path updates
-			if(distanceFromTarget < 20) {
-				return true;	
-			}
+//			if(distanceFromTarget < 20) {
+//				return true;	
+//			}
 		} 
 		
 		if(onLongDistanceTravel && atTarget) {
