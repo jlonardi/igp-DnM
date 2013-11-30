@@ -26074,6 +26074,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 824576089}
   - 108: {fileID: 824576090}
+  - 114: {fileID: 824576091}
   m_Layer: 0
   m_Name: Lightsource
   m_TagString: Untagged
@@ -26128,6 +26129,21 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &824576091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824576088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410115b19f8112744a6c718d60926f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 2.79999995
+  maxIntensity: 3
+  flickerRateMin: .200000003
+  flickerRateMax: 1
 --- !u!1 &825770949
 GameObject:
   m_ObjectHideFlags: 0
@@ -51073,13 +51089,13 @@ Transform:
   - {fileID: 905414776}
   - {fileID: 606158614}
   - {fileID: 581314235}
-  - {fileID: 478558903}
   - {fileID: 345665569}
   - {fileID: 765247447}
   - {fileID: 1029047642}
   - {fileID: 401733829}
   - {fileID: 1896934497}
   - {fileID: 2041099532}
+  - {fileID: 478558903}
   m_Father: {fileID: 0}
 --- !u!95 &1677543484
 Animator:
