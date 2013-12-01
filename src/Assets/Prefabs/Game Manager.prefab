@@ -60,6 +60,7 @@ MonoBehaviour:
     gunReloading: 0
     gunEnabled: 0
     grenadeCount: 0
+    playerSpeed: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a6296fee7c23148a601b27262fd9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiSkin: {fileID: 0}
+  guiSkin: {fileID: 11400000, guid: 7953503d9e83f8d469b84619849edd4e, type: 2}
   hud:
     healthbar: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2, type: 3}
     health: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
@@ -97,8 +98,6 @@ MonoBehaviour:
     bloodAlpha: 0
     pulseTreshold: 0
   game: {fileID: 0}
-  nativeWidth: 1920
-  nativeHeight: 1080
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

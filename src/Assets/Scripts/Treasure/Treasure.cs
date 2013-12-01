@@ -110,7 +110,7 @@ public class Treasure : MonoBehaviour {
 		// =========== align treasure on terrain ======================
 		
 		 //first move up to make sure it doesn't go through terrain
-	    transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+	    transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
  		RaycastHit hit = new RaycastHit();		
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
 			// align just above terrain		    

@@ -549,7 +549,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100028}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -129.858444, y: -280.759277, z: 766.482605}
+  m_LocalPosition: {x: -174.5, y: -247.100006, z: 475.899994}
   m_LocalScale: {x: 1.89214444, y: 2.01858425, z: 1.89214444}
   m_Children: []
   m_Father: {fileID: 400026}
@@ -659,7 +659,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 7
+  m_LightmapIndex: 8
   m_LightmapTilingOffset: {x: .732421875, y: .732421875, z: -.0485901125, w: -.0559210256}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -680,7 +680,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 11
+  m_LightmapIndex: 12
   m_LightmapTilingOffset: {x: .587890625, y: .587890625, z: -.0390016623, w: -.0448859408}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -701,7 +701,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 6
+  m_LightmapIndex: 7
   m_LightmapTilingOffset: {x: .732421875, y: .732421875, z: -.0485901125, w: -.0559210256}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -743,7 +743,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 10
+  m_LightmapIndex: 11
   m_LightmapTilingOffset: {x: .587890625, y: .587890625, z: -.0390016623, w: -.0448859408}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -764,7 +764,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 5
+  m_LightmapIndex: 6
   m_LightmapTilingOffset: {x: .732421875, y: .732421875, z: -.0485901125, w: -.0559210256}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -827,7 +827,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 4
+  m_LightmapIndex: 5
   m_LightmapTilingOffset: {x: .732421875, y: .732421875, z: -.0485901125, w: -.0559210256}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -869,7 +869,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 9
+  m_LightmapIndex: 10
   m_LightmapTilingOffset: {x: .587890625, y: .587890625, z: -.0390016623, w: -.0448859408}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -890,7 +890,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 8
+  m_LightmapIndex: 9
   m_LightmapTilingOffset: {x: .587890625, y: .587890625, z: -.0390016623, w: -.0448859408}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -932,7 +932,7 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 3
+  m_LightmapIndex: 4
   m_LightmapTilingOffset: {x: .732421875, y: .732421875, z: -.0485901125, w: -.0559210256}
   m_Materials:
   - {fileID: 2100000, guid: 62c73e763b37b4345b0cff342fed514e, type: 2}
@@ -1537,8 +1537,8 @@ MonoBehaviour:
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
-  m_LightmapIndex: 12
-  m_LightmapSize: 2048
+  m_LightmapIndex: 13
+  m_LightmapSize: 512
   m_DrawTreesAndFoliage: 1
   m_MaterialTemplate: {fileID: 0}
 --- !u!114 &11400002
@@ -1562,7 +1562,7 @@ MonoBehaviour:
   hillsIcon: {fileID: 2800000, guid: 5e5a7853f82e54ab6912e5c20342dd73, type: 3}
   plateausIcon: {fileID: 2800000, guid: d56a2918dbaab45ae899828d981d8dff, type: 3}
   defaultTexture: {fileID: 2800000, guid: 07ec441dca83743ee8e1b259837acbd2, type: 3}
-  toolModeInt: 1
+  toolModeInt: 2
   erosionTypeInt: 3
   generatorTypeInt: 3
   isBrushOn: 0
@@ -1616,6 +1616,8 @@ MonoBehaviour:
   - .88440001
   - .922547996
   - .960695982
+  - .97366631
+  - .986636639
   gradientStyles: []
   voronoiTypeInt: 0
   voronoiType: 0

@@ -19,7 +19,10 @@ public class EnemyNavigation : MonoBehaviour {
 	//Use stuck values to determine if stuck and how long
 	private bool stuck = false;
 	private float timeStuck = 0f;
-	
+
+	//Navigation is calculated always if previous navigation is older than maxInterval (s)
+	private float maxInterval = 10f;
+
 	//The point to move to
     public Vector3 targetPosition;
     
@@ -236,21 +239,21 @@ public class EnemyNavigation : MonoBehaviour {
 			
 			//Direction to the next waypoint
 	        Vector3 dir = (path.vectorPath[currentWaypoint]-terrainLocation(transform.position)).normalized;
+			dir *= speed * Time.fixedDeltaTime;
+
+			float magnitude = Vector3.Magnitude(dir);
 			float targetDistance = Vector3.Distance(transform.position, targetPosition);
 
-			//slow quick enemy down if nearby so it won't run past target
-			if (targetDistance<5 && speed > 200){
-				dir *= 200 * Time.fixedDeltaTime;
-			} else if (targetDistance<10 && speed > 300){
-				dir *= 300 * Time.fixedDeltaTime;
-			} else {
-				dir *= speed * Time.fixedDeltaTime;
+			//if target is close and current speed puts enemy past target, decrease direction speed
+			if (targetDistance < magnitude && magnitude != 0f){
+				dir*= (targetDistance/magnitude);
+				//Debug.Log("Speed corrected to " + (targetDistance/magnitude) + "x");
 			}
 
 			Vector3 positionBeforeMove = transform.position;		
 			controller.SimpleMove (dir);
 			
-			//Start moving the objoects facing towards the direction over time
+			//Rotate the enemy to face toward the direction over time
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.fixedDeltaTime);
 			      
 	        //Check if we are close enough to the next waypoint
@@ -302,8 +305,7 @@ public class EnemyNavigation : MonoBehaviour {
 	private bool newPathNeeded() {		
 		float distanceFromTarget = Vector3.Distance(transform.position, target.position);
 		float distanceRatio = distanceFromTarget/10;
-		float maxInterval = 10f;
-		
+
 		if(!atTarget) {
 						
 			//Since not at target and speed is low object is most likely stuck
@@ -334,14 +336,15 @@ public class EnemyNavigation : MonoBehaviour {
 				return true;
 			}
 			//If the player has moved enough related to the distance between this object and him
-			//perform a new pathfind to get a more accurate path
-			if (Vector3.Distance(oldTargetPosition, target.position) > distanceRatio)  {
+			//perform a new pathfind to get a more accurate path, but ignore if player hasn't moved much
+			float movedDistance = Vector3.Distance(oldTargetPosition, target.position);
+			if (movedDistance > distanceRatio && movedDistance > 1f) {
 				return true;
 			}
 			//If the object is allready pretty close to the player we need frequent path updates
-			if(distanceFromTarget < 20) {
-				return true;	
-			}
+//			if(distanceFromTarget < 20) {
+//				return true;	
+//			}
 		} 
 		
 		if(onLongDistanceTravel && atTarget) {
@@ -354,7 +357,7 @@ public class EnemyNavigation : MonoBehaviour {
 	//Chekcs if enough time has passed since the last pathfind, too frequent pathfinds causes
 	//severe performance issues
 	private bool eligibleToNewPathfind() {
-		float updateInterval = 0.2f;
+		float updateInterval = 0.5f;
 		if(timeOfLastPathFind + updateInterval < Time.fixedTime) {
 			//Debug.Log ("Eligible to find a new path.");
 			return true;
