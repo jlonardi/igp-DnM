@@ -105,6 +105,8 @@ public class Treasure : MonoBehaviour {
 
 		// call gunmanager to enable current weapon
 		GunManager.instance.ChangeToCurrentWeapon();
+
+		MusicAndAtmoManager.instance.PlayBattleMusic();
 		
 		
 		// =========== align treasure on terrain ======================
