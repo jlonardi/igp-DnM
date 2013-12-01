@@ -482,7 +482,7 @@ MonoBehaviour:
   shotLight: {fileID: 11400008}
   unlimited: 0
   shootVolume: .400000006
-  shootSound: {fileID: 8300000, guid: ca3ecaf0c8ce85c4eadee30fde98727c, type: 3}
+  shootSound: {fileID: 8300000, guid: 755b5c3be2c601e4796e77580a40b853, type: 3}
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 00051311be5587447b5dfd15eed5e811, type: 3}
   windUpSound: {fileID: 0}

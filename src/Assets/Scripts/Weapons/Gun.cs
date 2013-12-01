@@ -532,13 +532,13 @@ public class Gun : MonoBehaviour {
 
 	public void PlayOutOfAmmoSound() {
 		audioSource.loop = false;
-		audioSource.Stop();
+		//audioSource.Stop();
 		audioSource.PlayOneShot(outOfAmmoSound, 1.5f);
 	}
 	
 	public void PlayReloadSound() {
 		audioSource.loop = false;
-		audioSource.Stop();
+		//audioSource.Stop();
 		audioSource.PlayOneShot(reloadSound, 1.5f);
 	}
 	
@@ -551,7 +551,8 @@ public class Gun : MonoBehaviour {
 				audioSource.Play();
 			}
 		} else {
-			audioSource.PlayOneShot(shootSound);
+			audioSource.clip = shootSound;
+			audioSource.Play();
 		}
 	}	
 }
