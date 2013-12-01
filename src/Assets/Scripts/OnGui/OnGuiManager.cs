@@ -17,8 +17,7 @@ public class OnGuiManager : MonoBehaviour {
 	public Crosshair crosshair = new Crosshair();
 	public BloodSplatter bloodSplatter = new BloodSplatter();
 	public GameManager game;
-	private Matrix4x4 matrix;
-	
+
 	// resolition which OnGui elements use as target
 	private int nativeWidth = 1920;
 	private int nativeHeight = 1080;
@@ -28,63 +27,12 @@ public class OnGuiManager : MonoBehaviour {
 
 	public void Awake(){
 		OnGuiManager.instance = this;
-		float scale = 1.0f * Screen.height / nativeHeight;
-		padWidth = (int)(Screen.width/scale) - nativeWidth;
-		matrix = Matrix4x4.TRS (new Vector3(0, 0, 0), Quaternion.identity, new Vector3 (scale, scale, 1f));
 	}	
 
-	// select which gui items are shown by game state
-	void OnGUI(){
-		// if game manager not ready, do nothing
-		if (game == null){
-			return;
-		}
-		//set up scaling for OnGui elements
-		GUI.matrix = matrix;
-
-		switch (game.gameState)
-		{		
-		case GameState.PAUSE_MENU:
-			bloodSplatter.Show();
-			hud.Show();
-			pauseMenu.Show();
-			break;
-		case GameState.LOAD_MENU_MAIN:
-			loadMenu.Show();
-			break;
-		case GameState.LOAD_MENU_PAUSE:
-			bloodSplatter.Show();
-			hud.Show();
-			loadMenu.Show();
-			break;
-		case GameState.SAVE_MENU:
-			bloodSplatter.Show();
-			hud.Show();
-			saveMenu.Show();
-			break;
-		case GameState.SAVE_DIALOG:
-			bloodSplatter.Show();
-			hud.Show();
-			saveDialog.Show();
-			break;
-		case GameState.SAVE_SCREENSHOT:
-			bloodSplatter.Show();
-			//hud.Show();
-			break;
-		case GameState.MAIN_MENU:
-			break;
-		case GameState.GAME_OVER:
-			bloodSplatter.Show();
-			gameOverScreen.Show();
-			break;
-		case GameState.RUNNING:
-			bloodSplatter.Show();
-			hud.Show();
-			crosshair.Show();
-			break;
-		default:
-			break;
-		}
+	private Matrix4x4 GetScalingMatrix(){
+		float scale = 1.0f * Screen.height / nativeHeight;
+		padWidth = (int)(Screen.width/scale) - nativeWidth;
+		return Matrix4x4.TRS (new Vector3(0, 0, 0), Quaternion.identity, new Vector3 (scale, scale, 1f));
 	}
 
 	void Update(){
@@ -159,6 +107,62 @@ public class OnGuiManager : MonoBehaviour {
 		}			
 	}	
 
+	// select which gui items are shown by game state
+	void OnGUI(){
+		// if game manager not ready, do nothing
+		if (game == null){
+			return;
+		}
+		//set up scaling for OnGui elements
+		GUI.matrix = GetScalingMatrix();
+
+		//GUI.skin = guiSkin;
+
+		switch (game.gameState)
+		{		
+		case GameState.PAUSE_MENU:
+			bloodSplatter.Show();
+			hud.Show();
+			pauseMenu.Show();
+			break;
+		case GameState.LOAD_MENU_MAIN:
+			loadMenu.Show();
+			break;
+		case GameState.LOAD_MENU_PAUSE:
+			bloodSplatter.Show();
+			hud.Show();
+			loadMenu.Show();
+			break;
+		case GameState.SAVE_MENU:
+			bloodSplatter.Show();
+			hud.Show();
+			saveMenu.Show();
+			break;
+		case GameState.SAVE_DIALOG:
+			bloodSplatter.Show();
+			hud.Show();
+			saveDialog.Show();
+			break;
+		case GameState.SAVE_SCREENSHOT:
+			bloodSplatter.Show();
+			//hud.Show();
+			break;
+		case GameState.MAIN_MENU:
+			break;
+		case GameState.GAME_OVER:
+			bloodSplatter.Show();
+			gameOverScreen.Show();
+			break;
+		case GameState.RUNNING:
+			bloodSplatter.Show();
+			hud.Show();
+			crosshair.Show();
+			break;
+		default:
+			break;
+		}
+	}	
+	
 	public int GetLeft(){
 		return padWidth;
 	}
@@ -177,4 +181,5 @@ public class OnGuiManager : MonoBehaviour {
 	public int GetHeight(){
 		return nativeHeight;
 	}
+
 }
