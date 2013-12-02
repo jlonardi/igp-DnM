@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour {
 	public int maxSpawnCount = 100;
 
 	//spawning will stop after game has lasted longer than this time (s)
-	public float maxSpawnTime = 600;
+	public float maxSpawnTime = 300;
 
 	[HideInInspector]
 	public float spawnTimeStart = 0;
