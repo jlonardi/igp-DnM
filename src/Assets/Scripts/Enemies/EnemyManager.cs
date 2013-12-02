@@ -5,20 +5,38 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour {
 	//use singleton since only we need one instance of this class
 	public static EnemyManager instance;
+	
+	//current spawn count
+	private int spawnCount = 0;
+
+	//spawning will stop after this spawncount
+	public int maxSpawnCount = 100;
+
+	//spawning will stop after game has lasted longer than this time (s)
+	public float maxSpawnTime = 600;
+
+	[HideInInspector]
+	public float spawnTimeStart = 0;
+
+	//maximum amount of enemies at once on the game level
+	public int maxEnemies = 10;
+
+	//enemy type for next enemy to be spawned (0-2)
+	private int nextEnemyType = 0;
 
 	public GameObject orcPrefab;
 	public GameObject lizardPrefab;
 	public GameObject wolfPrefab;
-	public int maxEnemies = 20;
 
 	[HideInInspector]
 	public int currentEnemyCount = 0;
 
 	public Transform[] areas;	
-	public float timeOfLastWave = -5f;
-	public float waveInterval = 5f;
+	public float timeOfLastWave = -3f;
+	public float waveInterval = 3f;
 		
 	private GameObject player;
+	private bool spawnEnabled = true;
 	
 	void Awake()
 	{
@@ -29,20 +47,32 @@ public class EnemyManager : MonoBehaviour {
 		player = GameObject.Find("Player");	
 		Transform spawns = GameObject.Find("Spawns").transform;
 		areas = spawns.GetComponentsInChildren<Transform>();
+		spawnTimeStart = Time.time;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		
-		if(newWaveNeeded()) {
+		if(spawnEnabled && newWaveNeeded()) {
+			//Debug.Log("new spawn);
 			createSpawnWave();
 		}
 	}
 	
 	private bool newWaveNeeded() {
-		
+		// don't add enemies if we have already spawned all enemies for this game
+		if (spawnCount >= maxSpawnCount || (spawnTimeStart + maxSpawnTime) < Time.time){		
+			spawnEnabled = false;
+			//Debug.Log("spawns disabled");
+			return false;
+		}
+
+		// don't add enemies if we have already a maximum number we can handle
+		if (currentEnemyCount >= maxEnemies){
+			return false;
+		}
+
 		if( (timeOfLastWave + waveInterval) < Time.time) {
-			//Debug.Log("New wave needed");
 			timeOfLastWave = Time.time;
 			return true;	
 		}
@@ -51,11 +81,6 @@ public class EnemyManager : MonoBehaviour {
 	}
 	
 	private void createSpawnWave() {
-		// don't add enemies if we have already a maximum number we can handle
-		if (currentEnemyCount >= maxEnemies){
-			return;
-		}
-
 		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
 		
 		while(Vector3.Distance( areas[index].position, player.transform.position) < 50) {
@@ -64,13 +89,22 @@ public class EnemyManager : MonoBehaviour {
 		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));
 
+		nextEnemyType++;
 		// create a new enemy instance
-		GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
-		AlignEnemy(enemy);
-		enemy = CreateEnemy(EnemyType.LIZARD, areas[index].position + offset);
-		AlignEnemy(enemy);
-		enemy = CreateEnemy(EnemyType.WEREWOLF, areas[index].position + offset);
-		AlignEnemy(enemy);
+		if (nextEnemyType == 1){
+			GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
+			AlignEnemy(enemy);
+		} else if (nextEnemyType == 2){
+			GameObject enemy = CreateEnemy(EnemyType.LIZARD, areas[index].position + offset);
+			AlignEnemy(enemy);
+		} else {
+			GameObject enemy = CreateEnemy(EnemyType.WEREWOLF, areas[index].position + offset);
+			AlignEnemy(enemy);
+			// as this is the last enemy type, reset next counter
+			nextEnemyType = 0;
+		}
+
+		spawnCount++;
 	}
 
 	public void AlignEnemy(GameObject enemy){
