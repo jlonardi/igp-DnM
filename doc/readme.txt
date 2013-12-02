@@ -46,8 +46,9 @@ Start & Settings
 Start the game by running DnM.exe. This will start the configurator where you can
 change the graphics settings and alter the default keymapping.
 
-If your computer can handle it, always run the game with "Fantastic" quality setting as this will make sure you have
-the best shadowing and antialiasing settings enabled. "Normal" will give a compromise with simpler shadows and 
-"Fastest" will disable all shadowing and antialiasing so the game can run on slower computers.
+If your computer can handle it, always run the game with "Fantastic" quality setting as this will 
+make sure you have the best shadowing and antialiasing settings enabled.  "Normal" will give a 
+compromise with simpler shadows and "Fastest" will disable all shadowing and antialiasing so the 
+game can run on slower computers.
 
 When everything is set, hit Play!-button and have fun!
