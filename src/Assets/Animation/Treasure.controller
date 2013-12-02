@@ -26,15 +26,33 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110100000
+--- !u!1101 &110100030
 Transition:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110248934}
+  m_SrcState: {fileID: 110233564}
   m_DstState: {fileID: 110200000}
-  m_TransitionDuration: 0
+  m_TransitionDuration: .1875
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: onGround
+    m_EventTreshold: 0
+    m_ExitTime: .8125
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+--- !u!1101 &110153458
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110200000}
+  m_DstState: {fileID: 110233564}
+  m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -44,51 +62,33 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
---- !u!1101 &110153397
-Transition:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110248934}
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: onGround
-    m_EventTreshold: 0
-    m_ExitTime: .936440706
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
 --- !u!1102 &110200000
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Opening
+  m_Name: closed
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+  - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 96, y: -144, z: 0}
+  m_Position: {x: -96, y: -72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110248934
+--- !u!1102 &110233564
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Closed
+  m_Name: box_open
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400002, guid: 9fdf9033e4bf7c149845cd22a1190fa0, type: 3}
+  - {fileID: 7400000, guid: ea6da4a0ebadb704691a6fa2d03f817b, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -48, y: -36, z: 0}
+  m_Position: {x: 84, y: -168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -101,22 +101,31 @@ StateMachine:
   m_Name: Chest
   m_DefaultState: {fileID: 110200000}
   m_States:
+  - {fileID: 110233564}
   - {fileID: 110200000}
-  - {fileID: 110248934}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 110200000}
+      second:
+      - {fileID: 110153458}
+    data:
       first: {fileID: 0}
       second: []
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 110233564}
       second:
-      - {fileID: 110153397}
+      - {fileID: 110100030}
     data:
-      first: {fileID: 110248934}
-      second:
-      - {fileID: 110100000}
+      first: {fileID: 0}
+      second: []
+    data:
+      first: {fileID: 0}
+      second: []
+    data:
+      first: {fileID: 0}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -12, y: 48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

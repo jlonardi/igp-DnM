@@ -27,7 +27,7 @@ public class Treasure : MonoBehaviour {
     {
         Treasure.instance = this;
 		animator = GetComponent<Animator>();
-		animator.speed = 4;	// animation playback speed
+		animator.speed = 1;	// animation playback speed
 		animator.SetBool("onGround",false);
     }
 
@@ -59,8 +59,8 @@ public class Treasure : MonoBehaviour {
 		
 		if (treasureType == TreasureType.CHEST){
 			// change visible money position on chest so treasure seems smaller after every loot.
-			// chest's treasure y range is from -0.03 to 0.2371817 (0.2671817 total).
-			treasureLevel.transform.localPosition -= new Vector3(0, 0.2671817f * lootAmount/game.statistics.treasureFullAmount, 0);				
+			// chest's treasure y range is from 0.09 to 0.49 (0.5 total).
+			treasureLevel.transform.localPosition -= new Vector3(0, 0.5f * lootAmount/game.statistics.treasureFullAmount, 0);				
 		}
 
 		// if all taken, game over
@@ -88,13 +88,8 @@ public class Treasure : MonoBehaviour {
 
 		animator.SetBool("onGround",true);
 
-		// set back to normal colliders when on ground 
-		GameObject treasureTop = GameObject.Find("krishka");
-		GameObject treasureBottom = GameObject.Find("osnSunduk");
-		if (treasureBottom != null && treasureTop != null){
-			treasureBottom.collider.isTrigger = false;
-			treasureTop.collider.isTrigger = false;
-		}		
+		// set back to normal collider when on ground 
+		this.gameObject.collider.isTrigger = false;
 
 		// if already on ground, do nothing else
 		if (setOnGround){

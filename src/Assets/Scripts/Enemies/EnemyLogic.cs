@@ -58,7 +58,7 @@ public class EnemyLogic : MonoBehaviour {
 
 		treasure = Treasure.instance;
 		GameObject player = GameObject.Find("Main Camera");	
-		GameObject treasureObj = GameObject.Find("arkku");
+		GameObject treasureObj = GameObject.Find("treasure_box");
 		GameObject focusPoint = treasureObj.transform.FindChild("focusPoint").gameObject;
 			
 		treasureTransform = focusPoint.transform;
