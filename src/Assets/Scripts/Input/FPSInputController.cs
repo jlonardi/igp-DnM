@@ -116,6 +116,10 @@ public class FPSInputController : MonoBehaviour {
 				// hide armor on scene
 				GameObject armor = GameObject.Find("armorOnGround");
 				armor.SetActive(false);
+				// increase scar-L collider so it's easier to pick up
+				GameObject scarL = GameObject.Find("pickup_scarl");
+				BoxCollider scarCollider = scarL.GetComponent<BoxCollider>();
+				scarCollider.size = new Vector3(2,2,2);
 
 			} else if(game.pickupState == PickupState.GRENADE_BOX){
 				game.pickupState = PickupState.NONE;
@@ -142,6 +146,7 @@ public class FPSInputController : MonoBehaviour {
 				// hide scar-L on scene
 				GameObject scarL = GameObject.Find("scarlOnGround");
 				scarL.SetActive(false);
+
 			}
 			
 		}
