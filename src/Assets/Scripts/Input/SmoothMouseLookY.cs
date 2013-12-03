@@ -47,8 +47,8 @@ public class SmoothMouseLookY : MonoBehaviour {
 			minimumY = -80f;
 			maximumY = 80f;
 		} else {
-			minimumY = -20f;
-			maximumY = 45f;
+			minimumY = -30f;
+			maximumY = 65f;
 		}
 			
 		// restrict y movement if not between min & max
