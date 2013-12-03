@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 65: {fileID: 6500000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rock_01
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
-  m_LocalPosition: {x: 206.136246, y: 6.49352121, z: 115.371246}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 146.165909, y: -20.5757065, z: -156.532272}
+  m_LocalScale: {x: 1.85531485, y: 1.85531485, z: 1.85531485}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
