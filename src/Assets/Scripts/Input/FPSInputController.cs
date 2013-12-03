@@ -104,8 +104,46 @@ public class FPSInputController : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetButton("Use") && game.treasureState == TreasureState.CARRYING){
-			game.treasureState = TreasureState.SET_ON_GROUND;
+		if (Input.GetButton("Use")){
+			if (game.treasureState == TreasureState.CARRYING){
+				game.treasureState = TreasureState.SET_ON_GROUND;
+				game.pickupState = PickupState.TREASURE;
+
+			} else if(game.pickupState == PickupState.ARMOR){
+				game.pickupState = PickupState.NONE;
+				// apply armor
+				game.statistics.playerArmor = 0.5f;
+				// hide armor on scene
+				GameObject armor = GameObject.Find("armorOnGround");
+				armor.SetActive(false);
+
+			} else if(game.pickupState == PickupState.GRENADE_BOX){
+				game.pickupState = PickupState.NONE;
+				// add grenades to gun manager
+				gunManager.grenadeCount = 20;
+				// hide grenades on scene
+				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
+				grenadeBox.SetActive(false);
+
+			} else if(game.pickupState == PickupState.MINIGUN){
+				game.pickupState = PickupState.NONE;
+				// set minigun available
+				gunManager.guns[3].gun.picked_up = true;
+				gunManager.ChangeToGun(3);
+				// hide minigun on scene
+				GameObject minigun = GameObject.Find("minigunOnGround");
+				minigun.SetActive(false);
+
+			} else if(game.pickupState == PickupState.SCAR_L){
+				game.pickupState = PickupState.NONE;
+				// set minigun available
+				gunManager.guns[4].gun.picked_up = true;
+				gunManager.ChangeToGun(4);
+				// hide scar-L on scene
+				GameObject scarL = GameObject.Find("scarlOnGround");
+				scarL.SetActive(false);
+			}
+			
 		}
 
 	}

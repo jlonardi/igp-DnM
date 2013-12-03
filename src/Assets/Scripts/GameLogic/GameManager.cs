@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public LevelState levelState;	
 	public GameState gameState = GameState.MAIN_MENU;
 	public TreasureState treasureState = TreasureState.CARRYING;
+	public PickupState pickupState = PickupState.NONE;
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
 	void Awake()

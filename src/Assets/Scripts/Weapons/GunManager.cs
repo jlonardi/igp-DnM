@@ -71,6 +71,11 @@ public class GunManager : MonoBehaviour {
 	}
 	
 	public void ChangeToGun(int gunIndex){
+		// if gun is not available yet, do nothing
+		if (!guns[gunIndex].gun.picked_up){
+			return;
+		}
+
 		float accuracy = currentGun.currentAccuracy;
 		bool oldEnabled = currentGun.enabled;
 		currentGun.enabled = false;

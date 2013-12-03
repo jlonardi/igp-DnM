@@ -34,12 +34,22 @@ public class Hud {
 			Initialize();
 		}
 
-		if (GameManager.instance.treasureState == TreasureState.CARRYING){
-			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		if (game.treasureState == TreasureState.CARRYING){
 			GUI.Label(helpPosition, "Press 'E' to drop the treasure");
-			GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+		} else if(game.pickupState == PickupState.TREASURE){
+			GUI.Label(helpPosition, "Press 'E' to pick up the treasure");
+		} else if(game.pickupState == PickupState.ARMOR) {
+			GUI.Label(helpPosition, "Press 'E' to pick up the EPIC armor");
+		} else if (game.pickupState == PickupState.GRENADE_BOX) {
+			GUI.Label(helpPosition, "Press 'E' to pick up the grenades");
+		} else if (game.pickupState == PickupState.MINIGUN) {
+			GUI.Label(helpPosition, "Press 'E' to pick up the minigun");
+		} else if (game.pickupState == PickupState.SCAR_L) {
+			GUI.Label(helpPosition, "Press 'E' to pick up the Scar-L");
 		}
-			
+		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+
 		GUI.DrawTexture(healthPosition, healthbar);
 		currentHealth = game.statistics.playerHealth;
 		currentHealth = currentHealth*1.76f;

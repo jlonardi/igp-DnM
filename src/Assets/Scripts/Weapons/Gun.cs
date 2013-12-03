@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour {
 	public GunType gunType = GunType.SINGLE_FIRE;	
 	public LayerMask hitLayer;
 
+	public bool picked_up = true;
 	//How many shots the gun can take in one second
 	public float fireRate;
 	

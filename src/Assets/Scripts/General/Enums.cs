@@ -10,6 +10,15 @@
 	GAME_OVER,
 }
 
+public enum PickupState {
+	TREASURE,
+	SCAR_L,
+	ARMOR,
+	MINIGUN,
+	GRENADE_BOX,
+	NONE
+}
+
 public enum LevelState {
 	LOADING_NEWGAME,
 	LOADING_SAVE,

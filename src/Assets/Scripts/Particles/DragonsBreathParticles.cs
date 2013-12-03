@@ -8,7 +8,7 @@ public class DragonsBreathParticles : MonoBehaviour {
 
 	void Update () {
 		if (dragon == null){
-			dragon = this.transform.root.GetComponent<Dragon>();
+			dragon = this.transform.root.GetComponentInChildren<Dragon>();
 		}
 
 		emitter.emit = dragon.breathFire;
