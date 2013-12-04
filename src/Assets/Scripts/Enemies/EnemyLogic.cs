@@ -64,7 +64,7 @@ public class EnemyLogic : MonoBehaviour {
 		treasureTransform = focusPoint.transform;
 		playerTransform = player.transform;
 		target = focusTarget.PLAYER;
-		navigation.init(playerTransform);
+		navigation.target = playerTransform;
 	}
 	
 	public void Update() {
@@ -91,11 +91,11 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkActions() {
 		//The object is at target and ready to do some actions
-		if(navigation.atTarget) {
+		if(navigation.targetReached) {
 			if(target == focusTarget.PLAYER) {
-				if(!attacking && getPlayerDistance() <= attackDistance) {
+				//if(!attacking && getPlayerDistance() <= attackDistance) {
+				if(!attacking) {
 					attacking = true;
-					Debug.Log("attacking set to true");
 				}
  				if (getPlayerDistance() > attackDistance){
 					attacking = false;
@@ -153,14 +153,14 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		//Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER) {
-			navigation.setTarget(treasureTransform);
+			navigation.target = treasureTransform;
 			target = focusTarget.TRESAURE;
 			//Debug.Log("New target is tresaure");
 			return;
 		} 
 		
 		if (target == focusTarget.TRESAURE){
-			navigation.setTarget(playerTransform);
+			navigation.target = playerTransform;
 			target = focusTarget.PLAYER;
 			//Debug.Log("New target is player");
 			return;
@@ -222,7 +222,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 		target = focusTarget.PLAYER;
 		timeWhenFocusedPlayer = Time.time;
-		navigation.setTarget(playerTransform);
+		navigation.target = playerTransform;
 		
 		Debug.Log("Enemy health left: " + health);
 	}
@@ -267,6 +267,7 @@ public class EnemyLogic : MonoBehaviour {
 		if (message.Equals("standing")){
 			hitdamage = damage+2;
 		}
-		playerVitals.TakeDamage(damage, DamageType.HIT);	
+		playerVitals.TakeDamage(1, DamageType.HIT);	
+		//playerVitals.TakeDamage(damage, DamageType.HIT);	
 	}
 }
