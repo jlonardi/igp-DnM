@@ -4,12 +4,16 @@ using System.Collections;
 [System.Serializable]
 public class Hud {
 	public Texture2D healthbar;
-	public Texture2D health;	
+	public Texture2D health;
+	public Texture2D armorbar;
+	public Texture2D armor;
 
 	private Rect helpPosition;
 
 	private Rect healthPosition;
+	private Rect armorPosition;
 	private float currentHealth;
+	private float currentArmor;
 
 	private GameManager game;
 	private OnGuiManager gui;
@@ -24,8 +28,9 @@ public class Hud {
 		centerY = gui.GetCenterY();
 
 		helpPosition = CalculateGUIRect(500, 40, 0, -80);
-		//healthbar position and size
+		//health & armor bar position and size
 		healthPosition = new Rect(10,200,193,34);
+		armorPosition = new Rect(16,225,176,2);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -51,10 +56,15 @@ public class Hud {
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
 		GUI.DrawTexture(healthPosition, healthbar);
+		GUI.DrawTexture (armorPosition, armorbar);
 		currentHealth = game.statistics.playerHealth;
 		currentHealth = currentHealth*1.76f;
-		GUI.BeginGroup(new Rect(18,207,currentHealth,20)); 
-		GUI.DrawTexture(new Rect(0,0,176,20), health);
+		currentArmor = game.statistics.playerArmor*1.76f*2;
+		GUI.BeginGroup(new Rect(16,205,currentHealth,16)); 
+		GUI.DrawTexture(new Rect(0,0,176,16), health);
+		GUI.EndGroup();
+		GUI.BeginGroup(new Rect(16,225,currentArmor,2));
+		GUI.DrawTexture(new Rect(0,0,176,2), armor);
 		GUI.EndGroup();
 
 
