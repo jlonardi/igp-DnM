@@ -32,7 +32,16 @@ public class Player : MonoBehaviour {
 	
 	public void TakeDamage(int damageAmount, DamageType damageType){
 		//if player has an armor, take less damage
-		float tempHealth = game.statistics.playerHealth - (damageAmount - (damageAmount * game.statistics.playerArmor));
+		int tempArmor = game.statistics.playerArmor - damageAmount;
+		int tempHealth = game.statistics.playerHealth;
+
+		if (tempArmor<0){
+			game.statistics.playerArmor = 0;
+			tempHealth = game.statistics.playerHealth + tempArmor;
+		} else {
+			game.statistics.playerArmor = tempArmor;
+		}
+
 		if(GameManager.instance.treasureState == TreasureState.CARRYING){
 			GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
 		}
