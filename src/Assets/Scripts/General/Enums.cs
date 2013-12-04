@@ -1,5 +1,6 @@
 ﻿public enum GameState {
 	RUNNING,
+	STORY,
 	PAUSE_MENU,
 	MAIN_MENU,
 	LOAD_MENU_MAIN,
