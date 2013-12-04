@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class Statistics {
 	public int playerHealth;
-	public float playerArmor = 0.0f; // armor scale 0-1.0f
+	public int playerArmor; // armor scale 0-50
 
 	public int treasureAmount;
 

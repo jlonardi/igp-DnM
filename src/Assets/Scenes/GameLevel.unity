@@ -4018,6 +4018,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.08972192
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4b1a80939dbe44bd1904df80692b4e58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b1a80939dbe44bd1904df80692b4e58, type: 3}
   m_RootGameObject: {fileID: 478558902}
@@ -12083,7 +12087,7 @@ GameObject:
   - 33: {fileID: 279075957}
   - 23: {fileID: 279075956}
   - 64: {fileID: 279075955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PoO_ArchColumns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21552,7 +21556,7 @@ GameObject:
   - 23: {fileID: 478558906}
   - 64: {fileID: 478558905}
   - 95: {fileID: 478558904}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PoO_Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26398,7 +26402,7 @@ GameObject:
   - 33: {fileID: 581314238}
   - 23: {fileID: 581314237}
   - 64: {fileID: 581314236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PoO_SupportBeams
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27181,7 +27185,7 @@ GameObject:
   - 33: {fileID: 606158617}
   - 23: {fileID: 606158616}
   - 64: {fileID: 606158615}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PoO_StoneWall_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38239,7 +38243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   astarData:
     hasBeenReverted: 0
-    data: 504b0304140000080800805384435d11c0784c0000005f000000090024006d6574612e6a736f6e0a00200000000000010018006b2383becaf0ce016b2383becaf0ce016b2383becaf0ce01ab562a4b2d2acecccf53b25232d633d233d53354d2514a2f4a2cc82856b23202324b335380ace8bcd29c1c1d1011aba354525990ea97989b8a2e9e979f92ea9c5f9a57029230d03188ad0500504b01022d00140000080800805384435d11c0784c0000005f0000000900240000000000000000000000000000006d6574612e6a736f6e0a00200000000000010018006b2383becaf0ce016b2383becaf0ce016b2383becaf0ce01504b050600000000010001005b000000970000000000
+    data: 504b0304140000080800faae84435d11c0784c0000005f000000090024006d6574612e6a736f6e0a0020000000000001001800f8f55ad62af1ce01f8f55ad62af1ce01f8f55ad62af1ce01ab562a4b2d2acecccf53b25232d633d233d53354d2514a2f4a2cc82856b23202324b335380ace8bcd29c1c1d1011aba354525990ea97989b8a2e9e979f92ea9c5f9a57029230d03188ad0500504b01022d00140000080800faae84435d11c0784c0000005f0000000900240000000000000000000000000000006d6574612e6a736f6e0a0020000000000001001800f8f55ad62af1ce01f8f55ad62af1ce01f8f55ad62af1ce01504b050600000000010001005b000000970000000000
     data_backup: 
     data_cachedStartup: 
     revertData: 
