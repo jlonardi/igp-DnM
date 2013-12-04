@@ -64,8 +64,8 @@ public class Treasure : MonoBehaviour {
 		
 		if (treasureType == TreasureType.CHEST){
 			// change visible money position on chest so treasure seems smaller after every loot.
-			// chest's treasure y range is from 0.09 to 0.49 (0.5 total).
-			treasureLevel.transform.localPosition -= new Vector3(0, 0.5f * lootAmount/game.statistics.treasureFullAmount, 0);				
+			// chest's treasure y range is from 0.09 to 0.49 (0.4 total).
+			treasureLevel.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/game.statistics.treasureFullAmount, 0);				
 		}
 
 		// if all taken, game over
