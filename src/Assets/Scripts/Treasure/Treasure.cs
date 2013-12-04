@@ -21,14 +21,19 @@ public class Treasure : MonoBehaviour {
 
 	private bool setOnGround = false;
 
+	//store treasure position on players hands
+	private Vector3 startPosition;
+	private Quaternion startRotation;
+
 	private GameManager game;
-	
     void Awake()
     {
         Treasure.instance = this;
 		animator = GetComponent<Animator>();
 		animator.speed = 1;	// animation playback speed
 		animator.SetBool("onGround",false);
+		startPosition = transform.localPosition;
+		startRotation = transform.localRotation;
     }
 
 	void Update(){
@@ -41,6 +46,10 @@ public class Treasure : MonoBehaviour {
 			SetTreasureOnGround();
 		}
 
+		if (setOnGround && game.gameState == GameState.RUNNING &&
+		    game.levelState == LevelState.LOADED && game.treasureState == TreasureState.CARRYING){
+			CarryTreasure();
+		}
 	}
 
 	public int Loot(int lootAmount){
@@ -77,7 +86,15 @@ public class Treasure : MonoBehaviour {
 		setOnGround = true;
 		SetTreasureOnGround();
 	}
-	
+
+	// called when player picks up the treasure
+	public void CarryTreasure(){
+		animator.SetBool("onGround",false);
+		setOnGround = false;
+		transform.localPosition = startPosition;
+		transform.localRotation = startRotation;
+	}
+
 	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){
 		audio.Play();

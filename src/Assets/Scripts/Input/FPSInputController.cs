@@ -104,10 +104,20 @@ public class FPSInputController : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetButton("Use")){
+		if (Input.GetButtonDown("Use")){
 			if (game.treasureState == TreasureState.CARRYING){
 				game.treasureState = TreasureState.SET_ON_GROUND;
 				game.pickupState = PickupState.TREASURE;
+
+			} else if(game.pickupState == PickupState.TREASURE){
+				game.pickupState = PickupState.NONE;
+				game.treasureState = TreasureState.CARRYING;
+				// disable gun so we can carry treasure
+				gunManager.currentGun.enabled = false;
+				// find treasurebox from scene
+				GameObject treasureBox = GameObject.Find("treasure_box");
+				GameObject treasureOnPlayer = GameObject.Find("Treasure");
+				treasureBox.transform.parent = treasureOnPlayer.transform;
 
 			} else if(game.pickupState == PickupState.ARMOR){
 				game.pickupState = PickupState.NONE;
