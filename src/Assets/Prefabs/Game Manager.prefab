@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e8ca26ffcbb7479d3db598f30c2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelState: 0
-  gameState: 2
+  levelState: 3
+  gameState: 0
   treasureState: 1
   pickupState: 5
   statistics:
@@ -93,6 +93,7 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 5e389f592a3c8ce40999272847909b2c, type: 3}
     - {fileID: 2800000, guid: 5fba96b2bf735b441b1f648d6ca314f2, type: 3}
     - {fileID: 2800000, guid: 4d5d4956bcbe4c24ea762bf3429c0d77, type: 3}
+    storySlide: 1
   hud:
     healthbar: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2, type: 3}
     health: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}

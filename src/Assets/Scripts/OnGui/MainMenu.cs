@@ -21,14 +21,13 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	void Update(){
-		if (GameManager.instance.gameState == GameState.MAIN_MENU){
-			renderer.enabled = true;
-			//this.enabled = true;
-		}
 		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN || GameManager.instance.gameState == GameState.STORY){
 			renderer.enabled = false;
-			//this.enabled = false;
+		} else {
+			GameManager.instance.gameState = GameState.MAIN_MENU;
+			renderer.enabled = true;
 		}
+
 	}
 	
 	void OnMouseDown(){

@@ -9,7 +9,8 @@ public class StoryScreen {
 
 	private int centerX;
 	private int centerY;
-	private int storySlide = 1;
+	[HideInInspector]
+	public int storySlide = 1;
 	private Rect imagePosition;
 
 	public void Initialize(){
@@ -51,19 +52,27 @@ public class StoryScreen {
 			break;
 		}
 		imagePosition = new Rect(0, 0, 1920, 1080);
-		GUI.DrawTexture(imagePosition, storyImages[storySlide-1]);
+
+		//if already at last slide, don't check the slide counter
+		if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
+			GUI.DrawTexture(imagePosition, storyImages[4]);
+		} else {
+			GUI.DrawTexture(imagePosition, storyImages[storySlide-1]);
+		}
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-200, 1000,100,200));
-		if (storySlide<5){
+		if (storySlide<5 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
 			if(GUILayout.Button ("Next"))
 			{
 				storySlide++;
 			}
-		} else if(GUILayout.Button ("Start game")) {
-			storySlide=1;
-			//loads first level
-			GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
-			Application.LoadLevel("GameLevel");
+		} else if(storySlide == 5){
+			if(GUILayout.Button ("Start game")) {
+				//loads first level
+				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
+				Application.LoadLevel("GameLevel");
+				storySlide = 1;
+			}
 		}
 		GUILayout.EndArea();	
 	}
