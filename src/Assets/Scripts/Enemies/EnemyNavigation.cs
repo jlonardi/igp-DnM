@@ -41,7 +41,7 @@ public class EnemyNavigation : MonoBehaviour {
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
 	 */
-	public float repathRate = 0.5F;
+	public float repathRate = 0.8F;
 	
 	/** Target to move towards.
 	 * The AI will try to follow/move towards this target.
@@ -85,7 +85,7 @@ public class EnemyNavigation : MonoBehaviour {
 	/** Distance to the end point to consider the end of path to be reached.
 	 * When this has been reached, the AI will not move anymore until the target changes and OnTargetReached will be called.
 	 */
-	public float endReachedDistance = 0.8F;
+	public float endReachedDistance = 0.7F;
 	
 	/** Do a closest point on path check when receiving path callback.
 	 * Usually the AI has moved a bit between requesting the path, and getting it back, and there is usually a small gap between the AI
@@ -96,7 +96,8 @@ public class EnemyNavigation : MonoBehaviour {
 	 */
 	public bool closestOnPathCheck = true;
 
-	public float movementSpeed = 5f;
+	public float movementSpeed = 0f;
+	private float prevMovementSpeed = 0f;   
 	
 	protected float minMoveScale = 0.05F;
 	
@@ -108,6 +109,8 @@ public class EnemyNavigation : MonoBehaviour {
 	
 	/** Time when the last path request was sent */
 	private float lastRepath = -9999;
+
+	private List<Vector3> movementPositions = new List<Vector3>();
 	
 	/** Current path which is followed */
 	protected Path path;
@@ -314,6 +317,8 @@ public class EnemyNavigation : MonoBehaviour {
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
 		if (targetDirection != Vector3.zero) {
 			RotateTowards (targetDirection);
+		} else {
+			tr.LookAt(target.position);
 		}
 		
 		if (navController != null) {
@@ -411,6 +416,15 @@ public class EnemyNavigation : MonoBehaviour {
 		if (Time.deltaTime	> 0) {
 			sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
 		}
+
+		//calculate current speed for animations
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>7){
+			prevMovementSpeed = movementSpeed;
+		   	movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
+			movementPositions.RemoveAt(0);
+		}
+
 		return forward*sp;
 	}
 	

@@ -2069,7 +2069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08c5fd536898b94284ee37b3bda250c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .5
+  repathRate: .800000012
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -2078,9 +2078,9 @@ MonoBehaviour:
   slowdownDistance: 0
   pickNextWaypointDist: 2
   forwardLook: 1
-  endReachedDistance: .800000012
+  endReachedDistance: .699999988
   closestOnPathCheck: 1
-  movementSpeed: 5
+  movementSpeed: 0
   targetReached: 0
 --- !u!114 &11400144
 MonoBehaviour:
