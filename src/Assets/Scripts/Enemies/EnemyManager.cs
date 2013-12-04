@@ -89,7 +89,7 @@ public class EnemyManager : MonoBehaviour {
 		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));
 
-		nextEnemyType = 1;
+		nextEnemyType++;
 		// create a new enemy instance
 		if (nextEnemyType == 1){
 			GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);

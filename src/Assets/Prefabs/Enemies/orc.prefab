@@ -2137,7 +2137,7 @@ MonoBehaviour:
     useRaycasting: 0
     mask:
       serializedVersion: 2
-      m_Bits: 2560
+      m_Bits: 0
     useGraphRaycasting: 0
   traversableTags:
     tagsChange: -1
@@ -2260,7 +2260,7 @@ CharacterController:
   m_Height: 9
   m_Radius: 1
   m_SlopeLimit: 55
-  m_StepOffset: .300000012
+  m_StepOffset: .5
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: -.5, z: 0}
