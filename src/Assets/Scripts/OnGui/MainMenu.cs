@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour {
 			renderer.enabled = true;
 			//this.enabled = true;
 		}
-		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN){
+		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN || GameManager.instance.gameState == GameState.STORY){
 			renderer.enabled = false;
 			//this.enabled = false;
 		}

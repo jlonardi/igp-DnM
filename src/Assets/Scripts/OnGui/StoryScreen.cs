@@ -25,21 +25,25 @@ public class StoryScreen {
 		myStyle.fontSize=30;
 		switch (storySlide){
 		case 1:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide1", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "Health: " + game.statistics.playerHealth);
-			GUI.Label(new Rect(centerX-100, centerY-125,275,250), "Treasure: " + game.statistics.treasureAmount);
-			GUI.Label (new Rect(centerX-100, centerY-100,275,250), "Body Count: " + game.statistics.bodycount);
-			GUI.Label (new Rect(centerX-100, centerY-75,275,250), "Score: " + game.statistics.score);
+			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 1", myStyle);
+			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
 			break;
 		case 2:
+			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 2", myStyle);
+			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+			break;
 		case 3:
+			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 3", myStyle);
+			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+			break;
 		case 4:
+			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 4", myStyle);
+			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+			break;
 		case 5:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide2-5", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "Health: " + game.statistics.playerHealth);
-			GUI.Label(new Rect(centerX-100, centerY-125,275,250), "Treasure: " + game.statistics.treasureAmount);
-			GUI.Label (new Rect(centerX-100, centerY-100,275,250), "Body Count: " + game.statistics.bodycount);
-			GUI.Label (new Rect(centerX-100, centerY-75,275,250), "Score: " + game.statistics.score);
+			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 5", myStyle);
+			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+			break;
 			break;
 		}
 
