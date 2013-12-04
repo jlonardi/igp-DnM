@@ -8,7 +8,7 @@ AnimatorController:
   m_Name: Treasure
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: onGround
+  - m_Name: isOpen
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -38,7 +38,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: onGround
+    m_ConditionEvent: isOpen
     m_EventTreshold: 0
     m_ExitTime: .8125
   m_Atomic: 1
@@ -56,7 +56,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: onGround
+    m_ConditionEvent: isOpen
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -107,25 +107,16 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 0}
+      second: []
+    data:
       first: {fileID: 110200000}
       second:
       - {fileID: 110153458}
     data:
-      first: {fileID: 0}
-      second: []
-    data:
       first: {fileID: 110233564}
       second:
       - {fileID: 110100030}
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -12, y: 48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

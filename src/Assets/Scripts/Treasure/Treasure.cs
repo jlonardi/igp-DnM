@@ -21,10 +21,6 @@ public class Treasure : MonoBehaviour {
 
 	private bool setOnGround = false;
 
-	//store treasure position on players hands
-	private Vector3 startPosition;
-	private Quaternion startRotation;
-
 	private GameManager game;
     void Awake()
     {
@@ -32,8 +28,6 @@ public class Treasure : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		animator.speed = 1;	// animation playback speed
 		animator.SetBool("onGround",false);
-		startPosition = transform.localPosition;
-		startRotation = transform.localRotation;
     }
 
 	void Update(){
@@ -53,6 +47,8 @@ public class Treasure : MonoBehaviour {
 	}
 
 	public int Loot(int lootAmount){
+		animator.SetBool("isOpen", true);
+
 		// no loot allowed if player is still carrying treasure
 		if (game.treasureState != TreasureState.SET_ON_GROUND){	
 			return 0;
@@ -89,10 +85,8 @@ public class Treasure : MonoBehaviour {
 
 	// called when player picks up the treasure
 	public void CarryTreasure(){
-		animator.SetBool("onGround",false);
+		animator.SetBool("isOpen",false);
 		setOnGround = false;
-		transform.localPosition = startPosition;
-		transform.localRotation = startRotation;
 	}
 
 	// called when player sets treasure on ground	
@@ -102,8 +96,6 @@ public class Treasure : MonoBehaviour {
 		transform.parent = treasureOnScene.transform;	
 
 		GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
-
-		animator.SetBool("onGround",true);
 
 		// set back to normal collider when on ground 
 		this.gameObject.collider.isTrigger = false;

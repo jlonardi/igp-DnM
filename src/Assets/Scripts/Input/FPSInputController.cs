@@ -114,10 +114,14 @@ public class FPSInputController : MonoBehaviour {
 				game.treasureState = TreasureState.CARRYING;
 				// disable gun so we can carry treasure
 				gunManager.currentGun.enabled = false;
-				// find treasurebox from scene
+				// find treasure positions from scene
 				GameObject treasureBox = GameObject.Find("treasure_box");
 				GameObject treasureOnPlayer = GameObject.Find("Treasure");
+				// change parent to players Treasure-object
 				treasureBox.transform.parent = treasureOnPlayer.transform;
+				// and change local position & rotation back to start values
+				treasureBox.transform.localPosition = new Vector3(0,0,-1.28f);
+				treasureBox.transform.localRotation = Quaternion.identity;
 
 			} else if(game.pickupState == PickupState.ARMOR){
 				game.pickupState = PickupState.NONE;
