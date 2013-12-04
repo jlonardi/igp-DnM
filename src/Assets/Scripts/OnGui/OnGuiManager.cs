@@ -9,6 +9,7 @@ public class OnGuiManager : MonoBehaviour {
   	public GUISkin guiSkin;
 
 	public GameOverScreen gameOverScreen = new GameOverScreen();
+	public StoryScreen storyScreen = new StoryScreen();
 	public PauseMenu pauseMenu = new PauseMenu();
 	public SaveMenu saveMenu = new SaveMenu();
 	public SaveDialog saveDialog = new SaveDialog();
@@ -70,6 +71,12 @@ public class OnGuiManager : MonoBehaviour {
 			Screen.lockCursor=false;
 			break;
 			
+		case GameState.STORY:
+			Time.timeScale=1;
+			Screen.showCursor=true;
+			Screen.lockCursor=false;
+			break;
+			
 		case GameState.LOAD_MENU_MAIN:					
 			// if menu key pressed, return to main menu
 			if (Input.GetButtonDown("Menu")){
@@ -124,6 +131,9 @@ public class OnGuiManager : MonoBehaviour {
 			bloodSplatter.Show();
 			hud.Show();
 			pauseMenu.Show();
+			break;
+		case GameState.STORY:
+			storyScreen.Show();
 			break;
 		case GameState.LOAD_MENU_MAIN:
 			loadMenu.Show();
