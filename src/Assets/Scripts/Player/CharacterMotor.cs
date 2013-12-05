@@ -43,7 +43,6 @@ public class CharacterMotor : MonoBehaviour {
 
 	public CharacterMotorMovement movement = new CharacterMotorMovement();	
 	public CharacterMotorJumping jumping = new CharacterMotorJumping();
-	public CharacterMotorMovingPlatform movingPlatform = new CharacterMotorMovingPlatform();
 	public CharacterMotorSliding sliding = new CharacterMotorSliding();
 
 	private GameManager game;
@@ -58,17 +57,6 @@ public class CharacterMotor : MonoBehaviour {
 		Vector3 movement = transform.position - lastPosition;
 		lastPosition = transform.position;
 		characterVelocity = movement / Time.deltaTime;
-
-		//calculate current speed for animations
-		movementPositions.Add(transform.position);
-		if (movementPositions.Count>7){
-			prevMovementSpeed = movementSpeed;
-			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
-			movementPositions.RemoveAt(0);
-			if (canControl){
-				game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[4]) * 30;
-			}
-		}
 	}
 
 	void Update () {
@@ -78,24 +66,17 @@ public class CharacterMotor : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (movingPlatform.enabled) {
-			if (movingPlatform.activePlatform != null) {
-				if (!movingPlatform.newPlatform) {
-					//Vector3 lastVelocity = movingPlatform.platformVelocity;
-					
-					movingPlatform.platformVelocity = (
-						movingPlatform.activePlatform.localToWorldMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
-						- movingPlatform.lastMatrix.MultiplyPoint3x4(movingPlatform.activeLocalPoint)
-						) / Time.deltaTime;
-				}
-				movingPlatform.lastMatrix = movingPlatform.activePlatform.localToWorldMatrix;
-				movingPlatform.newPlatform = false;
-			}
-			else {
-				movingPlatform.platformVelocity = Vector3.zero;	
+		//calculate current speed
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>7){
+			prevMovementSpeed = movementSpeed;
+			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
+			movementPositions.RemoveAt(0);
+			if (canControl){
+				game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
 			}
 		}
-		
+			
 		if (useFixedUpdate)
 			UpdateFunction();
 	}
@@ -114,27 +95,7 @@ public class CharacterMotor : MonoBehaviour {
 		Vector3 velocity = movement.velocity;			// We copy the actual velocity into a temporary variable that we can manipulate.
 		velocity = ApplyInputVelocityChange(velocity);	// Update velocity based on input		
 		velocity = ApplyGravityAndJumping (velocity);	// Apply gravity and jumping force
-		
-		// Moving platform support
-		Vector3 moveDistance = Vector3.zero;
-		if (MoveWithPlatform()) {			
-			Vector3 newGlobalPoint = movingPlatform.activePlatform.TransformPoint(movingPlatform.activeLocalPoint);
-			moveDistance = (newGlobalPoint - movingPlatform.activeGlobalPoint);
-			if (moveDistance != Vector3.zero){
-				controller.Move(moveDistance);
-			}
-			
-			// Support moving platform rotation as well:
-	        Quaternion newGlobalRotation = movingPlatform.activePlatform.rotation * movingPlatform.activeLocalRotation;
-	        Quaternion rotationDiff = newGlobalRotation * Quaternion.Inverse(movingPlatform.activeGlobalRotation);
-	        
-	        float yRotation = rotationDiff.eulerAngles.y;
-	        if (yRotation != 0) {
-		        // Prevent rotation of the local up vector
-		        tr.Rotate(0, yRotation, 0);
-	        }
-		}
-		
+	
 		// Save lastPosition for velocity calculation.
 		Vector3 lastPosition = tr.position;
 		
@@ -150,7 +111,6 @@ public class CharacterMotor : MonoBehaviour {
 		}
 		
 		// Reset variables that will be set by collision function
-		movingPlatform.hitPlatform = null;
 		groundNormal = Vector3.zero;
 		
 	   	// Move our character!
@@ -158,15 +118,7 @@ public class CharacterMotor : MonoBehaviour {
 		
 		movement.lastHitPoint = movement.hitPoint;
 		lastGroundNormal = groundNormal;
-		
-		if (movingPlatform.enabled && movingPlatform.activePlatform != movingPlatform.hitPlatform) {
-			if (movingPlatform.hitPlatform != null) {
-				movingPlatform.activePlatform = movingPlatform.hitPlatform;
-				movingPlatform.lastMatrix = movingPlatform.hitPlatform.localToWorldMatrix;
-				movingPlatform.newPlatform = true;
-			}
-		}
-		
+			
 		// Calculate the velocity based on the current and previous position.  
 		// This means our velocity will only be the amount the character actually moved as a result of collisions.
 		Vector3 oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
@@ -200,15 +152,6 @@ public class CharacterMotor : MonoBehaviour {
 		if (grounded && !IsGroundedTest()) {
 			grounded = false;
 
-			// Apply inertia from platform
-			if (movingPlatform.enabled &&
-				(movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
-				movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
-			) {
-				movement.frameVelocity = movingPlatform.platformVelocity;
-				movement.velocity += movingPlatform.platformVelocity;
-			}
-			
 			SendMessage("OnFall", SendMessageOptions.DontRequireReceiver);
 			// We pushed the character down to ensure it would stay on the ground if there was any.
 			// But there wasn't so now we cancel the downwards offset to make the fall smoother.
@@ -218,24 +161,11 @@ public class CharacterMotor : MonoBehaviour {
 		else if (!grounded && IsGroundedTest()) {
 			grounded = true;
 			jumping.jumping = false;
-			SubstractNewPlatformVelocity();
-			
 			SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
 			sounds.PlayJumpSound();
 			GunManager.instance.currentGun.animator.SetBool("hitGround", true);
 		}
-		
-		// Moving platforms support
-		if (MoveWithPlatform()) {
-			// Use the center of the lower half sphere of the capsule as reference point.
-			// This works best when the character is standing on moving tilting platforms. 
-			movingPlatform.activeGlobalPoint = tr.position + Vector3.up * (controller.center.y - controller.height*0.5f + controller.radius);
-			movingPlatform.activeLocalPoint = movingPlatform.activePlatform.InverseTransformPoint(movingPlatform.activeGlobalPoint);
-			
-			// Support moving platform rotation as well:
-	        movingPlatform.activeGlobalRotation = tr.rotation;
-	        movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
-		}
+
 	}	
 
 	private Vector3 ApplyInputVelocityChange(Vector3 velocity) {	
@@ -253,19 +183,15 @@ public class CharacterMotor : MonoBehaviour {
 			desiredVelocity = desiredVelocity + projectedMoveDir * sliding.speedControl + (inputMoveDirection - projectedMoveDir) * sliding.sidewaysControl;
 			// Multiply with the sliding speed
 			desiredVelocity *= sliding.slidingSpeed;
-		}
-		else
+		} else {
 			desiredVelocity = GetDesiredHorizontalVelocity();
-		
-		if (movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer) {
-			desiredVelocity += movement.frameVelocity;
-			desiredVelocity.y = 0f;
 		}
-		
-		if (grounded)
+	
+		if (grounded) {
 			desiredVelocity = AdjustGroundVelocityToNormal(desiredVelocity, groundNormal);
-		else
+		} else {
 			velocity.y = 0f;
+		}
 		
 		// Enforce max velocity change
 		float maxVelocityChange = GetMaxAcceleration(grounded) * Time.deltaTime;
@@ -341,15 +267,6 @@ public class CharacterMotor : MonoBehaviour {
 				velocity.y = 0;
 				velocity += jumping.jumpDir * CalculateJumpVerticalSpeed (jumping.baseHeight);
 				
-				// Apply inertia from platform
-				if (movingPlatform.enabled &&
-					(movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
-					movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
-				) {
-					movement.frameVelocity = movingPlatform.platformVelocity;
-					velocity += movingPlatform.platformVelocity;
-				}
-				
 				SendMessage("OnJump", SendMessageOptions.DontRequireReceiver);
 			}
 			else {
@@ -359,8 +276,7 @@ public class CharacterMotor : MonoBehaviour {
 		
 		return velocity;
 	}
-	
-	     
+		     
 	// this script pushes all rigidbodies that the character touches
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
@@ -370,7 +286,7 @@ public class CharacterMotor : MonoBehaviour {
 			else
 				groundNormal = lastGroundNormal;
 			
-			movingPlatform.hitPlatform = hit.collider.transform;
+//			movingPlatform.hitPlatform = hit.collider.transform;
 			movement.hitPoint = hit.point;
 			movement.frameVelocity = Vector3.zero;
 		}
@@ -392,35 +308,7 @@ public class CharacterMotor : MonoBehaviour {
 	    // Apply the push
 	    body.velocity = pushDir * pushPower;
 	}
-	
-	private IEnumerator SubstractNewPlatformVelocity() {
-		// When landing, subtract the velocity of the new ground from the character's velocity
-		// since movement in ground is relative to the movement of the ground.
-		if (movingPlatform.enabled &&
-			(movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
-			movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
-		) {
-			// If we landed on a new platform, we have to wait for two FixedUpdates
-			// before we know the velocity of the platform under the character
-			if (movingPlatform.newPlatform) {
-				Transform platform  = movingPlatform.activePlatform;
-				yield return new WaitForFixedUpdate();
-				yield return new WaitForFixedUpdate();
-				if (grounded && platform == movingPlatform.activePlatform)
-					yield return 1;
-			}
-			movement.velocity -= movingPlatform.platformVelocity;
-		}
-	}
-	
-	private bool MoveWithPlatform() {
-		return (
-			movingPlatform.enabled
-			&& (grounded || movingPlatform.movementTransfer == MovementTransferOnJump.PermaLocked)
-			&& movingPlatform.activePlatform != null
-		);
-	}
-	
+
 	private Vector3 GetDesiredHorizontalVelocity () {
 		// Find desired velocity
 		Vector3 desiredLocalDirection = tr.InverseTransformDirection(inputMoveDirection);
