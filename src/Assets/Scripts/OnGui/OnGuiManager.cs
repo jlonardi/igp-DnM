@@ -67,20 +67,16 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 			
 		case GameState.MAIN_MENU:
-			Time.timeScale=1;
-			Screen.showCursor=true;
-			Screen.lockCursor=false;
-			break;
-			
 		case GameState.STORY:
+		case GameState.HIGHSCORE_MAIN:
 			Time.timeScale=1;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			break;
 
-		case GameState.HIGHSCORE_MAIN:
+		case GameState.GAME_OVER:
 		case GameState.HIGHSCORE_GAME:
-			Time.timeScale=1;
+			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			break;
@@ -105,13 +101,6 @@ public class OnGuiManager : MonoBehaviour {
 			if (Input.GetButtonDown("Menu")){
 				game.gameState = GameState.SAVE_MENU;
 			}			
-			break;
-			
-		case GameState.GAME_OVER:
-			//when game is paused time stops and the cursour shows
-			Time.timeScale=0;
-			Screen.showCursor=true;
-			Screen.lockCursor=false;
 			break;
 			
 		case GameState.SAVE_SCREENSHOT:

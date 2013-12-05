@@ -16,6 +16,7 @@ public class Statistics {
 	public int wave;
 	public int bodycount;
 	public float playTime;
+	public bool dragonSlayed;
 
 	public string gunName;
 	public int gunRounds;
