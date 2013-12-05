@@ -2101,9 +2101,13 @@ MonoBehaviour:
   lootInterval: 2
   attackDistance: 2.4000001
   lootDistance: 2.70000005
-  canLoot: 0
-  canAttack: 1
-  painSounds: []
+  canLoot: 1
+  canAttack: 0
+  painSounds:
+  - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
+  - {fileID: 8300000, guid: 33ce66a8ea81a0c46892deccd3b820f1, type: 3}
+  - {fileID: 8300000, guid: a6de2fa15b73881479d3d69248cf5017, type: 3}
+  - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
 --- !u!114 &11400148
 MonoBehaviour:
   m_ObjectHideFlags: 1

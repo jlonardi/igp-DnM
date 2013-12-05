@@ -30,8 +30,7 @@ public class EnemyLogic : MonoBehaviour {
 	public float lootDistance = 2.7f;
 	private float timeFromAttack;
 	private float timeFromLoot;
-	public bool canLoot = false;
-	public bool canAttack = true;
+	public bool canLoot = true;
 		
 	private GameManager game;
 	private RagdollManager ragdolls;
@@ -90,26 +89,27 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	private void checkActions() {
+		float playerDistance = getPlayerDistance();
+		float treasureDistance = getTreasureDistance();
+
 		//The object is at target and ready to do some actions
 		if(navigation.targetReached) {
 			if(target == focusTarget.PLAYER) {
-				//if(!attacking && getPlayerDistance() <= attackDistance) {
-				if(!attacking) {
-					attacking = true;
+				if(!attacking && playerDistance <= attackDistance) {
+					if(!attacking) {
+						attacking = true;
+					}
+					if (playerDistance > attackDistance){
+						attacking = false;
+					}
 				}
- 				if (getPlayerDistance() > attackDistance){
-					attacking = false;
-				}
-//				if(attacking && (timeFromAttack + attackInterval) < Time.time) {
-//					timeFromAttack = Time.time;
-//				}
 			} 
 			
 			if(target == focusTarget.TRESAURE) {
-				if(!looting && getTreasureDistance() <= lootDistance) {
+				if(!looting && treasureDistance <= lootDistance) {
 					looting = true;	
 				}
- 				if (getTreasureDistance() > lootDistance){
+				if (treasureDistance > lootDistance){
 					looting = false;
 				}
 				if(looting && (timeFromLoot + lootInterval) < Time.time) {					
@@ -118,8 +118,12 @@ public class EnemyLogic : MonoBehaviour {
 				}
 			}
 		} else {
-			attacking = false;	
-			looting = false;
+			if (playerDistance > attackDistance){
+				attacking = false;	
+			}
+			if (treasureDistance > lootDistance){
+				looting = false;
+			}
 		}
 	}
 	
@@ -128,7 +132,7 @@ public class EnemyLogic : MonoBehaviour {
 			if (game.treasureState == TreasureState.SET_ON_GROUND){
 				treasureAvailable = true;
 			}
-			if (treasureAvailable && canLoot){
+			if (treasureAvailable){
 				swapTarget();
 			}
 		}
@@ -152,7 +156,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void swapTarget() {
 		//Debug.Log("Swapping focus target");
-		if(target == focusTarget.PLAYER) {
+		if(target == focusTarget.PLAYER  && canLoot) {
 			navigation.target = treasureTransform;
 			target = focusTarget.TRESAURE;
 			//Debug.Log("New target is tresaure");

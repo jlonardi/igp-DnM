@@ -10169,7 +10169,6 @@ MonoBehaviour:
   lizardRagdollPrefab: {fileID: 100262, guid: 68c404f092c21ac448c78d11cc1d58fa, type: 2}
   wolfRagdollPrefab: {fileID: 100168, guid: 56dd99b19962f4d449e10ecff87c2b4e, type: 2}
   maxRagdolls: 10
-  player: {fileID: 0}
 --- !u!114 &236861287
 MonoBehaviour:
   m_ObjectHideFlags: 0

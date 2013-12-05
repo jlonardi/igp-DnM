@@ -10,7 +10,7 @@ public class RagdollManager : MonoBehaviour {
 	public GameObject lizardRagdollPrefab;
 	public GameObject wolfRagdollPrefab;
 	public int maxRagdolls = 20;
-	public GameObject player;
+	private GameObject player;
 
 	private List<GameObject> bodies = new List<GameObject>();
 
