@@ -309,10 +309,14 @@ public class EnemyNavigation : MonoBehaviour {
 		
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
 		if (targetDirection != Vector3.zero) {
-			RotateTowards (targetDirection);
-		} else {
-			tr.LookAt(target.position);
-		}
+			if(targetReached) {
+				RotateTowards(target.position - tr.position);
+			} else {
+				RotateTowards (targetDirection);
+			}
+		} 
+
+
 		
 		if (navController != null) {
 			navController.SimpleMove (GetFeetPosition(),dir);
