@@ -84,7 +84,10 @@ public class EnemyLogic : MonoBehaviour {
 		Vector3 from = t.position;
 		Vector3 to = transform.position;
 		// don't take elevation into account
-		float distance = Vector3.Distance(new Vector3(from.x, 0, from.z),new Vector3(to.x, 0, to.z));
+		float x = Mathf.Abs(from.x - to.x);
+		float z = Mathf.Abs(from.z - to.z);
+		float distance = Mathf.Sqrt(x*x + z*z);
+		//float distance = Vector3.Distance(new Vector3(from.x, 0, from.z),new Vector3(to.x, 0, to.z));
 		return distance;
 	}
 
