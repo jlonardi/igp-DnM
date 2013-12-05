@@ -132,7 +132,7 @@ public class Gun : MonoBehaviour {
 		CalculateAccuracy();
 
 		timerToCreateDecal -= Time.deltaTime;
-		if (Input.GetButtonDown("Fire1") && currentRounds == 0 && !reloading && freeToShoot){
+		if (Input.GetButtonDown("Fire") && currentRounds == 0 && !reloading && freeToShoot){
 				PlayOutOfAmmoSound();
 		}
 		if (animator != null){
@@ -142,7 +142,7 @@ public class Gun : MonoBehaviour {
 
 		HandleMinigun();
 
-		if(Input.GetButtonUp("Fire1")){
+		if(Input.GetButtonUp("Fire")){
 			freeToShoot = true;
 		}
 		HandleReloading();
