@@ -135,6 +135,10 @@ public class EnemyNavigation : MonoBehaviour {
 			return targetReached;
 		}
 	}
+
+	public float fixedRate = 0.8F;
+
+	public int pointsLeft = 0;
 	
 	/** Holds if the Start function has been run.
 	 * Used to test if coroutines should be started in OnEnable to prevent calculating paths
@@ -194,7 +198,17 @@ public class EnemyNavigation : MonoBehaviour {
 	 * Otherwise will start WaitForPath function.
 	 */
 	public void TrySearchPath () {
-		if (Time.time - lastRepath >= repathRate && canSearchAgain && canSearch) {
+
+		List<Vector3> vPath = new List<Vector3>();
+		if(path != null) {
+			vPath = path.vectorPath;
+		}
+
+		this.pointsLeft = vPath.Count - currentWaypointIndex+1;
+
+		this.fixedRate = repathRate * (pointsLeft / 10) + 1;
+
+		if (Time.time - lastRepath >= fixedRate && canSearchAgain && canSearch) {
 			SearchPath ();
 		} else {
 			StartCoroutine (WaitForRepath ());
