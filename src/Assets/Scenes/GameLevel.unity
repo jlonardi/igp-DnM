@@ -26648,7 +26648,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 588129017}
   m_Layer: 10
-  m_Name: focusPoint
+  m_Name: treasureFocus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26660,9 +26660,9 @@ Transform:
   m_PrefabParentObject: {fileID: 400106, guid: ca87b35ac937fa54eaefaa58526c885b, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 588129016}
-  m_LocalRotation: {x: 0, y: -.708463132, z: 0, w: .705747843}
-  m_LocalPosition: {x: -.0374993049, y: .437142849, z: .374999553}
-  m_LocalScale: {x: .357142836, y: .357142866, z: .357142806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .899999976, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2026712656}
 --- !u!1 &589190394
@@ -54413,6 +54413,32 @@ Transform:
   - {fileID: 485838490}
   - {fileID: 2043480286}
   m_Father: {fileID: 248532314}
+--- !u!1 &1223867653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1223867654}
+  m_Layer: 0
+  m_Name: playerFocus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223867654
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223867653}
+  m_LocalRotation: {x: 0, y: .664448082, z: 0, w: .747334421}
+  m_LocalPosition: {x: 0, y: .899999976, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1851113631}
 --- !u!1 &1224377343
 GameObject:
   m_ObjectHideFlags: 0
@@ -84400,6 +84426,7 @@ Transform:
   m_LocalPosition: {x: 94.6999969, y: 7.10000038, z: 156.699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1223867654}
   - {fileID: 1488523952}
   - {fileID: 763819867}
   - {fileID: 756998767}
