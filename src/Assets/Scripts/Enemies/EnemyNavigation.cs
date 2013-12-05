@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-//#define ASTARDEBUG
+﻿//#define ASTARDEBUG
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -96,9 +94,6 @@ public class EnemyNavigation : MonoBehaviour {
 	 */
 	public bool closestOnPathCheck = true;
 
-	public float movementSpeed = 0f;
-	private float prevMovementSpeed = 0f;   
-	
 	protected float minMoveScale = 0.05F;
 	
 	/** Cached Seeker component */
@@ -110,8 +105,6 @@ public class EnemyNavigation : MonoBehaviour {
 	/** Time when the last path request was sent */
 	private float lastRepath = -9999;
 
-	private List<Vector3> movementPositions = new List<Vector3>();
-	
 	/** Current path which is followed */
 	protected Path path;
 	
@@ -415,14 +408,6 @@ public class EnemyNavigation : MonoBehaviour {
 		
 		if (Time.deltaTime	> 0) {
 			sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
-		}
-
-		//calculate current speed for animations
-		movementPositions.Add(transform.position);
-		if (movementPositions.Count>7){
-			prevMovementSpeed = movementSpeed;
-		   	movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
-			movementPositions.RemoveAt(0);
 		}
 
 		return forward*sp;

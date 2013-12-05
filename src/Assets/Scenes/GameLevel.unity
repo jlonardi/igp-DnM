@@ -84357,7 +84357,7 @@ MonoBehaviour:
   canControl: 1
   useFixedUpdate: 1
   movementSpeed: 0
-  pushPower: 3
+  pushPower: 10
   characterVelocity: {x: 0, y: 0, z: 0}
   movement:
     maxForwardSpeed: 6
@@ -84412,7 +84412,7 @@ CharacterController:
   m_Height: 2
   m_Radius: .370000005
   m_SlopeLimit: 45
-  m_StepOffset: .400000006
+  m_StepOffset: 1
   m_SkinWidth: .0599999987
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}

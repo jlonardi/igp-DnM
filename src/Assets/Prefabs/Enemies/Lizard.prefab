@@ -5167,7 +5167,6 @@ MonoBehaviour:
   attackDistance: 3
   lootDistance: 3
   canLoot: 0
-  canAttack: 0
   painSounds:
   - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
@@ -5199,7 +5198,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 10
+  speed: 8
   turningSpeed: 20
   slowdownDistance: 0
   pickNextWaypointDist: 2
@@ -5240,7 +5239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ee55ba3d7acdd49aaa9c9fd0e7f189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushPower: 3
+  pushPower: 10
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -5697,7 +5696,7 @@ CharacterController:
   m_Height: 2
   m_Radius: .379999995
   m_SlopeLimit: 55
-  m_StepOffset: .5
+  m_StepOffset: 1
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: .959999979, z: 0}

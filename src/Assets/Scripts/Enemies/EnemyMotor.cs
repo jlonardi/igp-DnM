@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyMotor : MonoBehaviour {
 	CharacterController controller;
-	public float pushPower = 3.0f;
+	
+	public float movementSpeed = 0f;
+	private float prevMovementSpeed = 0f;   
+	private List<Vector3> movementPositions = new List<Vector3>();
+
+	public float pushPower = 10.0f;
 
 	void Awake(){
 		controller = GetComponent<CharacterController>();
@@ -13,6 +19,16 @@ public class EnemyMotor : MonoBehaviour {
 		//make sure that our enemy is always on ground
 		if (!controller.isGrounded){
 			controller.Move(-Vector3.up);
+		}
+	}
+
+	void FixedUpdate(){
+		//calculate current speed for animations
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>7){
+			prevMovementSpeed = movementSpeed;
+			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
+			movementPositions.RemoveAt(0);
 		}
 	}
 
