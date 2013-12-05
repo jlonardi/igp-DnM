@@ -29,35 +29,35 @@ public class StoryScreen {
 
 		GUIStyle myStyle = new GUIStyle("Box");
 		myStyle.fontSize=30;
-		switch (storySlide){
-		case 1:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 1", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-			break;
-		case 2:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 2", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-			break;
-		case 3:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 3", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-			break;
-		case 4:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 4", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-			break;
-		case 5:
-			GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 5", myStyle);
-			GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-			break;
-		}
 		imagePosition = new Rect(0, 0, 1920, 1080);
-
+		
 		//if already at last slide, don't check the slide counter
 		if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
 			GUI.DrawTexture(imagePosition, storyImages[4]);
 		} else {
 			GUI.DrawTexture(imagePosition, storyImages[storySlide-1]);
+			switch (storySlide){
+			case 1:
+				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 1", myStyle);
+				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+				break;
+			case 2:
+				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 2", myStyle);
+				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+				break;
+			case 3:
+				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 3", myStyle);
+				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+				break;
+			case 4:
+				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 4", myStyle);
+				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+				break;
+			case 5:
+				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 5", myStyle);
+				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
+				break;
+			}
 		}
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-200, 1000,100,200));
