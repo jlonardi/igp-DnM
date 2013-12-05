@@ -64,8 +64,13 @@ public class HighScoreManager : MonoBehaviour {
 
 	//loads the old scores from the score file
 	private void loadScoresFromFile(){
+		Stream stream;
 		string filePath = saveDirectory + "\\highScore"+".dat";
-		Stream stream = File.Open(filePath, FileMode.OpenOrCreate);
+	
+		stream = File.Open(filePath, FileMode.OpenOrCreate);
+		if(stream.Length==0){
+			return;
+		}
 		BinaryFormatter bformatter = new BinaryFormatter();
 		scores=(List<Score>)bformatter.Deserialize(stream);
 		stream.Close();
