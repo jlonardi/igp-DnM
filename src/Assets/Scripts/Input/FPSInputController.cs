@@ -116,6 +116,7 @@ public class FPSInputController : MonoBehaviour {
 				gunManager.currentGun.enabled = false;
 				// find treasure positions from scene
 				GameObject treasureBox = GameObject.Find("treasure_box");
+				treasureBox.collider.isTrigger = true;
 				GameObject treasureOnPlayer = GameObject.Find("Treasure");
 				// change parent to players Treasure-object
 				treasureBox.transform.parent = treasureOnPlayer.transform;
