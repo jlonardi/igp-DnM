@@ -22,13 +22,13 @@ public class LoadMenu {
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
 
 		GUI.skin.GetStyle("window");
-		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
+		GUI.Box(new Rect(centerX-500, 100,1000,850),"", "window");
 		
 		GUILayout.BeginArea(new Rect(centerX-220, 210,440,600));
 		GUILayout.Label("Select slot to load", "textfield");
 		GUILayout.EndArea();
 		
-		GUILayout.BeginArea(new Rect(centerX-175, 330,350,600));
+		GUILayout.BeginArea(new Rect(centerX-375, 330,350,600));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			if (saveInfo[i].name == null){
@@ -46,7 +46,7 @@ public class LoadMenu {
 					SaveManager.instance.Load();
 				}
 				if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)){
-					GUILayout.Window(i, new Rect(centerX+148, centerY-100,330,250), ShowDetails, "");
+					GUILayout.Window(i, new Rect(centerX, 300,430,500), ShowDetails, "");
 				}
 			}
 		}	
@@ -87,11 +87,11 @@ public class LoadMenu {
 			return;
 		}
 
-		GUI.DrawTexture(new Rect(5,5,320,180), saveInfo[windowID].screenshot);
+		GUI.Label(new Rect(0,25,450,90), ConvertLevelName(saveInfo[windowID].level));
+		GUI.DrawTexture(new Rect(55,100,320,180), saveInfo[windowID].screenshot);
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		GUI.Label(new Rect(0,190,330,20), ConvertLevelName(saveInfo[windowID].level));
-		GUI.Label(new Rect(0,208,330,20), ConvertPlayTime(saveInfo[windowID].playTime));
-		GUI.Label(new Rect(0,226,330,20), saveInfo[windowID].dateTime);
+		GUI.Label(new Rect(40,310,335,20), saveInfo[windowID].dateTime, "plaintext");
+		GUI.Label(new Rect(40,360,350,20), ConvertPlayTime(saveInfo[windowID].playTime), "plaintext");
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 	}	
 
