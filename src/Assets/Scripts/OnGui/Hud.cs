@@ -38,7 +38,6 @@ public class Hud {
 		if (game == null){
 			Initialize();
 		}
-		//GUI.skin.GetStyle("hud");
 
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		if (game.treasureState == TreasureState.CARRYING){
@@ -61,6 +60,7 @@ public class Hud {
 		currentHealth = game.statistics.playerHealth;
 		currentHealth = currentHealth*1.76f;
 		currentArmor = game.statistics.playerArmor*1.76f*2;
+
 		GUI.BeginGroup(new Rect(16,205,currentHealth,16)); 
 		GUI.DrawTexture(new Rect(0,0,176,16), health);
 		GUI.EndGroup();
@@ -68,27 +68,27 @@ public class Hud {
 		GUI.DrawTexture(new Rect(0,0,176,2), armor);
 		GUI.EndGroup();
 
-
-		GUI.Box(new Rect(5,5,105,125),"");	
-		GUI.Label(new Rect(10,10,100,20), "Health: " + game.statistics.playerHealth);
-		GUI.Label(new Rect(10,25,100,20), "Treasure: " + game.statistics.treasureAmount);
-		GUI.Label (new Rect(10,40,100,20),"Score: " + game.statistics.score);
+		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
+		GUILayout.Label("Treasure: " + game.statistics.treasureAmount);
+		GUILayout.Label ("Score: " + game.statistics.score);
 		
 		if (game.statistics.gunEnabled){
-			GUI.Label(new Rect(10,55,100,20), "Grenades: " + game.statistics.grenadeCount);
-			GUI.Label(new Rect(10,70,100,20), "Gun: " + game.statistics.gunName);			
-			GUI.Label(new Rect(10,85,100,20), "Ammo: " + game.statistics.gunRounds);
+			GUILayout.Label("Grenades: " + game.statistics.grenadeCount);
+			GUILayout.Label("Gun: " + game.statistics.gunName);			
+			GUILayout.Label("Ammo: " + game.statistics.gunRounds);
 			string clips;
 			if (game.statistics.gunUnlimitedClips){
 				clips = "unlimited";
 			} else {
 				clips = game.statistics.gunClips.ToString();
 			}
-			GUI.Label(new Rect(10,100,100,20), "Clips: " + clips);
+			GUILayout.Label("Clips: " + clips);
 			if (game.statistics.gunReloading){
-				GUI.Label(new Rect(10,115,100,20), "Reloading...");
+				GUILayout.Label("Reloading...");
 			}
 		}
+
+		GUILayout.EndArea();
 
 	}	
 	
