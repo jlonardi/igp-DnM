@@ -80,17 +80,20 @@ public class EnemyLogic : MonoBehaviour {
 		checkActions();
 	}
 		
-	
-	private float getPlayerDistance(){
-		return Vector3.Distance(playerTransform.position, transform.position);
+	private float GetDistance(Transform t){
+		Vector3 from = t.position;
+		Vector3 to = transform.position;
+		// don't take elevation into account
+		float x = Mathf.Abs(from.x - to.x);
+		float z = Mathf.Abs(from.z - to.z);
+		float distance = Mathf.Sqrt(x*x + z*z);
+		//float distance = Vector3.Distance(new Vector3(from.x, 0, from.z),new Vector3(to.x, 0, to.z));
+		return distance;
 	}
-	private float getTreasureDistance(){
-		return Vector3.Distance(treasureTransform.position, transform.position);
-	}
-	
+
 	private void checkActions() {
-		float playerDistance = getPlayerDistance();
-		float treasureDistance = getTreasureDistance();
+		float playerDistance = GetDistance(playerTransform);
+		float treasureDistance = GetDistance(treasureTransform);
 
 		//The object is at target and ready to do some actions
 		if(navigation.targetReached) {
@@ -263,7 +266,7 @@ public class EnemyLogic : MonoBehaviour {
 	}
 
 	private void AttackTrigger(string message){
-		if(getPlayerDistance() > attackDistance) {
+		if(GetDistance(playerTransform) > attackDistance) {
 			return;
 		}
 
