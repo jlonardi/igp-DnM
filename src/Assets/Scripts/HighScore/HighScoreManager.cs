@@ -5,13 +5,17 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary; 
 
 public class HighScoreManager : MonoBehaviour {
-
+	//use singleton since only we need once instance of this class
+	public static HighScoreManager instance;
 
 	private List<Score> scores;
 	private string saveDirectory;
 
-	void Start(){
+	void Awake(){
+		HighScoreManager.instance = this;
+	}
 
+	void Start(){
 		scores = new List<Score>();
 		findSaveDirectory();
 		loadScoresFromFile();
@@ -31,10 +35,13 @@ public class HighScoreManager : MonoBehaviour {
 		}
 	}
 	//adds a new high score to list
-	public void addHighScore(int score, string name){
-		scores.Add (new Score(score,name));
+	public void addHighScore(int score, int bodyCount, int treasureValue, bool dragonSlayed, string name){
+		scores.Add(new Score(score, bodyCount, treasureValue, dragonSlayed, name));
 		sort ();
-		uppdateScoreFile ();
+		if (scores.Count>10){
+			scores.RemoveAt(10);
+		}
+		uppdateScoreFile();
 	
 	}
 	//returns the score list
@@ -65,26 +72,29 @@ public class HighScoreManager : MonoBehaviour {
 	//loads the old scores from the score file
 	private void loadScoresFromFile(){
 		Stream stream;
-		string filePath = saveDirectory + "\\highScore"+".dat";
+		string filePath = saveDirectory + "\\highscore"+".dat";
 	
-		stream = File.Open(filePath, FileMode.OpenOrCreate);
+		if (!File.Exists(filePath)){
+			return;
+		}
+
+		stream = File.Open(filePath, FileMode.Open);
 		if(stream.Length==0){
+			stream.Close();
 			return;
 		}
 		BinaryFormatter bformatter = new BinaryFormatter();
 		scores=(List<Score>)bformatter.Deserialize(stream);
 		stream.Close();
 	}
-	//uppdates the score file
+
+	//updates the score file
 	private void uppdateScoreFile(){
-		string filePath = saveDirectory + "\\highScore"+".dat";
-		Stream stream = File.Open(filePath, FileMode.Create);
+		string filePath = saveDirectory + "\\highscore"+".dat";
+		Stream stream = File.Open(filePath, FileMode.OpenOrCreate);
 		BinaryFormatter bformatter = new BinaryFormatter();
 		bformatter.Serialize(stream, scores);
 		stream.Close();
 	}
-
-	
-
 
 }
