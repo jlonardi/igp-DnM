@@ -30,6 +30,13 @@ public class HighScoreManager : MonoBehaviour {
 			return scores[9].getScore();
 		}
 	}
+	//adds a new high score to list
+	public void addHighScore(int score, string name){
+		scores.Add (new Score(score,name));
+		sort ();
+		uppdateScoreFile ();
+	
+	}
 	//returns the score list
 	public List<Score> getScores() {
 		return scores;

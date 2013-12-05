@@ -7,9 +7,9 @@ using System.Runtime.Serialization;
 Score : IComparable<Score>{
 	private int score;
 	private string playerName;
-	// Use this for initialization
-	void Start (int score, string name) {
-		this.score=score;
+
+	public Score(int scores, string name){
+		this.score=scores;
 		this.playerName=name;
 	}
 	
