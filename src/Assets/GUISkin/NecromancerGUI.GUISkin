@@ -216,9 +216,9 @@ MonoBehaviour:
       m_Background: {fileID: 0}
       m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
     m_Border:
-      m_Left: 26
-      m_Right: 28
-      m_Top: 20
+      m_Left: 28
+      m_Right: 26
+      m_Top: 0
       m_Bottom: 0
     m_Margin:
       m_Left: 2
@@ -226,10 +226,10 @@ MonoBehaviour:
       m_Top: 2
       m_Bottom: 2
     m_Padding:
-      m_Left: 30
-      m_Right: 32
-      m_Top: 3
-      m_Bottom: 12
+      m_Left: 50
+      m_Right: 52
+      m_Top: 2
+      m_Bottom: 2
     m_Overflow:
       m_Left: 0
       m_Right: 0
@@ -239,14 +239,14 @@ MonoBehaviour:
     m_FontSize: 40
     m_FontStyle: 0
     m_Alignment: 3
-    m_WordWrap: 1
+    m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 1
     m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
+    m_ContentOffset: {x: 0, y: -8}
     m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
+    m_FixedHeight: 65
+    m_StretchWidth: 0
     m_StretchHeight: 0
   m_textField:
     m_Name: textfield

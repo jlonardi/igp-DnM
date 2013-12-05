@@ -27,7 +27,7 @@ public class Hud {
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 
-		helpPosition = CalculateGUIRect(500, 40, 0, -80);
+		helpPosition = CalculateGUIRect(700, 40, 0, -80);
 		//health & armor bar position and size
 		healthPosition = new Rect(10,200,193,34);
 		armorPosition = new Rect(16,225,176,2);
@@ -38,7 +38,7 @@ public class Hud {
 		if (game == null){
 			Initialize();
 		}
-		GUI.skin.GetStyle("hud");
+		//GUI.skin.GetStyle("hud");
 
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		if (game.treasureState == TreasureState.CARRYING){

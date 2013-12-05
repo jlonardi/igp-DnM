@@ -21,11 +21,14 @@ public class LoadMenu {
 
 		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
 
-		GUIStyle myStyle = new GUIStyle("Box");
-		myStyle.fontSize=30;
-
-		GUI.Box(new Rect(centerX-138, centerY-100,275,250), "Load Game", myStyle);
-		GUILayout.BeginArea(new Rect(centerX-125, centerY-50,250,200));
+		GUI.skin.GetStyle("window");
+		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
+		
+		GUILayout.BeginArea(new Rect(centerX-220, 210,440,600));
+		GUILayout.Label("Select slot to load", "textfield");
+		GUILayout.EndArea();
+		
+		GUILayout.BeginArea(new Rect(centerX-175, 330,350,600));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			if (saveInfo[i].name == null){
