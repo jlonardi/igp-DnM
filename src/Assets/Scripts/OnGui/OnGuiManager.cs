@@ -77,7 +77,14 @@ public class OnGuiManager : MonoBehaviour {
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			break;
-			
+
+		case GameState.HIGHSCORE_MAIN:
+		case GameState.HIGHSCORE_GAME:
+			Time.timeScale=1;
+			Screen.showCursor=true;
+			Screen.lockCursor=false;
+			break;
+
 		case GameState.LOAD_MENU_MAIN:					
 			// if menu key pressed, return to main menu
 			if (Input.GetButtonDown("Menu")){
@@ -168,7 +175,10 @@ public class OnGuiManager : MonoBehaviour {
 			bloodSplatter.Show();
 			hud.Show();
 			crosshair.Show();
-			//highScoreScreen.Show();
+			break;
+		case GameState.HIGHSCORE_GAME:
+		case GameState.HIGHSCORE_MAIN:
+			highScoreScreen.Show();
 			break;
 		default:
 			break;

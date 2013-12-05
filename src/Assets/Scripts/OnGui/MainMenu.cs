@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
 		START,
 		STORY,
 		LOAD,
+		HIGHSCORE,
 		QUIT
 	}
 
@@ -27,7 +28,8 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	void Update(){
-		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN || GameManager.instance.gameState == GameState.STORY){
+		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN || GameManager.instance.gameState == GameState.STORY ||
+		    GameManager.instance.gameState == GameState.HIGHSCORE_MAIN){
 			renderer.enabled = false;
 		} else {
 			GameManager.instance.gameState = GameState.MAIN_MENU;
@@ -48,7 +50,12 @@ public class MainMenu : MonoBehaviour {
 			//show story
 			GameManager.instance.gameState = GameState.STORY;
 			break;
-
+			
+		case MainMenuButton.HIGHSCORE:
+			//show story
+			GameManager.instance.gameState = GameState.HIGHSCORE_MAIN;
+			break;
+			
 		case MainMenuButton.LOAD:
 			// load previous save details
 			SaveManager.instance.GetSaveInfo();
