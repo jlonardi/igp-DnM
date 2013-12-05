@@ -10167,7 +10167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orcRagdollPrefab: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
   lizardRagdollPrefab: {fileID: 100262, guid: 68c404f092c21ac448c78d11cc1d58fa, type: 2}
-  wolfRagdollPrefab: {fileID: 100168, guid: 56dd99b19962f4d449e10ecff87c2b4e, type: 2}
+  wolfRagdollPrefab: {fileID: 100168, guid: 6b9526ac8ad1ed04fa539fa102016a88, type: 2}
   maxRagdolls: 10
 --- !u!114 &236861287
 MonoBehaviour:
