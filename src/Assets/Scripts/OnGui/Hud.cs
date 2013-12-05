@@ -38,6 +38,7 @@ public class Hud {
 		if (game == null){
 			Initialize();
 		}
+		GUI.skin.GetStyle("hud");
 
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		if (game.treasureState == TreasureState.CARRYING){

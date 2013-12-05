@@ -20,11 +20,14 @@ public class SaveMenu {
 			Initialize();
 		}
 
-		GUIStyle myStyle = new GUIStyle("Box");
-		myStyle.fontSize=30;
+		GUI.skin.GetStyle("window");
+		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 		
-		GUI.Box(new Rect(centerX-138, centerY-100,275,250), "Save Game", myStyle);
-		GUILayout.BeginArea(new Rect(centerX-125, centerY-50,250,200));
+		GUILayout.BeginArea(new Rect(centerX-220, 210,440,600));
+		GUILayout.Label("Select Save Slot", "textfield");
+		GUILayout.EndArea();
+		
+		GUILayout.BeginArea(new Rect(centerX-175, 330,350,600));
 
 		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
 			string saveName;
@@ -43,8 +46,11 @@ public class SaveMenu {
 				SaveManager.instance.container.saveSlot = i;
 				SaveManager.instance.container.name = saveInfo[i].name;
 			}
-		}					        
-		if(GUILayout.Button ("Return"))	{
+		}					
+
+		GUILayout.Space(40);
+
+		if(GUILayout.Button ("Back"))	{
 			GameManager.instance.gameState = GameState.PAUSE_MENU;
 		}
 		GUILayout.EndArea();

@@ -17,6 +17,7 @@ public class OnGuiManager : MonoBehaviour {
 	public Hud hud = new Hud();
 	public Crosshair crosshair = new Crosshair();
 	public BloodSplatter bloodSplatter = new BloodSplatter();
+	public HighScoreScreen highScoreScreen = new HighScoreScreen();
 	public GameManager game;
 
 	// resolition which OnGui elements use as target
@@ -123,7 +124,7 @@ public class OnGuiManager : MonoBehaviour {
 		//set up scaling for OnGui elements
 		GUI.matrix = GetScalingMatrix();
 
-		//GUI.skin = guiSkin;
+		GUI.skin = guiSkin;
 
 		switch (game.gameState)
 		{		
@@ -167,6 +168,7 @@ public class OnGuiManager : MonoBehaviour {
 			bloodSplatter.Show();
 			hud.Show();
 			crosshair.Show();
+			//highScoreScreen.Show();
 			break;
 		default:
 			break;

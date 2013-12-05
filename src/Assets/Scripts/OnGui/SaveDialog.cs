@@ -25,13 +25,30 @@ public class SaveDialog {
 			saveName = "Savegame " + (SaveManager.instance.container.saveSlot + 1);
 		}
 
-		GUI.Box(new Rect(centerX-125, centerY-25,250,100), "Give the name of your game");
-		SaveManager.instance.container.name = GUI.TextArea (new Rect (centerX-100, centerY, 200, 20),
-		                                                    saveName, 20);
+		GUI.skin.GetStyle("window");
+		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 		
-		if (GUI.Button(new Rect (centerX-50, centerY+25, 100, 20),"save game"))
+		GUILayout.BeginArea(new Rect(centerX-220, 210,440,600));
+		GUILayout.Label("Name the save slot", "textfield");
+		GUILayout.EndArea();
+		
+		GUILayout.BeginArea(new Rect(centerX-175, 400,350,600));
+
+		SaveManager.instance.container.name = GUILayout.TextArea(saveName, 20);
+
+		GUILayout.Space(50);
+
+		if (GUILayout.Button("Save"))
 		{			
 			SaveManager.instance.Save();
 		}
+
+		GUILayout.Space(150);
+
+		if (GUILayout.Button("Back"))
+		{			
+			GameManager.instance.gameState = GameState.SAVE_MENU;
+		}
+		GUILayout.EndArea();
 	}
 }
