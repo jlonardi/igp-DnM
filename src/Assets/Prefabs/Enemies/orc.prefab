@@ -2075,6 +2075,8 @@ MonoBehaviour:
   endReachedDistance: .699999988
   closestOnPathCheck: 1
   targetReached: 0
+  fixedRate: .800000012
+  pointsLeft: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2154,7 +2156,7 @@ MonoBehaviour:
   attacking: 0
   looting: 0
   lootInterval: 2
-  attackDistance: 2.4000001
+  attackDistance: 3
   lootDistance: 2.70000005
   canLoot: 1
   painSounds:

@@ -5190,6 +5190,8 @@ MonoBehaviour:
   endReachedDistance: .699999988
   closestOnPathCheck: 1
   targetReached: 0
+  fixedRate: .800000012
+  pointsLeft: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
