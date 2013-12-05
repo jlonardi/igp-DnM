@@ -2,9 +2,15 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-	public bool isQuit = false; //tells what will happen when pressing buttons
-	public bool isLoadLevel = false;
-	
+	public enum MainMenuButton{
+		START,
+		STORY,
+		LOAD,
+		QUIT
+	}
+
+	public MainMenuButton menuButton;
+
 	void Start() {
 		//To get the text to be red in the beginning
 		renderer.material.color=Color.red;
@@ -31,21 +37,30 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		if(isQuit){
-			//if quit game button is pressed game quits
-			Application.Quit();
-			
-		} else if(isLoadLevel){
+		switch(menuButton){
+		case MainMenuButton.START:
+			//loads first level
+			GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
+			Application.LoadLevel("GameLevel");
+			break;
+
+		case MainMenuButton.STORY:
+			//show story
+			GameManager.instance.gameState = GameState.STORY;
+			break;
+
+		case MainMenuButton.LOAD:
 			// load previous save details
 			SaveManager.instance.GetSaveInfo();
 
 			//show load menu
 			GameManager.instance.gameState = GameState.LOAD_MENU_MAIN;
-			
-		} else {
-			//show story
-			GameManager.instance.gameState = GameState.STORY;
-			
+			break;
+
+		case MainMenuButton.QUIT:
+			//if quit game button is pressed game quits
+			Application.Quit();
+			break;
 		}
 	}
 
