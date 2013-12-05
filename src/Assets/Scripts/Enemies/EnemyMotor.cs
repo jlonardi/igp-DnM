@@ -37,6 +37,10 @@ public class EnemyMotor : MonoBehaviour {
 	{
 		Rigidbody body = hit.collider.attachedRigidbody;
 		
+		if (hit.collider.gameObject.GetComponent<Gun>() != null){
+			Debug.Log("weapon!!");
+			controller.Move(Vector3.zero);
+		}
 		// no rigidbody
 		if (body == null || body.isKinematic) { return; }
 		
