@@ -9,6 +9,7 @@ public class PlayerSounds : MonoBehaviour {
 	public AudioClip deathSound;
 	public AudioClip[] walkSounds;
 	public AudioClip[] jumpSounds;
+	public AudioClip armorPickupSound;
 
 	private float walkSoundTimer = 0;
 
@@ -42,6 +43,10 @@ public class PlayerSounds : MonoBehaviour {
 	public void PlayDeathSound() {
 		audio.clip = deathSound;
 		audio.Play();
+	}
+
+	public void PlayArmorPickupSound() {
+		audio.PlayOneShot(armorPickupSound);
 	}
 
 	public void PlayWalkSound() {

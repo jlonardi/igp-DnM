@@ -28,6 +28,7 @@ public class Pickup : MonoBehaviour {
 
 		} else if (gameObject.name.Equals("pickup_armor")) {
 			game.pickupState = PickupState.ARMOR;
+			PlayerSounds.instance.PlayArmorPickupSound();
 		}	
 	}
 
