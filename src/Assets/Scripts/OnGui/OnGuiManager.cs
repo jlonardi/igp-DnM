@@ -67,17 +67,20 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 			
 		case GameState.MAIN_MENU:
-			Time.timeScale=1;
-			Screen.showCursor=true;
-			Screen.lockCursor=false;
-			break;
-			
 		case GameState.STORY:
+		case GameState.HIGHSCORE_MAIN:
 			Time.timeScale=1;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			break;
-			
+
+		case GameState.GAME_OVER:
+		case GameState.HIGHSCORE_GAME:
+			Time.timeScale=0;
+			Screen.showCursor=true;
+			Screen.lockCursor=false;
+			break;
+
 		case GameState.LOAD_MENU_MAIN:					
 			// if menu key pressed, return to main menu
 			if (Input.GetButtonDown("Menu")){
@@ -98,13 +101,6 @@ public class OnGuiManager : MonoBehaviour {
 			if (Input.GetButtonDown("Menu")){
 				game.gameState = GameState.SAVE_MENU;
 			}			
-			break;
-			
-		case GameState.GAME_OVER:
-			//when game is paused time stops and the cursour shows
-			Time.timeScale=0;
-			Screen.showCursor=true;
-			Screen.lockCursor=false;
 			break;
 			
 		case GameState.SAVE_SCREENSHOT:
@@ -130,7 +126,6 @@ public class OnGuiManager : MonoBehaviour {
 		{		
 		case GameState.PAUSE_MENU:
 			bloodSplatter.Show();
-			hud.Show();
 			pauseMenu.Show();
 			break;
 		case GameState.STORY:
@@ -141,17 +136,14 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.LOAD_MENU_PAUSE:
 			bloodSplatter.Show();
-			hud.Show();
 			loadMenu.Show();
 			break;
 		case GameState.SAVE_MENU:
 			bloodSplatter.Show();
-			hud.Show();
 			saveMenu.Show();
 			break;
 		case GameState.SAVE_DIALOG:
 			bloodSplatter.Show();
-			hud.Show();
 			saveDialog.Show();
 			break;
 		case GameState.SAVE_SCREENSHOT:
@@ -168,7 +160,10 @@ public class OnGuiManager : MonoBehaviour {
 			bloodSplatter.Show();
 			hud.Show();
 			crosshair.Show();
-			//highScoreScreen.Show();
+			break;
+		case GameState.HIGHSCORE_GAME:
+		case GameState.HIGHSCORE_MAIN:
+			highScoreScreen.Show();
 			break;
 		default:
 			break;

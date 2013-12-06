@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public PickupState pickupState = PickupState.NONE;
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
+
 	void Awake()
     {
 		// never destroy Game Manager on scene load

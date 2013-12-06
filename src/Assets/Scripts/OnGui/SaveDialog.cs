@@ -32,19 +32,24 @@ public class SaveDialog {
 		GUILayout.Label("Name the save slot", "textfield");
 		GUILayout.EndArea();
 		
-		GUILayout.BeginArea(new Rect(centerX-175, 400,350,600));
+		//if player hits Enter inside textarea, save game
+		if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
+			SaveManager.instance.Save();
+		}
 
+		GUILayout.BeginArea(new Rect(centerX-175, 400,350,600));
 		SaveManager.instance.container.name = GUILayout.TextArea(saveName, 20);
 
 		GUILayout.Space(50);
 
-		if (GUILayout.Button("Save"))
-		{			
+		//if player hits Save-button, save game
+		if (GUILayout.Button("Save")){
 			SaveManager.instance.Save();
 		}
 
 		GUILayout.Space(150);
 
+		//if player hits Back-button, return to previous menu
 		if (GUILayout.Button("Back"))
 		{			
 			GameManager.instance.gameState = GameState.SAVE_MENU;
