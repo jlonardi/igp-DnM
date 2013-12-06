@@ -27,10 +27,10 @@ public class Hud {
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 
-		helpPosition = CalculateGUIRect(700, 40, 0, -80);
+		helpPosition = CalculateGUIRect(700, 40, 0, 400);
 		//health & armor bar position and size
-		healthPosition = new Rect(10,200,193,34);
-		armorPosition = new Rect(16,225,176,2);
+		healthPosition = new Rect(20,20,369,55);
+		armorPosition = new Rect(26,61,352,8);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -58,14 +58,14 @@ public class Hud {
 		GUI.DrawTexture(healthPosition, healthbar);
 		GUI.DrawTexture (armorPosition, armorbar);
 		currentHealth = game.statistics.playerHealth;
-		currentHealth = currentHealth*1.76f;
-		currentArmor = game.statistics.playerArmor*1.76f*2;
+		currentHealth = currentHealth*3.52f;
+		currentArmor = game.statistics.playerArmor*7.04f;
 
-		GUI.BeginGroup(new Rect(16,205,currentHealth,16)); 
-		GUI.DrawTexture(new Rect(0,0,176,16), health);
+		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
+		GUI.DrawTexture(new Rect(0,0,352,32), health);
 		GUI.EndGroup();
-		GUI.BeginGroup(new Rect(16,225,currentArmor,2));
-		GUI.DrawTexture(new Rect(0,0,176,2), armor);
+		GUI.BeginGroup(new Rect(26,66,currentArmor,4));
+		GUI.DrawTexture(new Rect(0,0,352,4), armor);
 		GUI.EndGroup();
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             

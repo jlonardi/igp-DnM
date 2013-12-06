@@ -27,7 +27,7 @@ public class StoryScreen {
 			Initialize();
 		}
 
-		imagePosition = new Rect(0, 0, 1920, 1080);
+		imagePosition = new Rect(centerX-960, 0, 1920, 1080);
 		
 		//if already at last slide, don't check the slide counter
 		if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){

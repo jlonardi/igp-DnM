@@ -32,15 +32,21 @@ public class GameOverScreen {
 			GUILayout.Label("New High Score!", "textfield");
 			GUILayout.Space(100);
 			GUILayout.Label("Enter your name:", "plaintext");
+
+			//if player hits Enter inside textarea, add highscore
+			if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
+				AddHighscore();
+			}
+
 			playerName = GUILayout.TextArea(playerName, 20);
 			GUILayout.EndArea();	
 
 			GUILayout.BeginArea(new Rect(centerX-175, 700,350,600));
+
+			//if player hits Next-button, add highscore
 			if(GUILayout.Button ("Next"))
 			{
-				scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.statistics.treasureAmount,
-				                          game.statistics.dragonSlayed, playerName);
-				game.gameState = GameState.HIGHSCORE_GAME;				
+				AddHighscore();
 			}
 			GUILayout.EndArea();	
 
@@ -64,6 +70,13 @@ public class GameOverScreen {
 			}
 			GUILayout.EndArea();	
 		}
+	}
+
+	private void AddHighscore(){
+		scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.statistics.treasureAmount,
+		                          game.statistics.dragonSlayed, playerName);
+		game.gameState = GameState.HIGHSCORE_GAME;				
+
 	}
 	
 	
