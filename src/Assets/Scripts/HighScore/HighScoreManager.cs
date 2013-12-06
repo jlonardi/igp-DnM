@@ -10,6 +10,7 @@ public class HighScoreManager : MonoBehaviour {
 
 	private List<Score> scores;
 	private string saveDirectory;
+	private int highestID;
 
 	void Awake(){
 		HighScoreManager.instance = this;
@@ -19,6 +20,7 @@ public class HighScoreManager : MonoBehaviour {
 		scores = new List<Score>();
 		findSaveDirectory();
 		loadScoresFromFile();
+		fingHighestID();
 	
 	}
 	//sorts the score array
@@ -36,7 +38,8 @@ public class HighScoreManager : MonoBehaviour {
 	}
 	//adds a new high score to list
 	public void addHighScore(int score, int bodyCount, int treasureValue, bool dragonSlayed, string name){
-		scores.Add(new Score(score, bodyCount, treasureValue, dragonSlayed, name));
+		this.highestID++;
+		scores.Add(new Score(score, bodyCount, treasureValue, dragonSlayed, name,highestID));
 		sort ();
 		if (scores.Count>10){
 			scores.RemoveAt(10);
@@ -49,7 +52,21 @@ public class HighScoreManager : MonoBehaviour {
 		return scores;
 	}
 
-
+	//finds the highest id in the list
+	public void fingHighestID(){
+		int count=scores.Count;
+		this.highestID=0;
+		if(count==0){
+				
+			return;
+		}
+		foreach(Score score in scores){
+			int iD=score.getID();
+			if(iD>this.highestID){
+				this.highestID=iD;
+			}
+		}
+	}
 
 
 	//tries to find the directory where to save, creates new one if it doesn't excist
