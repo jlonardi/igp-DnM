@@ -43,19 +43,19 @@ public class StoryScreen {
 		case 2:
 			pictureIndex = 1;
 			storyHead = "Old Man's House";
-			storyText = "But he also warns about the mean and old dragon which has kept the treasure safe through centuries.";
+			storyText = "Old man also warns about the mean and old dragon which has kept the treasure safe through centuries.";
 			break;
 		case 3:
 			pictureIndex = 2;
 			storyHead = "The Journey Begins";
-			storyText = "But as our player is afraid of no dragon, he packs up and heads up in to the mountains. " +
+			storyText = "As our player is afraid of no dragon, he packs up and heads up in to the mountains. " +
 				"Finally, he finds the hidden valley by using the precise instructions given by the old man.";
 			break;
 		case 4:
 			pictureIndex = 2;
 			storyHead = "The Journey Begins";
-			storyText =  "Player soon finds out that this isn't just any walk in the park, " +
-				"as he runs into the lizard guardians.";
+			storyText =  "But alas, as he runs into the lizard guardians he quickly realizes that this isn't just any " +
+				"walk in the park.";
 			break;
 		case 5:
 			pictureIndex = 2;
@@ -66,8 +66,8 @@ public class StoryScreen {
 		case 6:
 			pictureIndex = 3;
 			storyHead = "Dragon's Lair";
-			storyText = "Old dragons do need to sleep at times so player waits for his moment and steals the treasure while the dragon " + 
-				"is taking her daily nap.";
+			storyText = "Old dragons do need to sleep at times so the player waits for his moment and steals the treasure while the dragon " + 
+				"is taking it's daily nap.";
 			break;
 		case 7:
 			pictureIndex = 3;
