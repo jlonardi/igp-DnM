@@ -32,43 +32,43 @@ public class HighScoreScreen {
 		GUILayout.EndArea();
 
 		//draw column labels
-		GUI.Label(new Rect(220, 250, 100,30), "Rank", "plaintext");
-		GUI.Label(new Rect(350, 250, 100,30), "Name", "plaintext");
-		GUI.Label(new Rect(650, 250, 100,30), "Treasure", "plaintext");
-		GUI.Label(new Rect(800, 250, 100,30), "Enemies", "plaintext");
-		GUI.Label(new Rect(950, 250, 100,30), "Dragon", "plaintext");
-		GUI.Label(new Rect(1090, 250, 100,30), "Score", "plaintext");
+		GUI.Label(new Rect(centerX-520, 250, 100,30), "Rank", "plaintext");
+		GUI.Label(new Rect(centerX-390, 250, 100,30), "Name", "plaintext");
+		GUI.Label(new Rect(centerX-90, 250, 100,30), "Treasure", "plaintext");
+		GUI.Label(new Rect(centerX+60, 250, 100,30), "Enemies", "plaintext");
+		GUI.Label(new Rect(centerX+210, 250, 100,30), "Dragon", "plaintext");
+		GUI.Label(new Rect(centerX+350, 250, 100,30), "Score", "plaintext");
 
 		// show numbers
-		GUILayout.BeginArea(new Rect(260, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX-480, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			GUILayout.Label(""+ (i+1), "plaintext");
 		}
 		GUILayout.EndArea();
 
 		// show names
-		GUILayout.BeginArea(new Rect(365, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX-375, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			GUILayout.Label(""+scores[i].getName(), "plaintext");
 		}
 		GUILayout.EndArea();
 
 		// show treasure value
-		GUILayout.BeginArea(new Rect(680, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX-60, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			GUILayout.Label(""+scores[i].getTreasureValue(), "plaintext");
 		}
 		GUILayout.EndArea();
 		
 		// show body count
-		GUILayout.BeginArea(new Rect(830, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX+90, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			GUILayout.Label(""+scores[i].getBodyCount(), "plaintext");
 		}
 		GUILayout.EndArea();
 		
 		// show dragon slayed
-		GUILayout.BeginArea(new Rect(990, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX+250, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			if (scores[i].getDragonSlayed()){
 				GUILayout.Label("x", "plaintext");
@@ -79,7 +79,7 @@ public class HighScoreScreen {
 		GUILayout.EndArea();
 
 		// show scores
-		GUILayout.BeginArea(new Rect(1090, 300,300,600));
+		GUILayout.BeginArea(new Rect(centerX+360, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
 			GUILayout.Label(""+scores[i].getScore(), "plaintext");
 		}

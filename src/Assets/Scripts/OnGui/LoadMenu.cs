@@ -71,11 +71,11 @@ public class LoadMenu {
 	private string ConvertLevelName(int levelNumber) {
 		switch(levelNumber){
 		case 1:
-			return "Level 1 - Desert";
+			return "Hidden Valley";
 		case 2:
-			return "Level 2 - Forest";
+			return "Forest";
 		case 3:
-			return "Level 3 - Mountain";
+			return "Mountain";
 		default:
 			return levelNumber.ToString();
 		}
