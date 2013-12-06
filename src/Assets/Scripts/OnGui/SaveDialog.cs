@@ -5,6 +5,7 @@ public class SaveDialog {
 	private OnGuiManager gui;
 	private int centerX;
 	private int centerY;
+	private TextEditor editor;
 
 	public void Initialize(){
 		gui = OnGuiManager.instance;
@@ -38,7 +39,14 @@ public class SaveDialog {
 		}
 
 		GUILayout.BeginArea(new Rect(centerX-175, 400,350,600));
+
+		GUI.SetNextControlName("InputBox");
 		SaveManager.instance.container.name = GUILayout.TextArea(saveName, 20);
+
+		GUI.FocusControl("InputBox");
+		editor = (TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+		editor.selectPos = SaveManager.instance.container.name.Length + 1;
+		editor.pos = SaveManager.instance.container.name.Length + 1;
 
 		GUILayout.Space(50);
 

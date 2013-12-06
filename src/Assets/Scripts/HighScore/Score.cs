@@ -47,11 +47,11 @@ public class Score : IComparable<Score>{
 
 	public int CompareTo(Score score1) {
 		if(this.score==score1.getScore()){
-			if(this.iD>score1.getID()){
-				return 1;
+			if(this.iD<score1.getID()){
+				return -1;
 			}
 			else{
-				return -1;
+				return 1;
 			}
 		}
 		else if(this.score<score1.getScore()){

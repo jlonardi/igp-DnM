@@ -8,6 +8,7 @@ public class GameOverScreen {
 	private int centerX;
 	private int centerY;
 	private	string playerName;
+	private TextEditor editor;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -38,7 +39,15 @@ public class GameOverScreen {
 				AddHighscore();
 			}
 
+			GUI.SetNextControlName("PlayerNameInput");
 			playerName = GUILayout.TextArea(playerName, 15);
+
+			GUI.FocusControl("PlayerNameInput");
+			editor = (TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+			editor.selectPos = playerName.Length + 1;
+			editor.pos = playerName.Length + 1;
+
+
 			GUILayout.EndArea();	
 
 			GUILayout.BeginArea(new Rect(centerX-175, 700,350,600));
