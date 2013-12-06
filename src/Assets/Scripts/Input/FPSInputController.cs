@@ -43,6 +43,10 @@ public class FPSInputController : MonoBehaviour {
 		
 		// Get the input vector from kayboard or analog stick
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+//		if (directionVector == Vector3.zero) {
+//			directionVector = new Vector3(Input.GetAxis("Joy X"), 0f, Input.GetAxis("Joy Y"));
+//		}
+
 
 /*		if (Vector3.Distance(directionVector, Vector3.zero) > 0.1f){
 			game.statistics.playerMoving = true;

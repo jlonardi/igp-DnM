@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
+	private Color darkRed;
 	public enum MainMenuButton{
 		START,
 		STORY,
@@ -13,8 +14,15 @@ public class MainMenu : MonoBehaviour {
 	public MainMenuButton menuButton;
 
 	void Start() {
+		darkRed.r = 0.8f;
+		darkRed.g = 0.05f;
+		darkRed.b = 0.05f;
+		darkRed.a = 1f;
+
+
 		//To get the text to be red in the beginning
-		renderer.material.color=Color.red;
+		renderer.material.color=darkRed;
+
 	}
 	
 	void OnMouseEnter() {
@@ -24,7 +32,7 @@ public class MainMenu : MonoBehaviour {
 	
 	void OnMouseExit() {
 		//when mouse leaves the text it will go back to red
-		renderer.material.color= Color.red;
+		renderer.material.color= darkRed;
 	}
 	
 	void Update(){
