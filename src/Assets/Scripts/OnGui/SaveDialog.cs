@@ -38,7 +38,7 @@ public class SaveDialog {
 		}
 
 		GUILayout.BeginArea(new Rect(centerX-175, 400,350,600));
-		SaveManager.instance.container.name = GUILayout.TextArea(saveName, 18);
+		SaveManager.instance.container.name = GUILayout.TextArea(saveName, 20);
 
 		GUILayout.Space(50);
 

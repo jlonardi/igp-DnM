@@ -38,7 +38,7 @@ public class GameOverScreen {
 				AddHighscore();
 			}
 
-			playerName = GUILayout.TextArea(playerName, 18);
+			playerName = GUILayout.TextArea(playerName, 15);
 			GUILayout.EndArea();	
 
 			GUILayout.BeginArea(new Rect(centerX-175, 700,350,600));
