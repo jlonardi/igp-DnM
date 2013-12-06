@@ -78,22 +78,25 @@ public class StoryScreen {
 		case 8:
 			pictureIndex = 4;
 			storyHead = "Orc's Get Involved";
-			storyText = "epic story here";
+			storyText = "As dragon's roar echoes through the valley, the orcs soon figure out what's going on. " +
+				"Orcs appear to be greedy as well so they decide to claim the treasure from the player.";
 			break;
 		case 9:
 			pictureIndex = 4;
 			storyHead = "Orc's Get Involved";
-			storyText = "epic story here";
+			storyText = "... and they also want impale the player's head on a stick so they can decorate their lovely home with it.";
 			break;
 		case 10:
 			pictureIndex = 5;
 			storyHead = "Trapped";
-			storyText = "epic story here";
+			storyText = "As player heads towards the only exit from the valley, orcs initiate their cunning plan by " + 
+				"blocking player's path with rock boulders and by attacking the player.";
 			break;
 		case 11:
 			pictureIndex = 5;
 			storyHead = "Trapped";
-			storyText = "epic story here";
+			storyText = "Their suprise attack doesn't go all that well as player is, after all, heavily armed. " +
+				"But can the player hold back the rest of the enemies?";
 			break;
 		case 12:
 			pictureIndex = 5;
