@@ -56,7 +56,7 @@ public class HighScoreScreen {
 		// show treasure value
 		GUILayout.BeginArea(new Rect(centerX-60, 300,300,600));
 		for (int i=0; i<scores.Count; i++){
-			GUILayout.Label(""+scores[i].getTreasureValue(), "plaintext");
+			GUILayout.Label(""+scores[i].getTreasureValue() + " %", "plaintext");
 		}
 		GUILayout.EndArea();
 		

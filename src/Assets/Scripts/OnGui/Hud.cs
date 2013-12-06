@@ -69,7 +69,7 @@ public class Hud {
 		GUI.EndGroup();
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
-		GUILayout.Label("Treasure: " + game.statistics.treasureAmount, "hud_label");
+		GUILayout.Label("Treasure: " + game.statistics.treasureAmount + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
 		
 		if (game.statistics.gunEnabled){
