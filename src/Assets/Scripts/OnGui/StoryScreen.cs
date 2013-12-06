@@ -107,20 +107,25 @@ public class StoryScreen {
 
 		TellStory(pictureIndex,	storyHead, storyText);
 
+		if(GUI.Button(new Rect(centerX-500, 1000, 300, 50), "Back to Main Menu"))
+		{
+			GameManager.instance.gameState = GameState.MAIN_MENU;
+		}
+
 		if (storySlide>1 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX-100, 1000, 200, 50), "Previous"))
+			if(GUI.Button(new Rect(centerX+100, 1000, 200, 50), "Previous"))
 			{
 				storySlide--;
 			}
 		}
 
 		if (storySlide<11 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX+200, 1000, 200, 50), "Next"))
+			if(GUI.Button(new Rect(centerX+300, 1000, 200, 50), "Next"))
 			{
 				storySlide++;
 			}
 		} else if(storySlide == 11){
-			if(GUI.Button(new Rect(centerX+200, 1000, 200, 50), "Start")){
+			if(GUI.Button(new Rect(centerX+300, 1000, 250, 50), "Start Game")){
 				storySlide++;
 				//loads first level
 				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
