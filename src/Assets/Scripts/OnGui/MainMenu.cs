@@ -48,6 +48,7 @@ public class MainMenu : MonoBehaviour {
 
 		case MainMenuButton.STORY:
 			//show story
+			OnGuiManager.instance.storyScreen.storySlide = 1;
 			GameManager.instance.gameState = GameState.STORY;
 			break;
 			

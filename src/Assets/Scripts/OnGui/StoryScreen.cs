@@ -11,7 +11,6 @@ public class StoryScreen {
 	private int centerY;
 	[HideInInspector]
 	public int storySlide = 1;
-	private Rect imagePosition;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -27,36 +26,36 @@ public class StoryScreen {
 			Initialize();
 		}
 
-		imagePosition = new Rect(centerX-960, 0, 1920, 1080);
+		string storyHead = "";
+		string storyText = "";
 		
+		GUI.Box(new Rect(centerX-600, 25,1200,1000),"", "window");
+
 		//if already at last slide, don't check the slide counter
-		if (GameManager.instance.levelState == LevelState.LOADING_NEWGAME){
-			GUI.DrawTexture(imagePosition, storyImages[4]);
-		} else {
-			GUI.DrawTexture(imagePosition, storyImages[storySlide-1]);
-			switch (storySlide){
-			case 1:
-				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 1");
-				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-				break;
-			case 2:
-				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 2");
-				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-				break;
-			case 3:
-				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 3");
-				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-				break;
-			case 4:
-				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 4");
-				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-				break;
-			case 5:
-				GUI.Box(new Rect(centerX-138, centerY-100,275,250),"Slide 5");
-				GUI.Label(new Rect(centerX-100, centerY-150,275,250), "nothing yet");
-				break;
-			}
+		switch (storySlide){
+		case 1:
+			storyHead = "Old Man's House";
+			storyText = "epic story here";
+			break;
+		case 2:
+			storyHead = "The Journey Begins";
+			storyText = "epic story here";
+			break;
+		case 3:
+			storyHead = "Dragon's Lair";
+			storyText = "epic story here";
+			break;
+		case 4:
+			storyHead = "Orc's Get Involved";
+			storyText = "epic story here";
+			break;
+		case 5:
+			storyHead = "Trapped";
+			storyText = "epic story here";
+			break;
 		}
+
+		TellStory(storyHead, storyText);
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-200, 1000,100,200));
 		if (storySlide<5 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
@@ -69,11 +68,22 @@ public class StoryScreen {
 				//loads first level
 				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
 				Application.LoadLevel("GameLevel");
-				storySlide = 1;
 			}
 		}
 		GUILayout.EndArea();	
 	}
-	
+
+	private void TellStory(string head, string text){
+		Rect imagePosition = new Rect(centerX-480, 250, 960, 540);
+		Rect textPosition = new Rect(centerX-450, 820,300,600);
+
+		GUI.DrawTexture(imagePosition, storyImages[storySlide-1]);
+		GUILayout.BeginArea(new Rect(centerX-220, 135,440,600));
+		GUILayout.Label("- " + head + " - ", "textfield");
+		GUILayout.EndArea();
+		GUILayout.BeginArea(textPosition);
+		GUILayout.Label(text, "plaintext");
+		GUILayout.EndArea();
+	}
 	
 }
