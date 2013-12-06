@@ -37,36 +37,36 @@ public class StoryScreen {
 		case 1:
 			pictureIndex = 1;
 			storyHead = "Old Man's House";
-			storyText = "Player hears from the elderly man that there is a hidden valley up high in the mountains " +
-				"and that there's a treasure with significant amount of gold and riches.";
+			storyText = "Player learns from an elderly man that there is a hidden valley up high in the mountains, " +
+				"and in that valley there's a treasure with a significant amount of gold and riches.";
 			break;
 		case 2:
 			pictureIndex = 1;
 			storyHead = "Old Man's House";
-			storyText = "Old man also warns about the mean and old dragon which has kept the treasure safe through centuries.";
+			storyText = "The old man also warns about the mean and old dragon which has kept the treasure safe through the centuries.";
 			break;
 		case 3:
 			pictureIndex = 2;
 			storyHead = "The Journey Begins";
 			storyText = "As our player is afraid of no dragon, he packs up and heads up in to the mountains. " +
-				"Finally, he finds the hidden valley by using the precise instructions given by the old man.";
+				"Finally, he finds his way into the hidden valley by using the old man's instructions.";
 			break;
 		case 4:
 			pictureIndex = 2;
 			storyHead = "The Journey Begins";
-			storyText =  "But alas, as he runs into the lizard guardians he quickly realizes that this isn't just any " +
+			storyText =  "But alas, as he runs into two lizard guardians, he quickly realizes that this isn't just a " +
 				"walk in the park.";
 			break;
 		case 5:
 			pictureIndex = 2;
 			storyHead = "The Journey Begins";
-			storyText =  "Luckily though, our player was prepared for the journey by packing his trustworthy Beretta pistol " +
-				"and M4 assault rifle and with those he could take the guardians out with ease.";
+			storyText =  "Luckily enough, our player prepared for the journey by packing his trustworthy Beretta pistol " +
+				"and M4 assault rifle with him. With those, taking out the guardians was easy.";
 			break;
 		case 6:
 			pictureIndex = 3;
 			storyHead = "Dragon's Lair";
-			storyText = "Old dragons do need to sleep at times so the player waits for his moment and steals the treasure while the dragon " + 
+			storyText = "Old dragons do need to sleep at times, so the player waits for his moment and steals the treasure while the dragon " + 
 				"is taking it's daily nap.";
 			break;
 		case 7:
@@ -77,26 +77,26 @@ public class StoryScreen {
 			break;
 		case 8:
 			pictureIndex = 4;
-			storyHead = "Orc's Get Involved";
-			storyText = "As dragon's roar echoes through the valley, the orcs soon figure out what's going on. " +
-				"Orcs appear to be greedy as well so they decide to claim the treasure from the player.";
+			storyHead = "The Chase Begins";
+			storyText = "As the dragon's roar echoes through the valley, orcs nearby figure out what's happening and " +
+				"decide to seize the treasure from the player.";
 			break;
 		case 9:
 			pictureIndex = 4;
-			storyHead = "Orc's Get Involved";
-			storyText = "... and they also want impale the player's head on a stick so they can decorate their lovely home with it.";
+			storyHead = "The Chase Begins";
+			storyText = "... and they also want to impale the player's head on a stick so they can decorate their lovely home with it.";
 			break;
 		case 10:
 			pictureIndex = 5;
 			storyHead = "Trapped";
-			storyText = "As player heads towards the only exit from the valley, orcs initiate their cunning plan by " + 
-				"blocking player's path with rock boulders and by attacking the player.";
+			storyText = "As the player heads towards the only exit from the valley, the orcs initiate their cunning plan by " + 
+				"blocking the player's path with boulders and attacking the player.";
 			break;
 		case 11:
 			pictureIndex = 5;
 			storyHead = "Trapped";
-			storyText = "Their suprise attack doesn't go all that well as player is, after all, heavily armed. " +
-				"But can the player hold back the rest of the enemies?";
+			storyText = "Their suprise attack doesn't go all that well as the player is, after all, heavily armed. " +
+				"But can the player hold back rest of the surfacing enemies?";
 			break;
 		case 12:
 			pictureIndex = 5;
@@ -107,21 +107,26 @@ public class StoryScreen {
 
 		TellStory(pictureIndex,	storyHead, storyText);
 
-		GUILayout.BeginArea(new Rect(gui.GetWidth()-200, 1000,100,200));
+		if (storySlide>1 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
+			if(GUI.Button(new Rect(centerX-100, 1000, 200, 50), "Previous"))
+			{
+				storySlide--;
+			}
+		}
+
 		if (storySlide<11 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
-			if(GUILayout.Button ("Next"))
+			if(GUI.Button(new Rect(centerX+200, 1000, 200, 50), "Next"))
 			{
 				storySlide++;
 			}
 		} else if(storySlide == 11){
-			if(GUILayout.Button ("Start")) {
+			if(GUI.Button(new Rect(centerX+200, 1000, 200, 50), "Start")){
 				storySlide++;
 				//loads first level
 				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
 				Application.LoadLevel("GameLevel");
 			}
 		}
-		GUILayout.EndArea();	
 	}
 
 	private void TellStory(int pictureIndex, string head, string text){
