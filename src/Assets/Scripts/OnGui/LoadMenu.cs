@@ -64,7 +64,7 @@ public class LoadMenu {
 	//get actual playing time from float value
 	private string ConvertPlayTime(float playTime){
 		TimeSpan t = TimeSpan.FromSeconds(playTime);
-		return string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+		return string.Format("{0:D2}:{1:D2}.{2:D2}", t.Hours, t.Minutes, t.Seconds);
 	}
 
 	//get actual level name from level number
@@ -87,11 +87,11 @@ public class LoadMenu {
 			return;
 		}
 
-		GUI.Label(new Rect(0,25,450,90), ConvertLevelName(saveInfo[windowID].level));
-		GUI.DrawTexture(new Rect(55,100,320,180), saveInfo[windowID].screenshot);
+		//GUI.Label(new Rect(40,275,350,50), ConvertLevelName(saveInfo[windowID].level));
+		GUI.DrawTexture(new Rect(55,110,320,180), saveInfo[windowID].screenshot);
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		GUI.Label(new Rect(40,310,335,20), saveInfo[windowID].dateTime, "plaintext");
-		GUI.Label(new Rect(40,360,350,20), ConvertPlayTime(saveInfo[windowID].playTime), "plaintext");
+		GUI.Label(new Rect(40,320,335,20), saveInfo[windowID].dateTime, "plaintext");
+		GUI.Label(new Rect(40,380,350,20), ConvertPlayTime(saveInfo[windowID].playTime), "plaintext");
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 	}	
 

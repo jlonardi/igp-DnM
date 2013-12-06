@@ -126,7 +126,6 @@ public class OnGuiManager : MonoBehaviour {
 		{		
 		case GameState.PAUSE_MENU:
 			bloodSplatter.Show();
-			hud.Show();
 			pauseMenu.Show();
 			break;
 		case GameState.STORY:
@@ -137,17 +136,14 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.LOAD_MENU_PAUSE:
 			bloodSplatter.Show();
-			hud.Show();
 			loadMenu.Show();
 			break;
 		case GameState.SAVE_MENU:
 			bloodSplatter.Show();
-			hud.Show();
 			saveMenu.Show();
 			break;
 		case GameState.SAVE_DIALOG:
 			bloodSplatter.Show();
-			hud.Show();
 			saveDialog.Show();
 			break;
 		case GameState.SAVE_SCREENSHOT:
