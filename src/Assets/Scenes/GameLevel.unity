@@ -26681,6 +26681,7 @@ GameObject:
   - 4: {fileID: 576982942}
   - 95: {fileID: 576982943}
   - 114: {fileID: 576982944}
+  - 114: {fileID: 576982945}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -26728,6 +26729,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breathFire: 1
+  flying: 0
+--- !u!114 &576982945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 576982941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fae0c496ae30d4ba5ae10981500fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577193119
 GameObject:
   m_ObjectHideFlags: 0

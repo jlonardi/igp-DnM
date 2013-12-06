@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 	public MainMenuButton menuButton;
 
 	void Start() {
-		darkRed.r = 0.8f;
+		darkRed.r = 0.9f;
 		darkRed.g = 0.05f;
 		darkRed.b = 0.05f;
 		darkRed.a = 1f;
