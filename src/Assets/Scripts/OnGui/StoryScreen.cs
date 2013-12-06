@@ -130,7 +130,7 @@ public class StoryScreen {
 	}
 
 	private void TellStory(int pictureIndex, string head, string text){
-		Rect imagePosition = new Rect(centerX-480, 225, 960, 540);
+		Rect imagePosition = new Rect(centerX-400, 225, 800, 540);
 		Rect textPosition = new Rect(centerX-500, 780, 1030, 300);
 
 		GUI.DrawTexture(imagePosition, storyImages[pictureIndex-1]);
