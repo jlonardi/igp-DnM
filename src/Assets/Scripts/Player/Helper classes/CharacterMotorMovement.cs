@@ -8,6 +8,13 @@ public class CharacterMotorMovement {
 	public float maxSidewaysSpeed = 10.0f;
 	public float maxBackwardsSpeed = 10.0f;
 	
+	//time to rest before new sprint (s)
+	public float sprintCoolDown = 3;
+	//how long can player sprint (s)
+	public float sprintDuration = 10;
+
+	public float sprintSpeedMultiplier = 1.6f;
+
 	// Curve for multiplying speed based on slope (negative = downwards)
 	public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
 	

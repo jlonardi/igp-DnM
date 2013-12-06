@@ -18,6 +18,13 @@ public class CharacterMotor : MonoBehaviour {
 	public bool canControl = true;
 	public bool useFixedUpdate = true;
 
+	//time when sprint was initiated
+	private float sprintInitTime;
+	//time when sprint cooldown was initiated
+	private float sprintCoolDownInitTime;
+
+	public bool sprinting = false;
+
 	public float movementSpeed = 0f;        
 	private float prevMovementSpeed = 0f;        
 	private List<Vector3> movementPositions = new List<Vector3>();
@@ -90,6 +97,10 @@ public class CharacterMotor : MonoBehaviour {
 		}
 		if(game.gameState != GameState.RUNNING){
 			return;
+		}
+
+		if (sprinting){
+			CheckSprintDuration();
 		}
 
 		Vector3 velocity = movement.velocity;			// We copy the actual velocity into a temporary variable that we can manipulate.
@@ -379,6 +390,10 @@ public class CharacterMotor : MonoBehaviour {
 			return 0f;
 		else {
 			float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0f ? movement.maxForwardSpeed : movement.maxBackwardsSpeed) / movement.maxSidewaysSpeed;
+			if (sprinting){
+				zAxisEllipseMultiplier *= movement.sprintSpeedMultiplier;
+			}
+
 			Vector3 temp = new Vector3(desiredMovementDirection.x, 0f, desiredMovementDirection.z / zAxisEllipseMultiplier).normalized;
 			float length = new Vector3(temp.x, 0f, temp.z * zAxisEllipseMultiplier).magnitude * movement.maxSidewaysSpeed;
 			return length;
@@ -391,4 +406,26 @@ public class CharacterMotor : MonoBehaviour {
 		movement.frameVelocity = Vector3.zero;
 		SendMessage("OnExternalVelocity");
 	}	
+
+	public void StartSprint(){
+		if (!sprinting && (sprintCoolDownInitTime + movement.sprintCoolDown < Time.time)){
+			sprintInitTime = Time.time;
+			sprinting = true;
+		}
+	}
+
+	private void CheckSprintDuration(){
+		if ((sprintInitTime + movement.sprintDuration) < Time.time){
+			StopSprint();
+		}
+	}
+
+	public void StopSprint(){
+		sprinting = false;
+		float sprintTime = Time.time - sprintInitTime;
+		float sprintTimeLeft = movement.sprintDuration - sprintTime;
+		//reduce cooldown time when sprint stopped before maximum duration
+		sprintCoolDownInitTime = Time.time - sprintTimeLeft;
+	}
+
 }

@@ -54,6 +54,12 @@ public class FPSInputController : MonoBehaviour {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway
 			float directionLength = directionVector.magnitude;
+
+			// if player stops while sprinting, stop sprint
+			if (motor.sprinting && directionLength<0.5f){
+				motor.StopSprint();
+			}
+
 			directionVector = directionVector / directionLength;
 			
 			// Make sure the length is no bigger than 1
@@ -115,6 +121,9 @@ public class FPSInputController : MonoBehaviour {
 			gunManager.ChangeToGun(4);
 		}
 
+		if (Input.GetButton("Sprint") && game.treasureState!=TreasureState.CARRYING){
+			motor.StartSprint();
+		}
 
 
 		//Check if the user if firing the weapon
@@ -156,6 +165,10 @@ public class FPSInputController : MonoBehaviour {
 			} else if(game.pickupState == PickupState.TREASURE){
 				game.pickupState = PickupState.NONE;
 				game.treasureState = TreasureState.CARRYING;
+				// if sprinting, stop it while carrying the treasure
+				if (motor.sprinting){
+					motor.StopSprint();
+				}
 				// disable gun so we can carry treasure
 				gunManager.currentGun.enabled = false;
 				// find treasure positions from scene
