@@ -174,6 +174,7 @@ public class FPSInputController : MonoBehaviour {
 				game.statistics.playerArmor = 50;
 				// hide armor on scene
 				GameObject armor = GameObject.Find("armorOnGround");
+				PlayerSounds.instance.PlayArmorPickupSound();
 				armor.SetActive(false);
 				// increase scar-L collider so it's easier to pick up
 				GameObject scarL = GameObject.Find("pickup_scarl");
@@ -193,6 +194,7 @@ public class FPSInputController : MonoBehaviour {
 				// set minigun available
 				gunManager.guns[3].picked_up = true;
 				gunManager.ChangeToGun(3);
+				PlayerSounds.instance.PlayGunPickupSound();
 				// hide minigun on scene
 				GameObject minigun = GameObject.Find("minigunOnGround");
 				minigun.SetActive(false);
@@ -202,6 +204,7 @@ public class FPSInputController : MonoBehaviour {
 				// set minigun available
 				gunManager.guns[4].picked_up = true;
 				gunManager.ChangeToGun(4);
+				PlayerSounds.instance.PlayGunPickupSound();
 				// hide scar-L on scene
 				GameObject scarL = GameObject.Find("scarlOnGround");
 				scarL.SetActive(false);

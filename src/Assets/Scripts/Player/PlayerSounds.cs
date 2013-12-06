@@ -10,6 +10,7 @@ public class PlayerSounds : MonoBehaviour {
 	public AudioClip[] walkSounds;
 	public AudioClip[] jumpSounds;
 	public AudioClip armorPickupSound;
+	public AudioClip gunPickupSound;
 
 	private float walkSoundTimer = 0;
 
@@ -49,16 +50,20 @@ public class PlayerSounds : MonoBehaviour {
 		audio.PlayOneShot(armorPickupSound);
 	}
 
+	public void PlayGunPickupSound() {
+		audio.PlayOneShot(gunPickupSound);
+	}
+
 	public void PlayWalkSound() {
 		if (!motor.IsJumping() && walkSoundTimer <= 0) {
 			int clipNum = Random.Range(0, walkSounds.Length - 1);
-			audio.PlayOneShot(walkSounds[clipNum]);
+			audio.PlayOneShot(walkSounds[clipNum], 0.6f);
 			walkSoundTimer = 0.5f;
 		}
 	}
 
 	public void PlayJumpSound() {
 		int clipNum = Random.Range(0, jumpSounds.Length - 1);
-		audio.PlayOneShot(jumpSounds[clipNum]);
+		audio.PlayOneShot(jumpSounds[clipNum], 0.6f);
 	}
 }
