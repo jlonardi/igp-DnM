@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 	private Color darkRed;
+	private GameManager game;
+
 	public enum MainMenuButton{
 		START,
 		STORY,
@@ -36,11 +38,15 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	void Update(){
-		if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN || GameManager.instance.gameState == GameState.STORY ||
-		    GameManager.instance.gameState == GameState.HIGHSCORE_MAIN){
+		if (game == null){
+			game = GameManager.instance;
+		}
+
+		if (game.gameState == GameState.LOAD_MENU_MAIN || game.gameState == GameState.STORY ||
+		    game.gameState == GameState.HIGHSCORE_MAIN){
 			renderer.enabled = false;
 		} else {
-			GameManager.instance.gameState = GameState.MAIN_MENU;
+			game.gameState = GameState.MAIN_MENU;
 			renderer.enabled = true;
 		}
 
@@ -50,27 +56,27 @@ public class MainMenu : MonoBehaviour {
 		switch(menuButton){
 		case MainMenuButton.START:
 			//loads first level
-			GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
+			game.saves.levelState = LevelState.LOADING_NEWGAME;
 			Application.LoadLevel("GameLevel");
 			break;
 
 		case MainMenuButton.STORY:
 			//show story
 			OnGuiManager.instance.storyScreen.storySlide = 1;
-			GameManager.instance.gameState = GameState.STORY;
+			game.gameState = GameState.STORY;
 			break;
 			
 		case MainMenuButton.HIGHSCORE:
 			//show story
-			GameManager.instance.gameState = GameState.HIGHSCORE_MAIN;
+			game.gameState = GameState.HIGHSCORE_MAIN;
 			break;
 			
 		case MainMenuButton.LOAD:
 			// load previous save details
-			SaveManager.instance.GetSaveInfo();
+			game.saves.GetSaveInfo();
 
 			//show load menu
-			GameManager.instance.gameState = GameState.LOAD_MENU_MAIN;
+			game.gameState = GameState.LOAD_MENU_MAIN;
 			break;
 
 		case MainMenuButton.QUIT:

@@ -3,13 +3,13 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary; 
 
-namespace UnitySerialization {	
+namespace UnitySerialization {
 	public class SaveSerializer {
-		
 		private string saveDirectory;
 		
 		public SaveSerializer(){
 			string docsDirectory;
+
 			try {
 				docsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			} catch (Exception){
@@ -53,7 +53,7 @@ namespace UnitySerialization {
 
 			if (loadLevel){
 				// when data is restored into save container, load level
-				GameManager.instance.levelState = LevelState.LOADING_SAVE;
+				GameManager.instance.saves.levelState = LevelState.LOADING_SAVE;
 				Application.LoadLevel(1); //levelNumber							
 			}
 		}

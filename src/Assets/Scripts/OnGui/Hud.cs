@@ -40,7 +40,7 @@ public class Hud {
 		}
 
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		if (game.treasureState == TreasureState.CARRYING){
+		if (!game.treasure.OnGround()){
 			GUI.Label(helpPosition, "Press 'E' to drop the treasure");
 		} else if(game.pickupState == PickupState.TREASURE){
 			GUI.Label(helpPosition, "Press 'E' to pick up the treasure");

@@ -5,16 +5,17 @@ public class Pickup : MonoBehaviour {
 	private GameManager game;
 
 	void OnTriggerEnter(Collider c){
-		// if not triggered by player, do nothing
-		if (!c.name.Contains("Player")){
-			return;
-		}
 		// assign game manager
 		if (game == null){
 			game = GameManager.instance;
 		}
 
-		if (gameObject.name.Equals("pickup_treasure") && game.treasureState == TreasureState.SET_ON_GROUND) {
+		// if not triggered by player, do nothing
+		if (!c.name.Contains("Player")){
+			return;
+		}
+
+		if (gameObject.name.Equals("pickup_treasure") && game.treasure.OnGround()) {
 			game.pickupState = PickupState.TREASURE;
 
 		} else if (gameObject.name.Equals("pickup_grenadebox")) {

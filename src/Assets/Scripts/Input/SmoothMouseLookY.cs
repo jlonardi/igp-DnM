@@ -19,12 +19,18 @@ public class SmoothMouseLookY : MonoBehaviour {
 
 	private float minimumY;
 	private float maximumY;
+
+	private GameManager game;
 	 	
-	void Update(){			
- 		// mouse look doesn't work if game not running
-		if(GameManager.instance.gameState != GameState.RUNNING){
+	void Update(){
+		if (game == null){
+			game = GameManager.instance;
+		}
+		// mouse look doesn't work if game not running
+		if(game.gameState != GameState.RUNNING){
 			return;
 		}
+
 		// get raw mouse data
    	    input = Input.GetAxisRaw("Mouse Y");
 
@@ -43,7 +49,7 @@ public class SmoothMouseLookY : MonoBehaviour {
         position += deltaSmooth;
 		
 		//if carrying treasure, restrict mouse look angle
-		if(GameManager.instance.treasureState == TreasureState.SET_ON_GROUND){
+		if(game.treasure.OnGround()){
 			minimumY = -80f;
 			maximumY = 80f;
 		} else {

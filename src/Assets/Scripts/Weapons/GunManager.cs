@@ -41,7 +41,7 @@ public class GunManager : MonoBehaviour {
 			game = GameManager.instance;
 		}
 
-		if (!currentGun.enabled && game.treasureState != TreasureState.CARRYING){
+		if (!currentGun.enabled && game.treasure.OnGround()){
 			currentGun.enabled = true;
 		}
 
@@ -83,7 +83,7 @@ public class GunManager : MonoBehaviour {
 	// method which is called when player wants to throw a grenade
 	public void ThrowGrenade(){
 		// if treasure is not on ground or already throwing a grenade, return
-		if (game.treasureState != TreasureState.SET_ON_GROUND || throwingGrenade){
+		if (!game.treasure.OnGround() || throwingGrenade){
 			return;
 		}
 		if ( grenadeCount <= 0){

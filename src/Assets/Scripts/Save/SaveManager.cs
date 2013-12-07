@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public class SaveManager : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SaveManager instance;
+	public LevelState levelState = LevelState.LOADED;
+
+	[HideInInspector]
 	public int maxSaveSlots = 5; //max amount of games saved
 	public SaveInfo[] saveInfo;
 
@@ -20,8 +23,9 @@ public class SaveManager : MonoBehaviour {
 	public void Awake()
 	{
 		// never destroy Save Manager on scene load
-		SaveManager.instance = this;
 		DontDestroyOnLoad (this);
+
+		SaveManager.instance = this;
 		saveInfo = new SaveInfo[maxSaveSlots];
 	}
 

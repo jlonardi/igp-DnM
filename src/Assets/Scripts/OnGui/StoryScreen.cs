@@ -112,14 +112,14 @@ public class StoryScreen {
 			GameManager.instance.gameState = GameState.MAIN_MENU;
 		}
 
-		if (storySlide>1 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
+		if (storySlide>1 && game.saves.levelState != LevelState.LOADING_NEWGAME){
 			if(GUI.Button(new Rect(centerX+100, 935, 200, 50), "Previous"))
 			{
 				storySlide--;
 			}
 		}
 
-		if (storySlide<11 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
+		if (storySlide<11 && game.saves.levelState != LevelState.LOADING_NEWGAME){
 			if(GUI.Button(new Rect(centerX+300, 935, 200, 50), "Next"))
 			{
 				storySlide++;
@@ -128,7 +128,7 @@ public class StoryScreen {
 			if(GUI.Button(new Rect(centerX+300, 935, 250, 50), "Start Game")){
 				storySlide++;
 				//loads first level
-				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
+				game.saves.levelState = LevelState.LOADING_NEWGAME;
 				Application.LoadLevel("GameLevel");
 			}
 		}
