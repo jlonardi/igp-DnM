@@ -356,6 +356,10 @@ public class CharacterMotor : MonoBehaviour {
 	public bool IsJumping() {
 		return jumping.jumping;
 	}
+
+	public bool IsSprinting() {
+		return sprinting;
+	}
 	
 	public bool IsSliding() {
 		return (grounded && sliding.enabled && TooSteep());
