@@ -21,7 +21,7 @@ public class DragonAnimator : MonoBehaviour {
 		}		
 		animator.SetBool("Flying", dragon.flying);
 		animator.SetBool("Breath Fire", dragon.breathFire);
-		animator.SetBool("Breath Fire", dragon.grabbing);
+		animator.SetBool("Grabbing", dragon.grabbing);
 	}
 
 }

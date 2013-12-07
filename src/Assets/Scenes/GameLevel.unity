@@ -16053,8 +16053,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400334, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
   m_PrefabInternal: {fileID: 1709115003}
   m_GameObject: {fileID: 343328955}
-  m_LocalRotation: {x: -.452982306, y: -.452982098, z: .542929351, w: .542993546}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalRotation: {x: -.416666478, y: -.416670412, z: .5712713, w: .571335256}
+  m_LocalPosition: {x: -1.50006151, y: -7.98489054e-06, z: -5.56774876e-06}
   m_LocalScale: {x: 5.8288455, y: 5.82883453, z: 5.82883739}
   m_Children:
   - {fileID: 983488663}
@@ -38139,6 +38139,8 @@ MonoBehaviour:
   turningSpeed: 5
   minDistanceFromPlayer: 7
   health: 1000
+  head: {fileID: 0}
+  timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
   painSounds:
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
@@ -41727,6 +41729,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 862751312}
+  - 65: {fileID: 862751314}
   - 65: {fileID: 862751313}
   m_Layer: 12
   m_Name: a
@@ -41769,6 +41772,19 @@ BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862751311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.9099998, y: 25.6000004, z: 14.8000002}
+  m_Center: {x: 0, y: -6.19000006, z: 2.46000004}
+--- !u!65 &862751314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 131f4be3db3c20b42bbe7b0a449e15ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 1709115003}
   m_GameObject: {fileID: 862751311}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -94291,6 +94307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91287e02fe6dd342a80f5932131aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1536
   lootSound: {fileID: 8300000, guid: c00512a5380c2774eb864b0bd2f1f056, type: 3}
   dropSound: {fileID: 8300000, guid: 73bbff0571a29bb49977ccfc4b8dc6de, type: 3}
 --- !u!95 &2026712659

@@ -508,7 +508,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400066}
-  - 136: {fileID: 13600000}
   m_Layer: 12
   m_Name: paunch
   m_TagString: Dragon
@@ -1317,9 +1316,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400172}
+  - 65: {fileID: 6500000}
   m_Layer: 12
   m_Name: a
-  m_TagString: Untagged
+  m_TagString: Dragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4641,8 +4641,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100334}
-  m_LocalRotation: {x: -.452982306, y: -.452982098, z: .542929351, w: .542993546}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalRotation: {x: -.416666478, y: -.416670412, z: .5712713, w: .571335256}
+  m_LocalPosition: {x: -1.50006151, y: -7.98489054e-06, z: -5.56774876e-06}
   m_LocalScale: {x: 5.8288455, y: 5.82883453, z: 5.82883739}
   m_Children:
   - {fileID: 400112}
@@ -5075,6 +5075,18 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.9099998, y: 25.6000004, z: 14.8000002}
+  m_Center: {x: 0, y: -6.19000006, z: 2.46000004}
 --- !u!76 &7600002
 WorldParticleCollider:
   m_ObjectHideFlags: 1
@@ -5283,19 +5295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 30
---- !u!136 &13600000
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100066}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 5.30000019
-  m_Height: 29.0499992
-  m_Direction: 0
-  m_Center: {x: -2.6500001, y: 0, z: -1.66999996}
 --- !u!136 &13600002
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -5303,12 +5302,12 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.26999998
-  m_Height: 12.2200003
+  m_Radius: 3.58999991
+  m_Height: 16.8299999
   m_Direction: 0
-  m_Center: {x: -.670000017, y: 0, z: 0}
+  m_Center: {x: 2.70000005, y: 0, z: 0}
 --- !u!136 &13600004
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -5316,12 +5315,12 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100136}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.07999992
-  m_Height: 11.2600002
+  m_Radius: 3.52999997
+  m_Height: 14.3999996
   m_Direction: 0
-  m_Center: {x: -1.25999999, y: 0, z: 0}
+  m_Center: {x: -.280000001, y: 0, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
