@@ -29,7 +29,7 @@ public class DragonsBreathParticles : MonoBehaviour {
 	// this applies fire particle damage to player
 	void OnParticleCollision(GameObject other){
 		if(other.tag == "Player"){
-			game.player.TakeDamage(2f, DamageType.FIRE);
+			game.player.TakeDamage(1f, DamageType.FIRE);
 		}
 	}
 }

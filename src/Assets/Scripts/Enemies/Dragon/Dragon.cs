@@ -14,7 +14,7 @@ public class Dragon : MonoBehaviour {
 	public float speed = 15f;
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
-	public float health = 1000;
+	public float health = 10000;
 	private Transform tr;
 	private Transform player;
 	public Transform head;
@@ -179,6 +179,7 @@ public class Dragon : MonoBehaviour {
 		if(health <= 0) {
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
+			EnemyManager.instance.disableDragonSpawns();
 		}
 		AfterTakeDamage();
 	}

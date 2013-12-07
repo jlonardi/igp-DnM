@@ -32,6 +32,7 @@ public class TriggerHandler : MonoBehaviour {
 			if(!dragonHasAggroOnPlayer) {
 				dragonHasAggroOnPlayer = true;
 				dragon.flyBackToLair();
+				EnemyManager.instance.setDragonSpawns();
 				Debug.Log("Player aggroed the dragon");
 			}
 		}

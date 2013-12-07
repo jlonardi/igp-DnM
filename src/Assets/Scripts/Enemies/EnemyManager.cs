@@ -7,17 +7,23 @@ public class EnemyManager : MonoBehaviour {
 	public static EnemyManager instance;
 	
 	//spawning will stop after this spawncount
-	public int maxSpawnCount = 100;
+	public float maxSpawnCount = 100f;
 
 	//spawning will stop after game has lasted longer than this time (s)
 	public float maxSpawnTime = 300;
 
 	//maximum amount of enemies at once on the game level
-	public int maxEnemies = 10;
+	public float maxEnemies = 10;
+
+	public bool dragonFightSpwans = false;
 
 	public Transform[] areas;	
+	public Transform[] dragonSpawns;
 	public float timeOfLastWave = -3f;
 	public float waveInterval = 3f;
+
+	private float originalWaveInterval = 0f;
+	private float originalMaxEnemies = 0f;
 
 	public GameObject orcPrefab;
 	public GameObject lizardPrefab;
@@ -47,6 +53,10 @@ public class EnemyManager : MonoBehaviour {
 		player = GameObject.Find("Player");	
 		Transform spawns = GameObject.Find("Spawns").transform;
 		areas = spawns.GetComponentsInChildren<Transform>();
+
+		spawns = GameObject.Find("DragonSpawns").transform;
+		dragonSpawns = spawns.GetComponentsInChildren<Transform>();
+
 		spawnTimeStart = Time.time;
 	}
 
@@ -54,9 +64,24 @@ public class EnemyManager : MonoBehaviour {
 	void Update () {
 		
 		if(spawnEnabled && newWaveNeeded()) {
-			//Debug.Log("new spawn);
 			createSpawnWave();
 		}
+	}
+
+	public void setDragonSpawns() {
+		dragonFightSpwans = true;
+		originalMaxEnemies = maxEnemies;
+		originalWaveInterval = waveInterval;
+		maxEnemies = maxEnemies * 4;
+		waveInterval = waveInterval / 3;
+
+	}
+
+	public void disableDragonSpawns() {
+		dragonFightSpwans = false;
+		maxEnemies = originalMaxEnemies;
+		waveInterval = originalWaveInterval;
+
 	}
 	
 	private bool newWaveNeeded() {
@@ -81,24 +106,48 @@ public class EnemyManager : MonoBehaviour {
 	}
 	
 	private void createSpawnWave() {
-		int index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
+
+		int index = 0;
+
+		if(!dragonFightSpwans) {
+			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
+
+			while( !areas[index].gameObject.name.Equals( "Spawnarea") &&
+					Vector3.Distance( areas[index].position, player.transform.position) < 50) {
+				index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
+			}
+		} else {
+			index = (int)Mathf.Round(Random.Range(0f, dragonSpawns.Length-1));		
+			Debug.Log("Spawn index was " +  index);
+			while( !dragonSpawns[index].gameObject.name.Equals( "DragonSpawn")) {
+				index = (int)Mathf.Round(Random.Range(0f, dragonSpawns.Length-1));
+			}
+			Debug.Log("Spawn position is " + dragonSpawns[index].position);
 		
-		while(Vector3.Distance( areas[index].position, player.transform.position) < 50) {
-			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 		}
 		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));
 
-		nextEnemyType++;
+		if(dragonFightSpwans) {
+			nextEnemyType = 2;
+		} else {
+			nextEnemyType++;
+		}
+
+		GameObject enemy;
 		// create a new enemy instance
 		if (nextEnemyType == 1){
-			GameObject enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
+			enemy = CreateEnemy(EnemyType.ORC, areas[index].position + offset);
 			AlignEnemy(enemy);
 		} else if (nextEnemyType == 2){
-			GameObject enemy = CreateEnemy(EnemyType.LIZARD, areas[index].position + offset);
+			if(dragonFightSpwans) {
+				enemy = CreateEnemy(EnemyType.LIZARD, dragonSpawns[index].position);
+			} else {
+				enemy = CreateEnemy(EnemyType.LIZARD, areas[index].position + offset);
+			}
 			AlignEnemy(enemy);
 		} else {
-			GameObject enemy = CreateEnemy(EnemyType.WEREWOLF, areas[index].position + offset);
+				enemy = CreateEnemy(EnemyType.WEREWOLF, areas[index].position + offset);
 			AlignEnemy(enemy);
 			// as this is the last enemy type, reset next counter
 			nextEnemyType = 0;

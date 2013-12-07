@@ -5254,7 +5254,7 @@ MonoBehaviour:
   speed: 15
   turningSpeed: 5
   minDistanceFromPlayer: 7
-  health: 1000
+  health: 10000
   head: {fileID: 0}
   timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
