@@ -16,6 +16,7 @@ public class Hud {
 	private float currentArmor;
 
 	private GameManager game;
+	private Gun gun;
 	private OnGuiManager gui;
 	private int centerX;
 	private int centerY;
@@ -23,7 +24,6 @@ public class Hud {
 	public void Initialize(){
 		game = GameManager.instance;
 		gui = OnGuiManager.instance;
-
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 
@@ -71,19 +71,21 @@ public class Hud {
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
 		GUILayout.Label("Treasure: " + game.statistics.treasureAmount + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
-		
-		if (game.statistics.gunEnabled){
-			GUILayout.Label("Grenades: " + game.statistics.grenadeCount, "hud_label");
-			GUILayout.Label("Gun: " + game.statistics.gunName, "hud_label");
-			GUILayout.Label("Ammo: " + game.statistics.gunRounds, "hud_label");
+
+		gun = game.weapons.currentGun;
+
+		if (gun.enabled){
+			GUILayout.Label("Grenades: " + game.weapons.grenadeCount, "hud_label");
+			GUILayout.Label("Gun: " + gun.name, "hud_label");
+			GUILayout.Label("Ammo: " + gun.currentRounds, "hud_label");
 			string clips;
-			if (game.statistics.gunUnlimitedClips){
+			if (gun.unlimited){
 				clips = "unlimited";
 			} else {
-				clips = game.statistics.gunClips.ToString();
+				clips = "" + gun.totalClips;
 			}
 			GUILayout.Label("Clips: " + clips, "hud_label");
-			if (game.statistics.gunReloading){
+			if (gun.reloading){
 				GUILayout.Label("Reloading...", "hud_label");
 			}
 		}

@@ -56,12 +56,14 @@ public class Treasure : MonoBehaviour {
 
 	// called when player picks up the treasure
 	public void CarryTreasure(){
+		game.pickupState = PickupState.NONE;
 		animator.SetBool("isOpen",false);
 		onGround = false;
 	}
 
 	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){
+		game.pickupState = PickupState.TREASURE;
 		audio.Play();
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
