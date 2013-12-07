@@ -25,7 +25,7 @@ public class Dragon : MonoBehaviour {
 	public float timeOfLastFireBreath = 0f;
 
 	private Vector3 dir;
-	public Vector3 offset = new Vector3(0,-1.5f,-0.2f);
+	public Vector3 offset = new Vector3(0,-1.5f,-0.3f);
 	public AudioClip[] painSounds;
 	private GameManager game;
 	private RagdollManager ragdolls;
