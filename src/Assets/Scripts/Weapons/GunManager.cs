@@ -3,8 +3,6 @@
 using System.Collections;
 
 public class GunManager : MonoBehaviour {	
-	//use singleton since only we need once instance of this class
-	public static GunManager instance;
 	public GameObject handGrenadePrefab;
 	public float grenadeSpeed = 12f;
 	public float grenadeThrowDelay = 1f;
@@ -21,10 +19,6 @@ public class GunManager : MonoBehaviour {
 	private CharacterController controller;
 	private GameObject throwFrom;
 
-	public void Awake(){
-        GunManager.instance = this;
-    }	
-	
 	void Start () {	
 		throwFrom = transform.root.FindChild("ThrowGrenadeFrom").gameObject;
 		playerCam = PlayerCamera.instance.camera;
@@ -48,15 +42,6 @@ public class GunManager : MonoBehaviour {
 		if (throwingGrenade && (timeOfLastGrenade + grenadeThrowDelay) < Time.time){
 			DelayedGrenadeThrow();
 		}
-
-		// update stats for hud
-		game.statistics.gunEnabled = currentGun.enabled;
-		game.statistics.gunName = currentGun.name;
-		game.statistics.gunUnlimitedClips = currentGun.unlimited;
-		game.statistics.gunClips = currentGun.totalClips;
-		game.statistics.gunRounds = currentGun.currentRounds;
-		game.statistics.gunReloading = currentGun.reloading;
-		game.statistics.grenadeCount = grenadeCount;
 	}
 	
 	public void ChangeToCurrentWeapon(){
@@ -78,6 +63,32 @@ public class GunManager : MonoBehaviour {
 		if (oldEnabled){
 			currentGun.enabled = true;
 		}
+	}
+
+	public void ChangeToNextGun(){
+		while (true){
+			currentGunIndex++;
+			if (currentGunIndex>4){
+				currentGunIndex = 0;
+			}
+			if (guns[currentGunIndex].picked_up){
+				break;
+			}
+		}
+		ChangeToGun(currentGunIndex);
+	}
+
+	public void ChangeToPreviousGun(){
+		while (true){
+			currentGunIndex--;
+			if (currentGunIndex<0){
+				currentGunIndex = 4;
+			}
+			if (guns[currentGunIndex].picked_up){
+				break;
+			}
+		}
+		ChangeToGun(currentGunIndex);
 	}
 
 	// method which is called when player wants to throw a grenade

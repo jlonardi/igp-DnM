@@ -14,6 +14,7 @@ src/Assembly*.*
 src/ProjectSettings/Physics2DSettings.asset
 src/Assets/Scenes/TestLevel.unity
 src/Assets/Scenes/TestLevel.unity.meta
+src/Assets/Images/Alkutarina.meta
 
 #Un-ignore these specific files
 !src/Library/*.asset

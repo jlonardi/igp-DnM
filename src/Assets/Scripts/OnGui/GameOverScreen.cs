@@ -66,7 +66,7 @@ public class GameOverScreen {
 			GUILayout.EndArea();
 
 			GUILayout.BeginArea(new Rect(centerX-100, 400,300, 400));
-			GUILayout.Label("Treasure: " + game.statistics.treasureAmount, "plaintext");
+			GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount(), "plaintext");
 			GUILayout.Label ("Enemies: " + game.statistics.bodycount, "plaintext");
 			GUILayout.Label ("Score: " + game.statistics.score, "plaintext");
 			GUILayout.EndArea();
@@ -82,7 +82,7 @@ public class GameOverScreen {
 	}
 
 	private void AddHighscore(){
-		scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.statistics.treasureAmount,
+		scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.treasure.GetTreasureAmount(),
 		                          game.statistics.dragonSlayed, playerName);
 		game.gameState = GameState.HIGHSCORE_GAME;				
 

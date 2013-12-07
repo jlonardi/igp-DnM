@@ -3,10 +3,10 @@ using System.Collections;
 
 [System.Serializable]
 public class Hud {
-	public Texture2D healthbar;
-	public Texture2D health;
-	public Texture2D armorbar;
-	public Texture2D armor;
+	public Texture2D healthBarTexture;
+	public Texture2D healthBackgroundTexture;
+	public Texture2D armorBarTexture;
+	public Texture2D armorBackgroundTexture;
 
 	private Rect helpPosition;
 
@@ -23,7 +23,6 @@ public class Hud {
 	public void Initialize(){
 		game = GameManager.instance;
 		gui = OnGuiManager.instance;
-
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 
@@ -55,35 +54,37 @@ public class Hud {
 		}
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
-		GUI.DrawTexture(healthPosition, healthbar);
-		GUI.DrawTexture (armorPosition, armorbar);
-		currentHealth = game.statistics.playerHealth;
+		GUI.DrawTexture(healthPosition, healthBackgroundTexture);
+		GUI.DrawTexture (armorPosition, armorBackgroundTexture);
+		currentHealth = game.player.GetHealth();
 		currentHealth = currentHealth*3.52f;
-		currentArmor = game.statistics.playerArmor*7.04f;
+		currentArmor = game.player.GetArmor()*7.04f;
 
 		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
-		GUI.DrawTexture(new Rect(0,0,352,32), health);
+		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);
 		GUI.EndGroup();
 		GUI.BeginGroup(new Rect(26,66,currentArmor,4));
-		GUI.DrawTexture(new Rect(0,0,352,4), armor);
+		GUI.DrawTexture(new Rect(0,0,352,4), armorBarTexture);
 		GUI.EndGroup();
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
-		GUILayout.Label("Treasure: " + game.statistics.treasureAmount + " %", "hud_label");
+		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
-		
-		if (game.statistics.gunEnabled){
-			GUILayout.Label("Grenades: " + game.statistics.grenadeCount, "hud_label");
-			GUILayout.Label("Gun: " + game.statistics.gunName, "hud_label");
-			GUILayout.Label("Ammo: " + game.statistics.gunRounds, "hud_label");
+
+		Gun gun = game.weapons.currentGun;
+
+		if (gun.enabled){
+			GUILayout.Label("Grenades: " + game.weapons.grenadeCount, "hud_label");
+			GUILayout.Label("Gun: " + gun.name, "hud_label");
+			GUILayout.Label("Ammo: " + gun.currentRounds, "hud_label");
 			string clips;
-			if (game.statistics.gunUnlimitedClips){
+			if (gun.unlimited){
 				clips = "unlimited";
 			} else {
-				clips = game.statistics.gunClips.ToString();
+				clips = "" + gun.totalClips;
 			}
 			GUILayout.Label("Clips: " + clips, "hud_label");
-			if (game.statistics.gunReloading){
+			if (gun.reloading){
 				GUILayout.Label("Reloading...", "hud_label");
 			}
 		}

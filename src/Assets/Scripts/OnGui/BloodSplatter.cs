@@ -3,18 +3,13 @@
 [System.Serializable]
 public class BloodSplatter {
 	public Texture2D bloodSplatter;
-	
+	public float fadeSpeed = 0.05f;
+	public float pulseTreshold = 0f;
+
 	private Rect splatterPosition;
 	private Color bloodColor;
 	private Color originalColor;
-	
-	public float fadeSpeed = 0.05f;
-
-	[HideInInspector]
-	public float bloodAlpha;
-
-	public float pulseTreshold = 0f;
-
+	private float bloodAlpha;
 	private float fadeDir;
 	private OnGuiManager gui;
 
@@ -53,7 +48,7 @@ public class BloodSplatter {
 		pulseTreshold = a - 0.3f;
 		fadeBloodSplatterOut();
 	}
-	
+
 	public void fadeBloodSplatterIn() {
 		fadeDir = 1;	
 	}
@@ -61,4 +56,13 @@ public class BloodSplatter {
 	public void fadeBloodSplatterOut() {
 		fadeDir = -1;	
 	}
+
+	public void SetBloodAlpha(float value){
+		bloodAlpha = value;
+	}
+
+	public float GetBloodAlpha(){
+		return bloodAlpha;
+	}
+
 }

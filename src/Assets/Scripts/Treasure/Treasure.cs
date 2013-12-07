@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum TreasureType {
-	CHEST,
-	NONE
-}
-
 public class Treasure : MonoBehaviour {	
-	// use singleton since only we need one instance of this class
-	public static Treasure instance;
+
+	private int treasureAmount = 100;
+	//original amount is used for calculation current percentage of the treasure	
+	private int treasureFullAmount = 100;
+
 	// object which describes how much treasure is left
 	private GameObject treasureLevelMesh;	
 	// animator handles animation played when treasure is set on ground
@@ -16,10 +14,11 @@ public class Treasure : MonoBehaviour {
 	// if treasure is on ground onGround is true
 	private bool onGround = false;
 	private GameManager game;
+	private float timeFromLoot;
 
 	void Awake()
     {
-        Treasure.instance = this;
+		game = GameManager.instance;
 		animator = GetComponent<Animator>();
 		animator.speed = 1;	// animation playback speed
 		animator.SetBool("onGround",false);
@@ -27,12 +26,13 @@ public class Treasure : MonoBehaviour {
     }
 
 	void Update(){
-		if (game == null){
-			game = GameManager.instance;
+		if (timeFromLoot + 1 < Time.time){
+			//stop coin audio loop here
 		}
 	}
-
+	
 	public int Loot(int lootAmount){
+		timeFromLoot = Time.time;
 		animator.SetBool("isOpen", true);
 
 		// no loot allowed if player is still carrying treasure
@@ -40,20 +40,20 @@ public class Treasure : MonoBehaviour {
 			return 0;
 		}
 		
-		if (game.statistics.treasureAmount > lootAmount){
-			game.statistics.treasureAmount -= lootAmount;
+		if (treasureAmount > lootAmount){
+			treasureAmount -= lootAmount;
 		} 
 		else {
-			lootAmount = game.statistics.treasureAmount;
-			game.statistics.treasureAmount = 0;
+			lootAmount = treasureAmount;
+			treasureAmount = 0;
 		}
 		
 		// change visible money position on chest so treasure seems smaller after every loot.
 		// chest's treasure y range is from 0.09 to 0.49 (0.4 total).
-		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/game.statistics.treasureFullAmount, 0);				
+		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/treasureFullAmount, 0);				
 
 		// if all taken, game over
-		if (game.statistics.treasureAmount <= 0){
+		if (treasureAmount <= 0){
 			game.GameOver();
 		}
 		return lootAmount;
@@ -69,12 +69,31 @@ public class Treasure : MonoBehaviour {
 
 	// called when player picks up the treasure
 	public void CarryTreasure(){
+		game.pickupState = PickupState.NONE;
 		animator.SetBool("isOpen",false);
 		onGround = false;
+
+		// if sprinting, stop it while carrying the treasure
+		if (game.player.motor.sprinting){
+			game.player.motor.StopSprint();
+		}
+		
+		// disable gun so we can carry treasure
+		game.weapons.currentGun.enabled = false;
+		// find treasure positions from scene
+		GameObject treasureBox = GameObject.Find("treasure_box");
+		treasureBox.collider.isTrigger = true;
+		GameObject treasureOnPlayer = GameObject.Find("Treasure");
+		// change parent to players Treasure-object
+		treasureBox.transform.parent = treasureOnPlayer.transform;
+		// and change local position & rotation back to start values
+		treasureBox.transform.localPosition = new Vector3(0,0,-1.28f);
+		treasureBox.transform.localRotation = Quaternion.identity;
 	}
 
 	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){
+		game.pickupState = PickupState.TREASURE;
 		audio.Play();
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
@@ -90,10 +109,9 @@ public class Treasure : MonoBehaviour {
 		onGround = true;
 
 		// call gunmanager to enable current weapon
-		GunManager.instance.ChangeToCurrentWeapon();
+		game.weapons.ChangeToCurrentWeapon();
 
 		MusicAndAtmoManager.instance.PlayBattleMusic();
-		
 		
 		// =========== align treasure on terrain ======================
 		
@@ -114,4 +132,13 @@ public class Treasure : MonoBehaviour {
 	{
 		return onGround;
 	}
+
+	public int GetTreasureAmount(){
+		return treasureAmount;
+	}
+	
+	public void SetTreasureAmount(int value){
+		treasureAmount = value;
+	}
+	
 }

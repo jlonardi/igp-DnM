@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 	public PickupState pickupState = PickupState.NONE;
 	public Statistics statistics = new Statistics();
 	public WaveManager waves = new WaveManager();
-	public GunManager guns;
+	public GunManager weapons;
 	public Player player;
 	public Treasure treasure;
 	public GameObject saveManagerPrefab;
@@ -34,14 +34,16 @@ public class GameManager : MonoBehaviour {
 			saveManagerObj = (GameObject)Instantiate(saveManagerPrefab, Vector3.zero, Quaternion.identity);
 			saveManagerObj.name = "Save Manager";
 
+			saves = saveManagerObj.GetComponent<SaveManager>();
 			// this is only for testing level on editor
 			if (gameLevel == true && saves.levelState == LevelState.LOADING_NEWGAME){
 				saves.levelState = LevelState.LOADED;
 				NewGame();
 			}
-		}                                
 
-		saves = saveManagerObj.GetComponent<SaveManager>();
+		} else {                             
+			saves = saveManagerObj.GetComponent<SaveManager>();
+		}
 	}	
 	
 	void Update(){
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour {
 		// wait until all gameobjects are loaded
 		gameState = GameState.RUNNING;
 		statistics.Reset();
-		OnGuiManager.instance.bloodSplatter.bloodAlpha = 0f;
+		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
 	}
 	
 	public void GameOver(){

@@ -94,9 +94,9 @@ public class Gun : MonoBehaviour {
 	private float timerToCreateDecal;
 	
 	private HitParticles hitParticles;
-	private GunManager gunManager;
 	private CharacterController controller;
 	private GameManager game;
+
 	[HideInInspector]
 	public Animator animator;
 
@@ -106,7 +106,14 @@ public class Gun : MonoBehaviour {
 	// current accuracy is calculated by accuracy and player movement
 	public float currentAccuracy;
 
-	void Awake(){
+	void Start(){
+		game = GameManager.instance;
+		centerX = Screen.width / 2;
+		centerY = Screen.height / 2;
+		cam = Camera.main.camera;
+
+		controller = transform.root.GetComponent<CharacterController>();
+		hitParticles = game.weapons.hitParticles;
 		shootFrom = transform.FindChild("ShootFrom").gameObject;
 		animator = GetComponent<Animator>();
 		if (animator != null){
@@ -115,19 +122,7 @@ public class Gun : MonoBehaviour {
 		}
 	}
 
-	void Start(){
-		centerX = Screen.width / 2;
-		centerY = Screen.height / 2;
-		cam = Camera.main.camera;
-		gunManager = GunManager.instance;
-		controller = transform.root.GetComponent<CharacterController>();
-		hitParticles = GunManager.instance.hitParticles;
-	}
-
 	void Update (){
-		if (game == null){
-			game = GameManager.instance;
-		}
 
 		CalculateAccuracy();
 
@@ -497,7 +492,13 @@ public class Gun : MonoBehaviour {
 			reloadTimer = reloadTime;
 		}
 	}
-	
+
+	public void PickUp(){
+		game.pickupState = PickupState.NONE;
+		picked_up = true;
+		PlayerSounds.instance.PlayGunPickupSound();
+	}
+
 	// calculates gun's damage for hitpoint
 	public void CalculateDamage(RaycastHit hit){		
 		EnemyLogic enemyObject = hit.collider.GetComponentInChildren<EnemyLogic>();

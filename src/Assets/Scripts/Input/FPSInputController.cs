@@ -8,54 +8,41 @@ public class FPSInputController : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool fire;
+	[HideInInspector]
+	public bool reloading;
+	[HideInInspector]
+	public int currentWeapon;
+
 	private bool firing;
 	private float firingTimer;
 	public float idleTimer;	
-	[HideInInspector]
-	public bool reloading;
-	
+
 	[HideInInspector]
 	public string currentWeaponName;
 	
-	[HideInInspector]
-	public int currentWeapon;
-	
+
 	private CharacterMotor motor;
 	private GameManager game;
 	private PlayerSounds sounds;
-	private GunManager gunManager;
 
 	// Use this for initialization
 	void Start () {
-		gunManager = GunManager.instance;
+		game = GameManager.instance;
 		motor = GetComponent<CharacterMotor>();
 		sounds = PlayerSounds.instance;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (game == null){
-			game = GameManager.instance;
-		}
 		if(game.gameState != GameState.RUNNING){
 			return;
 		}
 
 		bool treasureOnGround = game.treasure.OnGround();
 
-		// Get the input vector from kayboard or analog stick
+		// Get the input vector from kayboard
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-//		if (directionVector == Vector3.zero) {
-//			directionVector = new Vector3(Input.GetAxis("Joy X"), 0f, Input.GetAxis("Joy Y"));
-//		}
 
-
-/*		if (Vector3.Distance(directionVector, Vector3.zero) > 0.1f){
-			game.statistics.playerMoving = true;
-		} else {
-			game.statistics.playerMoving = false;
-		}
-*/
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway
@@ -85,55 +72,37 @@ public class FPSInputController : MonoBehaviour {
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
 
-		int currentGunIndex = gunManager.currentGunIndex;
+		int currentGunIndex = game.weapons.currentGunIndex;
 
 		if (Input.GetAxis("Mouse ScrollWheel") < 0){
-			while (true){
-				currentGunIndex++;
-				if (currentGunIndex>4){
-					currentGunIndex = 0;
-				}
-				if (gunManager.guns[currentGunIndex].picked_up){
-					break;
-				}
-			}
-			gunManager.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToNextGun();
 		} else if (Input.GetAxis("Mouse ScrollWheel") > 0){
-			while (true){
-				currentGunIndex--;
-				if (currentGunIndex<0){
-					currentGunIndex = 4;
-				}
-				if (gunManager.guns[currentGunIndex].picked_up){
-					break;
-				}
-			}
-			gunManager.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToPreviousGun();
 		}
 
 		if (Input.GetButtonDown("Pistol")){
-			gunManager.ChangeToGun(0);
+			game.weapons.ChangeToGun(0);
 		}
 		if (Input.GetButtonDown("Assault Rifle")){
-			gunManager.ChangeToGun(1);
+			game.weapons.ChangeToGun(1);
 		}
 		if (Input.GetButtonDown("Grenade Launcher")){
-			gunManager.ChangeToGun(2);
+			game.weapons.ChangeToGun(2);
 		}
 		if (Input.GetButtonDown("Minigun")){
-			gunManager.ChangeToGun(3);
+			game.weapons.ChangeToGun(3);
 		}
 		if (Input.GetButtonDown("Scar-L")){
-			gunManager.ChangeToGun(4);
+			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButton("Sprint") && !treasureOnGround){
+		if (Input.GetButton("Sprint") && treasureOnGround){
 			motor.StartSprint();
 		}
 
 
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire") && treasureOnGround && GunManager.instance.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire") && treasureOnGround && game.weapons.currentGun.freeToShoot;
 
 		idleTimer += Time.deltaTime;
 		
@@ -149,49 +118,52 @@ public class FPSInputController : MonoBehaviour {
 			firingTimer = 0.3f;
 		}
 		if (Input.GetButton("Grenade")){
-			gunManager.ThrowGrenade();
+			game.weapons.ThrowGrenade();
 		}
 
 //		firing = (firingTimer <= 0.0f && fire);
 		
 		if(treasureOnGround){
-			GunManager.instance.currentGun.fire = firing;
-			reloading = GunManager.instance.currentGun.reloading;
-			currentWeaponName = GunManager.instance.currentGun.name;
-			currentWeapon = GunManager.instance.currentGunIndex;
+			game.weapons.currentGun.fire = firing;
+			reloading = game.weapons.currentGun.reloading;
+			currentWeaponName = game.weapons.currentGun.name;
+			currentWeapon = game.weapons.currentGunIndex;
 		}
 		
 		
 		if (Input.GetButtonDown("Use")){
 			if (!treasureOnGround){
 				game.treasure.SetTreasureOnGround();
-				game.pickupState = PickupState.TREASURE;
 
 			} else if(game.pickupState == PickupState.TREASURE){
 				game.treasure.CarryTreasure();
+
+			} else if(game.pickupState == PickupState.MINIGUN){
+				game.weapons.guns[3].PickUp();
+				game.weapons.ChangeToGun(3);
+				// hide minigun on scene
+				GameObject minigun = GameObject.Find("minigunOnGround");
+				minigun.SetActive(false);
+				
+			} else if(game.pickupState == PickupState.SCAR_L){
+				game.weapons.guns[4].PickUp();
+				game.weapons.ChangeToGun(4);
+				// hide scar-L on scene
+				GameObject scarL = GameObject.Find("scarlOnGround");
+				scarL.SetActive(false);
+
+			} else if(game.pickupState == PickupState.GRENADE_BOX){
 				game.pickupState = PickupState.NONE;
-
-				// if sprinting, stop it while carrying the treasure
-				if (motor.sprinting){
-					motor.StopSprint();
-				}
-
-				// disable gun so we can carry treasure
-				gunManager.currentGun.enabled = false;
-				// find treasure positions from scene
-				GameObject treasureBox = GameObject.Find("treasure_box");
-				treasureBox.collider.isTrigger = true;
-				GameObject treasureOnPlayer = GameObject.Find("Treasure");
-				// change parent to players Treasure-object
-				treasureBox.transform.parent = treasureOnPlayer.transform;
-				// and change local position & rotation back to start values
-				treasureBox.transform.localPosition = new Vector3(0,0,-1.28f);
-				treasureBox.transform.localRotation = Quaternion.identity;
+				// add grenades to gun manager
+				game.weapons.grenadeCount = 20;
+				// hide grenades on scene
+				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
+				grenadeBox.SetActive(false);
 
 			} else if(game.pickupState == PickupState.ARMOR){
 				game.pickupState = PickupState.NONE;
 				// apply armor
-				game.statistics.playerArmor = 50;
+				game.player.SetArmor(50);
 				// hide armor on scene
 				GameObject armor = GameObject.Find("armorOnGround");
 				PlayerSounds.instance.PlayArmorPickupSound();
@@ -200,38 +172,8 @@ public class FPSInputController : MonoBehaviour {
 				GameObject scarL = GameObject.Find("pickup_scarl");
 				BoxCollider scarCollider = scarL.GetComponent<BoxCollider>();
 				scarCollider.size = new Vector3(2,2,2);
-
-			} else if(game.pickupState == PickupState.GRENADE_BOX){
-				game.pickupState = PickupState.NONE;
-				// add grenades to gun manager
-				gunManager.grenadeCount = 20;
-				// hide grenades on scene
-				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
-				grenadeBox.SetActive(false);
-
-			} else if(game.pickupState == PickupState.MINIGUN){
-				game.pickupState = PickupState.NONE;
-				// set minigun available
-				gunManager.guns[3].picked_up = true;
-				gunManager.ChangeToGun(3);
-				PlayerSounds.instance.PlayGunPickupSound();
-				// hide minigun on scene
-				GameObject minigun = GameObject.Find("minigunOnGround");
-				minigun.SetActive(false);
-
-			} else if(game.pickupState == PickupState.SCAR_L){
-				game.pickupState = PickupState.NONE;
-				// set minigun available
-				gunManager.guns[4].picked_up = true;
-				gunManager.ChangeToGun(4);
-				PlayerSounds.instance.PlayGunPickupSound();
-				// hide scar-L on scene
-				GameObject scarL = GameObject.Find("scarlOnGround");
-				scarL.SetActive(false);
-
 			}
-			
 		}
-
 	}
+	
 }
