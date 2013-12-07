@@ -81,8 +81,8 @@ public class SaveContainer {
 		bodycount = game.statistics.bodycount;
 		score = game.statistics.score;
 		bloodAlpha = onGuiManager.bloodSplatter.GetBloodAlpha();
-		playerArmor = game.statistics.playerArmor;
-		playerHealth = game.statistics.playerHealth;
+		playerArmor = game.player.GetArmor();
+		playerHealth = game.player.GetHealth();
 		treasureOnGround = game.treasure.OnGround();
 		treasureAmount = game.treasure.GetTreasureAmount();
 		wave = game.statistics.wave;
@@ -136,12 +136,12 @@ public class SaveContainer {
 			game.weapons.grenadeCount = grenades;
 			game.weapons.currentGunIndex = currentGunIndex;
 			game.statistics.level = level;
-			game.statistics.playerArmor = playerArmor;
-			game.statistics.playerHealth = playerHealth;
 			game.statistics.bodycount = bodycount;
 			game.statistics.score = score;
 			game.statistics.playTime = playTime;
 			game.statistics.wave = wave;
+			game.player.SetArmor(playerArmor);
+			game.player.SetHealth(playerHealth);
 			game.treasure.SetTreasureAmount(treasureAmount);
 
 			// calculate time of last enemy wave
