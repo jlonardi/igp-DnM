@@ -9,9 +9,13 @@ public class Crosshair {
 	private int centerX;
 	private int centerY;
 	private OnGuiManager gui;
+	private GameManager game;
+	private Gun currentGun;
 
 	public void Initialize(){
 		gui = OnGuiManager.instance;
+		game = GameManager.instance;
+		currentGun = game.weapons.currentGun;
 
 		// get screen center coordinates
 		centerX = gui.GetCenterX();
@@ -24,9 +28,8 @@ public class Crosshair {
 			Initialize();
 		}
 
-		Gun gun = GunManager.instance.currentGun;
-		if (gun!=null && gun.enabled){ // if gun in use, draw crosshair
-			DrawCrosshair((int)(gun.currentAccuracy+10)*2);
+		if (currentGun!=null && currentGun.enabled){ // if gun in use, draw crosshair
+			DrawCrosshair((int)(currentGun.currentAccuracy+10)*2);
 		}
 	}
 

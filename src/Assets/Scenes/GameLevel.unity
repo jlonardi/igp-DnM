@@ -3312,6 +3312,7 @@ GameObject:
   - 33: {fileID: 63717597}
   - 65: {fileID: 63717596}
   - 23: {fileID: 63717595}
+  - 114: {fileID: 63717598}
   m_Layer: 0
   m_Name: Trigger 1
   m_TagString: Untagged
@@ -3373,6 +3374,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1694523831}
   m_GameObject: {fileID: 63717593}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &63717598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8b5f185b22a7af146bce4995042c91c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1694523831}
+  m_GameObject: {fileID: 63717593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c241f80633487c1448c8be91b336ff42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &64500418
 GameObject:
   m_ObjectHideFlags: 0
@@ -44479,6 +44492,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 952732844}
+  - 114: {fileID: 952732845}
   m_Layer: 0
   m_Name: Instant kill triggers
   m_TagString: Untagged
@@ -44499,6 +44513,19 @@ Transform:
   - {fileID: 63717594}
   - {fileID: 1697089556}
   m_Father: {fileID: 1534628901}
+--- !u!114 &952732845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 8b5f185b22a7af146bce4995042c91c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1694523831}
+  m_GameObject: {fileID: 952732843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2094303fd8257443b12afa58275a93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInsideLair: 0
 --- !u!1 &952801766
 GameObject:
   m_ObjectHideFlags: 0
@@ -48809,7 +48836,7 @@ MonoBehaviour:
     gunEnabled: 0
     grenadeCount: 0
     playerSpeed: 0
-  guns: {fileID: 848146269}
+  weapons: {fileID: 848146269}
   player: {fileID: 1851113635}
   treasure: {fileID: 2026712658}
   saveManagerPrefab: {fileID: 100000, guid: c5aa14bd589468445bd1e0c7ba99ed76, type: 2}
@@ -77672,6 +77699,7 @@ GameObject:
   - 33: {fileID: 1697089559}
   - 65: {fileID: 1697089558}
   - 23: {fileID: 1697089557}
+  - 114: {fileID: 1697089560}
   m_Layer: 0
   m_Name: Trigger 2
   m_TagString: Untagged
@@ -77733,6 +77761,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1694523831}
   m_GameObject: {fileID: 1697089555}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1697089560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 8b5f185b22a7af146bce4995042c91c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1694523831}
+  m_GameObject: {fileID: 1697089555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c241f80633487c1448c8be91b336ff42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1702856334
 GameObject:
   m_ObjectHideFlags: 0
