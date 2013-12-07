@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Treasure : MonoBehaviour {	
+	public LayerMask groundLayer;
 
 	private int treasureAmount = 100;
 	//original amount is used for calculation current percentage of the treasure	
@@ -124,7 +125,7 @@ public class Treasure : MonoBehaviour {
 		 //first move up to make sure it doesn't go through terrain
 	    transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
  		RaycastHit hit = new RaycastHit();		
-		if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
+		if (Physics.Raycast(transform.position, -Vector3.up, out hit, groundLayer)){
 			// align just above terrain		    
 			transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.001f, transform.position.z);
 			// rotate to correct angle
