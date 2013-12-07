@@ -123,6 +123,9 @@ public class Gun : MonoBehaviour {
 	}
 
 	void Update (){
+		if (game == null){
+			game = GameManager.instance;
+		}
 
 		CalculateAccuracy();
 
@@ -494,7 +497,6 @@ public class Gun : MonoBehaviour {
 	}
 
 	public void PickUp(){
-		game.pickupState = PickupState.NONE;
 		picked_up = true;
 		PlayerSounds.instance.PlayGunPickupSound();
 	}

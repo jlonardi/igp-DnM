@@ -136,9 +136,11 @@ public class FPSInputController : MonoBehaviour {
 				game.treasure.SetTreasureOnGround();
 
 			} else if(game.pickupState == PickupState.TREASURE){
+				game.pickupState = PickupState.NONE;
 				game.treasure.CarryTreasure();
 
 			} else if(game.pickupState == PickupState.MINIGUN){
+				game.pickupState = PickupState.NONE;
 				game.weapons.guns[3].PickUp();
 				game.weapons.ChangeToGun(3);
 				// hide minigun on scene
@@ -146,6 +148,7 @@ public class FPSInputController : MonoBehaviour {
 				minigun.SetActive(false);
 				
 			} else if(game.pickupState == PickupState.SCAR_L){
+				game.pickupState = PickupState.NONE;
 				game.weapons.guns[4].PickUp();
 				game.weapons.ChangeToGun(4);
 				// hide scar-L on scene
