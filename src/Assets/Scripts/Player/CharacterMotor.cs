@@ -57,6 +57,7 @@ public class CharacterMotor : MonoBehaviour {
 
 	public void Awake () {
 		controller = GetComponent<CharacterController>();
+		game = GameManager.instance;
 		tr = transform;
 	}
 
@@ -89,9 +90,6 @@ public class CharacterMotor : MonoBehaviour {
 	}
 	
 	private void UpdateFunction () {				
-		if (game == null){
-			game = GameManager.instance;
-		}
 		if (sounds == null){
 			sounds = PlayerSounds.instance;
 		}
@@ -117,7 +115,7 @@ public class CharacterMotor : MonoBehaviour {
 		// when walking down a step or over a sharp change in slope.
 		float pushDownOffset = Mathf.Max(controller.stepOffset, new Vector3(currentMovementOffset.x, 0f, currentMovementOffset.z).magnitude);
 		if (grounded){
-			GunManager.instance.currentGun.animator.SetBool("hitGround", false);
+			game.weapons.currentGun.animator.SetBool("hitGround", false);
 			currentMovementOffset -= pushDownOffset * Vector3.up;
 		}
 		
@@ -174,7 +172,7 @@ public class CharacterMotor : MonoBehaviour {
 			jumping.jumping = false;
 			SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
 			sounds.PlayJumpSound();
-			GunManager.instance.currentGun.animator.SetBool("hitGround", true);
+			game.weapons.currentGun.animator.SetBool("hitGround", true);
 		}
 
 	}	

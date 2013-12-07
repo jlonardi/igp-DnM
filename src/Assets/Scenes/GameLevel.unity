@@ -48881,7 +48881,7 @@ MonoBehaviour:
     gunEnabled: 0
     grenadeCount: 0
     playerSpeed: 0
-  guns: {fileID: 848146269}
+  weapons: {fileID: 848146269}
   player: {fileID: 1851113635}
   treasure: {fileID: 2026712658}
   saveManagerPrefab: {fileID: 100000, guid: c5aa14bd589468445bd1e0c7ba99ed76, type: 2}

@@ -1,14 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum TreasureType {
-	CHEST,
-	NONE
-}
-
 public class Treasure : MonoBehaviour {	
-	// use singleton since only we need one instance of this class
-	public static Treasure instance;
 	// object which describes how much treasure is left
 	private GameObject treasureLevelMesh;	
 	// animator handles animation played when treasure is set on ground
@@ -19,19 +12,13 @@ public class Treasure : MonoBehaviour {
 
 	void Awake()
     {
-        Treasure.instance = this;
+		game = GameManager.instance;
 		animator = GetComponent<Animator>();
 		animator.speed = 1;	// animation playback speed
 		animator.SetBool("onGround",false);
 		treasureLevelMesh = transform.FindChild("gold").gameObject;
     }
-
-	void Update(){
-		if (game == null){
-			game = GameManager.instance;
-		}
-	}
-
+	
 	public int Loot(int lootAmount){
 		animator.SetBool("isOpen", true);
 
@@ -90,7 +77,7 @@ public class Treasure : MonoBehaviour {
 		onGround = true;
 
 		// call gunmanager to enable current weapon
-		GunManager.instance.ChangeToCurrentWeapon();
+		game.weapons.ChangeToCurrentWeapon();
 
 		MusicAndAtmoManager.instance.PlayBattleMusic();
 		

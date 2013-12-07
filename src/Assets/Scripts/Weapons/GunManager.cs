@@ -3,8 +3,6 @@
 using System.Collections;
 
 public class GunManager : MonoBehaviour {	
-	//use singleton since only we need once instance of this class
-	public static GunManager instance;
 	public GameObject handGrenadePrefab;
 	public float grenadeSpeed = 12f;
 	public float grenadeThrowDelay = 1f;
@@ -21,10 +19,6 @@ public class GunManager : MonoBehaviour {
 	private CharacterController controller;
 	private GameObject throwFrom;
 
-	public void Awake(){
-        GunManager.instance = this;
-    }	
-	
 	void Start () {	
 		throwFrom = transform.root.FindChild("ThrowGrenadeFrom").gameObject;
 		playerCam = PlayerCamera.instance.camera;

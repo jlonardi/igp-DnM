@@ -27,10 +27,12 @@ public class SaveContainer {
 	public int gun1_rounds;
 	public int gun2_rounds;
 	public int gun3_rounds;
+	public int gun4_rounds;
 	public int gun0_clips;
 	public int gun1_clips;
 	public int gun2_clips;
 	public int gun3_clips;
+	public int gun4_clips;
 	public int grenades;
 	public int currentGunIndex;
 	public int bodycount;
@@ -47,17 +49,14 @@ public class SaveContainer {
 	
 	public void SaveValues(){		
 		GameManager game = GameManager.instance;
-		GunManager gunManager = GunManager.instance;
 		EnemyManager enemyManager = EnemyManager.instance;
 		OnGuiManager onGuiManager = OnGuiManager.instance;
-		GameObject treasure = Treasure.instance.gameObject;
-		GameObject player = GameObject.Find("Player");
 		SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
 		SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
 
 		// save GameObject, Transform, Vector3 and Quaternion by adding .Serializable() extension
-		sPlayer = player.Serializable();
-		sTreasure = treasure.Serializable();
+		sPlayer = game.player.gameObject.Serializable();
+		sTreasure = game.treasure.gameObject.Serializable();
 
 		// save enemies and misc objects by listing them
 		sGameObjects = new List<sGameObject>();
@@ -90,33 +89,33 @@ public class SaveContainer {
 		treasureFullAmount = game.statistics.treasureFullAmount;
 		wave = game.statistics.wave;
 		timeOfLastWave = enemyManager.timeOfLastWave;
-		gun0_rounds = gunManager.guns[0].currentRounds;
-		gun1_rounds = gunManager.guns[1].currentRounds;
-		gun2_rounds = gunManager.guns[2].currentRounds;
-		gun3_rounds = gunManager.guns[3].currentRounds;
-		gun0_clips = gunManager.guns[0].totalClips;
-		gun1_clips = gunManager.guns[1].totalClips;
-		gun2_clips = gunManager.guns[2].totalClips;
-		gun3_clips = gunManager.guns[3].totalClips;
-		grenades = gunManager.grenadeCount;
-		currentGunIndex = gunManager.currentGunIndex;
+		gun0_rounds = game.weapons.guns[0].currentRounds;
+		gun1_rounds = game.weapons.guns[1].currentRounds;
+		gun2_rounds = game.weapons.guns[2].currentRounds;
+		gun3_rounds = game.weapons.guns[3].currentRounds;
+		gun4_rounds = game.weapons.guns[4].currentRounds;
+		gun0_clips = game.weapons.guns[0].totalClips;
+		gun1_clips = game.weapons.guns[1].totalClips;
+		gun2_clips = game.weapons.guns[2].totalClips;
+		gun3_clips = game.weapons.guns[3].totalClips;
+		gun4_clips = game.weapons.guns[4].totalClips;
+		grenades = game.weapons.grenadeCount;
+		currentGunIndex = game.weapons.currentGunIndex;
 	}
 
 	public void RestoreValues(){
 		try{
 			GameManager game = GameManager.instance;
-			GunManager gunManager = GunManager.instance;
 			EnemyManager enemyManager = EnemyManager.instance;
 			OnGuiManager onGuiManager = OnGuiManager.instance;
 			RagdollManager ragdollManager = RagdollManager.instance;
-			Treasure treasure = Treasure.instance;
 			SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
 			SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
 
 			GameObject player = GameObject.Find("Player");
 			player.GetValuesFrom(sPlayer);
 
-			treasure.gameObject.GetValuesFrom(sTreasure);
+			game.treasure.gameObject.GetValuesFrom(sTreasure);
 
 			// restore variables
 			mouseX.position = mousePositionX;
@@ -126,16 +125,18 @@ public class SaveContainer {
 			mouseX.smoothing = mouseSmoothing;
 			mouseY.smoothing = mouseSmoothing;
 			onGuiManager.bloodSplatter.bloodAlpha = bloodAlpha;
-			gunManager.guns[0].currentRounds = gun0_rounds;
-			gunManager.guns[1].currentRounds = gun1_rounds;
-			gunManager.guns[2].currentRounds = gun2_rounds;
-			gunManager.guns[3].currentRounds = gun3_rounds;
-			gunManager.guns[0].totalClips = gun0_clips;
-			gunManager.guns[1].totalClips = gun1_clips;
-			gunManager.guns[2].totalClips = gun2_clips;
-			gunManager.guns[3].totalClips = gun3_clips;
-			gunManager.grenadeCount = grenades;
-			gunManager.currentGunIndex = currentGunIndex;
+			game.weapons.guns[0].currentRounds = gun0_rounds;
+			game.weapons.guns[1].currentRounds = gun1_rounds;
+			game.weapons.guns[2].currentRounds = gun2_rounds;
+			game.weapons.guns[3].currentRounds = gun3_rounds;
+			game.weapons.guns[4].currentRounds = gun4_rounds;
+			game.weapons.guns[0].totalClips = gun0_clips;
+			game.weapons.guns[1].totalClips = gun1_clips;
+			game.weapons.guns[2].totalClips = gun2_clips;
+			game.weapons.guns[3].totalClips = gun3_clips;
+			game.weapons.guns[4].totalClips = gun4_clips;
+			game.weapons.grenadeCount = grenades;
+			game.weapons.currentGunIndex = currentGunIndex;
 			game.statistics.level = level;
 			game.statistics.playerArmor = playerArmor;
 			game.statistics.playerHealth = playerHealth;
@@ -151,11 +152,11 @@ public class SaveContainer {
 
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
 			if (treasureOnGround){
-				treasure.RestoreTreasureOnGround();
+				game.treasure.RestoreTreasureOnGround();
 			}
 			
 			// select correct gun after loading savegame
-			gunManager.ChangeToCurrentWeapon();
+			game.weapons.ChangeToCurrentWeapon();
 			
 			// if no objects to process, stop here
 			if (sGameObjects.Count == 0){

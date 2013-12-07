@@ -36,34 +36,40 @@ public class EnemyLogic : MonoBehaviour {
 	private RagdollManager ragdolls;
 	private EnemyManager enemyManager;
 	private EnemyNavigation navigation;
-	private Player playerVitals;
-
-	private Treasure treasure;
+	
 	private Transform playerTransform;
 	private Transform treasureTransform;
 
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
 	
-	private bool treasureAvailable = false;
+//	private bool treasureAvailable = false;
 
 	public AudioClip[] painSounds;
-
+	
 	public void Start() {
+		game = GameManager.instance;
 		navigation = GetComponent<EnemyNavigation>();
 		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
-		playerVitals = Player.instance;
+//		playerVitals = Player.instance;
 
-		treasure = Treasure.instance;
 		GameObject player = GameObject.Find("playerFocus");	
-		GameObject treasureObj = treasure.gameObject;
+		GameObject treasureObj = game.treasure.gameObject;
 		GameObject focusPoint = treasureObj.transform.FindChild("treasureFocus").gameObject;
 			
 		treasureTransform = focusPoint.transform;
 		playerTransform = player.transform;
-		target = focusTarget.PLAYER;
-		navigation.target = playerTransform;
+
+		// if treasure is on ground and enemy can loot, set first target as treasure
+		if (game.treasure.OnGround() && canLoot){
+			target = focusTarget.TRESAURE;
+			navigation.target = treasureTransform;
+		} else {
+			target = focusTarget.PLAYER;
+			navigation.target = playerTransform;
+		}
+
 	}
 	
 	public void Update() {
@@ -116,7 +122,7 @@ public class EnemyLogic : MonoBehaviour {
 					looting = false;
 				}
 				if(looting && (timeFromLoot + lootInterval) < Time.time) {					
-					treasure.Loot(1);
+					game.treasure.Loot(1);
 					timeFromLoot = Time.time;
 				}
 			}
@@ -131,14 +137,6 @@ public class EnemyLogic : MonoBehaviour {
 	}
 	
 	private void checkFocus() {
-		if (!treasureAvailable){
-			if (treasure.OnGround()){
-				treasureAvailable = true;
-			}
-			if (treasureAvailable){
-				swapTarget();
-			}
-		}
 		if(target == focusTarget.PLAYER) {
 			//If the focus time expires change back to focus the tresaure
 			if(timeWhenFocusedPlayer + focusTime < Time.time) {
@@ -274,7 +272,7 @@ public class EnemyLogic : MonoBehaviour {
 		if (message.Equals("standing")){
 			hitdamage = damage+2;
 		}
-		playerVitals.TakeDamage(1, DamageType.HIT);	
+		game.player.TakeDamage(1, DamageType.HIT);	
 		//playerVitals.TakeDamage(damage, DamageType.HIT);	
 	}
 }

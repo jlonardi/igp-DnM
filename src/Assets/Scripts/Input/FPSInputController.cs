@@ -23,11 +23,9 @@ public class FPSInputController : MonoBehaviour {
 	private CharacterMotor motor;
 	private GameManager game;
 	private PlayerSounds sounds;
-	private GunManager gunManager;
 
 	// Use this for initialization
 	void Start () {
-		gunManager = GunManager.instance;
 		motor = GetComponent<CharacterMotor>();
 		sounds = PlayerSounds.instance;
 	}
@@ -85,7 +83,7 @@ public class FPSInputController : MonoBehaviour {
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
 
-		int currentGunIndex = gunManager.currentGunIndex;
+		int currentGunIndex = game.weapons.currentGunIndex;
 
 		if (Input.GetAxis("Mouse ScrollWheel") < 0){
 			while (true){
@@ -93,38 +91,38 @@ public class FPSInputController : MonoBehaviour {
 				if (currentGunIndex>4){
 					currentGunIndex = 0;
 				}
-				if (gunManager.guns[currentGunIndex].picked_up){
+				if (game.weapons.guns[currentGunIndex].picked_up){
 					break;
 				}
 			}
-			gunManager.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToGun(currentGunIndex);
 		} else if (Input.GetAxis("Mouse ScrollWheel") > 0){
 			while (true){
 				currentGunIndex--;
 				if (currentGunIndex<0){
 					currentGunIndex = 4;
 				}
-				if (gunManager.guns[currentGunIndex].picked_up){
+				if (game.weapons.guns[currentGunIndex].picked_up){
 					break;
 				}
 			}
-			gunManager.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToGun(currentGunIndex);
 		}
 
 		if (Input.GetButtonDown("Pistol")){
-			gunManager.ChangeToGun(0);
+			game.weapons.ChangeToGun(0);
 		}
 		if (Input.GetButtonDown("Assault Rifle")){
-			gunManager.ChangeToGun(1);
+			game.weapons.ChangeToGun(1);
 		}
 		if (Input.GetButtonDown("Grenade Launcher")){
-			gunManager.ChangeToGun(2);
+			game.weapons.ChangeToGun(2);
 		}
 		if (Input.GetButtonDown("Minigun")){
-			gunManager.ChangeToGun(3);
+			game.weapons.ChangeToGun(3);
 		}
 		if (Input.GetButtonDown("Scar-L")){
-			gunManager.ChangeToGun(4);
+			game.weapons.ChangeToGun(4);
 		}
 
 		if (Input.GetButton("Sprint") && !treasureOnGround){
@@ -133,7 +131,7 @@ public class FPSInputController : MonoBehaviour {
 
 
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire") && treasureOnGround && GunManager.instance.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire") && treasureOnGround && game.weapons.currentGun.freeToShoot;
 
 		idleTimer += Time.deltaTime;
 		
@@ -149,16 +147,16 @@ public class FPSInputController : MonoBehaviour {
 			firingTimer = 0.3f;
 		}
 		if (Input.GetButton("Grenade")){
-			gunManager.ThrowGrenade();
+			game.weapons.ThrowGrenade();
 		}
 
 //		firing = (firingTimer <= 0.0f && fire);
 		
 		if(treasureOnGround){
-			GunManager.instance.currentGun.fire = firing;
-			reloading = GunManager.instance.currentGun.reloading;
-			currentWeaponName = GunManager.instance.currentGun.name;
-			currentWeapon = GunManager.instance.currentGunIndex;
+			game.weapons.currentGun.fire = firing;
+			reloading = game.weapons.currentGun.reloading;
+			currentWeaponName = game.weapons.currentGun.name;
+			currentWeapon = game.weapons.currentGunIndex;
 		}
 		
 		
@@ -177,7 +175,7 @@ public class FPSInputController : MonoBehaviour {
 				}
 
 				// disable gun so we can carry treasure
-				gunManager.currentGun.enabled = false;
+				game.weapons.currentGun.enabled = false;
 				// find treasure positions from scene
 				GameObject treasureBox = GameObject.Find("treasure_box");
 				treasureBox.collider.isTrigger = true;
@@ -204,7 +202,7 @@ public class FPSInputController : MonoBehaviour {
 			} else if(game.pickupState == PickupState.GRENADE_BOX){
 				game.pickupState = PickupState.NONE;
 				// add grenades to gun manager
-				gunManager.grenadeCount = 20;
+				game.weapons.grenadeCount = 20;
 				// hide grenades on scene
 				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
 				grenadeBox.SetActive(false);
@@ -212,8 +210,8 @@ public class FPSInputController : MonoBehaviour {
 			} else if(game.pickupState == PickupState.MINIGUN){
 				game.pickupState = PickupState.NONE;
 				// set minigun available
-				gunManager.guns[3].picked_up = true;
-				gunManager.ChangeToGun(3);
+				game.weapons.guns[3].picked_up = true;
+				game.weapons.ChangeToGun(3);
 				PlayerSounds.instance.PlayGunPickupSound();
 				// hide minigun on scene
 				GameObject minigun = GameObject.Find("minigunOnGround");
@@ -222,8 +220,8 @@ public class FPSInputController : MonoBehaviour {
 			} else if(game.pickupState == PickupState.SCAR_L){
 				game.pickupState = PickupState.NONE;
 				// set minigun available
-				gunManager.guns[4].picked_up = true;
-				gunManager.ChangeToGun(4);
+				game.weapons.guns[4].picked_up = true;
+				game.weapons.ChangeToGun(4);
 				PlayerSounds.instance.PlayGunPickupSound();
 				// hide scar-L on scene
 				GameObject scarL = GameObject.Find("scarlOnGround");
