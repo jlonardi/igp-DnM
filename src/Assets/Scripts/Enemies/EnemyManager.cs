@@ -6,35 +6,35 @@ public class EnemyManager : MonoBehaviour {
 	//use singleton since only we need one instance of this class
 	public static EnemyManager instance;
 	
-	//current spawn count
-	private int spawnCount = 0;
-
 	//spawning will stop after this spawncount
 	public int maxSpawnCount = 100;
 
 	//spawning will stop after game has lasted longer than this time (s)
 	public float maxSpawnTime = 300;
 
-	[HideInInspector]
-	public float spawnTimeStart = 0;
-
 	//maximum amount of enemies at once on the game level
 	public int maxEnemies = 10;
 
-	//enemy type for next enemy to be spawned (0-2)
-	private int nextEnemyType = 0;
+	public Transform[] areas;	
+	public float timeOfLastWave = -3f;
+	public float waveInterval = 3f;
 
 	public GameObject orcPrefab;
 	public GameObject lizardPrefab;
 	public GameObject wolfPrefab;
 
+	//current spawn count
+	private int spawnCount = 0;
+	
+	[HideInInspector]
+	public float spawnTimeStart = 0;
+	
+	//enemy type for next enemy to be spawned (0-2)
+	private int nextEnemyType = 0;
+
 	[HideInInspector]
 	public int currentEnemyCount = 0;
 
-	public Transform[] areas;	
-	public float timeOfLastWave = -3f;
-	public float waveInterval = 3f;
-		
 	private GameObject player;
 	private bool spawnEnabled = true;
 	

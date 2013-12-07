@@ -8,52 +8,41 @@ public class FPSInputController : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool fire;
+	[HideInInspector]
+	public bool reloading;
+	[HideInInspector]
+	public int currentWeapon;
+
 	private bool firing;
 	private float firingTimer;
 	public float idleTimer;	
-	[HideInInspector]
-	public bool reloading;
-	
+
 	[HideInInspector]
 	public string currentWeaponName;
 	
-	[HideInInspector]
-	public int currentWeapon;
-	
+
 	private CharacterMotor motor;
 	private GameManager game;
 	private PlayerSounds sounds;
 
 	// Use this for initialization
 	void Start () {
+		game = GameManager.instance;
 		motor = GetComponent<CharacterMotor>();
 		sounds = PlayerSounds.instance;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (game == null){
-			game = GameManager.instance;
-		}
 		if(game.gameState != GameState.RUNNING){
 			return;
 		}
 
 		bool treasureOnGround = game.treasure.OnGround();
 
-		// Get the input vector from kayboard or analog stick
+		// Get the input vector from kayboard
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-//		if (directionVector == Vector3.zero) {
-//			directionVector = new Vector3(Input.GetAxis("Joy X"), 0f, Input.GetAxis("Joy Y"));
-//		}
 
-
-/*		if (Vector3.Distance(directionVector, Vector3.zero) > 0.1f){
-			game.statistics.playerMoving = true;
-		} else {
-			game.statistics.playerMoving = false;
-		}
-*/
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway
@@ -86,27 +75,9 @@ public class FPSInputController : MonoBehaviour {
 		int currentGunIndex = game.weapons.currentGunIndex;
 
 		if (Input.GetAxis("Mouse ScrollWheel") < 0){
-			while (true){
-				currentGunIndex++;
-				if (currentGunIndex>4){
-					currentGunIndex = 0;
-				}
-				if (game.weapons.guns[currentGunIndex].picked_up){
-					break;
-				}
-			}
-			game.weapons.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToNextGun();
 		} else if (Input.GetAxis("Mouse ScrollWheel") > 0){
-			while (true){
-				currentGunIndex--;
-				if (currentGunIndex<0){
-					currentGunIndex = 4;
-				}
-				if (game.weapons.guns[currentGunIndex].picked_up){
-					break;
-				}
-			}
-			game.weapons.ChangeToGun(currentGunIndex);
+			game.weapons.ChangeToPreviousGun();
 		}
 
 		if (Input.GetButtonDown("Pistol")){
@@ -203,6 +174,6 @@ public class FPSInputController : MonoBehaviour {
 				scarCollider.size = new Vector3(2,2,2);
 			}
 		}
-
 	}
+	
 }
