@@ -18250,8 +18250,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 292026108}
-  - {fileID: 1037257447}
   - {fileID: 505056630}
+  - {fileID: 1037257447}
   - {fileID: 1386075072}
   - {fileID: 1093486213}
   - {fileID: 2138496619}
@@ -49067,10 +49067,12 @@ MonoBehaviour:
     storyImages: []
     storySlide: 1
   hud:
-    healthbar: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2, type: 3}
-    health: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
-    armorbar: {fileID: 2800000, guid: ef024879d4c94f34d83e6244bdb9046f, type: 3}
-    armor: {fileID: 2800000, guid: d9b5a489de8f63249802f64062481b93, type: 3}
+    healthBarTexture: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
+    healthBackgroundTexture: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2,
+      type: 3}
+    armorBarTexture: {fileID: 2800000, guid: d9b5a489de8f63249802f64062481b93, type: 3}
+    armorBackgroundTexture: {fileID: 2800000, guid: ef024879d4c94f34d83e6244bdb9046f,
+      type: 3}
   crosshair:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
@@ -49078,7 +49080,6 @@ MonoBehaviour:
   bloodSplatter:
     bloodSplatter: {fileID: 2800000, guid: 87fc8b49508c504478c2a462edec702b, type: 3}
     fadeSpeed: .0500000007
-    bloodAlpha: 0
     pulseTreshold: 0
 --- !u!114 &1045093066
 MonoBehaviour:
@@ -51324,8 +51325,8 @@ Transform:
   m_LocalPosition: {x: -179.166046, y: 36.4942627, z: 147.490768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 875015727}
   - {fileID: 1738272025}
+  - {fileID: 875015727}
   - {fileID: 916690812}
   - {fileID: 1512682148}
   - {fileID: 1480570609}
@@ -96387,11 +96388,11 @@ Transform:
   m_LocalPosition: {x: 124.550629, y: 16.2904186, z: 153.885223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 123536757}
   - {fileID: 1128983960}
-  - {fileID: 1661539437}
   - {fileID: 1242840344}
   - {fileID: 826690421}
+  - {fileID: 1661539437}
+  - {fileID: 123536757}
   - {fileID: 621668968}
   - {fileID: 1335319053}
   - {fileID: 1669067890}

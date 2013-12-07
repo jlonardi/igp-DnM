@@ -81,7 +81,7 @@ public class SaveContainer {
 		level = game.statistics.level;
 		bodycount = game.statistics.bodycount;
 		score = game.statistics.score;
-		bloodAlpha = onGuiManager.bloodSplatter.bloodAlpha;
+		bloodAlpha = onGuiManager.bloodSplatter.GetBloodAlpha();
 		playerArmor = game.statistics.playerArmor;
 		playerHealth = game.statistics.playerHealth;
 		treasureOnGround = game.treasure.OnGround();
@@ -124,7 +124,7 @@ public class SaveContainer {
 			mouseY.sensitivity = mouseSensitivity;
 			mouseX.smoothing = mouseSmoothing;
 			mouseY.smoothing = mouseSmoothing;
-			onGuiManager.bloodSplatter.bloodAlpha = bloodAlpha;
+			onGuiManager.bloodSplatter.SetBloodAlpha(bloodAlpha);
 			game.weapons.guns[0].currentRounds = gun0_rounds;
 			game.weapons.guns[1].currentRounds = gun1_rounds;
 			game.weapons.guns[2].currentRounds = gun2_rounds;
