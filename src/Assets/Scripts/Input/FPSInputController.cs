@@ -125,7 +125,7 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButton("Sprint") && !treasureOnGround){
+		if (Input.GetButton("Sprint") && treasureOnGround){
 			motor.StartSprint();
 		}
 
@@ -163,11 +163,9 @@ public class FPSInputController : MonoBehaviour {
 		if (Input.GetButtonDown("Use")){
 			if (!treasureOnGround){
 				game.treasure.SetTreasureOnGround();
-				game.pickupState = PickupState.TREASURE;
 
 			} else if(game.pickupState == PickupState.TREASURE){
 				game.treasure.CarryTreasure();
-				game.pickupState = PickupState.NONE;
 
 				// if sprinting, stop it while carrying the treasure
 				if (motor.sprinting){

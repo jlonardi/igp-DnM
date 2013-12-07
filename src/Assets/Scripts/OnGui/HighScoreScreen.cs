@@ -89,8 +89,12 @@ public class HighScoreScreen {
 		GUILayout.BeginArea(new Rect(centerX-175, 870,350,600));
 		if(GUILayout.Button ("Main Menu"))
 		{
-			// load Main Menu scene
-			Application.LoadLevel("Main Meny");
+			if (game.gameState == GameState.HIGHSCORE_GAME){
+				// load Main Menu scene
+				Application.LoadLevel("Main Meny");
+			} else {
+				game.gameState = GameState.MAIN_MENU;
+			}
 		}
 		GUILayout.EndArea();
 	}

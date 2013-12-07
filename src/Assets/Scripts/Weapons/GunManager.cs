@@ -42,15 +42,6 @@ public class GunManager : MonoBehaviour {
 		if (throwingGrenade && (timeOfLastGrenade + grenadeThrowDelay) < Time.time){
 			DelayedGrenadeThrow();
 		}
-
-		// update stats for hud
-		game.statistics.gunEnabled = currentGun.enabled;
-		game.statistics.gunName = currentGun.name;
-		game.statistics.gunUnlimitedClips = currentGun.unlimited;
-		game.statistics.gunClips = currentGun.totalClips;
-		game.statistics.gunRounds = currentGun.currentRounds;
-		game.statistics.gunReloading = currentGun.reloading;
-		game.statistics.grenadeCount = grenadeCount;
 	}
 	
 	public void ChangeToCurrentWeapon(){

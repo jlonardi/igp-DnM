@@ -17,14 +17,7 @@ public class Statistics {
 	public int bodycount;
 	public float playTime;
 	public bool dragonSlayed;
-
-	public string gunName;
-	public int gunRounds;
-	public int gunClips;
-	public bool gunUnlimitedClips;
-	public bool gunReloading;
-	public bool gunEnabled;
-	public int grenadeCount;
+	
 	public float playerSpeed = 0f;
 
 	//scores for different enemy types:
