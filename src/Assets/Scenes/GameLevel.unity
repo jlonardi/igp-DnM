@@ -3008,6 +3008,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
   m_RootGameObject: {fileID: 775991039}
@@ -31450,7 +31454,7 @@ MonoBehaviour:
   gunType: 1
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 0
   fireRate: 10
   fireRange: 50
@@ -34440,6 +34444,10 @@ Prefab:
     - target: {fileID: 100004, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
@@ -38255,7 +38263,7 @@ MonoBehaviour:
   gunType: 0
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 1
   fireRate: 1.5
   fireRange: 50
@@ -52948,7 +52956,7 @@ MonoBehaviour:
   gunType: 2
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 0
   fireRate: 30
   fireRange: 100
@@ -56007,7 +56015,7 @@ MonoBehaviour:
   gunType: 1
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 1
   fireRate: 13
   fireRange: 50
@@ -81884,13 +81892,13 @@ Transform:
   - {fileID: 1720073972}
   - {fileID: 1858726431}
   - {fileID: 373000638}
+  - {fileID: 917507128}
   - {fileID: 805680072}
   - {fileID: 1640430332}
   - {fileID: 2069247625}
   - {fileID: 1216426113}
   - {fileID: 88900639}
   - {fileID: 744286679}
-  - {fileID: 917507128}
   - {fileID: 44893359}
   - {fileID: 1125600153}
   - {fileID: 259167849}
@@ -82426,6 +82434,10 @@ Prefab:
     - target: {fileID: 100048, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
@@ -83825,6 +83837,10 @@ Prefab:
     - target: {fileID: 400006, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
       propertyPath: m_LocalPosition.z
       value: .0299999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
