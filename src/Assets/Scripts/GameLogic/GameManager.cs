@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public PickupState pickupState = PickupState.NONE;
 	public Statistics statistics = new Statistics();
 	public GunManager weapons;
+	public Dragon dragon;
 	public Player player;
 	public Treasure treasure;
 	public GameObject saveManagerPrefab;

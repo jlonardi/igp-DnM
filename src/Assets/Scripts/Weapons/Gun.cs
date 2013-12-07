@@ -389,6 +389,9 @@ public class Gun : MonoBehaviour {
 			if(hit.collider.tag == "enemy")	{
 				CalculateDamage(hit);
 			}
+			if(hit.collider.tag == "Dragon")	{
+				CalculateDragonDamage(hit);
+			}
 			GenerateGraphicStuff(hit);
 			if(hit.collider.tag == "glass")	{
 				if(Physics.Raycast(glassOrigin, glassDir, out glassHit, fireRange - hit.distance, hitLayer)){
@@ -511,7 +514,16 @@ public class Gun : MonoBehaviour {
 		enemyObject.TakeDamage((int)damageAmount, hit, direction, pushPower);
 		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
-		
+
+	// calculates gun's damage for hitpoint
+	public void CalculateDragonDamage(RaycastHit hit){		
+		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
+		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
+		Vector3 direction = hit.collider.transform.position - this.transform.position;	
+		game.dragon.TakeDamage((int)damageAmount, hit, direction, pushPower);
+		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
+	}
+
 	//---------------AUDIO METHODS--------
 	// These require Audio Source to be available on Gun Manager object
 

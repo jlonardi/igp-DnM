@@ -9,6 +9,7 @@ public class RagdollManager : MonoBehaviour {
 	public GameObject orcRagdollPrefab;
 	public GameObject lizardRagdollPrefab;
 	public GameObject wolfRagdollPrefab;
+	public GameObject dragonRagdollPrefab;
 	public int maxRagdolls = 20;
 
 	private List<GameObject> bodies = new List<GameObject>();
@@ -59,6 +60,9 @@ public class RagdollManager : MonoBehaviour {
 
 		// select correct ragdoll prefab by enemytype
 		switch(enemyType) {
+		case EnemyType.DRAGON:
+			ragdollPrefab = dragonRagdollPrefab;
+			break;
 		case EnemyType.LIZARD:
 			ragdollPrefab = lizardRagdollPrefab;
 			break;
@@ -76,7 +80,9 @@ public class RagdollManager : MonoBehaviour {
 		                                               enemyObject.transform.rotation);
 
 		// add body to ragdoll-list so we can keep track of them
-		bodies.Add(ragdollGo);
+		if (enemyType != EnemyType.DRAGON){
+			bodies.Add(ragdollGo);
+		}
 
 		// copy pose of enemy used as ragdoll base
 		if (copyPose){
