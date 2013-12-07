@@ -16,6 +16,9 @@ public class Treasure : MonoBehaviour {
 	private GameManager game;
 	private float timeFromLoot;
 
+	public AudioClip lootSound;
+	public AudioClip dropSound;
+
 	void Awake()
     {
 		game = GameManager.instance;
@@ -26,12 +29,16 @@ public class Treasure : MonoBehaviour {
     }
 
 	void Update(){
-		if (timeFromLoot + 1 < Time.time){
-			//stop coin audio loop here
+		if (timeFromLoot + 1 < Time.time && audio.isPlaying){
+			audio.Stop();
 		}
 	}
 	
 	public int Loot(int lootAmount){
+		audio.clip = lootSound;
+		audio.loop = true;
+		audio.Play();
+
 		timeFromLoot = Time.time;
 		animator.SetBool("isOpen", true);
 
@@ -57,7 +64,6 @@ public class Treasure : MonoBehaviour {
 			game.GameOver();
 		}
 		return lootAmount;
-		
 	}
 	
 	// called when savegame restores and treasure is already on ground
@@ -94,7 +100,7 @@ public class Treasure : MonoBehaviour {
 	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){
 		game.pickupState = PickupState.TREASURE;
-		audio.Play();
+		audio.PlayOneShot(dropSound, 0.8f);
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
 

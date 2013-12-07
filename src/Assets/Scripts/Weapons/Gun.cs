@@ -123,6 +123,9 @@ public class Gun : MonoBehaviour {
 	}
 
 	void Update (){
+		if (game == null){
+			game = GameManager.instance;
+		}
 
 		CalculateAccuracy();
 
@@ -386,6 +389,9 @@ public class Gun : MonoBehaviour {
 			if(hit.collider.tag == "enemy")	{
 				CalculateDamage(hit);
 			}
+			if(hit.collider.tag == "Dragon")	{
+				CalculateDragonDamage(hit);
+			}
 			GenerateGraphicStuff(hit);
 			if(hit.collider.tag == "glass")	{
 				if(Physics.Raycast(glassOrigin, glassDir, out glassHit, fireRange - hit.distance, hitLayer)){
@@ -424,8 +430,9 @@ public class Gun : MonoBehaviour {
 		Vector3 hitPoint = hit.point + hit.normal * delta;
 				
 		switch(hit.collider.tag){
-			case "enemy":
-				hitType = HitType.ENEMY;
+		case "Dragon":
+		case "enemy":
+			hitType = HitType.ENEMY;
 				go = GameObject.Instantiate(hitParticles.bloodParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
 				break;
 			case "wood":
@@ -494,7 +501,6 @@ public class Gun : MonoBehaviour {
 	}
 
 	public void PickUp(){
-		game.pickupState = PickupState.NONE;
 		picked_up = true;
 		PlayerSounds.instance.PlayGunPickupSound();
 	}
@@ -509,7 +515,16 @@ public class Gun : MonoBehaviour {
 		enemyObject.TakeDamage((int)damageAmount, hit, direction, pushPower);
 		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
-		
+
+	// calculates gun's damage for hitpoint
+	public void CalculateDragonDamage(RaycastHit hit){		
+		//always give 1/2 of max damage and rest of the damage amount is calculated by the distance
+		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
+		Vector3 direction = hit.collider.transform.position - this.transform.position;	
+		game.dragon.TakeDamage((int)damageAmount, hit, direction, pushPower);
+		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
+	}
+
 	//---------------AUDIO METHODS--------
 	// These require Audio Source to be available on Gun Manager object
 

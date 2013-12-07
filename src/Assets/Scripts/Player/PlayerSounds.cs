@@ -58,7 +58,11 @@ public class PlayerSounds : MonoBehaviour {
 		if (!motor.IsJumping() && walkSoundTimer <= 0) {
 			int clipNum = Random.Range(0, walkSounds.Length - 1);
 			audio.PlayOneShot(walkSounds[clipNum], 0.6f);
-			walkSoundTimer = 0.5f;
+
+			if (motor.IsSprinting())
+				walkSoundTimer = 0.3f;
+			else
+				walkSoundTimer = 0.45f;
 		}
 	}
 

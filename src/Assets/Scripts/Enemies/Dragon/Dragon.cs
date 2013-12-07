@@ -14,7 +14,7 @@ public class Dragon : MonoBehaviour {
 	public float speed = 15f;
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
-		
+	public float health = 1000;
 	private Transform tr;
 	private Transform player;
 	public Transform head;
@@ -26,9 +26,13 @@ public class Dragon : MonoBehaviour {
 
 	private Vector3 dir;
 	public Vector3 offset = new Vector3(0,-1.5f,-0.2f);
-	
-	void Start () {
+	public AudioClip[] painSounds;
+	private GameManager game;
+	private RagdollManager ragdolls;
 
+	void Start () {
+		game = GameManager.instance;
+		ragdolls = RagdollManager.instance;
 		tr = transform;
 		landingPoint = GameObject.Find("PointInGround").transform.position;
 		player = GameObject.Find("playerFocus").transform;
@@ -143,4 +147,61 @@ public class Dragon : MonoBehaviour {
 		float step = speed * Time.deltaTime;
 		tr.position = Vector3.MoveTowards(tr.position, target, step);
 	}
+
+	// TakeDamage without aplying force
+	public void TakeDamage(int damageAmount){
+		TakeDamage(damageAmount, new RaycastHit(), new Vector3(), 0f);
+	}
+	
+	// TakeDamage and apply explosive force
+	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
+		health -= damageAmount;
+		if(health <= 0) {
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddExplosionForce(power, explosionPosition, 10f, 2.0f);
+		}		
+		AfterTakeDamage();
+	}
+	
+	// TakeDamage and apply damage force
+	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
+		health -= damageAmount;
+		if(health <= 0) {
+			Rigidbody deadBody = MakeDead();
+			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
+		}
+		AfterTakeDamage();
+	}
+
+	// run this after taking a shot or explosive damage
+	public void AfterTakeDamage(){
+		PlaySound(painSounds);
+		Debug.Log("Enemy health left: " + health);
+	}
+
+	// turn living into dead
+	public Rigidbody MakeDead(){
+		game.statistics.AddKillStats(EnemyType.DRAGON);
+
+		// actually make enemy a ragdoll
+		GameObject ragdoll = ragdolls.MakeRagdoll(EnemyType.DRAGON, this.gameObject, true);
+		return ragdoll.GetComponentInChildren(typeof(Rigidbody)) as Rigidbody;		
+	}
+
+	private void PlaySound(AudioClip clip)
+	{
+		if (!audio.isPlaying)
+		{
+			audio.clip = clip;
+			audio.Play();
+		}
+	}
+	
+	private void PlaySound(AudioClip[] clips)
+	{
+		int clipNum = Random.Range(0, clips.Length - 1);
+		PlaySound(clips[clipNum]);
+	}
+
+
 }

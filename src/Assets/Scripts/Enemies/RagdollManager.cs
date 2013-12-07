@@ -9,15 +9,21 @@ public class RagdollManager : MonoBehaviour {
 	public GameObject orcRagdollPrefab;
 	public GameObject lizardRagdollPrefab;
 	public GameObject wolfRagdollPrefab;
+	public GameObject dragonRagdollPrefab;
 	public int maxRagdolls = 20;
 
 	private List<GameObject> bodies = new List<GameObject>();
 	private GameManager game;
+	private GameObject playerObj;
 
 	void Awake() {
 		RagdollManager.instance = this;
-		game = GameManager.instance;
 	}	
+
+	void Start(){
+		game = GameManager.instance;
+		playerObj = game.player.gameObject;
+	}
 
 	public GameObject MakeRagdoll(EnemyType enemyType, GameObject enemyObject, bool copyPose){		
 		GameObject ragdollPrefab;
@@ -40,7 +46,7 @@ public class RagdollManager : MonoBehaviour {
 			float farEnemyDistance = 0f;
 			float enemyDistance;
 			for (int i=0; i< bodies.Count; i++){
-				enemyDistance = Vector3.Distance(bodies[i].transform.position, game.player.gameObject.transform.position);
+				enemyDistance = Vector3.Distance(bodies[i].transform.position, playerObj.transform.position);
 				if (enemyDistance > farEnemyDistance){
 					farEnemyDistance = enemyDistance;
 					farEnemyIndex = i;
@@ -54,6 +60,9 @@ public class RagdollManager : MonoBehaviour {
 
 		// select correct ragdoll prefab by enemytype
 		switch(enemyType) {
+		case EnemyType.DRAGON:
+			ragdollPrefab = dragonRagdollPrefab;
+			break;
 		case EnemyType.LIZARD:
 			ragdollPrefab = lizardRagdollPrefab;
 			break;
@@ -71,7 +80,9 @@ public class RagdollManager : MonoBehaviour {
 		                                               enemyObject.transform.rotation);
 
 		// add body to ragdoll-list so we can keep track of them
-		bodies.Add(ragdollGo);
+		if (enemyType != EnemyType.DRAGON){
+			bodies.Add(ragdollGo);
+		}
 
 		// copy pose of enemy used as ragdoll base
 		if (copyPose){
