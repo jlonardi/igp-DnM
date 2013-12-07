@@ -15,16 +15,15 @@ public class Dragon : MonoBehaviour {
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
 		
-	public Transform tr;
-	public Transform player;
-	public Transform head;
-	public Player plr;
-	public Vector3 landingPoint;
+	private Transform tr;
+	private Transform player;
+	private Transform head;
+	private Player plr;
+	private Vector3 landingPoint;
 
-	public float grabTime = 0f;
-	public float releaseTime = float.MaxValue;
+	private float grabTime = 0f;
 
-	public Vector3 dir;
+	private Vector3 dir;
 	public Vector3 offset = new Vector3(0,-1.5f,-0.2f);
 	
 	void Start () {
@@ -86,6 +85,8 @@ public class Dragon : MonoBehaviour {
 				} else {
 					plr.disableImmunity();
 					plr.TakeDamage(9001, DamageType.HIT);
+					grabbing = false;
+					fighting = false;
 				}
 			}
 		}
