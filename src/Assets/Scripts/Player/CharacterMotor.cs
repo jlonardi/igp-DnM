@@ -285,8 +285,8 @@ public class CharacterMotor : MonoBehaviour {
 		
 		return velocity;
 	}
-		     
-	// this script pushes all rigidbodies that the character touches
+
+	// this pushes all rigidbodies that the character touches
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
 		if (hit.normal.y > 0f && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0f) {

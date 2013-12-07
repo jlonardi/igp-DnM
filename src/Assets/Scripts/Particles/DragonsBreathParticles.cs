@@ -4,14 +4,15 @@ using System.Collections;
 public class DragonsBreathParticles : MonoBehaviour {
 	public int destroyAfter = 100;
 	public ParticleEmitter emitter;
-	private Dragon dragon;
+	private GameManager game;
 
-	void Update () {
-		if (dragon == null){
-			dragon = this.transform.root.GetComponentInChildren<Dragon>();
-		}
+	void Start(){
+		game = GameManager.instance;
+	}
 
-		emitter.emit = dragon.breathFire;
+	void Update(){
+
+		emitter.emit = game.dragon.breathFire;
 
 		int count = emitter.particles.Length;
 		if (count > destroyAfter){
@@ -21,6 +22,13 @@ public class DragonsBreathParticles : MonoBehaviour {
 				tempParticles[i] = emitter.particles[i+offset];
 			}
 			emitter.particles = tempParticles;
+		}
+	}
+
+	// this applies fire particle damage to player
+	void OnParticleCollision(GameObject other){
+		if(other.tag == "Player"){
+			game.player.TakeDamage(1f, DamageType.FIRE);
 		}
 	}
 }

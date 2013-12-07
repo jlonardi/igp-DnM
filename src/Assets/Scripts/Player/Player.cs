@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	private int health = 100;
-	private int armor; // armor scale 0-50
+	private float health = 100f;
+	private float armor; // armor scale 0-50
 
 	private GameManager game;
 	private OnGuiManager guiManager;
@@ -20,17 +20,36 @@ public class Player : MonoBehaviour {
 		sounds = PlayerSounds.instance;
 	}	
 
-	public void TakeDamage(int damageAmount, DamageType damageType){
+	public void TakeDamage(float damageAmount, DamageType damageType){
 		if(canBeAttacked) {
-			//if player has an armor, take less damage
-			int tempArmor = armor - damageAmount;
-			int tempHealth = health;
+			float tempArmor = 0;
+			float tempHealth = 0;
 
-			if (tempArmor<0){
-				armor = 0;
-				tempHealth = health + tempArmor;
-			} else {
-				armor = tempArmor;
+			//handle fire damage here
+			if (damageType == DamageType.FIRE){
+				//if player has an armor, firedamage is 50% less
+				tempArmor = armor - (damageAmount*0.5f);
+				if (tempArmor<0){
+					armor = 0;
+					// amount without armor is 100% of firedamage
+					tempHealth = health + (tempArmor*2);
+				} else {
+					tempHealth = health;
+					armor = tempArmor;
+				}
+			}
+
+			//handle enemy hits and everything but firedamage here
+			if (damageType != DamageType.FIRE){
+				//if player has an armor, take less damage
+				tempArmor = armor - damageAmount;
+				if (tempArmor<0){
+					armor = 0;
+					tempHealth = health + tempArmor;
+				} else {
+					tempHealth = health;
+					armor = tempArmor;
+				}
 			}
 
 			// if enemy hits player, treasure drops
@@ -46,25 +65,25 @@ public class Player : MonoBehaviour {
 				game.GameOver();	
 				sounds.PlayDeathSound();
 			} else {
-				health = (int)Mathf.Round(tempHealth);
+				health = tempHealth;
 				sounds.PlayPainSound();
 			}
 		}
 	}
 	
-	public int GetHealth(){
+	public float GetHealth(){
 		return health;
 	}
 	
-	public void SetHealth(int value){
+	public void SetHealth(float value){
 		health = value;
 	}
 	
-	public int GetArmor(){
+	public float GetArmor(){
 		return armor;
 	}
 	
-	public void SetArmor(int value){
+	public void SetArmor(float value){
 		armor = value;
 	}
 
@@ -75,4 +94,6 @@ public class Player : MonoBehaviour {
 	public void disableImmunity() {
 		canBeAttacked = true;
 	}
+
+
 }
