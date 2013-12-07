@@ -8,9 +8,12 @@ public class Player : MonoBehaviour {
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
+	[HideInInspector]
+	public CharacterMotor motor;
 
     public void Awake() {
         Player.instance = this;
+		motor = GetComponent<CharacterMotor>();
     }	
 
 	void Update(){
