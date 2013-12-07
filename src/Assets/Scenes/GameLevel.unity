@@ -19692,7 +19692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 30
-  emitter: {fileID: 413385688}
 --- !u!26 &413385686
 ParticleRenderer:
   m_ObjectHideFlags: 0
@@ -46527,7 +46526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 100
-  emitter: {fileID: 983488667}
 --- !u!26 &983488665
 ParticleRenderer:
   m_ObjectHideFlags: 0
@@ -78146,7 +78144,7 @@ GameObject:
   - 4: {fileID: 1704048761}
   - 136: {fileID: 1704048762}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ColliderForDragonFire
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89992,7 +89990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 100
-  emitter: {fileID: 1947483480}
 --- !u!26 &1947483478
 ParticleRenderer:
   m_ObjectHideFlags: 0
