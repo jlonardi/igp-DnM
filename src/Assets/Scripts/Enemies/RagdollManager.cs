@@ -10,18 +10,15 @@ public class RagdollManager : MonoBehaviour {
 	public GameObject lizardRagdollPrefab;
 	public GameObject wolfRagdollPrefab;
 	public int maxRagdolls = 20;
-	private GameObject player;
 
 	private List<GameObject> bodies = new List<GameObject>();
+	private GameManager game;
 
 	void Awake() {
 		RagdollManager.instance = this;
+		game = GameManager.instance;
 	}	
 
-	void Start() {
-		player = GameObject.Find("Player");
-	}
-	
 	public GameObject MakeRagdoll(EnemyType enemyType, GameObject enemyObject, bool copyPose){		
 		GameObject ragdollPrefab;
 
@@ -43,7 +40,7 @@ public class RagdollManager : MonoBehaviour {
 			float farEnemyDistance = 0f;
 			float enemyDistance;
 			for (int i=0; i< bodies.Count; i++){
-				enemyDistance = Vector3.Distance(bodies[i].transform.position, player.transform.position);
+				enemyDistance = Vector3.Distance(bodies[i].transform.position, game.player.gameObject.transform.position);
 				if (enemyDistance > farEnemyDistance){
 					farEnemyDistance = enemyDistance;
 					farEnemyIndex = i;

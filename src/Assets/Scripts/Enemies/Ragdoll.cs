@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class Ragdoll : MonoBehaviour {
 	
+	public AudioClip[] deathSounds;
 	private List<Transform> poseBones = new List<Transform>();
 	private List<Transform> ragdollBones = new List<Transform>();
-
-	public AudioClip[] deathSounds;
 
 	void Start () {
 		// play randdom deathsound when ragdoll has been made

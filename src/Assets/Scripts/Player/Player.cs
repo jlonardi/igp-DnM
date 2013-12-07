@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
+	public bool canBeAttacked = true;
 
 	[HideInInspector]
 	public CharacterMotor motor;
@@ -20,32 +21,34 @@ public class Player : MonoBehaviour {
 	}	
 
 	public void TakeDamage(int damageAmount, DamageType damageType){
-		//if player has an armor, take less damage
-		int tempArmor = armor - damageAmount;
-		int tempHealth = health;
+		if(canBeAttacked) {
+			//if player has an armor, take less damage
+			int tempArmor = armor - damageAmount;
+			int tempHealth = health;
 
-		if (tempArmor<0){
-			armor = 0;
-			tempHealth = health + tempArmor;
-		} else {
-			armor = tempArmor;
-		}
+			if (tempArmor<0){
+				armor = 0;
+				tempHealth = health + tempArmor;
+			} else {
+				armor = tempArmor;
+			}
 
-		// if enemy hits player, treasure drops
-		if(!game.treasure.OnGround()){
-			game.treasure.SetTreasureOnGround();
-		}
+			// if enemy hits player, treasure drops
+			if(!game.treasure.OnGround()){
+				game.treasure.SetTreasureOnGround();
+			}
 
-		// visualize the pain
-		guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
+			// visualize the pain
+			guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
 
-		if (tempHealth <= 0){
-			health = 0;
-			game.GameOver();	
-			sounds.PlayDeathSound();
-		} else {
-			health = (int)Mathf.Round(tempHealth);
-			sounds.PlayPainSound();
+			if (tempHealth <= 0){
+				health = 0;
+				game.GameOver();	
+				sounds.PlayDeathSound();
+			} else {
+				health = (int)Mathf.Round(tempHealth);
+				sounds.PlayPainSound();
+			}
 		}
 	}
 	
@@ -64,5 +67,12 @@ public class Player : MonoBehaviour {
 	public void SetArmor(int value){
 		armor = value;
 	}
-	
+
+	public void makeImmuneToDamage() {
+		canBeAttacked = false;
+	}
+
+	public void disableImmunity() {
+		canBeAttacked = true;
+	}
 }
