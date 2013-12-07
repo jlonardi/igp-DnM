@@ -17,11 +17,12 @@ public class Dragon : MonoBehaviour {
 		
 	private Transform tr;
 	private Transform player;
-	private Transform head;
+	public Transform head;
 	private Player plr;
 	private Vector3 landingPoint;
 
 	private float grabTime = 0f;
+	public float timeOfLastFireBreath = 0f;
 
 	private Vector3 dir;
 	public Vector3 offset = new Vector3(0,-1.5f,-0.2f);
@@ -55,7 +56,7 @@ public class Dragon : MonoBehaviour {
 
 		if(fighting) {
 
-			if(!grabbing) {
+			if(!grabbing && !breathFire) {
 				dir = (player.position - tr.position);
 				rotateTowards(dir);
 			}
@@ -70,6 +71,7 @@ public class Dragon : MonoBehaviour {
 
 				} else {
 					walking = false;
+					breathFire = false;
 					grabbing = true;
 					player = GameObject.Find ("Player").transform;
 					plr.TakeDamage(plr.GetHealth() - 1, DamageType.HIT);
@@ -81,12 +83,27 @@ public class Dragon : MonoBehaviour {
 			if(grabbing) {
 
 				if(grabTime + 5 > Time.time) {
+
+					Debug.Log ("Head position = " + head.position);
+
 					player.position = head.position + offset;
+
 				} else {
 					plr.disableImmunity();
 					plr.TakeDamage(9001, DamageType.HIT);
 					grabbing = false;
 					fighting = false;
+				}
+			}
+
+			if(timeOfLastFireBreath + 10 < Time.time) {
+				breathFire = true;
+				timeOfLastFireBreath = Time.time;
+			}
+
+			if(breathFire) {
+				if(timeOfLastFireBreath + 3 < Time.time) {
+					breathFire = false;
 				}
 			}
 		}
@@ -97,7 +114,7 @@ public class Dragon : MonoBehaviour {
 		landing = true;
 		speed = 35f;
 
-		dir = (landingPoint - tr.position);
+		dir = landingPoint - tr.position;
 
 	}
 
