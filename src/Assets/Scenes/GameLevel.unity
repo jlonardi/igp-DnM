@@ -2070,7 +2070,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 44779380}
-  - 136: {fileID: 44779382}
   m_Layer: 12
   m_Name: paunch
   m_TagString: Dragon
@@ -2090,20 +2089,6 @@ Transform:
   m_Children:
   - {fileID: 1738779253}
   m_Father: {fileID: 519880293}
---- !u!136 &44779382
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 131f4be3db3c20b42bbe7b0a449e15ff,
-    type: 2}
-  m_PrefabInternal: {fileID: 1709115003}
-  m_GameObject: {fileID: 44779379}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 5.30000019
-  m_Height: 29.0499992
-  m_Direction: 0
-  m_Center: {x: -2.6500001, y: 0, z: -1.66999996}
 --- !u!1 &44871913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,6 +3007,10 @@ Prefab:
     - target: {fileID: 100006, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
@@ -22399,6 +22388,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13500000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
+      propertyPath: m_Center.y
+      value: -.629999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 13500000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
+      propertyPath: m_Radius
+      value: .569999993
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
   m_RootGameObject: {fileID: 917507127}
@@ -31457,7 +31454,7 @@ MonoBehaviour:
   gunType: 1
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 0
   fireRate: 10
   fireRange: 50
@@ -34447,6 +34444,10 @@ Prefab:
     - target: {fileID: 100004, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b659fe7355585a4eac756236493e27f, type: 2}
@@ -38262,7 +38263,7 @@ MonoBehaviour:
   gunType: 0
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 1
   fireRate: 1.5
   fireRange: 50
@@ -39815,12 +39816,12 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1709115003}
   m_GameObject: {fileID: 810011199}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.26999998
-  m_Height: 12.2200003
+  m_Radius: 3.58999991
+  m_Height: 16.8299999
   m_Direction: 0
-  m_Center: {x: -.670000017, y: 0, z: 0}
+  m_Center: {x: 2.70000005, y: 0, z: 0}
 --- !u!1 &810392300
 GameObject:
   m_ObjectHideFlags: 0
@@ -41726,9 +41727,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 862751312}
+  - 65: {fileID: 862751313}
   m_Layer: 12
   m_Name: a
-  m_TagString: Untagged
+  m_TagString: Dragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41762,6 +41764,18 @@ Transform:
   - {fileID: 2041891762}
   - {fileID: 225609720}
   m_Father: {fileID: 775004592}
+--- !u!65 &862751313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862751311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.9099998, y: 25.6000004, z: 14.8000002}
+  m_Center: {x: 0, y: -6.19000006, z: 2.46000004}
 --- !u!1 &863034946
 GameObject:
   m_ObjectHideFlags: 0
@@ -44152,8 +44166,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: -.400000006}
+  m_Radius: .569999993
+  m_Center: {x: 0, y: -.629999995, z: -.400000006}
 --- !u!1 &917669805
 GameObject:
   m_ObjectHideFlags: 0
@@ -44191,12 +44205,12 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1709115003}
   m_GameObject: {fileID: 917669805}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.07999992
-  m_Height: 11.2600002
+  m_Radius: 3.52999997
+  m_Height: 14.3999996
   m_Direction: 0
-  m_Center: {x: -1.25999999, y: 0, z: 0}
+  m_Center: {x: -.280000001, y: 0, z: 0}
 --- !u!1 &918877898
 GameObject:
   m_ObjectHideFlags: 0
@@ -52942,7 +52956,7 @@ MonoBehaviour:
   gunType: 2
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 0
   fireRate: 30
   fireRange: 100
@@ -56001,7 +56015,7 @@ MonoBehaviour:
   gunType: 1
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
   picked_up: 1
   fireRate: 13
   fireRange: 50
@@ -78318,7 +78332,44 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.707106829
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 13600002, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Height
+      value: 16.8299999
+      objectReference: {fileID: 0}
+    - target: {fileID: 100172, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_TagString
+      value: Dragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600004, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600004, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Radius
+      value: 3.52999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600004, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Height
+      value: 14.3999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600002, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Radius
+      value: 3.58999991
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600002, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Center.x
+      value: 2.70000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600004, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_Center.x
+      value: -.280000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 13600002, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 13600000, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 131f4be3db3c20b42bbe7b0a449e15ff, type: 2}
   m_RootGameObject: {fileID: 775004591}
   m_IsPrefabParent: 0
@@ -82384,6 +82435,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
   m_RootGameObject: {fileID: 1112910397}
@@ -83782,6 +83837,10 @@ Prefab:
     - target: {fileID: 400006, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
       propertyPath: m_LocalPosition.z
       value: .0299999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
+      propertyPath: hitLayer.m_Bits
+      value: 5888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5b5bc4b6b0c4cf46badf22b1031636e, type: 2}
