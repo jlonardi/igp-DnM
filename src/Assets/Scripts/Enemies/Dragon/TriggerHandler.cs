@@ -10,6 +10,10 @@ public class TriggerHandler : MonoBehaviour {
 	public bool playerInsideTheLair = false;
 	public bool playerKilled = false;
 
+	void Awake() {
+		dragon = GameObject.Find("Dragon").GetComponent<Dragon>();
+	}
+
 	public void handleKillTrigger (Collider other) {
 	
 		if(other.tag == "Player") {

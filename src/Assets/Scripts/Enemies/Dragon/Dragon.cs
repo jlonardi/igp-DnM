@@ -73,7 +73,8 @@ public class Dragon : MonoBehaviour {
 					walking = false;
 					grabbing = true;
 					player = GameObject.Find ("Player").transform;
-					plr.TakeDamage(99, DamageType.HIT);
+					plr.TakeDamage(plr.GetHealth() - 1, DamageType.HIT);
+					plr.makeImmuneToDamage();
 					grabTime = Time.time;
 				}
 			}
@@ -83,6 +84,7 @@ public class Dragon : MonoBehaviour {
 				if(grabTime + 5 > Time.time) {
 					player.position = head.position + offset;
 				} else {
+					plr.disableImmunity();
 					plr.TakeDamage(9001, DamageType.HIT);
 				}
 			}
