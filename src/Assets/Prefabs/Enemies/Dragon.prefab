@@ -148,7 +148,6 @@ GameObject:
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
   - 114: {fileID: 11400000}
-  - 76: {fileID: 7600000}
   m_Layer: 12
   m_Name: breathOuter
   m_TagString: fire
@@ -5076,19 +5075,6 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
---- !u!76 &7600000
-WorldParticleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100018}
-  m_BounceFactor: .5
-  m_CollisionEnergyLoss: 0
-  m_CollidesWith:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_SendCollisionMessage: 1
-  m_MinKillVelocity: 0
 --- !u!76 &7600002
 WorldParticleCollider:
   m_ObjectHideFlags: 1
@@ -5234,7 +5220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 100
-  emitter: {fileID: 1500000}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5246,7 +5231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bcc4f6ab508ab46bf851738e98f1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breathFire: 1
+  breathFire: 0
   flying: 1
   patroling: 1
   walking: 0
@@ -5284,7 +5269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 100
-  emitter: {fileID: 1500002}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5297,7 +5281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 30
-  emitter: {fileID: 1500006}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
