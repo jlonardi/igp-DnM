@@ -13,11 +13,16 @@ public class RagdollManager : MonoBehaviour {
 
 	private List<GameObject> bodies = new List<GameObject>();
 	private GameManager game;
+	private GameObject playerObj;
 
 	void Awake() {
 		RagdollManager.instance = this;
-		game = GameManager.instance;
 	}	
+
+	void Start(){
+		game = GameManager.instance;
+		playerObj = game.player.gameObject;
+	}
 
 	public GameObject MakeRagdoll(EnemyType enemyType, GameObject enemyObject, bool copyPose){		
 		GameObject ragdollPrefab;
@@ -40,7 +45,7 @@ public class RagdollManager : MonoBehaviour {
 			float farEnemyDistance = 0f;
 			float enemyDistance;
 			for (int i=0; i< bodies.Count; i++){
-				enemyDistance = Vector3.Distance(bodies[i].transform.position, game.player.gameObject.transform.position);
+				enemyDistance = Vector3.Distance(bodies[i].transform.position, playerObj.transform.position);
 				if (enemyDistance > farEnemyDistance){
 					farEnemyDistance = enemyDistance;
 					farEnemyIndex = i;
