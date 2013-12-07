@@ -5246,7 +5246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bcc4f6ab508ab46bf851738e98f1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breathFire: 1
+  breathFire: 0
   flying: 1
   patroling: 1
   walking: 0
@@ -5258,6 +5258,8 @@ MonoBehaviour:
   turningSpeed: 5
   minDistanceFromPlayer: 7
   health: 1000
+  head: {fileID: 0}
+  timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
   painSounds:
   - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
