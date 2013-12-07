@@ -22384,6 +22384,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13500000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
+      propertyPath: m_Center.y
+      value: -.629999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 13500000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
+      propertyPath: m_Radius
+      value: .569999993
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22e12fe23aad72c4b90e771202aecba6, type: 2}
   m_RootGameObject: {fileID: 917507127}
@@ -41755,7 +41763,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862751311}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 11.9099998, y: 25.6000004, z: 14.8000002}
@@ -44150,8 +44158,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: -.400000006}
+  m_Radius: .569999993
+  m_Center: {x: 0, y: -.629999995, z: -.400000006}
 --- !u!1 &917669805
 GameObject:
   m_ObjectHideFlags: 0
@@ -81876,13 +81884,13 @@ Transform:
   - {fileID: 1720073972}
   - {fileID: 1858726431}
   - {fileID: 373000638}
-  - {fileID: 917507128}
   - {fileID: 805680072}
   - {fileID: 1640430332}
   - {fileID: 2069247625}
   - {fileID: 1216426113}
   - {fileID: 88900639}
   - {fileID: 744286679}
+  - {fileID: 917507128}
   - {fileID: 44893359}
   - {fileID: 1125600153}
   - {fileID: 259167849}
