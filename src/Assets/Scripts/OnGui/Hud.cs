@@ -16,7 +16,6 @@ public class Hud {
 	private float currentArmor;
 
 	private GameManager game;
-	private Gun gun;
 	private OnGuiManager gui;
 	private int centerX;
 	private int centerY;
@@ -72,7 +71,7 @@ public class Hud {
 		GUILayout.Label("Treasure: " + game.statistics.treasureAmount + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
 
-		gun = game.weapons.currentGun;
+		Gun gun = game.weapons.currentGun;
 
 		if (gun.enabled){
 			GUILayout.Label("Grenades: " + game.weapons.grenadeCount, "hud_label");

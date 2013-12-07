@@ -59,6 +59,23 @@ public class Treasure : MonoBehaviour {
 		game.pickupState = PickupState.NONE;
 		animator.SetBool("isOpen",false);
 		onGround = false;
+
+		// if sprinting, stop it while carrying the treasure
+		if (game.player.motor.sprinting){
+			game.player.motor.StopSprint();
+		}
+		
+		// disable gun so we can carry treasure
+		game.weapons.currentGun.enabled = false;
+		// find treasure positions from scene
+		GameObject treasureBox = GameObject.Find("treasure_box");
+		treasureBox.collider.isTrigger = true;
+		GameObject treasureOnPlayer = GameObject.Find("Treasure");
+		// change parent to players Treasure-object
+		treasureBox.transform.parent = treasureOnPlayer.transform;
+		// and change local position & rotation back to start values
+		treasureBox.transform.localPosition = new Vector3(0,0,-1.28f);
+		treasureBox.transform.localRotation = Quaternion.identity;
 	}
 
 	// called when player sets treasure on ground	
@@ -82,7 +99,6 @@ public class Treasure : MonoBehaviour {
 		game.weapons.ChangeToCurrentWeapon();
 
 		MusicAndAtmoManager.instance.PlayBattleMusic();
-		
 		
 		// =========== align treasure on terrain ======================
 		

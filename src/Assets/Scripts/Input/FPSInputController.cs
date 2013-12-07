@@ -167,22 +167,27 @@ public class FPSInputController : MonoBehaviour {
 			} else if(game.pickupState == PickupState.TREASURE){
 				game.treasure.CarryTreasure();
 
-				// if sprinting, stop it while carrying the treasure
-				if (motor.sprinting){
-					motor.StopSprint();
-				}
+			} else if(game.pickupState == PickupState.MINIGUN){
+				game.weapons.guns[3].PickUp();
+				game.weapons.ChangeToGun(3);
+				// hide minigun on scene
+				GameObject minigun = GameObject.Find("minigunOnGround");
+				minigun.SetActive(false);
+				
+			} else if(game.pickupState == PickupState.SCAR_L){
+				game.weapons.guns[4].PickUp();
+				game.weapons.ChangeToGun(4);
+				// hide scar-L on scene
+				GameObject scarL = GameObject.Find("scarlOnGround");
+				scarL.SetActive(false);
 
-				// disable gun so we can carry treasure
-				game.weapons.currentGun.enabled = false;
-				// find treasure positions from scene
-				GameObject treasureBox = GameObject.Find("treasure_box");
-				treasureBox.collider.isTrigger = true;
-				GameObject treasureOnPlayer = GameObject.Find("Treasure");
-				// change parent to players Treasure-object
-				treasureBox.transform.parent = treasureOnPlayer.transform;
-				// and change local position & rotation back to start values
-				treasureBox.transform.localPosition = new Vector3(0,0,-1.28f);
-				treasureBox.transform.localRotation = Quaternion.identity;
+			} else if(game.pickupState == PickupState.GRENADE_BOX){
+				game.pickupState = PickupState.NONE;
+				// add grenades to gun manager
+				game.weapons.grenadeCount = 20;
+				// hide grenades on scene
+				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
+				grenadeBox.SetActive(false);
 
 			} else if(game.pickupState == PickupState.ARMOR){
 				game.pickupState = PickupState.NONE;
@@ -196,37 +201,7 @@ public class FPSInputController : MonoBehaviour {
 				GameObject scarL = GameObject.Find("pickup_scarl");
 				BoxCollider scarCollider = scarL.GetComponent<BoxCollider>();
 				scarCollider.size = new Vector3(2,2,2);
-
-			} else if(game.pickupState == PickupState.GRENADE_BOX){
-				game.pickupState = PickupState.NONE;
-				// add grenades to gun manager
-				game.weapons.grenadeCount = 20;
-				// hide grenades on scene
-				GameObject grenadeBox = GameObject.Find("grenadeBoxOnGround");
-				grenadeBox.SetActive(false);
-
-			} else if(game.pickupState == PickupState.MINIGUN){
-				game.pickupState = PickupState.NONE;
-				// set minigun available
-				game.weapons.guns[3].picked_up = true;
-				game.weapons.ChangeToGun(3);
-				PlayerSounds.instance.PlayGunPickupSound();
-				// hide minigun on scene
-				GameObject minigun = GameObject.Find("minigunOnGround");
-				minigun.SetActive(false);
-
-			} else if(game.pickupState == PickupState.SCAR_L){
-				game.pickupState = PickupState.NONE;
-				// set minigun available
-				game.weapons.guns[4].picked_up = true;
-				game.weapons.ChangeToGun(4);
-				PlayerSounds.instance.PlayGunPickupSound();
-				// hide scar-L on scene
-				GameObject scarL = GameObject.Find("scarlOnGround");
-				scarL.SetActive(false);
-
 			}
-			
 		}
 
 	}

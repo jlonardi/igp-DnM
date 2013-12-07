@@ -492,7 +492,13 @@ public class Gun : MonoBehaviour {
 			reloadTimer = reloadTime;
 		}
 	}
-	
+
+	public void PickUp(){
+		game.pickupState = PickupState.NONE;
+		picked_up = true;
+		PlayerSounds.instance.PlayGunPickupSound();
+	}
+
 	// calculates gun's damage for hitpoint
 	public void CalculateDamage(RaycastHit hit){		
 		EnemyLogic enemyObject = hit.collider.GetComponentInChildren<EnemyLogic>();
