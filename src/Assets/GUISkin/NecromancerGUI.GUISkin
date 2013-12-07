@@ -2819,7 +2819,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: hud_score
     m_Normal:
-      m_Background: {fileID: 2800000, guid: b967abd3473f2664a8da5cb37aab0faf, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -2877,7 +2877,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: hud_label
     m_Normal:
-      m_Background: {fileID: 2800000, guid: b967abd3473f2664a8da5cb37aab0faf, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}

@@ -16,8 +16,8 @@ public class SaveContainer {
 	public float mouseSensitivity;
 	public float mouseSmoothing;
 	public float timeOfLastWave;
-	public int playerArmor;
-	public int playerHealth;
+	public float playerArmor;
+	public float playerHealth;
 	public bool treasureOnGround;
 	public int treasureAmount;
 	public float playTime;

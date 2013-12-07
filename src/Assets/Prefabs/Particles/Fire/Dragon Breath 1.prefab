@@ -12,6 +12,7 @@ GameObject:
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
   - 114: {fileID: 11400000}
+  - 76: {fileID: 7600000}
   m_Layer: 0
   m_Name: breathOuter
   m_TagString: Untagged
@@ -80,6 +81,7 @@ GameObject:
   - 12: {fileID: 1200004}
   - 26: {fileID: 2600004}
   - 114: {fileID: 11400002}
+  - 76: {fileID: 7600004}
   m_Layer: 0
   m_Name: breathOuter
   m_TagString: Untagged
@@ -99,6 +101,7 @@ GameObject:
   - 12: {fileID: 1200006}
   - 26: {fileID: 2600006}
   - 114: {fileID: 11400004}
+  - 76: {fileID: 7600002}
   m_Layer: 0
   m_Name: breathInner
   m_TagString: Untagged
@@ -145,8 +148,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: -.452982306, y: -.452982098, z: .542929351, w: .542993546}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalRotation: {x: .0242861994, y: .0243291128, z: .70666492, w: .706712842}
+  m_LocalPosition: {x: -2.28999996, y: -4.9000001, z: 0}
   m_LocalScale: {x: 5.8288455, y: 5.82883453, z: 5.82883739}
   m_Children:
   - {fileID: 400008}
@@ -305,7 +308,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 0
+  m_Emit: 1
   minSize: 2
   maxSize: 3
   minEnergy: 5
@@ -359,7 +362,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100008}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 0
+  m_Emit: 1
   minSize: 2
   maxSize: 3
   minEnergy: 5
@@ -386,7 +389,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100010}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 0
+  m_Emit: 1
   minSize: 1
   maxSize: 2
   minEnergy: 2
@@ -529,6 +532,45 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!76 &7600000
+WorldParticleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_BounceFactor: .5
+  m_CollisionEnergyLoss: 0
+  m_CollidesWith:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_SendCollisionMessage: 1
+  m_MinKillVelocity: 0
+--- !u!76 &7600002
+WorldParticleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_BounceFactor: .5
+  m_CollisionEnergyLoss: 0
+  m_CollidesWith:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_SendCollisionMessage: 1
+  m_MinKillVelocity: 0
+--- !u!76 &7600004
+WorldParticleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_BounceFactor: .5
+  m_CollisionEnergyLoss: 0
+  m_CollidesWith:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_SendCollisionMessage: 1
+  m_MinKillVelocity: 0
 --- !u!108 &10800000
 Light:
   m_ObjectHideFlags: 1
