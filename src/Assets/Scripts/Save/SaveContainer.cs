@@ -73,8 +73,8 @@ public class SaveContainer {
 		playTime = game.statistics.playTime + Time.timeSinceLevelLoad;
 
 		// save regular variable here
-		mousePositionX = mouseX.position;
-		mousePositionY = mouseY.position;
+		mousePositionX = mouseX.GetPosition();
+		mousePositionY = mouseY.GetPosition();
 		mouseSensitivity = mouseX.sensitivity;
 		mouseSmoothing = mouseX.smoothing;
 		level = game.statistics.level;
@@ -116,12 +116,12 @@ public class SaveContainer {
 			game.treasure.gameObject.GetValuesFrom(sTreasure);
 
 			// restore variables
-			mouseX.position = mousePositionX;
-			mouseY.position = mousePositionY;
-			mouseX.sensitivity = mouseSensitivity;
-			mouseY.sensitivity = mouseSensitivity;
-			mouseX.smoothing = mouseSmoothing;
-			mouseY.smoothing = mouseSmoothing;
+			mouseX.SetPosition(mousePositionX);
+			mouseY.SetPosition(mousePositionY);
+			mouseX.SetSensitivity(mouseSensitivity);
+			mouseY.SetSensitivity(mouseSensitivity);
+			mouseX.SetSmoothing(mouseSmoothing);
+			mouseY.SetSmoothing(mouseSmoothing);
 			onGuiManager.bloodSplatter.SetBloodAlpha(bloodAlpha);
 			game.weapons.guns[0].currentRounds = gun0_rounds;
 			game.weapons.guns[1].currentRounds = gun1_rounds;

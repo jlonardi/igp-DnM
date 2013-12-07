@@ -4,28 +4,30 @@ using System.Collections;
 public class SmoothMouseLookX : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SmoothMouseLookX instance;
-    public void Awake()
-    {
-        SmoothMouseLookX.instance = this;
-    }	
-	
 	public float sensitivity = 5f;
 	public float smoothing = 2f;
 
-	public float position = 0f;	
+	private float position = 0f;	
 	private float input;
     private float deltaSmooth;
+	private GameManager game;
+
+	void Awake() {
+		SmoothMouseLookX.instance = this;
+	}	
 	
+
 	void Start(){
+		game = GameManager.instance;
 		//preserve initial player rotation when level starts
 		position = transform.eulerAngles.y;	
 	}
 	
 	void Update(){			
- 		// mouse look doesn't work if game not running
-		if(GameManager.instance.gameState != GameState.RUNNING){
+		// mouse look doesn't work if game not running
+		if(game.gameState != GameState.RUNNING){
 			return;
-		}		
+		}
 		// get raw mouse data
    	    input = Input.GetAxisRaw("Mouse X");
 
@@ -40,5 +42,29 @@ public class SmoothMouseLookX : MonoBehaviour {
 		
 		// rotate transform with x
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, position, 0);
+	}
+
+	public float GetPosition(){
+		return position;
+	}
+	
+	public void SetPosition(float value){
+		position = value;
+	}
+	
+	public float GetSensitivity(){
+		return sensitivity;
+	}
+	
+	public void SetSensitivity(float value){
+		sensitivity = value;
+	}
+	
+	public float GetSmoothing(){
+		return smoothing;
+	}
+	
+	public void SetSmoothing(float value){
+		sensitivity = value;
 	}
 }

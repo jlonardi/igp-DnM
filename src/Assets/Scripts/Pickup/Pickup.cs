@@ -4,12 +4,11 @@ using System.Collections;
 public class Pickup : MonoBehaviour {
 	private GameManager game;
 
-	void OnTriggerEnter(Collider c){
-		// assign game manager
-		if (game == null){
-			game = GameManager.instance;
-		}
+	void Start(){
+		game = GameManager.instance;
+	}
 
+	void OnTriggerEnter(Collider c){
 		// if not triggered by player, do nothing
 		if (!c.name.Contains("Player")){
 			return;

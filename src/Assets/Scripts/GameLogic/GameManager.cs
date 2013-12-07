@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
 	public GameState gameState = GameState.MAIN_MENU;
 	public PickupState pickupState = PickupState.NONE;
 	public Statistics statistics = new Statistics();
-	public WaveManager waves = new WaveManager();
 	public GunManager weapons;
 	public Player player;
 	public Treasure treasure;
@@ -49,7 +48,6 @@ public class GameManager : MonoBehaviour {
 	void Update(){
 		// call updates on child managers
 		statistics.Update();
-		waves.Update();
 	}
 
 	public void NewGame(){
