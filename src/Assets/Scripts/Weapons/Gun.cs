@@ -430,8 +430,9 @@ public class Gun : MonoBehaviour {
 		Vector3 hitPoint = hit.point + hit.normal * delta;
 				
 		switch(hit.collider.tag){
-			case "enemy":
-				hitType = HitType.ENEMY;
+		case "Dragon":
+		case "enemy":
+			hitType = HitType.ENEMY;
 				go = GameObject.Instantiate(hitParticles.bloodParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
 				break;
 			case "wood":
