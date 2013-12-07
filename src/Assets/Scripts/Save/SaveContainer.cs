@@ -18,7 +18,7 @@ public class SaveContainer {
 	public float timeOfLastWave;
 	public int playerArmor;
 	public int playerHealth;
-	public TreasureState treasureState;
+	public bool treasureOnGround;
 	public int treasureAmount;
 	public int treasureFullAmount;
 	public float playTime;
@@ -85,9 +85,9 @@ public class SaveContainer {
 		bloodAlpha = onGuiManager.bloodSplatter.bloodAlpha;
 		playerArmor = game.statistics.playerArmor;
 		playerHealth = game.statistics.playerHealth;
+		treasureOnGround = game.treasure.OnGround();
 		treasureAmount = game.statistics.treasureAmount;
 		treasureFullAmount = game.statistics.treasureFullAmount;
-		treasureState = game.treasureState;
 		wave = game.statistics.wave;
 		timeOfLastWave = enemyManager.timeOfLastWave;
 		gun0_rounds = gunManager.guns[0].currentRounds;
@@ -145,13 +145,12 @@ public class SaveContainer {
 			game.statistics.wave = wave;
 			game.statistics.treasureAmount = treasureAmount;
 			game.statistics.treasureFullAmount = treasureFullAmount;
-			game.treasureState = treasureState;
 
 			// calculate time of last enemy wave
 			enemyManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
 
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
-			if (game.treasureState == TreasureState.SET_ON_GROUND){
+			if (treasureOnGround){
 				treasure.RestoreTreasureOnGround();
 			}
 			

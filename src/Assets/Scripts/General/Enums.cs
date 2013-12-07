@@ -29,12 +29,6 @@ public enum LevelState {
 	LOADED
 }
 
-public enum TreasureState {
-	NOT_PICKED_UP,
-	CARRYING,
-	SET_ON_GROUND,
-}
-
 public enum HitType
 {
 	ENEMY,

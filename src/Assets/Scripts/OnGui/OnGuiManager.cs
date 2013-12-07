@@ -18,7 +18,7 @@ public class OnGuiManager : MonoBehaviour {
 	public Crosshair crosshair = new Crosshair();
 	public BloodSplatter bloodSplatter = new BloodSplatter();
 	public HighScoreScreen highScoreScreen = new HighScoreScreen();
-	public GameManager game;
+	private GameManager game;
 
 	// resolition which OnGui elements use as target
 	private int nativeWidth = 1920;
@@ -29,6 +29,7 @@ public class OnGuiManager : MonoBehaviour {
 
 	public void Awake(){
 		OnGuiManager.instance = this;
+		game = GetComponent<GameManager>();
 	}	
 
 	private Matrix4x4 GetScalingMatrix(){
@@ -38,11 +39,6 @@ public class OnGuiManager : MonoBehaviour {
 	}
 
 	void Update(){
-		// if game manager not set, do it
-		if (game == null){
-			game = GameManager.instance;
-		}
-
 		switch (game.gameState)
 		{
 		case GameState.RUNNING:

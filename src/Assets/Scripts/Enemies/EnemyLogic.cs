@@ -132,7 +132,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private void checkFocus() {
 		if (!treasureAvailable){
-			if (game.treasureState == TreasureState.SET_ON_GROUND){
+			if (treasure.OnGround()){
 				treasureAvailable = true;
 			}
 			if (treasureAvailable){

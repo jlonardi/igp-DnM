@@ -42,8 +42,9 @@ public class Player : MonoBehaviour {
 			game.statistics.playerArmor = tempArmor;
 		}
 
-		if(GameManager.instance.treasureState == TreasureState.CARRYING){
-			GameManager.instance.treasureState = TreasureState.SET_ON_GROUND;
+		// if enemy hits player, treasure drops
+		if(!game.treasure.OnGround()){
+			game.treasure.SetTreasureOnGround();
 		}
 
 		// visualize the pain

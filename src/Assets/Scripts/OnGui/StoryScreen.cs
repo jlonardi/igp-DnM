@@ -30,7 +30,7 @@ public class StoryScreen {
 		string storyText = "";
 		int pictureIndex = -1;
 		
-		GUI.Box(new Rect(centerX-600, 25,1200,1000),"", "window");
+		GUI.Box(new Rect(centerX-600, 5,1200,1070),"", "window");
 
 		//if already at last slide, don't check the slide counter
 		switch (storySlide){
@@ -107,40 +107,40 @@ public class StoryScreen {
 
 		TellStory(pictureIndex,	storyHead, storyText);
 
-		if(GUI.Button(new Rect(centerX-500, 1000, 300, 50), "Back to Main Menu"))
+		if(GUI.Button(new Rect(centerX-500, 935, 300, 50), "Back to Main Menu"))
 		{
 			GameManager.instance.gameState = GameState.MAIN_MENU;
 		}
 
-		if (storySlide>1 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX+100, 1000, 200, 50), "Previous"))
+		if (storySlide>1 && game.saves.levelState != LevelState.LOADING_NEWGAME){
+			if(GUI.Button(new Rect(centerX+100, 935, 200, 50), "Previous"))
 			{
 				storySlide--;
 			}
 		}
 
-		if (storySlide<11 && GameManager.instance.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX+300, 1000, 200, 50), "Next"))
+		if (storySlide<11 && game.saves.levelState != LevelState.LOADING_NEWGAME){
+			if(GUI.Button(new Rect(centerX+300, 935, 200, 50), "Next"))
 			{
 				storySlide++;
 			}
 		} else if(storySlide == 11){
-			if(GUI.Button(new Rect(centerX+300, 1000, 250, 50), "Start Game")){
+			if(GUI.Button(new Rect(centerX+300, 935, 250, 50), "Start Game")){
 				storySlide++;
 				//loads first level
-				GameManager.instance.levelState = LevelState.LOADING_NEWGAME;
+				game.saves.levelState = LevelState.LOADING_NEWGAME;
 				Application.LoadLevel("GameLevel");
 			}
 		}
 	}
 
 	private void TellStory(int pictureIndex, string head, string text){
-		Rect imagePosition = new Rect(centerX-400, 225, 800, 540);
-		Rect textPosition = new Rect(centerX-500, 780, 1030, 300);
+		Rect imagePosition = new Rect(centerX-400, 190, 800, 540);
+		Rect textPosition = new Rect(centerX-500, 740, 1030, 300);
 
 		GUI.DrawTexture(imagePosition, storyImages[pictureIndex-1]);
 
-		GUILayout.BeginArea(new Rect(centerX-220, 135, 440, 600));
+		GUILayout.BeginArea(new Rect(centerX-220, 105, 440, 600));
 		GUILayout.Label("- " + head + " - ", "textfield");
 		GUILayout.EndArea();
 		GUILayout.BeginArea(textPosition);

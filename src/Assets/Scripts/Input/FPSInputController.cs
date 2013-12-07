@@ -40,9 +40,15 @@ public class FPSInputController : MonoBehaviour {
 		if(game.gameState != GameState.RUNNING){
 			return;
 		}
-		
+
+		bool treasureOnGround = game.treasure.OnGround();
+
 		// Get the input vector from kayboard or analog stick
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+//		if (directionVector == Vector3.zero) {
+//			directionVector = new Vector3(Input.GetAxis("Joy X"), 0f, Input.GetAxis("Joy Y"));
+//		}
+
 
 /*		if (Vector3.Distance(directionVector, Vector3.zero) > 0.1f){
 			game.statistics.playerMoving = true;
@@ -121,14 +127,13 @@ public class FPSInputController : MonoBehaviour {
 			gunManager.ChangeToGun(4);
 		}
 
-		if (Input.GetButton("Sprint") && game.treasureState!=TreasureState.CARRYING){
+		if (Input.GetButton("Sprint") && !treasureOnGround){
 			motor.StartSprint();
 		}
 
 
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire") && GameManager.instance.treasureState == TreasureState.SET_ON_GROUND &&
-			GunManager.instance.currentGun.freeToShoot;
+		fire = Input.GetButton("Fire") && treasureOnGround && GunManager.instance.currentGun.freeToShoot;
 
 		idleTimer += Time.deltaTime;
 		
@@ -149,7 +154,7 @@ public class FPSInputController : MonoBehaviour {
 
 //		firing = (firingTimer <= 0.0f && fire);
 		
-		if(game.treasureState == TreasureState.SET_ON_GROUND){
+		if(treasureOnGround){
 			GunManager.instance.currentGun.fire = firing;
 			reloading = GunManager.instance.currentGun.reloading;
 			currentWeaponName = GunManager.instance.currentGun.name;
@@ -158,17 +163,19 @@ public class FPSInputController : MonoBehaviour {
 		
 		
 		if (Input.GetButtonDown("Use")){
-			if (game.treasureState == TreasureState.CARRYING){
-				game.treasureState = TreasureState.SET_ON_GROUND;
+			if (!treasureOnGround){
+				game.treasure.SetTreasureOnGround();
 				game.pickupState = PickupState.TREASURE;
 
 			} else if(game.pickupState == PickupState.TREASURE){
+				game.treasure.CarryTreasure();
 				game.pickupState = PickupState.NONE;
-				game.treasureState = TreasureState.CARRYING;
+
 				// if sprinting, stop it while carrying the treasure
 				if (motor.sprinting){
 					motor.StopSprint();
 				}
+
 				// disable gun so we can carry treasure
 				gunManager.currentGun.enabled = false;
 				// find treasure positions from scene

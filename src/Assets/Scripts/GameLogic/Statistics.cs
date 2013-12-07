@@ -40,12 +40,9 @@ public class Statistics {
 	
 	// this gets called from GameManager Update()
 	public void Update(){
-		// start adding score as treasure has been stolen
-		if(GameManager.instance.treasureState != TreasureState.NOT_PICKED_UP){
-			if((timeOfLastPoint + pointIntervall)<Time.time){
-				score++;
-				timeOfLastPoint = Time.time;
-			}
+		if((timeOfLastPoint + pointIntervall)<Time.time){
+			score++;
+			timeOfLastPoint = Time.time;
 		}
 	}
 
