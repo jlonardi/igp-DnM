@@ -3,10 +3,10 @@ using System.Collections;
 
 [System.Serializable]
 public class Hud {
-	public Texture2D healthbar;
-	public Texture2D health;
-	public Texture2D armorbar;
-	public Texture2D armor;
+	public Texture2D healthBarTexture;
+	public Texture2D healthBackgroundTexture;
+	public Texture2D armorBarTexture;
+	public Texture2D armorBackgroundTexture;
 
 	private Rect helpPosition;
 
@@ -54,21 +54,21 @@ public class Hud {
 		}
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
-		GUI.DrawTexture(healthPosition, healthbar);
-		GUI.DrawTexture (armorPosition, armorbar);
+		GUI.DrawTexture(healthPosition, healthBackgroundTexture);
+		GUI.DrawTexture (armorPosition, armorBackgroundTexture);
 		currentHealth = game.statistics.playerHealth;
 		currentHealth = currentHealth*3.52f;
 		currentArmor = game.statistics.playerArmor*7.04f;
 
 		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
-		GUI.DrawTexture(new Rect(0,0,352,32), health);
+		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);
 		GUI.EndGroup();
 		GUI.BeginGroup(new Rect(26,66,currentArmor,4));
-		GUI.DrawTexture(new Rect(0,0,352,4), armor);
+		GUI.DrawTexture(new Rect(0,0,352,4), armorBarTexture);
 		GUI.EndGroup();
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
-		GUILayout.Label("Treasure: " + game.statistics.treasureAmount + " %", "hud_label");
+		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
 
 		Gun gun = game.weapons.currentGun;

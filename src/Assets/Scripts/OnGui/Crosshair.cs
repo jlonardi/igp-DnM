@@ -4,6 +4,7 @@
 public class Crosshair {
 	public Texture2D crosshairVertical;
 	public Texture2D crosshairHorizontal;
+
 	private Rect crosshairPosition;
 	private float crosshairSize;
 	private int centerX;

@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
 		// wait until all gameobjects are loaded
 		gameState = GameState.RUNNING;
 		statistics.Reset();
-		OnGuiManager.instance.bloodSplatter.bloodAlpha = 0f;
+		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
 	}
 	
 	public void GameOver(){

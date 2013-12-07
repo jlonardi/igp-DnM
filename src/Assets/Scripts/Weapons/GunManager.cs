@@ -65,6 +65,32 @@ public class GunManager : MonoBehaviour {
 		}
 	}
 
+	public void ChangeToNextGun(){
+		while (true){
+			currentGunIndex++;
+			if (currentGunIndex>4){
+				currentGunIndex = 0;
+			}
+			if (guns[currentGunIndex].picked_up){
+				break;
+			}
+		}
+		ChangeToGun(currentGunIndex);
+	}
+
+	public void ChangeToPreviousGun(){
+		while (true){
+			currentGunIndex--;
+			if (currentGunIndex<0){
+				currentGunIndex = 4;
+			}
+			if (guns[currentGunIndex].picked_up){
+				break;
+			}
+		}
+		ChangeToGun(currentGunIndex);
+	}
+
 	// method which is called when player wants to throw a grenade
 	public void ThrowGrenade(){
 		// if treasure is not on ground or already throwing a grenade, return

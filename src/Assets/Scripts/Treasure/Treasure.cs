@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class Treasure : MonoBehaviour {	
+
+	private int treasureAmount = 100;
+	//original amount is used for calculation current percentage of the treasure	
+	private int treasureFullAmount = 100;
+
 	// object which describes how much treasure is left
 	private GameObject treasureLevelMesh;	
 	// animator handles animation played when treasure is set on ground
@@ -9,6 +14,7 @@ public class Treasure : MonoBehaviour {
 	// if treasure is on ground onGround is true
 	private bool onGround = false;
 	private GameManager game;
+	private float timeFromLoot;
 
 	void Awake()
     {
@@ -18,8 +24,15 @@ public class Treasure : MonoBehaviour {
 		animator.SetBool("onGround",false);
 		treasureLevelMesh = transform.FindChild("gold").gameObject;
     }
+
+	void Update(){
+		if (timeFromLoot + 1 < Time.time){
+			//stop coin audio loop here
+		}
+	}
 	
 	public int Loot(int lootAmount){
+		timeFromLoot = Time.time;
 		animator.SetBool("isOpen", true);
 
 		// no loot allowed if player is still carrying treasure
@@ -27,20 +40,20 @@ public class Treasure : MonoBehaviour {
 			return 0;
 		}
 		
-		if (game.statistics.treasureAmount > lootAmount){
-			game.statistics.treasureAmount -= lootAmount;
+		if (treasureAmount > lootAmount){
+			treasureAmount -= lootAmount;
 		} 
 		else {
-			lootAmount = game.statistics.treasureAmount;
-			game.statistics.treasureAmount = 0;
+			lootAmount = treasureAmount;
+			treasureAmount = 0;
 		}
 		
 		// change visible money position on chest so treasure seems smaller after every loot.
 		// chest's treasure y range is from 0.09 to 0.49 (0.4 total).
-		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/game.statistics.treasureFullAmount, 0);				
+		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/treasureFullAmount, 0);				
 
 		// if all taken, game over
-		if (game.statistics.treasureAmount <= 0){
+		if (treasureAmount <= 0){
 			game.GameOver();
 		}
 		return lootAmount;
@@ -119,4 +132,13 @@ public class Treasure : MonoBehaviour {
 	{
 		return onGround;
 	}
+
+	public int GetTreasureAmount(){
+		return treasureAmount;
+	}
+	
+	public void SetTreasureAmount(int value){
+		treasureAmount = value;
+	}
+	
 }
