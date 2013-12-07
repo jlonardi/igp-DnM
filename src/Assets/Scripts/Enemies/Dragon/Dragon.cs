@@ -100,9 +100,19 @@ public class Dragon : MonoBehaviour {
 				}
 			}
 
-			if(timeOfLastFireBreath + 10 < Time.time) {
+			if(timeOfLastFireBreath + 5 < Time.time) {
 				breathFire = true;
 				timeOfLastFireBreath = Time.time;
+
+				Quaternion rot = tr.rotation;
+				Quaternion toTarget = Quaternion.LookRotation (dir);
+
+				Vector3 euler = toTarget.eulerAngles;
+				euler.z = 0;
+				euler.x = 0;
+				rot = Quaternion.Euler (euler);
+				
+				tr.rotation = rot;
 			}
 
 			if(breathFire) {
