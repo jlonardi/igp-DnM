@@ -56,9 +56,9 @@ public class Hud {
 
 		GUI.DrawTexture(healthPosition, healthBackgroundTexture);
 		GUI.DrawTexture (armorPosition, armorBackgroundTexture);
-		currentHealth = game.statistics.playerHealth;
+		currentHealth = game.player.GetHealth();
 		currentHealth = currentHealth*3.52f;
-		currentArmor = game.statistics.playerArmor*7.04f;
+		currentArmor = game.player.GetArmor()*7.04f;
 
 		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
 		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);

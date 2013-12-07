@@ -3,9 +3,6 @@ using System.Collections;
 
 [System.Serializable]
 public class Statistics {
-	public int playerHealth;
-	public int playerArmor; // armor scale 0-50
-
 	public int level;
 	public int score;
 	public int wave;
@@ -30,7 +27,6 @@ public class Statistics {
 	}
 
 	public void Reset(){
-		playerHealth = 100;
 		level = 1;
 		score = 0;
 		bodycount = 0;

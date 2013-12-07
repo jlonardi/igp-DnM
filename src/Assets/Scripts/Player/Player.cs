@@ -2,47 +2,33 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	//use singleton since only we need one instance of this class
-	public static Player instance;
+	private int health = 100;
+	private int armor; // armor scale 0-50
 
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
+
 	[HideInInspector]
 	public CharacterMotor motor;
 
-    public void Awake() {
-        Player.instance = this;
+    public void Start() {
+		game = GameManager.instance;
+		guiManager = OnGuiManager.instance;
 		motor = GetComponent<CharacterMotor>();
-    }	
+		sounds = PlayerSounds.instance;
+	}	
 
-	void Update(){
-		if (game == null){
-			game = GameManager.instance;
-		}
-		if (guiManager == null){
-			guiManager = OnGuiManager.instance;
-		}
-
-
-		if (sounds == null){
-			sounds = PlayerSounds.instance;
-		}
-		if(Input.GetKeyDown(KeyCode.K)) {
-			TakeDamage(20, DamageType.HIT);
-		}
-	}
-	
 	public void TakeDamage(int damageAmount, DamageType damageType){
 		//if player has an armor, take less damage
-		int tempArmor = game.statistics.playerArmor - damageAmount;
-		int tempHealth = game.statistics.playerHealth;
+		int tempArmor = armor - damageAmount;
+		int tempHealth = health;
 
 		if (tempArmor<0){
-			game.statistics.playerArmor = 0;
-			tempHealth = game.statistics.playerHealth + tempArmor;
+			armor = 0;
+			tempHealth = health + tempArmor;
 		} else {
-			game.statistics.playerArmor = tempArmor;
+			armor = tempArmor;
 		}
 
 		// if enemy hits player, treasure drops
@@ -54,15 +40,29 @@ public class Player : MonoBehaviour {
 		guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
 
 		if (tempHealth <= 0){
-			game.statistics.playerHealth = 0;
+			health = 0;
 			game.GameOver();	
 			sounds.PlayDeathSound();
 		} else {
-			game.statistics.playerHealth = (int)Mathf.Round(tempHealth);
+			health = (int)Mathf.Round(tempHealth);
 			sounds.PlayPainSound();
 		}
 	}
 	
-
-
+	public int GetHealth(){
+		return health;
+	}
+	
+	public void SetHealth(int value){
+		health = value;
+	}
+	
+	public int GetArmor(){
+		return armor;
+	}
+	
+	public void SetArmor(int value){
+		armor = value;
+	}
+	
 }
