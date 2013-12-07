@@ -72,7 +72,7 @@ public class EnemyManager : MonoBehaviour {
 		dragonFightSpwans = true;
 		originalMaxEnemies = maxEnemies;
 		originalWaveInterval = waveInterval;
-		maxEnemies = maxEnemies * 4;
+		maxEnemies = maxEnemies * 2;
 		waveInterval = waveInterval / 3;
 
 	}
