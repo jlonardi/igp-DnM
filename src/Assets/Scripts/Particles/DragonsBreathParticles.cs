@@ -3,11 +3,12 @@ using System.Collections;
 
 public class DragonsBreathParticles : MonoBehaviour {
 	public int destroyAfter = 100;
-	public ParticleEmitter emitter;
+	private ParticleEmitter emitter;
 	private GameManager game;
 
 	void Start(){
 		game = GameManager.instance;
+		emitter = GetComponent<ParticleEmitter>();
 	}
 
 	void Update(){
@@ -28,7 +29,7 @@ public class DragonsBreathParticles : MonoBehaviour {
 	// this applies fire particle damage to player
 	void OnParticleCollision(GameObject other){
 		if(other.tag == "Player"){
-			game.player.TakeDamage(1f, DamageType.FIRE);
+			game.player.TakeDamage(0.5f, DamageType.FIRE);
 		}
 	}
 }
