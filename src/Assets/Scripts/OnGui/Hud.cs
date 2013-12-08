@@ -31,7 +31,7 @@ public class Hud {
 		guiWidth = gui.GetWidth();
 
 		helpPosition = new Rect(guiCenterX-350, 920, 650, 40);
-		notePosition = new Rect(guiCenterX-350, 300, 700, 40);
+		notePosition = new Rect(guiCenterX-350, guiCenterY-60, 700, 40);
 		gunInfoPosition = new Rect(20,900,330,500);
 		grenadeInfoPosition = new Rect(guiWidth-300,1010,300,20);
 
