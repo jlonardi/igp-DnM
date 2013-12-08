@@ -18,6 +18,8 @@ public class OnGuiManager : MonoBehaviour {
 	public Crosshair crosshair = new Crosshair();
 	public BloodSplatter bloodSplatter = new BloodSplatter();
 	public HighScoreScreen highScoreScreen = new HighScoreScreen();
+	public HighScoreDialog highScoreDialog = new HighScoreDialog();
+
 	private GameManager game;
 
 	// resolition which OnGui elements use as target
@@ -72,6 +74,7 @@ public class OnGuiManager : MonoBehaviour {
 
 		case GameState.GAME_OVER:
 		case GameState.HIGHSCORE_GAME:
+		case GameState.HIGHSCORE_DIALOG:
 			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
@@ -148,14 +151,18 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.MAIN_MENU:
 			break;
-		case GameState.GAME_OVER:
-			bloodSplatter.Show();
-			gameOverScreen.Show();
-			break;
 		case GameState.RUNNING:
 			bloodSplatter.Show();
 			hud.Show();
 			crosshair.Show();
+			break;
+		case GameState.GAME_OVER:
+			bloodSplatter.Show();
+			gameOverScreen.Show();
+			break;
+		case GameState.HIGHSCORE_DIALOG:
+			bloodSplatter.Show();
+			highScoreDialog.Show();
 			break;
 		case GameState.HIGHSCORE_GAME:
 		case GameState.HIGHSCORE_MAIN:

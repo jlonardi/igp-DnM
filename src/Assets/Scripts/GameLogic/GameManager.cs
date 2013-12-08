@@ -59,7 +59,12 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	public void GameOver(){
-		gameState = GameState.GAME_OVER;
+		// if score can be set into high score list, ask for player name
+		if (HighScoreManager.instance.getSmallestScore() < statistics.score){
+			gameState = GameState.HIGHSCORE_DIALOG;
+		} else {
+			gameState = GameState.GAME_OVER;
+		}
 	}
 	
 }

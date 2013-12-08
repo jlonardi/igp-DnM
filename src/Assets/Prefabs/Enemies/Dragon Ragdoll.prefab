@@ -4776,9 +4776,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4811,7 +4811,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: .0916666687
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4829,7 +4829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathSounds:
-  - {fileID: 8300000, guid: adf14584fcd8c0548baa47b4a9c7e130, type: 3}
+  - {fileID: 8300000, guid: d52dae785f42bd746a6e1f1225570777, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

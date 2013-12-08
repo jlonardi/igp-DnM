@@ -28,6 +28,8 @@ public class Dragon : MonoBehaviour {
 	private Vector3 dir;
 	public Vector3 offset = new Vector3(0,-1.5f,-0.3f);
 	public AudioClip[] painSounds;
+	public AudioClip fireBreathSound;
+	public AudioClip deathSound;
 	private GameManager game;
 	private RagdollManager ragdolls;
 
@@ -120,6 +122,8 @@ public class Dragon : MonoBehaviour {
 				rot = Quaternion.Euler (euler);
 				
 				tr.rotation = rot;
+
+				audio.PlayOneShot(fireBreathSound, 0.6f);
 			}
 
 			if(breathFire) {
@@ -136,7 +140,7 @@ public class Dragon : MonoBehaviour {
 		speed = 35f;
 
 		dir = landingPoint - tr.position;
-
+		audio.PlayOneShot(painSounds[0]);
 	}
 
 	public void killPlayer() {
