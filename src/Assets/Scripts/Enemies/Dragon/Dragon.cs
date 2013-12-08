@@ -81,7 +81,7 @@ public class Dragon : MonoBehaviour {
 					breathFire = false;
 					grabbing = true;
 					playerTransform = game.player.gameObject.transform;
-					game.player.SetDeathDuration(10);
+					game.player.SetDeathDuration(4);
 					game.player.TakeDamage(100, DamageType.HIT);
 					grabTime = Time.time;
 				}

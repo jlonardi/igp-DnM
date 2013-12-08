@@ -9,7 +9,6 @@ public class HighScoreDialog {
 	private int centerY;
 	private	string playerName;
 	private TextEditor editor;
-	private bool scoreAdded = false;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -25,11 +24,6 @@ public class HighScoreDialog {
 		if (game == null){
 			Initialize();
 		}
-		// if highscore already added, do nothing
-		if (game.gameState == GameState.HIGHSCORE_GAME){
-			return;
-		}
-
 		GUI.skin.GetStyle("window");
 		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 
@@ -57,18 +51,20 @@ public class HighScoreDialog {
 		GUILayout.BeginArea(new Rect(centerX-175, 700,350,600));
 
 		//if player hits Next-button, add highscore
-		if(GUILayout.Button ("Next"))
-		{
+		if(GUILayout.Button ("Next")) {
 			AddHighscore();
 		}
+
 		GUILayout.EndArea();	
 
 	}
 
 	private void AddHighscore(){
 		scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.treasure.GetTreasureAmount(),
-		                          game.statistics.dragonSlayed, playerName);
-		game.gameState = GameState.HIGHSCORE_GAME;				
+	                          game.statistics.dragonSlayed, playerName);
+		SaveManager.instance.levelState = LevelState.LOADING_HIGHSCORE;
+		// load Main Menu scene
+		Application.LoadLevel("Main Meny");
 	}
 	
 	

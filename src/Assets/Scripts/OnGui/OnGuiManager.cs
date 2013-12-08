@@ -66,14 +66,13 @@ public class OnGuiManager : MonoBehaviour {
 			
 		case GameState.MAIN_MENU:
 		case GameState.STORY:
-		case GameState.HIGHSCORE_MAIN:
+		case GameState.HIGHSCORE:
 			Time.timeScale=1;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
 			break;
 
 		case GameState.GAME_OVER:
-		case GameState.HIGHSCORE_GAME:
 		case GameState.HIGHSCORE_DIALOG:
 			Time.timeScale=0;
 			Screen.showCursor=true;
@@ -151,6 +150,9 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.MAIN_MENU:
 			break;
+		case GameState.HIGHSCORE:
+			highScoreScreen.Show();
+			break;
 		case GameState.RUNNING:
 			bloodSplatter.Show();
 			hud.Show();
@@ -163,10 +165,6 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.HIGHSCORE_DIALOG:
 			bloodSplatter.Show();
 			highScoreDialog.Show();
-			break;
-		case GameState.HIGHSCORE_GAME:
-		case GameState.HIGHSCORE_MAIN:
-			highScoreScreen.Show();
 			break;
 		default:
 			break;

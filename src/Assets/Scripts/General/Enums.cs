@@ -1,8 +1,7 @@
 ﻿public enum GameState {
 	RUNNING,
 	STORY,
-	HIGHSCORE_MAIN,
-	HIGHSCORE_GAME,
+	HIGHSCORE,
 	HIGHSCORE_DIALOG,
 	PAUSE_MENU,
 	MAIN_MENU,
@@ -27,7 +26,8 @@ public enum LevelState {
 	LOADING_NEWGAME,
 	LOADING_SAVE,
 	LOADING_NEXT,
-	LOADED
+	LOADED,
+	LOADING_HIGHSCORE
 }
 
 public enum HitType

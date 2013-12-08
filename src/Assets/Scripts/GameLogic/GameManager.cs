@@ -76,16 +76,22 @@ public class GameManager : MonoBehaviour {
 		if (saves == null){
 			GetSaveManager();
 		}
-
-		if (saves.levelState == LevelState.LOADING_SAVE){
-			saves.levelState = LevelState.LOADED;
-			SaveManager.instance.container.RestoreValues();	
-			Debug.Log("loaded");
-		} else {
-			NewGame();
-			Debug.Log("new game");
+		switch (level){
+		case 0: // main menu
+			if (saves.levelState == LevelState.LOADING_HIGHSCORE){
+				saves.levelState = LevelState.LOADED;
+				GameManager.instance.gameState = GameState.HIGHSCORE;
+			}
+			break;
+		default:
+			if (saves.levelState == LevelState.LOADING_SAVE){
+				saves.levelState = LevelState.LOADED;
+				SaveManager.instance.container.RestoreValues();	
+			} else {
+				NewGame();
+			}
+			break;
 		}
-
 	}
 	
 }

@@ -7,9 +7,6 @@ public class GameOverScreen {
 	private HighScoreManager scoreManager;
 	private int centerX;
 	private int centerY;
-	private	string playerName;
-	private TextEditor editor;
-	private bool scoreAdded = false;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -17,7 +14,6 @@ public class GameOverScreen {
 		scoreManager = HighScoreManager.instance;
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
-		playerName = "";
 	}
 
 	// Show() gets called from OnGuiManager
@@ -25,11 +21,6 @@ public class GameOverScreen {
 		if (game == null){
 			Initialize();
 		}
-		// if highscore already added, do nothing
-		if (game.gameState == GameState.HIGHSCORE_GAME){
-			return;
-		}
-
 		GUI.skin.GetStyle("window");
 		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 
