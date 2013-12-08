@@ -35279,6 +35279,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 5373ce97272e18043af24e70681135c3, type: 2}
+      propertyPath: lizardPrefab
+      value: 
+      objectReference: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
+    - target: {fileID: 2300008, guid: 5373ce97272e18043af24e70681135c3, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5373ce97272e18043af24e70681135c3, type: 2}
   m_RootGameObject: {fileID: 1556684595}
@@ -71088,6 +71096,7 @@ MonoBehaviour:
   dragonHasAggroOnPlayer: 0
   playerInsideTheLair: 0
   playerKilled: 0
+  lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
 --- !u!1 &1556831481
 GameObject:
   m_ObjectHideFlags: 0

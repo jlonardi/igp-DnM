@@ -84,21 +84,6 @@ public class EnemyManager : MonoBehaviour {
 		dragonFightSpwans = true;
 		originalMaxEnemies = maxEnemies;
 		originalWaveInterval = waveInterval;
-
-		/*
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-
-		int lizardCount = 0;
-		foreach(GameObject enemy in enemies) {
-			if(enemy.name.Equals("Lizard(Clone)")) {
-				lizardCount++;
-			}
-			//Debug.Log("Enemy name = " + enemy.name);
-		}
-
-		Debug.Log("Lizard count = " + lizardCount);
-		*/
-
 		maxEnemies = maxDragonFightEnemies;
 	}
 
@@ -137,7 +122,7 @@ public class EnemyManager : MonoBehaviour {
 		if(!dragonFightSpwans) {
 			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
 
-			while( !areas[index].gameObject.name.Equals( "Spawnarea") &&
+			while( !areas[index].gameObject.name.Equals( "Spawnarea") ||
 					Vector3.Distance( areas[index].position, player.transform.position) < 50) {
 				index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 			}

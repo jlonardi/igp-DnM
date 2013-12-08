@@ -10,6 +10,8 @@ public class TriggerHandler : MonoBehaviour {
 	public bool playerInsideTheLair = false;
 	public bool playerKilled = false;
 
+	public GameObject lizardPrefab;
+
 	void Awake() {
 		dragon = GameObject.Find("Dragon").GetComponent<Dragon>();
 	}
@@ -40,14 +42,19 @@ public class TriggerHandler : MonoBehaviour {
 
 	public void handleEnterTrigger (Collider other) {
 		
-		if(other.tag == "Player") {
-			if(playerInsideTheLair) {
-				playerInsideTheLair = false;
-				Debug.Log("Player exits the lair");
-			} else {
-				playerInsideTheLair = true;
-				Debug.Log("Player entered the lair");
+		if(other.tag == "enemy") {
+			if(dragonHasAggroOnPlayer) {
+			
+				if(other.name.Contains("orc") || other.name.Contains("Wolf")) {
+					Vector3 pos = other.transform.position;
+					pos.y += 1;
+					Quaternion rot = other.transform.rotation;
+					Destroy (other.gameObject);
+					Instantiate(lizardPrefab, pos, rot);
+				}
 			}
 		}
+
+
 	}
 }
