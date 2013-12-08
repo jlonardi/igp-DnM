@@ -3036,6 +3036,10 @@ Prefab:
       propertyPath: hitLayer.m_Bits
       value: 5888
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
+      propertyPath: m_Name
+      value: Pistol
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
   m_RootGameObject: {fileID: 775991039}
@@ -37595,7 +37599,7 @@ GameObject:
   - 95: {fileID: 775991042}
   - 114: {fileID: 775991041}
   m_Layer: 0
-  m_Name: Beretta M92F
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40531,10 +40535,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 775991040}
   - {fileID: 1191622754}
   - {fileID: 179930193}
   - {fileID: 1112910398}
+  - {fileID: 775991040}
   - {fileID: 635305025}
   m_Father: {fileID: 756998767}
 --- !u!82 &848146268
@@ -52268,7 +52272,7 @@ MonoBehaviour:
   projectileSpeed: 0
   startDelay: 1
   clipSize: 1000
-  totalClips: 5
+  totalClips: 3
   reloadTime: 5
   currentRounds: 1000
   pushPower: 1
@@ -52277,7 +52281,7 @@ MonoBehaviour:
   gunParticles: {fileID: 0}
   capsuleEmitter: []
   shotLight: {fileID: 0}
-  unlimited: 1
+  unlimited: 0
   shootVolume: .400000006
   shootSound: {fileID: 8300000, guid: 4b367821eaed0304a99b6d4535ec0795, type: 3}
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
@@ -82467,6 +82471,14 @@ Prefab:
     - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
       propertyPath: hitLayer.m_Bits
       value: 5888
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: unlimited
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
+      propertyPath: totalClips
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb9270267816baa47a8eb2b14a71fca8, type: 2}
