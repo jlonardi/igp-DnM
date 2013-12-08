@@ -5,17 +5,17 @@ public class Dragon : MonoBehaviour {
 
 	public bool breathFire = false;
 	public bool flying = true;
-	public bool patroling = true;
-	public bool walking = false;
 	public bool grabbing = false;
-	public bool landing = false;
-	public bool fighting = false;
-	public bool playerKilled = false;
 	public float speed = 15f;
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
-	public float health = 10000;
-	public float maxHealth = 10000;
+	private float health = 10000;
+	private float maxHealth = 10000;
+
+	private bool patroling = true;
+	private bool walking = false;
+	private bool landing = false;
+	private bool fighting = false;
 	private Transform tr;
 	private Transform player;
 	public Transform head;
@@ -80,7 +80,7 @@ public class Dragon : MonoBehaviour {
 					grabbing = true;
 					player = GameObject.Find ("Player").transform;
 					plr.TakeDamage(plr.GetHealth() - 1, DamageType.HIT);
-					plr.makeImmuneToDamage();
+					plr.SetDamageImmunity(true);
 					grabTime = Time.time;
 				}
 			}
@@ -94,7 +94,7 @@ public class Dragon : MonoBehaviour {
 					player.position = head.position + offset;
 
 				} else {
-					plr.disableImmunity();
+					plr.SetDamageImmunity(false);
 					plr.TakeDamage(9001, DamageType.HIT);
 					grabbing = false;
 					fighting = false;
@@ -157,6 +157,22 @@ public class Dragon : MonoBehaviour {
 		rotateTowards(dir);
 		float step = speed * Time.deltaTime;
 		tr.position = Vector3.MoveTowards(tr.position, target, step);
+	}
+
+	public bool GetFighting(){
+		return fighting;
+	}
+
+	public float GetHealth(){
+		return health;
+	}
+
+	public void SetHealth(float value){
+		health = value;
+	}
+
+	public float GetMaxHealth(){
+		return maxHealth;
 	}
 
 	// TakeDamage without aplying force

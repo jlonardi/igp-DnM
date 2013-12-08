@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
-	public bool canBeAttacked = true;
+	private bool damageImmunity = true;
+	private bool isKilled = false;
 
 	[HideInInspector]
 	public CharacterMotor motor;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour {
 	}	
 
 	public void TakeDamage(float damageAmount, DamageType damageType){
-		if(canBeAttacked) {
+		if(damageImmunity) {
 			float tempArmor = 0;
 			float tempHealth = 0;
 
@@ -86,14 +87,21 @@ public class Player : MonoBehaviour {
 	public void SetArmor(float value){
 		armor = value;
 	}
-
-	public void makeImmuneToDamage() {
-		canBeAttacked = false;
+	
+	public bool GetDamageImmunity(){
+		return damageImmunity;
+	}
+	
+	public void SetDamageImmunity(bool value){
+		damageImmunity = value;
 	}
 
-	public void disableImmunity() {
-		canBeAttacked = true;
+	public bool GetKilled(){
+		return isKilled;
 	}
-
+	
+	public void SetKilled(){
+		isKilled = true;
+	}
 
 }

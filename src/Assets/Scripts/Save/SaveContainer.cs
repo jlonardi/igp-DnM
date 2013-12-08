@@ -18,6 +18,7 @@ public class SaveContainer {
 	public float timeOfLastWave;
 	public float playerArmor;
 	public float playerHealth;
+	public bool playerDamageImmunity;
 	public bool treasureOnGround;
 	public int treasureAmount;
 	public float playTime;
@@ -83,6 +84,7 @@ public class SaveContainer {
 		bloodAlpha = onGuiManager.bloodSplatter.GetBloodAlpha();
 		playerArmor = game.player.GetArmor();
 		playerHealth = game.player.GetHealth();
+		playerDamageImmunity = game.player.GetDamageImmunity();
 		treasureOnGround = game.treasure.OnGround();
 		treasureAmount = game.treasure.GetTreasureAmount();
 		wave = game.statistics.wave;
@@ -142,6 +144,7 @@ public class SaveContainer {
 			game.statistics.wave = wave;
 			game.player.SetArmor(playerArmor);
 			game.player.SetHealth(playerHealth);
+			game.player.SetDamageImmunity(playerDamageImmunity);
 			game.treasure.SetTreasureAmount(treasureAmount);
 
 			// calculate time of last enemy wave

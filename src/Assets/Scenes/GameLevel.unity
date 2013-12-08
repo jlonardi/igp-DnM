@@ -27083,9 +27083,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Intensity: 7.86000013
-  m_Range: 1
+  m_Color: {r: 1, g: 1, b: .625, a: 1}
+  m_Intensity: 3
+  m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -48748,9 +48748,6 @@ MonoBehaviour:
       type: 3}
     dragonHealthBarTexture: {fileID: 2800000, guid: 6c5a2e85da4183249934be3dee4b52c7,
       type: 3}
-    currentHealth: 0
-    currentArmor: 0
-    currentDragonHealth: 0
   crosshair:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
@@ -56568,9 +56565,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Intensity: 3.3900001
-  m_Range: 1.5
+  m_Color: {r: 1, g: 1, b: .625, a: 1}
+  m_Intensity: 2
+  m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -62828,17 +62825,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breathFire: 0
   flying: 1
-  patroling: 1
-  walking: 0
   grabbing: 0
-  landing: 0
-  fighting: 0
-  playerKilled: 0
   speed: 15
   turningSpeed: 5
   minDistanceFromPlayer: 7
-  health: 10000
-  maxHealth: 10000
   head: {fileID: 0}
   timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
@@ -84910,7 +84900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06dcd02cc2f6194e9d9db45b3b8c7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeAttacked: 1
   motor: {fileID: 0}
 --- !u!114 &1851113636
 MonoBehaviour:
@@ -88771,9 +88760,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 0, g: .917241335, b: 1, a: 1}
-  m_Intensity: 4.01000023
-  m_Range: 3
+  m_Color: {r: .558823526, g: .963488817, b: 1, a: 1}
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

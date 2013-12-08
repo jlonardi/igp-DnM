@@ -11,13 +11,9 @@ public class Hud {
 
 	private Rect helpPosition;
 
-	private Rect healthPosition;
-	private Rect armorPosition;
-	private Rect dragonHealthPosition;
-	public float currentHealth;
-	public float currentArmor;
-	public float currentDragonHealth;
-
+	private Rect healtBackPosition;
+	private Rect armorBackPosition;
+	private Rect dragonBackPosition;
 	private GameManager game;
 	private OnGuiManager gui;
 	private int centerX;
@@ -29,17 +25,44 @@ public class Hud {
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 
-		helpPosition = CalculateGUIRect(700, 40, 0, 400);
+		helpPosition = new Rect(centerX-350, 920, 700, 40);
 		//health & armor bar position and size
-		healthPosition = new Rect(20,20,369,55);
-		armorPosition = new Rect(26,61,352,8);
-		dragonHealthPosition = new Rect(420,20,369,55);
+		healtBackPosition = new Rect(20,20,369,55);
+		armorBackPosition = new Rect(26,61,352,8);
+		dragonBackPosition = new Rect(centerX-185,20,369,55);
 	}
 
 	// Show() gets called from OnGuiManager
 	public void Show() {
 		if (game == null){
 			Initialize();
+		}
+
+		float playerHealth = game.player.GetHealth();
+		float playerArmor = game.player.GetArmor();
+		float dragonHealth = game.dragon.GetHealth();
+		Gun gun = game.weapons.currentGun;
+
+		GUI.DrawTexture(healtBackPosition, healthBackgroundTexture);
+		GUI.DrawTexture (armorBackPosition, armorBackgroundTexture);
+
+		playerHealth = playerHealth*3.52f;
+		playerArmor = game.player.GetArmor()*7.04f;
+
+		dragonHealth = game.dragon.GetHealth() / game.dragon.GetMaxHealth() * 100 * 3.52f;
+
+		GUI.BeginGroup(new Rect(26,25, playerHealth,32)); 
+		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);
+		GUI.EndGroup();
+		GUI.BeginGroup(new Rect(26,66, playerArmor,4));
+		GUI.DrawTexture(new Rect(0,0,352,4), armorBarTexture);
+		GUI.EndGroup();
+
+		if(game.dragon.GetFighting() && dragonHealth > 0) {
+			GUI.DrawTexture (dragonBackPosition, healthBackgroundTexture);
+			GUI.BeginGroup(new Rect(centerX-180, 30, dragonHealth, 32));
+			GUI.DrawTexture(new Rect(0,0,352,32), dragonHealthBarTexture);
+			GUI.EndGroup();
 		}
 
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
@@ -58,33 +81,9 @@ public class Hud {
 		}
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
-		GUI.DrawTexture(healthPosition, healthBackgroundTexture);
-		GUI.DrawTexture (armorPosition, armorBackgroundTexture);
-
-		currentHealth = game.player.GetHealth();
-		currentHealth = currentHealth*3.52f;
-		currentArmor = game.player.GetArmor()*7.04f;
-		currentDragonHealth = game.dragon.health / game.dragon.maxHealth * 100 * 3.52f;
-
-		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
-		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);
-		GUI.EndGroup();
-		GUI.BeginGroup(new Rect(26,66,currentArmor,4));
-		GUI.DrawTexture(new Rect(0,0,352,4), armorBarTexture);
-		GUI.EndGroup();
-
-		if(game.dragon.fighting && game.dragon.health > 0) {
-			GUI.DrawTexture (dragonHealthPosition, healthBackgroundTexture);
-			GUI.BeginGroup(new Rect(428, 30, currentDragonHealth,32));
-			GUI.DrawTexture(new Rect(0,0,352,32), dragonHealthBarTexture);
-			GUI.EndGroup();
-		}
-
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
 		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_label");
 		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
-
-		Gun gun = game.weapons.currentGun;
 
 		if (gun.enabled){
 			GUILayout.Label("Grenades: " + game.weapons.grenadeCount, "hud_label");
@@ -105,13 +104,4 @@ public class Hud {
 		GUILayout.EndArea();
 
 	}	
-	
-	
-	public Rect CalculateGUIRect(int width, int height){
-		return CalculateGUIRect(width, height, 0, 0);
-	}
-	
-	public Rect CalculateGUIRect(int width, int height, int xOffset, int yOffset){
-		return new Rect(centerX-(width/2) + xOffset, centerY-(height/2) + yOffset, width, height);
-	}
 }
