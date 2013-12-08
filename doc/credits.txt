@@ -1,0 +1,30 @@
+SOUND AND MUSIC ASSETS
+
+All used sound assets are attribution-free or downloaded from freesound.org. Assets from Freesound are
+licenced under Creative Commons Attribution 3.0 or Attribution-NonCommercial 3.0 unless otherwise specified.
+
+Assets from Freesound:
+
+Monster Screaming in a Cave by Iwan Gabovitch
+Swoosh WHOOSH air effects by Robinhood76
+Fire-breathing dragon by CGEffex
+M4A1 Reload by yzhamua
+Vårjacka by Ryding
+Medium Wind by kangaroovindaloo
+Desert Eagle Fire by SpartanX109 (Sampling+ 1.0)
+Gravel Impacts and Falls by lolamadeus (CC0 1.0)
+coins_fall_into_coins by Sir Smith (Sampling+ 1.0)
+object falls by FreqMan
+coins by monotraum (CC0 1.0)
+Agony by Mediapaja2009 (CC0 1.0)
+Adolescent_PanicAndPain by Vosvoy
+11 footsteps on the gravel by Tomlija
+CommonZombie_Voice - SeveralSamples by Vosvoy
+Pistol or Hand Gun Firing at wood by Rock Savage (Sampling+ 1.0)
+
+Music assets "Main Theme.ogg" and "Death.ogg" by Tuomo Kärkkäinen licenced under Attribution-NonCommercial 4.0 International.
+
+Music by Kevin MacLeod (incompetech.com) Licensed under Creative Commons Attribution 3.0:
+
+Big Rock (battle.mp3)
+Grim League (before_battle.mp3)
