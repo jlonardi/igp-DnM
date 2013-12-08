@@ -190,14 +190,14 @@ public class Dragon : MonoBehaviour {
 		if(health <= 0) {
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
-			EnemyManager.instance.disableDragonSpawns();
-			game.statistics.AddKillStats(EnemyType.DRAGON);
 		}
 		AfterTakeDamage();
 	}
 
 	// run this after taking a shot or explosive damage
 	public void AfterTakeDamage(){
+		EnemyManager.instance.disableDragonSpawns();
+		game.statistics.AddKillStats(EnemyType.DRAGON);
 		PlaySound(painSounds);
 		Debug.Log("Dragon health left: " + health);
 	}
