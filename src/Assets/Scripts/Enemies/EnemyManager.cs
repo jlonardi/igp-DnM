@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour {
 			createSpawnWave();
 		}
 
-		if(timeOfEnemyCountRising + 10 < Time.time) {
+		if(timeOfEnemyCountRising + 10 < Time.time && !dragonFightSpwans) {
 			maxEnemies++;
 			timeOfEnemyCountRising = Time.time;
 		}
