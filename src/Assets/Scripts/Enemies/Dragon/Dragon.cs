@@ -180,6 +180,7 @@ public class Dragon : MonoBehaviour {
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
 			EnemyManager.instance.disableDragonSpawns();
+			game.statistics.AddKillStats(EnemyType.DRAGON);
 		}
 		AfterTakeDamage();
 	}
@@ -187,7 +188,7 @@ public class Dragon : MonoBehaviour {
 	// run this after taking a shot or explosive damage
 	public void AfterTakeDamage(){
 		PlaySound(painSounds);
-		Debug.Log("Enemy health left: " + health);
+		Debug.Log("Dragon health left: " + health);
 	}
 
 	// turn living into dead

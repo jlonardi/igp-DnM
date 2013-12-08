@@ -15,6 +15,8 @@ public class EnemyManager : MonoBehaviour {
 	//maximum amount of enemies at once on the game level
 	public float maxEnemies = 10;
 
+	public float dragonWaveMaxEnemiesMultiplier = 2f;
+
 	public bool dragonFightSpwans = false;
 
 	public Transform[] areas;	
@@ -72,7 +74,7 @@ public class EnemyManager : MonoBehaviour {
 		dragonFightSpwans = true;
 		originalMaxEnemies = maxEnemies;
 		originalWaveInterval = waveInterval;
-		maxEnemies = maxEnemies * 2;
+		maxEnemies = maxEnemies * dragonWaveMaxEnemiesMultiplier;
 		waveInterval = waveInterval / 3;
 
 	}
@@ -117,13 +119,10 @@ public class EnemyManager : MonoBehaviour {
 				index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 			}
 		} else {
-			index = (int)Mathf.Round(Random.Range(0f, dragonSpawns.Length-1));		
-			Debug.Log("Spawn index was " +  index);
+			index = (int)Mathf.Round(Random.Range(0f, dragonSpawns.Length-1));
 			while( !dragonSpawns[index].gameObject.name.Equals( "DragonSpawn")) {
 				index = (int)Mathf.Round(Random.Range(0f, dragonSpawns.Length-1));
 			}
-			Debug.Log("Spawn position is " + dragonSpawns[index].position);
-		
 		}
 		
 		Vector3 offset = new Vector3(Random.Range(-10f,10f),0,Random.Range(-10f,10f));

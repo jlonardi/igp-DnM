@@ -226,7 +226,7 @@ public class EnemyLogic : MonoBehaviour {
 		timeWhenFocusedPlayer = Time.time;
 		navigation.target = playerTransform;
 		
-		Debug.Log("Enemy health left: " + health);
+		//Debug.Log("Enemy health left: " + health);
 	}
 
 	// if any of the enemies attacked by player, check if player nearby and attack

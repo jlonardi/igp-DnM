@@ -13,7 +13,9 @@ public class Statistics {
 	public float playerSpeed = 0f;
 
 	//scores for different enemy types:
-	private int orcKillScore = 100;
+	public int orcKillScore = 100;
+	public int dragonKillScore = 5000;
+
 	
 	private float timeOfLastPoint = 0f;
 	private float pointIntervall=1f;
@@ -37,6 +39,11 @@ public class Statistics {
 		bodycount++;
 		switch (et){
 		case(EnemyType.ORC):
+			score += orcKillScore;
+			break;
+		case EnemyType.DRAGON:
+			score += dragonKillScore;
+			break;
 		default:
 			score += orcKillScore;
 			break;		

@@ -513,7 +513,7 @@ public class Gun : MonoBehaviour {
 		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
 		Vector3 direction = hit.collider.transform.position - this.transform.position;	
 		enemyObject.TakeDamage((int)damageAmount, hit, direction, pushPower);
-		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
+//		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
 
 	// calculates gun's damage for hitpoint
@@ -522,7 +522,7 @@ public class Gun : MonoBehaviour {
 		float damageAmount = maxDamage/2 + maxDamage/2 * (fireRange - hit.distance) / fireRange;	
 		Vector3 direction = hit.collider.transform.position - this.transform.position;	
 		game.dragon.TakeDamage((int)damageAmount, hit, direction, pushPower);
-		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
+//		Debug.Log("Gun's range: "+fireRange + ", Distance: " +hit.distance+ ", Gun's damage: " + damageAmount);
 	}
 
 	//---------------AUDIO METHODS--------
