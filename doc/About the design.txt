@@ -1,16 +1,14 @@
 
 Game design
 
+We wanted to make a fps game whit a defence element. We decided that we wanted to defend a treasure from orcs. When we was planning the game someone come upp with the name
+dragons and miniguns so they had to be added in the game aswell. 
 
 
-
-
-
-
-
-
-
-
+Now the player will be given a treasure in the beginning. Monsters will begin to spawn. The lissards attacks only the player and the werewolfes and orcs attacs both.
+The player have to defend the treasure from the mobs in the way he/she sees fit. The player will be awarded points for the time he survives and the enemies he kills.
+In the end the player will als be avarded some points for the remainding treasure. There are more weapons and an armor hidden in the terrain.
+If the player gets hit by a enemy he will drop the treasure. The treasure can also be repicked.
 
 
 Terrain design
@@ -21,6 +19,14 @@ The other main criteria for the terrain was that the game has to work well with 
 We wanted it also fit ouer design so the terrain needed to be dry and deserted.
 
 The terrain is now a deserted valley surounded by mountains on every side. The terrain has signs of beeing somethime a green walley with its 
-dry waterfall and river and the dead trees. There is also ruins of a old city and a castle that has been taken by the orcs. 
+dry waterfall and river and the dead trees. There is also ruins of a old town and an undestroyed castle that the orcs has taken.
 The playes is engouraged to explore the area because it has additional guns and an armor somewhere. The fact that we desided that the player can pick upp the treasure after dropping it
 makes it possible to explore even better.
+
+
+Story
+
+We needed a story for the game so that the player would have an idea about why he is lockt in the walley killing orcs and deffending a treasure. 
+Otherwhise the game would not really have any idea. We desided to paint the story for hand because it was easier to do. 
+
+The story are made out of 5 piktures that each has many small pictures in it. This way it looks more like a story. We also added a text story so that the player understands what is in the pictures.
