@@ -38,9 +38,18 @@ public class SaveContainer {
 	public int currentGunIndex;
 	public int bodycount;
 	public int score;
-	
+	public float dragonHealth;
+	public float dragonLastBreath;
+	public bool dragonBreathFire;
+	public bool dragonFlying;
+	public bool dragonPatroling;
+	public bool dragonWalking;
+	public bool dragonLanding;
+	public bool dragonFighting;
+
 	// Vector2, Vector3, Quaternion and GameObjects need prefix 's' to use serialized versions
 	public sGameObject sPlayer;
+	public sGameObject sDragon;
 	public sGameObject sTreasure;
 	public List<sGameObject> sGameObjects;
 
@@ -57,6 +66,7 @@ public class SaveContainer {
 
 		// save GameObject, Transform, Vector3 and Quaternion by adding .Serializable() extension
 		sPlayer = game.player.gameObject.Serializable();
+		sDragon = game.dragon.gameObject.Serializable();
 		sTreasure = game.treasure.gameObject.Serializable();
 
 		// save enemies and misc objects by listing them
@@ -103,6 +113,14 @@ public class SaveContainer {
 		gun4_clips = game.weapons.guns[4].totalClips;
 		grenades = game.weapons.grenadeCount;
 		currentGunIndex = game.weapons.currentGunIndex;
+		dragonFighting = game.dragon.GetFighting();
+		dragonPatroling = game.dragon.GetPatroling();
+		dragonWalking = game.dragon.GetWalking();
+		dragonLanding = game.dragon.GetLanding();
+		dragonHealth = game.dragon.GetHealth(); 
+		dragonBreathFire = game.dragon.breathFire;
+		dragonLastBreath = game.dragon.timeOfLastFireBreath;
+		dragonFlying = game.dragon.flying;
 	}
 
 	public void RestoreValues(){
@@ -116,8 +134,8 @@ public class SaveContainer {
 
 			GameObject player = GameObject.Find("Player");
 			player.GetValuesFrom(sPlayer);
-
 			game.treasure.gameObject.GetValuesFrom(sTreasure);
+			game.dragon.gameObject.GetValuesFrom(sDragon);
 
 			// restore variables
 			mouseX.SetPosition(mousePositionX);
@@ -149,6 +167,14 @@ public class SaveContainer {
 			game.player.SetHealth(playerHealth);
 			game.player.SetAliveStatus(playerAlive);
 			game.treasure.SetTreasureAmount(treasureAmount);
+			game.dragon.SetFighting(dragonFighting);
+			game.dragon.SetPatroling(dragonPatroling);
+			game.dragon.SetWalking(dragonWalking);
+			game.dragon.SetLanding(dragonLanding);
+			game.dragon.SetHealth(dragonHealth);
+			game.dragon.breathFire = dragonBreathFire;
+			game.dragon.flying = dragonFlying;
+			game.dragon.timeOfLastFireBreath = dragonLastBreath;
 
 			// calculate time of last enemy wave
 			enemyManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
