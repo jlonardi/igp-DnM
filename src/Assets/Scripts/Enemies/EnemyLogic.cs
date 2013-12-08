@@ -263,7 +263,7 @@ public class EnemyLogic : MonoBehaviour {
 
 	private void PlaySound(AudioClip[] clips)
 	{
-		int clipNum = Random.Range(0, clips.Length - 1);
+		int clipNum = Random.Range(0, clips.Length);
 		PlaySound(clips[clipNum]);
 	}
 
