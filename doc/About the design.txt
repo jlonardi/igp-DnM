@@ -22,4 +22,5 @@ We wanted it also fit ouer design so the terrain needed to be dry and deserted.
 
 The terrain is now a deserted valley surounded by mountains on every side. The terrain has signs of beeing somethime a green walley with its 
 dry waterfall and river and the dead trees. There is also ruins of a old city and a castle that has been taken by the orcs. 
-The playes is engouraged to explore the area because it has additional guns and an armor somewhere. 
+The playes is engouraged to explore the area because it has additional guns and an armor somewhere. The fact that we desided that the player can pick upp the treasure after dropping it
+makes it possible to explore even better.
