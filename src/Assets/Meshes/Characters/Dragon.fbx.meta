@@ -7244,7 +7244,7 @@ ModelImporter:
       - path: a/pelvic_2/pelvic_1/paunch/breast/w_C_R_001/w_C_R/w7_R/w8_R/w9_R
         weight: 0
       - path: a/pelvic_2/tail_1
-        weight: 1
+        weight: 0
       - path: a/pelvic_2/tail_1/tail_2
         weight: 1
       - path: a/pelvic_2/tail_1/tail_2/tail_3
