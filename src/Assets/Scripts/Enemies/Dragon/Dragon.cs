@@ -15,6 +15,7 @@ public class Dragon : MonoBehaviour {
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
 	public float health = 10000;
+	public float maxHealth = 10000;
 	private Transform tr;
 	private Transform player;
 	public Transform head;

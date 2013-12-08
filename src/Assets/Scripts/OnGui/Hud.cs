@@ -7,13 +7,16 @@ public class Hud {
 	public Texture2D healthBackgroundTexture;
 	public Texture2D armorBarTexture;
 	public Texture2D armorBackgroundTexture;
+	public Texture2D dragonHealthBarTexture;
 
 	private Rect helpPosition;
 
 	private Rect healthPosition;
 	private Rect armorPosition;
-	private float currentHealth;
-	private float currentArmor;
+	private Rect dragonHealthPosition;
+	public float currentHealth;
+	public float currentArmor;
+	public float currentDragonHealth;
 
 	private GameManager game;
 	private OnGuiManager gui;
@@ -30,6 +33,7 @@ public class Hud {
 		//health & armor bar position and size
 		healthPosition = new Rect(20,20,369,55);
 		armorPosition = new Rect(26,61,352,8);
+		dragonHealthPosition = new Rect(500,20,369,55);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -56,9 +60,11 @@ public class Hud {
 
 		GUI.DrawTexture(healthPosition, healthBackgroundTexture);
 		GUI.DrawTexture (armorPosition, armorBackgroundTexture);
+
 		currentHealth = game.player.GetHealth();
 		currentHealth = currentHealth*3.52f;
 		currentArmor = game.player.GetArmor()*7.04f;
+		currentDragonHealth = game.dragon.health / game.dragon.maxHealth * 100 * 3.52f;
 
 		GUI.BeginGroup(new Rect(26,25,currentHealth,32)); 
 		GUI.DrawTexture(new Rect(0,0,352,32), healthBarTexture);
@@ -66,6 +72,13 @@ public class Hud {
 		GUI.BeginGroup(new Rect(26,66,currentArmor,4));
 		GUI.DrawTexture(new Rect(0,0,352,4), armorBarTexture);
 		GUI.EndGroup();
+
+		if(game.dragon.fighting && game.dragon.health > 0) {
+			GUI.DrawTexture (dragonHealthPosition, healthBackgroundTexture);
+			GUI.BeginGroup(new Rect(508, 30, currentDragonHealth,32));
+			GUI.DrawTexture(new Rect(0,0,352,32), dragonHealthBarTexture);
+			GUI.EndGroup();
+		}
 
 		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
 		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_label");

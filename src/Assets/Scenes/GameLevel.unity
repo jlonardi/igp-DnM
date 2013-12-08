@@ -48746,6 +48746,11 @@ MonoBehaviour:
     armorBarTexture: {fileID: 2800000, guid: d9b5a489de8f63249802f64062481b93, type: 3}
     armorBackgroundTexture: {fileID: 2800000, guid: ef024879d4c94f34d83e6244bdb9046f,
       type: 3}
+    dragonHealthBarTexture: {fileID: 2800000, guid: 6c5a2e85da4183249934be3dee4b52c7,
+      type: 3}
+    currentHealth: 0
+    currentArmor: 0
+    currentDragonHealth: 0
   crosshair:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
@@ -62833,6 +62838,7 @@ MonoBehaviour:
   turningSpeed: 5
   minDistanceFromPlayer: 7
   health: 10000
+  maxHealth: 10000
   head: {fileID: 0}
   timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
