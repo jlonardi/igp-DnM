@@ -72,9 +72,10 @@ public class SaveContainer {
 		// save enemies and misc objects by listing them
 		sGameObjects = new List<sGameObject>();
 		foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[]){
-    		if (go.name.Equals("orc(Clone)") || go.name.Equals("orc ragdoll(Clone)") || 
-						go.name.Equals("1x1x1m Box")){
-    			sGameObjects.Add(go.Serializable());
+			if (go.name.Equals("orc(Clone)") || go.name.Equals("orc ragdoll(Clone)") || 
+			    go.name.Equals("Lizard(Clone)") || go.name.Equals("Lizard ragdoll(Clone)") || 
+			    go.name.Equals("WereWolf(Clone)") || go.name.Equals("WereWolf ragdoll(Clone)")){ 
+				sGameObjects.Add(go.Serializable());
     		}
     	}				
 
@@ -192,17 +193,6 @@ public class SaveContainer {
 				return;
 			}
 			
-			// find misc objects on scene		
-			List<GameObject> boxObjects = new List<GameObject>();	
-			foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[]){
-				if (go==null){
-					break;
-				}
-				if(go.name.Equals("1x1x1m Box")){
-					boxObjects.Add(go);
-				}				
-	    	}
-			
 			// restore game objects on scene by gameobject type
 			foreach (sGameObject sgo in sGameObjects){
 				if (sgo==null){
@@ -214,16 +204,23 @@ public class SaveContainer {
 					
 				} else if(sgo.name.Equals("orc(Clone)")) {
 					enemyManager.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
-														sgo.transform.rotation.toQuaternion);
-
-				} else if(sgo.name.Equals("1x1x1m Box")) {
-					int index = boxObjects.Count - 1;
-					if (index > -1){
-						boxObjects[index].transform.position = sgo.transform.position.toVector3;
-						boxObjects[index].transform.rotation = sgo.transform.rotation.toQuaternion;
-						boxObjects.RemoveAt(index);
-					}
+					                         sgo.transform.rotation.toQuaternion);
+				} else if(sgo.name.Equals("Lizard ragdoll(Clone)")) {
+					GameObject go = ragdollManager.MakeRagdoll(EnemyType.LIZARD, sgo.toGameObject(), false);
+					sgo.restoreChildTransforms(go.transform);
+					
+				} else if(sgo.name.Equals("Lizard(Clone)")) {
+					enemyManager.CreateEnemy(EnemyType.LIZARD, sgo.transform.position.toVector3,
+					                         sgo.transform.rotation.toQuaternion);
+				} else if(sgo.name.Equals("WereWolf ragdoll(Clone)")) {
+					GameObject go = ragdollManager.MakeRagdoll(EnemyType.WEREWOLF, sgo.toGameObject(), false);
+					sgo.restoreChildTransforms(go.transform);
+					
+				} else if(sgo.name.Equals("WereWolf(Clone)")) {
+					enemyManager.CreateEnemy(EnemyType.WEREWOLF, sgo.transform.position.toVector3,
+					                         sgo.transform.rotation.toQuaternion);
 				}
+
 	    	}
 		} catch {
 			Debug.LogError("Failed to load savegame");
