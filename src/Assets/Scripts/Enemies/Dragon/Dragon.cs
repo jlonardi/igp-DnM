@@ -9,8 +9,8 @@ public class Dragon : MonoBehaviour {
 	public float speed = 15f;
 	public float turningSpeed = 5;
 	public float minDistanceFromPlayer = 7;
-	private float health = 10000;
-	private float maxHealth = 10000;
+	private float health = 5000;
+	private float maxHealth = 5000;
 
 	private bool patroling = true;
 	private bool walking = false;

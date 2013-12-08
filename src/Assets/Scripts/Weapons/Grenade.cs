@@ -97,6 +97,9 @@ public class Grenade : MonoBehaviour {
 				if(col[c].tag == "enemy")	{
 					CalculateDamage(col[c], _explosionPosition, distance);
 				}
+				if(col[c].tag == "Dragon"){
+					GameManager.instance.dragon.TakeDamage(100, _explosionPosition, power);
+				}
 
 				body = null;
 				body = col[c].gameObject.rigidbody;
@@ -145,11 +148,7 @@ public class Grenade : MonoBehaviour {
 	// calculates grenades damage by distance
 	public void CalculateDamage(Collider col, Vector3 explosionPosition, float distance){
 		EnemyLogic enemyObject = col.GetComponentInChildren<EnemyLogic>();
-
-		//float damageAmount = maxDamage * distance/explosionRadius;
-		float damageAmount = 100;
-		enemyObject.TakeDamage((int)damageAmount, explosionPosition, power);
-	//	Debug.Log("Explosion distance: " +distance+ ", Explosion damage: " + damageAmount + ", Explosion radious: " +explosionRadius);
+		enemyObject.TakeDamage(100, explosionPosition, power);
 	}	
 
 	public void PlaySound(float distance)

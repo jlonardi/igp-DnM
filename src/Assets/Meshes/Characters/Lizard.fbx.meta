@@ -993,7 +993,7 @@ ModelImporter:
       name: monster_ground_attack
       takeName: monster_ground_attack
       firstFrame: 0
-      lastFrame: 51
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1011,7 +1011,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .789088368
+        functionName: AttackTrigger
+        data: jumping
+        objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1282,8 +1290,8 @@ ModelImporter:
     - serializedVersion: 16
       name: monster_ground_attack2
       takeName: monster_ground_attack2
-      firstFrame: 0
-      lastFrame: 51
+      firstFrame: 14
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1301,7 +1309,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .721951246
+        functionName: AttackTrigger
+        data: jumping
+        objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -3893,7 +3909,7 @@ ModelImporter:
       name: monster_run_to_stand
       takeName: monster_run_to_stand
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
