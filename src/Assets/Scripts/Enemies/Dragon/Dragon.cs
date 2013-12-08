@@ -16,10 +16,10 @@ public class Dragon : MonoBehaviour {
 	private bool walking = false;
 	private bool landing = false;
 	private bool fighting = false;
+	private Transform playerTransform;
+	private Transform cameraTransform;
+	private Transform headTransform;
 	private Transform tr;
-	private Transform player;
-	public Transform head;
-	private Player plr;
 	private Vector3 landingPoint;
 
 	private float grabTime = 0f;
@@ -36,9 +36,9 @@ public class Dragon : MonoBehaviour {
 		ragdolls = RagdollManager.instance;
 		tr = transform;
 		landingPoint = GameObject.Find("PointInGround").transform.position;
-		player = GameObject.Find("playerFocus").transform;
-		head = GameObject.Find("IK_Target_Kopf").transform;
-		plr = GameObject.Find("Player").GetComponent<Player>();
+		playerTransform = GameObject.Find("playerFocus").transform;
+		cameraTransform = GameObject.Find("Main Camera").transform;
+		headTransform = GameObject.Find("IK_Target_Kopf").transform;
 	}
 
 	void Update () {
@@ -55,22 +55,22 @@ public class Dragon : MonoBehaviour {
 				flying = false;
 				fighting = true;
 				speed = 15f;
-				dir = (player.position - tr.position);
+				dir = (playerTransform.position - tr.position);
 			}
 		}
 
 		if(fighting) {
 
 			if(!grabbing && !breathFire) {
-				dir = (player.position - tr.position);
+				dir = (playerTransform.position - tr.position);
 				rotateTowards(dir);
 			}
 
 			if(walking) {
-				if((tr.position - player.position).magnitude > minDistanceFromPlayer) {
+				if((tr.position - playerTransform.position).magnitude > minDistanceFromPlayer) {
 
 					// THIS HAS TO BE FIXED BY CHANGING THE ORIGO OF THE DRAGON
-					Vector3 fixedPlayerPosition = player.position;
+					Vector3 fixedPlayerPosition = playerTransform.position;
 					fixedPlayerPosition.y -= 2.5f;
 					moveTowards(fixedPlayerPosition);
 
@@ -78,24 +78,32 @@ public class Dragon : MonoBehaviour {
 					walking = false;
 					breathFire = false;
 					grabbing = true;
-					player = GameObject.Find ("Player").transform;
-					plr.TakeDamage(plr.GetHealth() - 1, DamageType.HIT);
-					plr.SetDamageImmunity(true);
+					playerTransform = game.player.gameObject.transform;
+					game.player.SetDeathDuration(10);
+					game.player.TakeDamage(100, DamageType.HIT);
 					grabTime = Time.time;
 				}
 			}
 
 			if(grabbing) {
 
-				if(grabTime + 5 > Time.time) {
-
-					player.position = head.position + offset;
-
+				if(grabTime + 2.5f > Time.time) {
+					playerTransform.position = headTransform.position + offset;
 				} else {
-					plr.SetDamageImmunity(false);
-					plr.TakeDamage(9001, DamageType.HIT);
-					grabbing = false;
 					fighting = false;
+					grabbing = false;
+
+					Debug.Log("Player dropped");
+					//move player so that it doesn't drop through terrain
+					playerTransform.position += Vector3.up*10;
+					RaycastHit hit = new RaycastHit();		
+					if (Physics.Raycast(playerTransform.position, -Vector3.up, out hit)){
+						// align just above terrain		    
+						playerTransform.position = new Vector3(playerTransform.position.x, 
+	                                       playerTransform.position.y - hit.distance + 0.001f, playerTransform.position.z);
+					}
+					//move camera so it's closer to ground and rotate it
+					cameraTransform.eulerAngles = new Vector3(20,0,90);
 				}
 			}
 

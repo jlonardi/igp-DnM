@@ -14,6 +14,8 @@ public class Statistics {
 
 	//scores for different enemy types:
 	public int orcKillScore = 100;
+	public int lizardKillScore = 150;
+	public int wolfKillScore = 80;
 	public int dragonKillScore = 5000;
 
 	
@@ -41,12 +43,16 @@ public class Statistics {
 		case(EnemyType.ORC):
 			score += orcKillScore;
 			break;
+		case(EnemyType.WEREWOLF):
+			score += wolfKillScore;
+			break;
+		case(EnemyType.LIZARD):
+			score += lizardKillScore;
+			break;
 		case EnemyType.DRAGON:
+			dragonSlayed = true;
 			score += dragonKillScore;
 			break;
-		default:
-			score += orcKillScore;
-			break;		
 		}
 	}
 

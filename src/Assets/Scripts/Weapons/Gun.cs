@@ -126,6 +126,10 @@ public class Gun : MonoBehaviour {
 		if (game == null){
 			game = GameManager.instance;
 		}
+		bool playerAlive = game.player.GetAliveStatus();
+		if (!playerAlive){
+			freeToShoot = false;
+		}
 
 		CalculateAccuracy();
 
@@ -135,12 +139,16 @@ public class Gun : MonoBehaviour {
 		}
 		if (animator != null){
 			animator.SetBool("fire", false);
+			if (!playerAlive){
+				game.statistics.playerSpeed = 0;
+			}
 			animator.SetFloat("speed", game.statistics.playerSpeed);
+
 		}
 
 		HandleMinigun();
 
-		if(Input.GetButtonUp("Fire")){
+		if(Input.GetButtonUp("Fire") && playerAlive){
 			freeToShoot = true;
 		}
 		HandleReloading();

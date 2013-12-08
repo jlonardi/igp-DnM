@@ -8,67 +8,80 @@ public class Player : MonoBehaviour {
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
-	private bool damageImmunity = true;
-	private bool isKilled = false;
+	private bool isAlive = true;
+	private float timeSinceKilled;
+	//how long it takes for player to die after final hit (s)
+	private float deathDuration = 3;
 
 	[HideInInspector]
 	public CharacterMotor motor;
 
-    public void Start() {
+    void Start() {
 		game = GameManager.instance;
 		guiManager = OnGuiManager.instance;
 		motor = GetComponent<CharacterMotor>();
 		sounds = PlayerSounds.instance;
 	}	
 
+	void Update(){
+		if (!isAlive && timeSinceKilled + deathDuration < Time.time){
+			game.GameOver();
+		}
+	}
+
 	public void TakeDamage(float damageAmount, DamageType damageType){
-		if(damageImmunity) {
-			float tempArmor = 0;
-			float tempHealth = 0;
+		//if dead already, do nothing
+		if (!isAlive){
+			return;
+		}
 
-			//handle fire damage here
-			if (damageType == DamageType.FIRE){
-				//if player has an armor, firedamage is 50% less
-				tempArmor = armor - (damageAmount*0.5f);
-				if (tempArmor<0){
-					armor = 0;
-					// amount without armor is 100% of firedamage
-					tempHealth = health + (tempArmor*2);
-				} else {
-					tempHealth = health;
-					armor = tempArmor;
-				}
-			}
+		float tempArmor = 0;
+		float tempHealth = 0;
 
-			//handle enemy hits and everything but firedamage here
-			if (damageType != DamageType.FIRE){
-				//if player has an armor, take less damage
-				tempArmor = armor - damageAmount;
-				if (tempArmor<0){
-					armor = 0;
-					tempHealth = health + tempArmor;
-				} else {
-					tempHealth = health;
-					armor = tempArmor;
-				}
-			}
-
-			// if enemy hits player, treasure drops
-			if(!game.treasure.OnGround()){
-				game.treasure.SetTreasureOnGround();
-			}
-
-			// visualize the pain
-			guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
-
-			if (tempHealth <= 0){
-				health = 0;
-				game.GameOver();	
-				sounds.PlayDeathSound();
+		//handle fire damage here
+		if (damageType == DamageType.FIRE){
+			//if player has an armor, firedamage is 50% less
+			tempArmor = armor - (damageAmount*0.5f);
+			if (tempArmor<0){
+				armor = 0;
+				// amount without armor is 100% of firedamage
+				tempHealth = health + (tempArmor*2);
 			} else {
-				health = tempHealth;
-				sounds.PlayPainSound();
+				tempHealth = health;
+				armor = tempArmor;
 			}
+		}
+
+		//handle enemy hits and everything but firedamage here
+		if (damageType != DamageType.FIRE){
+			//if player has an armor, take less damage
+			tempArmor = armor - damageAmount;
+			if (tempArmor<0){
+				armor = 0;
+				tempHealth = health + tempArmor;
+			} else {
+				tempHealth = health;
+				armor = tempArmor;
+			}
+		}
+
+		// if enemy hits player, treasure drops
+		if(!game.treasure.OnGround()){
+			game.treasure.SetTreasureOnGround();
+		}
+
+		// visualize the pain
+		guiManager.bloodSplatter.setSplatterVisible( (1f-(tempHealth/100f)));
+
+
+		if (tempHealth <= 0){
+			health = 0;
+			isAlive = false;
+			timeSinceKilled = Time.time;
+			sounds.PlayDeathSound();
+		} else {
+			health = tempHealth;
+			sounds.PlayPainSound();
 		}
 	}
 	
@@ -87,21 +100,17 @@ public class Player : MonoBehaviour {
 	public void SetArmor(float value){
 		armor = value;
 	}
-	
-	public bool GetDamageImmunity(){
-		return damageImmunity;
-	}
-	
-	public void SetDamageImmunity(bool value){
-		damageImmunity = value;
+
+	public void SetDeathDuration(float value){
+		deathDuration = value;
 	}
 
-	public bool GetKilled(){
-		return isKilled;
+	public bool GetAliveStatus(){
+		return isAlive;
 	}
 	
-	public void SetKilled(){
-		isKilled = true;
+	public void SetAliveStatus(bool value){
+		isAlive = value;
 	}
 
 }

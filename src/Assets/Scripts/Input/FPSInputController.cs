@@ -34,9 +34,10 @@ public class FPSInputController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(game.gameState != GameState.RUNNING){
+		if(game.gameState != GameState.RUNNING || game.player.GetAliveStatus() == false){
 			return;
 		}
+
 
 		bool treasureOnGround = game.treasure.OnGround();
 

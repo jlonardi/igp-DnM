@@ -27,7 +27,7 @@ public class SmoothMouseLookY : MonoBehaviour {
 
 	void Update(){
 		// mouse look doesn't work if game not running
-		if(game.gameState != GameState.RUNNING){
+		if(game.gameState != GameState.RUNNING || game.player.GetAliveStatus() == false){
 			return;
 		}
 

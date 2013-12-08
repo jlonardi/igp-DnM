@@ -68,7 +68,14 @@ public class CharacterMotor : MonoBehaviour {
 	}
 
 	void Update () {
+		//if player is dead, don't take any input
+		if(!game.player.GetAliveStatus()){
+			canControl = false;
+		}
+		
+
 		UpdateVelocity();
+
 		if (!useFixedUpdate)
 			UpdateFunction();
 	}

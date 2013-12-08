@@ -74,11 +74,11 @@ public class EnemyLogic : MonoBehaviour {
 			game = GameManager.instance;
 		}
 
-		if(Input.GetKeyDown(KeyCode.T)) {
-			swapTarget();
+		//if player is dead, do nothing
+		if (!game.player.GetAliveStatus()){
+			return;
 		}
-		
-		
+
 		checkFocus();
 		checkActions();
 	}
