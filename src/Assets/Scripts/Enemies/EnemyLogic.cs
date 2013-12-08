@@ -74,11 +74,6 @@ public class EnemyLogic : MonoBehaviour {
 			game = GameManager.instance;
 		}
 
-		//if player is dead, do nothing
-		if (!game.player.GetAliveStatus()){
-			return;
-		}
-
 		checkFocus();
 		checkActions();
 	}
@@ -101,6 +96,13 @@ public class EnemyLogic : MonoBehaviour {
 		//The object is at target and ready to do some actions
 		if(navigation.targetReached) {
 			if(target == focusTarget.PLAYER) {
+				//if player is dead, change target to treasure
+				if (!game.player.GetAliveStatus()){
+					attacking = false;
+					swapTarget();
+					return;
+				}				
+
 				if(!attacking && playerDistance <= attackDistance) {
 					if(!attacking) {
 						attacking = true;

@@ -61,7 +61,7 @@ public class Treasure : MonoBehaviour {
 		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/treasureFullAmount, 0);				
 
 		// if all taken, game over
-		if (treasureAmount <= 0){
+		if (treasureAmount <= 0 && game.player.GetAliveStatus() == true){
 			game.GameOver();
 		}
 		return lootAmount;
