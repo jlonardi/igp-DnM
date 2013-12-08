@@ -3,34 +3,35 @@ Dragons & Miniguns
 
 Gameplay
 --------
-To finish the game, keep the treasure safe, kill all the enemies and stay alive. 
-Game will be over if all of the treasure is stolen or player gets killed.
-
-So main goals in the game are:
 - protect the treasure
 - kill the enemies
 - survive
 
+Game will be over if all of the treasure is stolen or player gets killed.
+
 
 Gameplay hints
 --------------
-- you don't have to slay the dragon if you're not up for it, the game can still be finished
 - there are items on the map which may help your fight with the enemies
-- don't lose focus on the treasure as total treasure value will affect the final score
+- you can't pick up items while carrying the treasure
 
 
 Default keymapping
 ------------------
-Movement 		=  arrow keys or W,A,S,D
-Look around		=  mouse movement
-Jump			=  space
-Fire			=  left mouse button
-Change Weapon 		=  TAB or mouse wheel
-Pistol			=  1
-Assault Rifle		=  2
-Grenade Launcer		=  3
-Minigun (if available)	=  4
-Reload			=  R
+Movement                =  arrow keys or W,A,S,D
+Look around             =  mouse movement
+Jump                    =  space
+Sprint                  =  shift
+Pick-Up / Drop		=  E
+Fire                    =  left mouse button
+Change Weapon           =  mouse wheel
+Pistol                  =  1
+Assault Rifle           =  2
+Grenade Launcer         =  3
+Minigun (if available)  =  4
+Scar-L (if available)   =  5
+Reload                  =  R
+Handgrenade             =  G
 Pause / Resume		=  esc
 
 
@@ -38,7 +39,7 @@ Menus
 -----
 - you can load your previous game progress from Main Menu or Pause Menu
 - game progress can be saved at any time by pausing the game and selecting Save Game
-- please note that you will lose any unsaved progress as there is no autosaving!
+- please note that you will lose any unsaved progress by going into main menu as there is no autosaving!
 
 
 Start & Settings
