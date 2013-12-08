@@ -30,7 +30,7 @@ public class Treasure : MonoBehaviour {
     }
 
 	void Update(){
-		if (timeFromLoot + 1 < Time.time && audio.isPlaying){
+		if (audio.isPlaying && (timeFromLoot + 1 < Time.time || game.player.GetAliveStatus() == false)){
 			audio.Stop();
 		}
 	}
