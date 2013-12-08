@@ -25,11 +25,6 @@ public class GameOverScreen {
 		if (game == null){
 			Initialize();
 		}
-		// if highscore already added, do nothing
-		if (game.gameState == GameState.HIGHSCORE_GAME){
-			return;
-		}
-
 		GUI.skin.GetStyle("window");
 		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 

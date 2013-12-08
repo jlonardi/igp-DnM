@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		if (game.gameState == GameState.LOAD_MENU_MAIN || game.gameState == GameState.STORY ||
-		    game.gameState == GameState.HIGHSCORE_MAIN){
+		    game.gameState == GameState.HIGHSCORE){
 			renderer.enabled = false;
 		} else {
 			game.gameState = GameState.MAIN_MENU;
@@ -68,7 +68,7 @@ public class MainMenu : MonoBehaviour {
 			
 		case MainMenuButton.HIGHSCORE:
 			//show story
-			game.gameState = GameState.HIGHSCORE_MAIN;
+			game.gameState = GameState.HIGHSCORE;
 			break;
 			
 		case MainMenuButton.LOAD:
