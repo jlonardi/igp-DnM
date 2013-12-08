@@ -164,7 +164,7 @@ public class Gun : MonoBehaviour {
 		if (game.statistics.playerSpeed < 1f){
 			targetAccuracy = accuracy;
 		} else {
-			targetAccuracy = accuracy + 40;
+			targetAccuracy = accuracy + 25;
 		}
 		if (targetAccuracy < currentAccuracy){
 			currentAccuracy -= (currentAccuracy - targetAccuracy)  * 0.2f;

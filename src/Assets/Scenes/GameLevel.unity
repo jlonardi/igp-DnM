@@ -48699,8 +48699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caee8f5291651a84586e4130f37b28e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpawnCount: 200
-  maxSpawnTime: 300
+  maxSpawnCount: 3.40282306e+38
+  maxSpawnTime: 3.40282306e+38
   maxEnemies: 10
   maxDragonFightEnemies: 20
   dragonFightSpwans: 0
@@ -62762,7 +62762,7 @@ AudioSource:
   MinDistance: 40
   MaxDistance: 1000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -62774,6 +62774,11 @@ AudioSource:
       inSlope: -3.37824893
       outSlope: -3.37824893
       tangentMode: 0
+    - time: .399992168
+      value: .177389234
+      inSlope: -2.06172156
+      outSlope: -.295644879
+      tangentMode: 21
     - time: 1
       value: 0
       inSlope: -.0675865859
