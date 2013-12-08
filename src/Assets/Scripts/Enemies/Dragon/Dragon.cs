@@ -196,6 +196,8 @@ public class Dragon : MonoBehaviour {
 
 	// run this after taking a shot or explosive damage
 	public void AfterTakeDamage(){
+		EnemyManager.instance.disableDragonSpawns();
+		game.statistics.AddKillStats(EnemyType.DRAGON);
 		PlaySound(painSounds);
 		Debug.Log("Dragon health left: " + health);
 	}
