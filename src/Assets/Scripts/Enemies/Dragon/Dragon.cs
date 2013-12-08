@@ -178,6 +178,7 @@ public class Dragon : MonoBehaviour {
 	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
 		health -= damageAmount;
 		if(health <= 0) {
+			afterDeath();
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddExplosionForce(power, explosionPosition, 10f, 2.0f);
 		}		
@@ -188,6 +189,7 @@ public class Dragon : MonoBehaviour {
 	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
 		health -= damageAmount;
 		if(health <= 0) {
+			afterDeath();
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
 		}
@@ -196,16 +198,17 @@ public class Dragon : MonoBehaviour {
 
 	// run this after taking a shot or explosive damage
 	public void AfterTakeDamage(){
-		EnemyManager.instance.disableDragonSpawns();
-		game.statistics.AddKillStats(EnemyType.DRAGON);
 		PlaySound(painSounds);
 		Debug.Log("Dragon health left: " + health);
 	}
 
-	// turn living into dead
-	public Rigidbody MakeDead(){
+	public void afterDeath() {
 		EnemyManager.instance.disableDragonSpawns();
 		game.statistics.AddKillStats(EnemyType.DRAGON);
+	}
+
+	// turn living into dead
+	public Rigidbody MakeDead(){
 
 		// actually make enemy a ragdoll
 		GameObject ragdoll = ragdolls.MakeRagdoll(EnemyType.DRAGON, this.gameObject, true);
