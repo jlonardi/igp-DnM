@@ -89,8 +89,6 @@ public class Dragon : MonoBehaviour {
 
 				if(grabTime + 5 > Time.time) {
 
-					Debug.Log ("Head position = " + head.position);
-
 					player.position = head.position + offset;
 
 				} else {
