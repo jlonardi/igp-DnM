@@ -245,7 +245,6 @@ public class Dragon : MonoBehaviour {
 	//gets triggered every time dragon flaps wings
 	private void WingTrigger(){
 		int clipNum = Random.Range(0, wingSounds.Length);
-		Debug.Log(clipNum);
 		audio.PlayOneShot(wingSounds[clipNum], 0.7f);
 	}
 

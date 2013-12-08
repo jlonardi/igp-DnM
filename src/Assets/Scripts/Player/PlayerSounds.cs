@@ -35,7 +35,7 @@ public class PlayerSounds : MonoBehaviour {
 	public void PlayPainSound() {
 		
 		if (!audio.isPlaying) {
-			int clipNum = Random.Range(0, painSounds.Length - 1);
+			int clipNum = Random.Range(0, painSounds.Length);
 			audio.clip = painSounds[clipNum];
 			audio.Play();
 		}
@@ -56,7 +56,7 @@ public class PlayerSounds : MonoBehaviour {
 
 	public void PlayWalkSound() {
 		if (!motor.IsJumping() && walkSoundTimer <= 0) {
-			int clipNum = Random.Range(0, walkSounds.Length - 1);
+			int clipNum = Random.Range(0, walkSounds.Length);
 			audio.PlayOneShot(walkSounds[clipNum], 0.6f);
 
 			if (motor.IsSprinting())
@@ -67,7 +67,7 @@ public class PlayerSounds : MonoBehaviour {
 	}
 
 	public void PlayJumpSound() {
-		int clipNum = Random.Range(0, jumpSounds.Length - 1);
+		int clipNum = Random.Range(0, jumpSounds.Length);
 		audio.PlayOneShot(jumpSounds[clipNum], 0.6f);
 	}
 }

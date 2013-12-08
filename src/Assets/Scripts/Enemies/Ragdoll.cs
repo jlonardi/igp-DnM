@@ -10,7 +10,7 @@ public class Ragdoll : MonoBehaviour {
 
 	void Start () {
 		// play randdom deathsound when ragdoll has been made
-		int clipNum = Random.Range(0, deathSounds.Length - 1);
+		int clipNum = Random.Range(0, deathSounds.Length);
 		audio.clip = deathSounds[clipNum];
 		audio.Play();
 	}	
