@@ -43,8 +43,7 @@ public class TriggerHandler : MonoBehaviour {
 	public void handleEnterTrigger (Collider other) {
 		
 		if(other.tag == "enemy") {
-			if(dragonHasAggroOnPlayer) {
-			
+			if(dragonHasAggroOnPlayer && !GameManager.instance.statistics.dragonSlayed) {
 				if(other.name.Contains("orc") || other.name.Contains("Wolf")) {
 					Vector3 pos = other.transform.position;
 					pos.y += 1;
