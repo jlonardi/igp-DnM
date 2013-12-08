@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Scar_run
+  serializedVersion: 4
+  m_AnimationType: 2
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: .720000029, y: -.409999996, z: -.180000007}
+        inSlope: {x: 0, y: -.0119558964, z: -.0358138569}
+        outSlope: {x: 0, y: -.0119558964, z: -.0358138569}
+        tangentMode: 29185
+      - time: .166666672
+        value: {x: .720000029, y: -.41268146, z: -.187601119}
+        inSlope: {x: 0, y: -.0150555754, z: -.0390781462}
+        outSlope: {x: 0, y: -.0150555754, z: -.0390781462}
+        tangentMode: 0
+      - time: .266666681
+        value: {x: .720000029, y: -.413629085, z: -.18955037}
+        inSlope: {x: 0, y: -.00203691423, z: .00596898049}
+        outSlope: {x: 0, y: -.00203691423, z: .00596898049}
+        tangentMode: 0
+      - time: .300000012
+        value: {x: .720000029, y: -.413586766, z: -.188925833}
+        inSlope: {x: 0, y: .00478236005, z: .0303423032}
+        outSlope: {x: 0, y: .00478236005, z: .0303423032}
+        tangentMode: 0
+      - time: .466666669
+        value: {x: .720000029, y: -.409999996, z: -.180000007}
+        inSlope: {x: 0, y: .0215206165, z: .0477518179}
+        outSlope: {x: 0, y: .0215206165, z: .0477518179}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: .466666669
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_LoopTime: 1
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .720000029
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .166666672
+        value: .720000029
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .300000012
+        value: .720000029
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .466666669
+        value: .720000029
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -.409999996
+        inSlope: -.0119558964
+        outSlope: -.0119558964
+        tangentMode: 10
+      - time: .300000012
+        value: -.413586766
+        inSlope: .00478236005
+        outSlope: .00478236005
+        tangentMode: 10
+      - time: .466666669
+        value: -.409999996
+        inSlope: .0215206165
+        outSlope: .0215206165
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -.180000007
+        inSlope: -.0358138569
+        outSlope: -.0358138569
+        tangentMode: 10
+      - time: .266666681
+        value: -.18955037
+        inSlope: .00596898049
+        outSlope: .00596898049
+        tangentMode: 10
+      - time: .466666669
+        value: -.180000007
+        inSlope: .0477518179
+        outSlope: .0477518179
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_Events: []

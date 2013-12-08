@@ -97,7 +97,7 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButton("Sprint") && treasureOnGround){
+		if (Input.GetButton("Sprint") && treasureOnGround && Input.GetButton("Fire") == false){
 			motor.StartSprint();
 		}
 

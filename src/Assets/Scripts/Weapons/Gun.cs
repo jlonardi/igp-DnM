@@ -139,6 +139,7 @@ public class Gun : MonoBehaviour {
 		}
 		if (animator != null){
 			animator.SetBool("fire", false);
+			animator.SetBool("sprinting", game.player.motor.sprinting);
 			if (!playerAlive){
 				game.statistics.playerSpeed = 0;
 			}
@@ -291,6 +292,9 @@ public class Gun : MonoBehaviour {
 					if (gunType == GunType.MINIGUN && mgState != MiniGunState.FIRING){
 						return;
 					}
+
+					//make sure we don't sprint anymore
+					game.player.motor.StopSprint();
 
 					lastShootTime = Time.time + shootDelay;			
 					
