@@ -8,9 +8,13 @@ public class MusicAndAtmoManager : MonoBehaviour {
 	public AudioClip battleMusic;
 	public AudioClip beforeBattleMusic;
 	public AudioClip ambience;
+	public AudioClip deathMusic;
 
 	private AudioSource ambienceSource;
 	private AudioSource musicSource;
+	private GameManager game;
+
+	private bool onBattle = false;
 
 	void Awake() {
 		MusicAndAtmoManager.instance = this;
@@ -20,6 +24,25 @@ public class MusicAndAtmoManager : MonoBehaviour {
 		AudioSource[] aSources = GetComponents<AudioSource>();
 		ambienceSource = aSources[0];
 		musicSource = aSources[1];
+		game = GameManager.instance;
+	}
+
+	void Update() {
+		if (game.pickupState == PickupState.TREASURE && !onBattle)
+		{
+			onBattle = true;
+			PlayBattleMusic();
+		}
+
+		if (game.gameState == GameState.GAME_OVER || game.gameState == GameState.HIGHSCORE_DIALOG && onBattle)
+		{
+			musicSource.Stop();
+			ambienceSource.Stop();
+			musicSource.loop = false;
+			musicSource.clip = deathMusic;
+			musicSource.Play();
+			onBattle = false;
+		}
 	}
 
 	public void PlayBattleMusic() {
