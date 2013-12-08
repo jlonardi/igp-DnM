@@ -40,6 +40,7 @@ public class EnemyLogic : MonoBehaviour {
 	
 	private Transform playerTransform;
 	private Transform treasureTransform;
+	private Transform enemyTransform;
 
 	private focusTarget target;
 	private float timeWhenFocusedPlayer = 0f;
@@ -57,6 +58,7 @@ public class EnemyLogic : MonoBehaviour {
 			
 		treasureTransform = focusPoint.transform;
 		playerTransform = player.transform;
+		enemyTransform = this.transform;
 
 		// if treasure is on ground and enemy can loot, set first target as treasure
 		if (game.treasure.OnGround() && canLoot){
@@ -80,7 +82,7 @@ public class EnemyLogic : MonoBehaviour {
 		
 	private float GetDistance(Transform t){
 		Vector3 from = t.position;
-		Vector3 to = transform.position;
+		Vector3 to = enemyTransform.position;
 		// don't take elevation into account
 		float x = Mathf.Abs(from.x - to.x);
 		float z = Mathf.Abs(from.z - to.z);
@@ -142,7 +144,7 @@ public class EnemyLogic : MonoBehaviour {
 				swapTarget();
 			}
 		} else { // if focus not in player, check if player nearby
-			if (Vector3.Distance(playerTransform.position, transform.position)<= detectDistance){				
+			if (Vector3.Distance(playerTransform.position, enemyTransform.position)<= detectDistance){				
 				// add timeDifference to timeWhenFocusedPlayer so that we actually check nearbyTime if enemy haven't been shot
 				float timeDifference = focusTime - nearbyTime;
 				if (timeDifference < 0){
@@ -205,7 +207,7 @@ public class EnemyLogic : MonoBehaviour {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enemies.Length!=0) {
 			foreach (GameObject enemy in enemies) {
-				enemy.SendMessage("PlayerAttackingEnemy", this.transform.position, SendMessageOptions.DontRequireReceiver);
+				enemy.SendMessage("PlayerAttackingEnemy", enemyTransform.position, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
@@ -234,8 +236,8 @@ public class EnemyLogic : MonoBehaviour {
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
 		try{
-			float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
-			float distanceToTreasure = Vector3.Distance(treasureTransform.position, this.transform.position);
+			float distanceToAttact = Vector3.Distance(attackLocation, enemyTransform.position);
+			float distanceToTreasure = Vector3.Distance(treasureTransform.position, enemyTransform.position);
 			if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
 				// if not near the treasure, just join the chase
 				// else use greedyness to choose whether to chase the player or not
