@@ -242,5 +242,9 @@ public class Dragon : MonoBehaviour {
 		PlaySound(clips[clipNum]);
 	}
 
+	//gets triggered every time dragon flaps wings
+	private void WingTrigger(){
+
+	}
 
 }
