@@ -67,7 +67,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 3
-    m_Name: Running
+    m_Name: Sprinting
     m_StateMachine: {fileID: 110710502}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
@@ -413,24 +413,24 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110294549}
-      second: []
+      first: {fileID: 0}
+      second:
+      - {fileID: 110100000}
     data:
-      first: {fileID: 110220515}
-      second: []
-    data:
-      first: {fileID: 110202490}
+      first: {fileID: 110200000}
       second: []
     data:
       first: {fileID: 110285380}
       second: []
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 110202490}
       second: []
     data:
-      first: {fileID: 0}
-      second:
-      - {fileID: 110100000}
+      first: {fileID: 110220515}
+      second: []
+    data:
+      first: {fileID: 110294549}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -108, y: 12, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -459,7 +459,7 @@ StateMachine:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Running
+  m_Name: Sprinting
   m_DefaultState: {fileID: 110220204}
   m_States:
   - {fileID: 110293342}
@@ -469,24 +469,21 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 0}
+      second: []
+    data:
       first: {fileID: 110220204}
       second:
       - {fileID: 110161299}
-    data:
-      first: {fileID: 110206582}
-      second:
-      - {fileID: 110137001}
-      - {fileID: 110160522}
     data:
       first: {fileID: 110293342}
       second:
       - {fileID: 110184968}
     data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
+      first: {fileID: 110206582}
+      second:
+      - {fileID: 110137001}
+      - {fileID: 110160522}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -24, y: 24, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -505,13 +502,13 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110246190}
-      second:
-      - {fileID: 110162060}
-    data:
       first: {fileID: 110268600}
       second:
       - {fileID: 110101030}
+    data:
+      first: {fileID: 110246190}
+      second:
+      - {fileID: 110162060}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: 60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
