@@ -2817,7 +2817,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 0
     m_StretchHeight: 0
-  - m_Name: hud_score
+  - m_Name: hud_score_treasure
     m_Normal:
       m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2864,6 +2864,64 @@ MonoBehaviour:
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
     m_FontSize: 50
+    m_FontStyle: 0
+    m_Alignment: 2
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 0
+    m_StretchHeight: 0
+  - m_Name: hud_gun
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Border:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 8
+      m_Bottom: 8
+    m_Margin:
+      m_Left: 2
+      m_Right: 2
+      m_Top: 2
+      m_Bottom: 2
+    m_Padding:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 3ce4961425d650e42a4222d73f437545, type: 3}
+    m_FontSize: 45
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
@@ -2875,7 +2933,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 0
     m_StretchHeight: 0
-  - m_Name: hud_label
+  - m_Name: hud_note
     m_Normal:
       m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2923,8 +2981,182 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
+    m_Alignment: 4
+    m_WordWrap: 1
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 0
+    m_StretchHeight: 0
+  - m_Name: hud_right
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Border:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 8
+      m_Bottom: 8
+    m_Margin:
+      m_Left: 2
+      m_Right: 2
+      m_Top: 2
+      m_Bottom: 2
+    m_Padding:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
+    m_FontSize: 45
+    m_FontStyle: 0
+    m_Alignment: 2
+    m_WordWrap: 1
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 0
+    m_StretchHeight: 0
+  - m_Name: hud_label3
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Border:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 8
+      m_Bottom: 8
+    m_Margin:
+      m_Left: 2
+      m_Right: 2
+      m_Top: 2
+      m_Bottom: 2
+    m_Padding:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
     m_Alignment: 0
-    m_WordWrap: 0
+    m_WordWrap: 1
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 0
+    m_StretchHeight: 0
+  - m_Name: hud_label4
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
+    m_Border:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 8
+      m_Bottom: 8
+    m_Margin:
+      m_Left: 2
+      m_Right: 2
+      m_Top: 2
+      m_Bottom: 2
+    m_Padding:
+      m_Left: 14
+      m_Right: 14
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 1
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0

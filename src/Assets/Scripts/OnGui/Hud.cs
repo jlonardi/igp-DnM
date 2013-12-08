@@ -10,26 +10,35 @@ public class Hud {
 	public Texture2D dragonHealthBarTexture;
 
 	private Rect helpPosition;
+	private Rect notePosition;
+	private Rect gunInfoPosition;
+	private Rect grenadeInfoPosition;
 
 	private Rect healtBackPosition;
 	private Rect armorBackPosition;
 	private Rect dragonBackPosition;
 	private GameManager game;
 	private OnGuiManager gui;
-	private int centerX;
-	private int centerY;
+	private int guiCenterX;
+	private int guiCenterY;
+	private int guiWidth;
 
 	public void Initialize(){
 		game = GameManager.instance;
 		gui = OnGuiManager.instance;
-		centerX = gui.GetCenterX();
-		centerY = gui.GetCenterY();
+		guiCenterX = gui.GetCenterX();
+		guiCenterY = gui.GetCenterY();
+		guiWidth = gui.GetWidth();
 
-		helpPosition = new Rect(centerX-350, 920, 700, 40);
+		helpPosition = new Rect(guiCenterX-350, 920, 650, 40);
+		notePosition = new Rect(guiCenterX-350, 300, 700, 40);
+		gunInfoPosition = new Rect(20,900,330,500);
+		grenadeInfoPosition = new Rect(guiWidth-300,1010,300,20);
+
 		//health & armor bar position and size
 		healtBackPosition = new Rect(20,20,369,55);
 		armorBackPosition = new Rect(26,61,352,8);
-		dragonBackPosition = new Rect(centerX-185,20,369,55);
+		dragonBackPosition = new Rect(guiCenterX-185,20,369,55);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -60,11 +69,38 @@ public class Hud {
 
 		if(game.dragon.GetFighting() && dragonHealth > 0) {
 			GUI.DrawTexture (dragonBackPosition, healthBackgroundTexture);
-			GUI.BeginGroup(new Rect(centerX-180, 30, dragonHealth, 32));
+			GUI.BeginGroup(new Rect(guiCenterX-180, 30, dragonHealth, 32));
 			GUI.DrawTexture(new Rect(0,0,352,32), dragonHealthBarTexture);
 			GUI.EndGroup();
 		}
+		//display score and treasure amount
+		GUI.Label(new Rect(guiWidth-330,5,320,500), "Score: " + game.statistics.score, "hud_score_treasure");
+		GUI.Label(new Rect(guiWidth-330,55,320,500), "Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_score_treasure");
 
+		//display gun data here
+		GUILayout.BeginArea(gunInfoPosition);
+		if (gun.enabled){
+			GUILayout.Label("Gun: " + gun.name, "hud_gun");
+			if (gun.currentRounds>0){
+				GUILayout.Label("Ammo: " + gun.currentRounds, "hud_gun");
+			} else {
+				GUILayout.Label("Ammo: -", "hud_gun");
+			}
+			if (!gun.unlimited){
+				GUILayout.Label("Clips: " + gun.totalClips, "hud_gun");
+			}
+		}
+		GUILayout.EndArea();
+
+		if (gun.enabled){
+			GUI.Label(grenadeInfoPosition, "Grenades: " + game.weapons.grenadeCount, "hud_right");
+		}
+
+		if (gun.enabled && gun.reloading){
+			GUI.Label(notePosition, "Reloading...", "hud_note");
+		}
+
+		// align next text elements to the center
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		if (!game.treasure.OnGround()){
 			GUI.Label(helpPosition, "Press 'E' to drop the treasure");
@@ -79,29 +115,8 @@ public class Hud {
 		} else if (game.pickupState == PickupState.SCAR_L) {
 			GUI.Label(helpPosition, "Press 'E' to pick up the Scar-L");
 		}
+
+		// restore text alignment to the left for other OnGui-elements
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-
-		GUILayout.BeginArea(new Rect(gui.GetWidth()-330,5,330,500));		                             
-		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount() + " %", "hud_label");
-		GUILayout.Label ("Score: " + game.statistics.score, "hud_score");
-
-		if (gun.enabled){
-			GUILayout.Label("Grenades: " + game.weapons.grenadeCount, "hud_label");
-			GUILayout.Label("Gun: " + gun.name, "hud_label");
-			GUILayout.Label("Ammo: " + gun.currentRounds, "hud_label");
-			string clips;
-			if (gun.unlimited){
-				clips = "unlimited";
-			} else {
-				clips = "" + gun.totalClips;
-			}
-			GUILayout.Label("Clips: " + clips, "hud_label");
-			if (gun.reloading){
-				GUILayout.Label("Reloading...", "hud_label");
-			}
-		}
-
-		GUILayout.EndArea();
-
 	}	
 }
