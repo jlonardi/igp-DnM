@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour {
 	//maximum amount of enemies at once on the game level
 	public float maxEnemies = 10;
 
-	public float dragonWaveMaxEnemiesMultiplier = 2f;
+	public float maxDragonFightEnemies = 20;
 
 	public bool dragonFightSpwans = false;
 
@@ -26,6 +26,10 @@ public class EnemyManager : MonoBehaviour {
 
 	private float originalWaveInterval = 0f;
 	private float originalMaxEnemies = 0f;
+
+	private float timeOfEnemyCountRising = 0f;
+
+	private int numberOfLizards = 0;
 
 	public GameObject orcPrefab;
 	public GameObject lizardPrefab;
@@ -68,15 +72,34 @@ public class EnemyManager : MonoBehaviour {
 		if(spawnEnabled && newWaveNeeded()) {
 			createSpawnWave();
 		}
+
+		if(timeOfEnemyCountRising + 10 < Time.time) {
+			maxEnemies++;
+			timeOfEnemyCountRising = Time.time;
+		}
+
 	}
 
 	public void setDragonSpawns() {
 		dragonFightSpwans = true;
 		originalMaxEnemies = maxEnemies;
 		originalWaveInterval = waveInterval;
-		maxEnemies = maxEnemies * dragonWaveMaxEnemiesMultiplier;
-		waveInterval = waveInterval / 3;
 
+		/*
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+		int lizardCount = 0;
+		foreach(GameObject enemy in enemies) {
+			if(enemy.name.Equals("Lizard(Clone)")) {
+				lizardCount++;
+			}
+			//Debug.Log("Enemy name = " + enemy.name);
+		}
+
+		Debug.Log("Lizard count = " + lizardCount);
+		*/
+
+		maxEnemies = maxDragonFightEnemies;
 	}
 
 	public void disableDragonSpawns() {
