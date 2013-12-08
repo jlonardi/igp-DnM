@@ -145,7 +145,7 @@ public class Dragon : MonoBehaviour {
 
 	public void killPlayer() {
 		if(fighting) {
-			Debug.Log ("Kill player");
+			//Debug.Log ("Kill player");
 			walking = true;
 		}
 	}
@@ -199,7 +199,7 @@ public class Dragon : MonoBehaviour {
 	// run this after taking a shot or explosive damage
 	public void AfterTakeDamage(){
 		PlaySound(painSounds);
-		Debug.Log("Dragon health left: " + health);
+		//Debug.Log("Dragon health left: " + health);
 	}
 
 	public void afterDeath() {
