@@ -30828,7 +30828,7 @@ AnimationClip:
     classID: 4
     script: {fileID: 0}
   m_Events:
-  - time: .266666681
+  - time: .0500000007
     functionName: WingTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

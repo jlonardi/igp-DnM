@@ -183,14 +183,14 @@ ModelImporter:
       name: 141_14
       takeName: 141_14
       firstFrame: 81
-      lastFrame: 398
+      lastFrame: 224
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -202,7 +202,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: .0888252109
+      - time: .186386183
         functionName: AttackTrigger
         data: Standing
         objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
@@ -210,7 +210,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: .246418327
+      - time: .485442728
         functionName: AttackTrigger
         data: Standing
         objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
@@ -218,31 +218,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: .363896817
-        functionName: AttackTrigger
-        data: Standing
-        objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: .544412613
-        functionName: AttackTrigger
-        data: Standing
-        objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: .670776367
-        functionName: AttackTrigger
-        data: Standing
-        objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: .873925567
+      - time: .812677324
         functionName: AttackTrigger
         data: Standing
         objectReferenceParameter: {fileID: 11500000, guid: bea3c9f338ff7f449be44f1accd90564,
