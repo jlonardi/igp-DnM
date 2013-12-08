@@ -5347,6 +5347,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSounds:
   - {fileID: 8300000, guid: adf14584fcd8c0548baa47b4a9c7e130, type: 3}
+  - {fileID: 8300000, guid: 50a2c39316978a64ca0c603cb5b081f4, type: 3}
+  - {fileID: 8300000, guid: 4a7537b2ed857f746a2ecbeb65dc4e82, type: 3}
+  - {fileID: 8300000, guid: 57667d0c83118f24ba4991526ad723d7, type: 3}
+  - {fileID: 8300000, guid: 100328634a3b9cd4f81e8905e3689ca7, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
