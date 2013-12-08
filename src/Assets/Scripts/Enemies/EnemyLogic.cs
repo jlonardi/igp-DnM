@@ -231,17 +231,20 @@ public class EnemyLogic : MonoBehaviour {
 
 	// if any of the enemies attacked by player, check if player nearby and attack
 	private void PlayerAttackingEnemy(Vector3 attackLocation){
-		float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
-		float distanceToTreasure = Vector3.Distance(treasureTransform.position, this.transform.position);
-		if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
-			// if not near the treasure, just join the chase
-			// else use greedyness to choose whether to chase the player or not
-			if ((distanceToTreasure > 10f) ||(Random.Range(0f,1f) <= greedyness)){
-				timeWhenFocusedPlayer = Time.time;
-				if (target == focusTarget.TRESAURE){
-					swapTarget();
-				} 			
+		try{
+			float distanceToAttact = Vector3.Distance(attackLocation, this.transform.position);
+			float distanceToTreasure = Vector3.Distance(treasureTransform.position, this.transform.position);
+			if (distanceToAttact != 0f && distanceToAttact <= joinAttackDistance){
+				// if not near the treasure, just join the chase
+				// else use greedyness to choose whether to chase the player or not
+				if ((distanceToTreasure > 10f) ||(Random.Range(0f,1f) <= greedyness)){
+					timeWhenFocusedPlayer = Time.time;
+					if (target == focusTarget.TRESAURE){
+						swapTarget();
+					} 			
+				}
 			}
+		} catch {
 		}
 	}
 
