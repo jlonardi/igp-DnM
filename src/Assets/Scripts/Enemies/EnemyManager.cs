@@ -115,7 +115,7 @@ public class EnemyManager : MonoBehaviour {
 			index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));		
 
 			while( !areas[index].gameObject.name.Equals( "Spawnarea") &&
-					Vector3.Distance( areas[index].position, player.transform.position) > 30) {
+					Vector3.Distance( areas[index].position, player.transform.position) < 50) {
 				index = (int)Mathf.Round(Random.Range(0f, areas.Length-1));
 			}
 		} else {

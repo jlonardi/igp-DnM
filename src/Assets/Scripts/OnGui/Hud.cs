@@ -33,7 +33,7 @@ public class Hud {
 		//health & armor bar position and size
 		healthPosition = new Rect(20,20,369,55);
 		armorPosition = new Rect(26,61,352,8);
-		dragonHealthPosition = new Rect(500,20,369,55);
+		dragonHealthPosition = new Rect(420,20,369,55);
 	}
 
 	// Show() gets called from OnGuiManager
@@ -75,7 +75,7 @@ public class Hud {
 
 		if(game.dragon.fighting && game.dragon.health > 0) {
 			GUI.DrawTexture (dragonHealthPosition, healthBackgroundTexture);
-			GUI.BeginGroup(new Rect(508, 30, currentDragonHealth,32));
+			GUI.BeginGroup(new Rect(428, 30, currentDragonHealth,32));
 			GUI.DrawTexture(new Rect(0,0,352,32), dragonHealthBarTexture);
 			GUI.EndGroup();
 		}
