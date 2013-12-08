@@ -48699,8 +48699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caee8f5291651a84586e4130f37b28e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpawnCount: 200
-  maxSpawnTime: 300
+  maxSpawnCount: 3.40282306e+38
+  maxSpawnTime: 3.40282306e+38
   maxEnemies: 10
   maxDragonFightEnemies: 20
   dragonFightSpwans: 0
@@ -62751,8 +62751,8 @@ AudioSource:
   m_GameObject: {fileID: 1369903689}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 4ea253fdd6ae0584eb15d2f6d896dbef, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -62762,21 +62762,26 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00100000005
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.001001
       tangentMode: 0
+    - time: .399992168
+      value: .177389234
+      inSlope: -2.06172156
+      outSlope: -.295644879
+      tangentMode: 21
     - time: 1
       value: 0
-      inSlope: 0
+      inSlope: -1.001001
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -62795,7 +62800,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: .0777777806
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -62834,7 +62839,10 @@ MonoBehaviour:
   timeOfLastFireBreath: 0
   offset: {x: 0, y: -1.5, z: -.200000003}
   painSounds:
-  - {fileID: 8300000, guid: 2ec6a9b45aa61f642bf8bf329078dd5c, type: 3}
+  - {fileID: 8300000, guid: 4ea253fdd6ae0584eb15d2f6d896dbef, type: 3}
+  - {fileID: 8300000, guid: 322317228e78b3a49ad59ab7fe8ba127, type: 3}
+  fireBreathSound: {fileID: 8300000, guid: 315475107fc254a4e8837c26d300b6f1, type: 3}
+  deathSound: {fileID: 0}
 --- !u!95 &1369903694
 Animator:
   serializedVersion: 2

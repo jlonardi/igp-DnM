@@ -7,10 +7,10 @@ public class EnemyManager : MonoBehaviour {
 	public static EnemyManager instance;
 	
 	//spawning will stop after this spawncount
-	public float maxSpawnCount = 100f;
+	public float maxSpawnCount = float.MaxValue;
 
 	//spawning will stop after game has lasted longer than this time (s)
-	public float maxSpawnTime = 300;
+	public float maxSpawnTime = float.MaxValue;
 
 	//maximum amount of enemies at once on the game level
 	public float maxEnemies = 10;
