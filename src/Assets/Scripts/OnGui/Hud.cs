@@ -9,6 +9,12 @@ public class Hud {
 	public Texture2D armorBackgroundTexture;
 	public Texture2D dragonHealthBarTexture;
 
+	public Texture2D gun_bg;
+	public Texture2D gun_pistol;
+	public Texture2D gun_m4;
+	public Texture2D gun_minigun;
+	public Texture2D gun_scar;
+
 	private Rect helpPosition;
 	private Rect notePosition;
 	private Rect gunInfoPosition;
@@ -32,7 +38,7 @@ public class Hud {
 
 		helpPosition = new Rect(guiCenterX-350, 920, 650, 40);
 		notePosition = new Rect(guiCenterX-350, guiCenterY-60, 700, 40);
-		gunInfoPosition = new Rect(20,900,330,500);
+		gunInfoPosition = new Rect(20,800,330,500);
 		grenadeInfoPosition = new Rect(guiWidth-300,1010,300,20);
 
 		//health & armor bar position and size
@@ -80,15 +86,27 @@ public class Hud {
 		//display gun data here
 		GUILayout.BeginArea(gunInfoPosition);
 		if (gun.enabled){
-			GUILayout.Label("Gun: " + gun.name, "hud_gun");
-			if (gun.currentRounds>0){
-				GUILayout.Label("Ammo: " + gun.currentRounds, "hud_gun");
-			} else {
-				GUILayout.Label("Ammo: -", "hud_gun");
+			GUI.DrawTexture(new Rect(0,0,300,100), gun_bg);
+			if (gun.name == "M4" || gun.name == "M203") {
+				GUI.DrawTexture(new Rect(0,0,300,100), gun_m4);
+			}else if (gun.name == "Minigun") {
+				GUI.DrawTexture(new Rect(0,0,300,100), gun_minigun);
+			}else if (gun.name == "Scar-L") {
+				GUI.DrawTexture(new Rect(0,0,300,100), gun_scar);
+			}else {
+				GUI.DrawTexture(new Rect(0,0,300,100), gun_pistol);
 			}
-			if (!gun.unlimited){
-				GUILayout.Label("Clips: " + gun.totalClips, "hud_gun");
-			}
+			GUILayout.BeginArea(new Rect(0,110,330,200));
+				GUILayout.Label("Gun: " + gun.name, "hud_gun");
+				if (gun.currentRounds>0){
+					GUILayout.Label("Ammo: " + gun.currentRounds, "hud_gun");
+				} else {
+					GUILayout.Label("Ammo: -", "hud_gun");
+				}
+				if (!gun.unlimited){
+					GUILayout.Label("Clips: " + gun.totalClips, "hud_gun");
+				}
+			GUILayout.EndArea();
 		}
 		GUILayout.EndArea();
 
