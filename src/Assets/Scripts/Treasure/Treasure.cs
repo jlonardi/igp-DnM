@@ -118,8 +118,6 @@ public class Treasure : MonoBehaviour {
 		// call gunmanager to enable current weapon
 		game.weapons.ChangeToCurrentWeapon();
 
-		//MusicAndAtmoManager.instance.PlayBattleMusic();
-		
 		// =========== align treasure on terrain ======================
 		
 		 //first move up to make sure it doesn't go through terrain

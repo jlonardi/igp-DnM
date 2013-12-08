@@ -29,6 +29,9 @@ public class EnemyManager : MonoBehaviour {
 
 	private float timeOfEnemyCountRising = 0f;
 
+	[HideInInspector]
+	public bool inBattle = false;
+
 	private int numberOfLizards = 0;
 
 	public GameObject orcPrefab;

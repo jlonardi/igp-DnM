@@ -28,12 +28,6 @@ public class MusicAndAtmoManager : MonoBehaviour {
 	}
 
 	void Update() {
-		if (game.pickupState == PickupState.TREASURE && !onBattle)
-		{
-			onBattle = true;
-			PlayBattleMusic();
-		}
-
 		if (game.gameState == GameState.GAME_OVER || game.gameState == GameState.HIGHSCORE_DIALOG && onBattle)
 		{
 			musicSource.Stop();
@@ -46,6 +40,7 @@ public class MusicAndAtmoManager : MonoBehaviour {
 	}
 
 	public void PlayBattleMusic() {
+		onBattle = true;
 		musicSource.Stop();
 		musicSource.clip = battleMusic;
 		musicSource.Play();

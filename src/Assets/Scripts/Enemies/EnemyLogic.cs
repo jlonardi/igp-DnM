@@ -50,7 +50,6 @@ public class EnemyLogic : MonoBehaviour {
 		navigation = GetComponent<EnemyNavigation>();
 		enemyManager = EnemyManager.instance;
 		ragdolls = RagdollManager.instance;
-//		playerVitals = Player.instance;
 
 		GameObject player = GameObject.Find("playerFocus");	
 		GameObject treasureObj = game.treasure.gameObject;
@@ -94,6 +93,12 @@ public class EnemyLogic : MonoBehaviour {
 	private void checkActions() {
 		float playerDistance = GetDistance(playerTransform);
 		float treasureDistance = GetDistance(treasureTransform);
+
+		//if enemy is near and battle is not yet on, start battle music
+		if (!enemyManager.inBattle && target == focusTarget.PLAYER && playerDistance<8){
+			MusicAndAtmoManager.instance.PlayBattleMusic();
+			enemyManager.inBattle = true;
+		}
 
 		//The object is at target and ready to do some actions
 		if(navigation.targetReached) {
