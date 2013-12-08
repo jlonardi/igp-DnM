@@ -42,7 +42,7 @@ namespace UnitySerialization {
 		}
 
 		public void Load(int saveIndex, bool loadLevel) { 
-				string filePath = saveDirectory + "\\savegame" + (saveIndex + 1) + ".dat";
+			string filePath = saveDirectory + "\\savegame" + (saveIndex + 1) + ".dat";
 			
 			SaveData data = new SaveData();
 			Stream stream = File.Open(filePath, FileMode.Open);
@@ -53,7 +53,6 @@ namespace UnitySerialization {
 
 			if (loadLevel){
 				// when data is restored into save container, load level
-				GameManager.instance.saves.levelState = LevelState.LOADING_SAVE;
 				Application.LoadLevel(1); //levelNumber							
 			}
 		}

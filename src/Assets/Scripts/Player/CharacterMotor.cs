@@ -122,7 +122,10 @@ public class CharacterMotor : MonoBehaviour {
 		// when walking down a step or over a sharp change in slope.
 		float pushDownOffset = Mathf.Max(controller.stepOffset, new Vector3(currentMovementOffset.x, 0f, currentMovementOffset.z).magnitude);
 		if (grounded){
-			game.weapons.currentGun.animator.SetBool("hitGround", false);
+			Gun currentGun = game.weapons.currentGun;
+			if (currentGun.animator != null){
+				currentGun.animator.SetBool("hitGround", false);
+			}
 			currentMovementOffset -= pushDownOffset * Vector3.up;
 		}
 		

@@ -48,7 +48,9 @@ public class SaveManager : MonoBehaviour {
 		GameManager.instance.gameState = GameState.PAUSE_MENU;
 	}
 	
-	public void Load(){		
+	public void Load(){
+		levelState = LevelState.LOADING_SAVE;
+		Debug.Log("loading");
 		serializer.Load(container.saveSlot);
 		
 		// allow 3 frames to be skipped after save to fix ragdoll bug

@@ -10,6 +10,7 @@ public class SaveContainer {
 	public string dateTime;
 	public byte[] screenshot;
 	public int level;
+	public PickupState pickupState;
 	public float bloodAlpha;
 	public float mousePositionX;
 	public float mousePositionY;
@@ -81,6 +82,7 @@ public class SaveContainer {
 		level = game.statistics.level;
 		bodycount = game.statistics.bodycount;
 		score = game.statistics.score;
+		pickupState = game.pickupState;
 		bloodAlpha = onGuiManager.bloodSplatter.GetBloodAlpha();
 		playerArmor = game.player.GetArmor();
 		playerHealth = game.player.GetHealth();
@@ -125,6 +127,7 @@ public class SaveContainer {
 			mouseX.SetSmoothing(mouseSmoothing);
 			mouseY.SetSmoothing(mouseSmoothing);
 			onGuiManager.bloodSplatter.SetBloodAlpha(bloodAlpha);
+			game.pickupState = pickupState;
 			game.weapons.guns[0].currentRounds = gun0_rounds;
 			game.weapons.guns[1].currentRounds = gun1_rounds;
 			game.weapons.guns[2].currentRounds = gun2_rounds;

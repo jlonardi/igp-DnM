@@ -24,28 +24,13 @@ public class GameManager : MonoBehaviour {
 		//use singleton since only we need once instance of this class
        	GameManager.instance = this;
 	}
-
-	void Start()
-	{
-		GameObject saveManagerObj = GameObject.Find("Save Manager");
-
-		// if Save Manager not present already, create one
-		if (!saveManagerObj){
-			saveManagerObj = (GameObject)Instantiate(saveManagerPrefab, Vector3.zero, Quaternion.identity);
-			saveManagerObj.name = "Save Manager";
-
-			saves = saveManagerObj.GetComponent<SaveManager>();
-			// this is only for testing level on editor
-			if (gameLevel == true && saves.levelState == LevelState.LOADING_NEWGAME){
-				saves.levelState = LevelState.LOADED;
-				NewGame();
-			}
-
-		} else {                             
-			saves = saveManagerObj.GetComponent<SaveManager>();
-		}
-	}	
 	
+	void Start(){
+		if (saves == null){
+			GetSaveManager();
+		}
+	}
+
 	void Update(){
 		// call updates on child managers
 		statistics.Update();
@@ -65,6 +50,42 @@ public class GameManager : MonoBehaviour {
 		} else {
 			gameState = GameState.GAME_OVER;
 		}
+	}
+
+	private void GetSaveManager(){
+		GameObject saveManagerObj = GameObject.Find("Save Manager");
+		
+		// if Save Manager not present already, create one
+		if (!saveManagerObj){
+			saveManagerObj = (GameObject)Instantiate(saveManagerPrefab, Vector3.zero, Quaternion.identity);
+			saveManagerObj.name = "Save Manager";
+			
+			saves = saveManagerObj.GetComponent<SaveManager>();
+			// this is only for testing level on editor
+			if (gameLevel == true && saves.levelState == LevelState.LOADING_NEWGAME){
+				saves.levelState = LevelState.LOADED;
+				NewGame();
+			}
+			
+		} else {                             
+			saves = saveManagerObj.GetComponent<SaveManager>();
+		}
+	}
+
+	void OnLevelWasLoaded(int level) {
+		if (saves == null){
+			GetSaveManager();
+		}
+
+		if (saves.levelState == LevelState.LOADING_SAVE){
+			saves.levelState = LevelState.LOADED;
+			SaveManager.instance.container.RestoreValues();	
+			Debug.Log("loaded");
+		} else {
+			NewGame();
+			Debug.Log("new game");
+		}
+
 	}
 	
 }
