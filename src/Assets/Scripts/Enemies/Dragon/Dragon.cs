@@ -178,8 +178,7 @@ public class Dragon : MonoBehaviour {
 	public void TakeDamage(int damageAmount, Vector3 explosionPosition, float power){
 		health -= damageAmount;
 		if(health <= 0) {
-			EnemyManager.instance.disableDragonSpawns();
-			game.statistics.AddKillStats(EnemyType.DRAGON);
+			onDeath();
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddExplosionForce(power, explosionPosition, 10f, 2.0f);
 		}		
@@ -190,12 +189,16 @@ public class Dragon : MonoBehaviour {
 	public void TakeDamage(int damageAmount, RaycastHit hit, Vector3 direction, float power){
 		health -= damageAmount;
 		if(health <= 0) {
-			EnemyManager.instance.disableDragonSpawns();
-			game.statistics.AddKillStats(EnemyType.DRAGON);
+			onDeath();
 			Rigidbody deadBody = MakeDead();
 			deadBody.AddForceAtPosition(direction.normalized * power * 11, hit.point, ForceMode.Impulse);
 		}
 		AfterTakeDamage();
+	}
+
+	public void onDeath() {
+		EnemyManager.instance.disableDragonSpawns();
+		game.statistics.AddKillStats(EnemyType.DRAGON);
 	}
 
 	// run this after taking a shot or explosive damage
