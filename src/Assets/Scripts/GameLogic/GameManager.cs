@@ -79,14 +79,14 @@ public class GameManager : MonoBehaviour {
 		switch (level){
 		case 0: // main menu
 			if (saves.levelState == LevelState.LOADING_HIGHSCORE){
-				saves.levelState = LevelState.LOADED;
 				GameManager.instance.gameState = GameState.HIGHSCORE;
+				saves.levelState = LevelState.LOADED;
 			}
 			break;
 		default:
 			if (saves.levelState == LevelState.LOADING_SAVE){
-				saves.levelState = LevelState.LOADED;
 				SaveManager.instance.container.RestoreValues();	
+				saves.levelState = LevelState.LOADED;
 			} else {
 				NewGame();
 			}

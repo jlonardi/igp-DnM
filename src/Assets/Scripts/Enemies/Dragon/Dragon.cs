@@ -169,22 +169,6 @@ public class Dragon : MonoBehaviour {
 		tr.position = Vector3.MoveTowards(tr.position, target, step);
 	}
 
-	public bool GetFighting(){
-		return fighting;
-	}
-
-	public float GetHealth(){
-		return health;
-	}
-
-	public void SetHealth(float value){
-		health = value;
-	}
-
-	public float GetMaxHealth(){
-		return maxHealth;
-	}
-
 	// TakeDamage without aplying force
 	public void TakeDamage(int damageAmount){
 		TakeDamage(damageAmount, new RaycastHit(), new Vector3(), 0f);
@@ -248,4 +232,48 @@ public class Dragon : MonoBehaviour {
 		audio.PlayOneShot(wingSounds[clipNum], 0.7f);
 	}
 
+	
+	public bool GetFighting(){
+		return fighting;
+	}
+	
+	public void SetFighting(bool value){
+		fighting = value;
+	}
+	
+	public float GetHealth(){
+		return health;
+	}
+	
+	public void SetHealth(float value){
+		health = value;
+	}
+	
+	public float GetMaxHealth(){
+		return maxHealth;
+	}
+	
+	public bool GetPatroling(){
+		return patroling;
+	}
+	
+	public void SetPatroling (bool value){
+		patroling = value;
+	}
+	
+	public bool GetWalking(){
+		return walking;
+	}
+	
+	public void SetWalking(bool value){
+		walking = value;
+	}
+	
+	public bool GetLanding(){
+		return landing;
+	}
+	
+	public void SetLanding(bool value){
+		landing = value;
+	}
 }

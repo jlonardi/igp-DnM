@@ -16,6 +16,7 @@ public class Treasure : MonoBehaviour {
 	private bool onGround = false;
 	private GameManager game;
 	private float timeFromLoot;
+	private bool allowAudio = true;
 
 	public AudioClip lootSound;
 	public AudioClip dropSound;
@@ -67,13 +68,6 @@ public class Treasure : MonoBehaviour {
 		return lootAmount;
 	}
 	
-	// called when savegame restores and treasure is already on ground
-	public void RestoreTreasureOnGround(){
-		animator.speed = 100;
-		onGround = true;
-		SetTreasureOnGround();
-	}
-
 	// called when player picks up the treasure
 	public void CarryTreasure(){
 		game.pickupState = PickupState.NONE;
@@ -98,10 +92,22 @@ public class Treasure : MonoBehaviour {
 		treasureBox.transform.localRotation = Quaternion.identity;
 	}
 
+	// called when savegame restores and treasure is already on ground
+	public void RestoreTreasureOnGround(){
+		animator.speed = 100;
+		onGround = true;
+		//mute audio if restorin save
+		allowAudio = false;
+		SetTreasureOnGround();
+	}
+	
 	// called when player sets treasure on ground	
 	public void SetTreasureOnGround(){
 		game.pickupState = PickupState.TREASURE;
-		audio.PlayOneShot(dropSound, 0.8f);
+		if (allowAudio){
+			audio.PlayOneShot(dropSound, 0.8f);
+		}
+		allowAudio = true;
 		GameObject treasureOnScene = GameObject.Find("TreasureOnGround");
 		transform.parent = treasureOnScene.transform;	
 

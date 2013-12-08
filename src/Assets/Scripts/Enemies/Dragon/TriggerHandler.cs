@@ -32,6 +32,13 @@ public class TriggerHandler : MonoBehaviour {
 		
 		if(other.tag == "Player") {
 			if(!dragonHasAggroOnPlayer) {
+				//if battle is not yet on, start battle music
+				EnemyManager enemyManager = EnemyManager.instance;
+				if (!enemyManager.inBattle){
+					MusicAndAtmoManager.instance.PlayBattleMusic();
+					enemyManager.inBattle = true;
+				}
+
 				dragonHasAggroOnPlayer = true;
 				dragon.flyBackToLair();
 				EnemyManager.instance.setDragonSpawns();
