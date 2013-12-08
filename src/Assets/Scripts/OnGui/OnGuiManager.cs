@@ -150,6 +150,9 @@ public class OnGuiManager : MonoBehaviour {
 			break;
 		case GameState.MAIN_MENU:
 			break;
+		case GameState.HIGHSCORE:
+			highScoreScreen.Show();
+			break;
 		case GameState.RUNNING:
 			bloodSplatter.Show();
 			hud.Show();
@@ -162,9 +165,6 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.HIGHSCORE_DIALOG:
 			bloodSplatter.Show();
 			highScoreDialog.Show();
-			break;
-		case GameState.HIGHSCORE:
-			highScoreScreen.Show();
 			break;
 		default:
 			break;

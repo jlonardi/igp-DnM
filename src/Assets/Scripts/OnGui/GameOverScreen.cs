@@ -7,9 +7,6 @@ public class GameOverScreen {
 	private HighScoreManager scoreManager;
 	private int centerX;
 	private int centerY;
-	private	string playerName;
-	private TextEditor editor;
-	private bool scoreAdded = false;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -17,7 +14,6 @@ public class GameOverScreen {
 		scoreManager = HighScoreManager.instance;
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
-		playerName = "";
 	}
 
 	// Show() gets called from OnGuiManager

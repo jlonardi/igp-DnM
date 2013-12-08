@@ -63,7 +63,6 @@ public class HighScoreDialog {
 		scoreManager.addHighScore(game.statistics.score, game.statistics.bodycount, game.treasure.GetTreasureAmount(),
 	                          game.statistics.dragonSlayed, playerName);
 		SaveManager.instance.levelState = LevelState.LOADING_HIGHSCORE;
-		game.gameState = GameState.HIGHSCORE;
 		// load Main Menu scene
 		Application.LoadLevel("Main Meny");
 	}
