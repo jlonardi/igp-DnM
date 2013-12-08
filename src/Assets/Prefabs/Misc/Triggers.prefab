@@ -118,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .00395302754, y: .717738688, z: -.00320036174, w: .696294069}
-  m_LocalPosition: {x: 57.8938751, y: -26.813839, z: 6.53788757}
+  m_LocalPosition: {x: 57.9058838, y: -19.1277351, z: -4.19308472}
   m_LocalScale: {x: .100000001, y: 20, z: 40}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -178,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: .00471842801, y: -.259518445, z: .00189794437, w: .965724766}
-  m_LocalPosition: {x: 13.6663666, y: -29.2134781, z: -52.4720917}
+  m_LocalPosition: {x: 31.045517, y: -21.073288, z: -38.1140442}
   m_LocalScale: {x: .100000001, y: 20, z: 40}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -442,6 +442,7 @@ MonoBehaviour:
   dragonHasAggroOnPlayer: 0
   playerInsideTheLair: 0
   playerKilled: 0
+  lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
