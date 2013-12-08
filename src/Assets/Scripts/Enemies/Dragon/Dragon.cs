@@ -29,7 +29,7 @@ public class Dragon : MonoBehaviour {
 	public Vector3 offset = new Vector3(0,-1.5f,-0.3f);
 	public AudioClip[] painSounds;
 	public AudioClip fireBreathSound;
-	public AudioClip deathSound;
+	public AudioClip[] wingSounds;
 	private GameManager game;
 	private RagdollManager ragdolls;
 
@@ -238,13 +238,15 @@ public class Dragon : MonoBehaviour {
 	
 	private void PlaySound(AudioClip[] clips)
 	{
-		int clipNum = Random.Range(0, clips.Length - 1);
+		int clipNum = Random.Range(0, clips.Length);
 		PlaySound(clips[clipNum]);
 	}
 
 	//gets triggered every time dragon flaps wings
 	private void WingTrigger(){
-
+		int clipNum = Random.Range(0, wingSounds.Length);
+		Debug.Log(clipNum);
+		audio.PlayOneShot(wingSounds[clipNum], 0.7f);
 	}
 
 }

@@ -5132,27 +5132,22 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .00100000005
+    - time: .00200000009
       value: 1
-      inSlope: 0
-      outSlope: -1.001001
+      inSlope: -2.54874682
+      outSlope: -2.54874682
       tangentMode: 0
-    - time: .399992168
-      value: .177389234
-      inSlope: -2.06172156
-      outSlope: -.295644879
-      tangentMode: 21
     - time: 1
       value: 0
-      inSlope: -1.001001
-      outSlope: 0
+      inSlope: -.0675865859
+      outSlope: -.0675865859
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -5261,6 +5256,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 322317228e78b3a49ad59ab7fe8ba127, type: 3}
   fireBreathSound: {fileID: 8300000, guid: 315475107fc254a4e8837c26d300b6f1, type: 3}
   deathSound: {fileID: 0}
+  wingSounds:
+  - {fileID: 8300000, guid: ac04a085f4bd4574c9bdfdaefaaaec34, type: 3}
+  - {fileID: 8300000, guid: de2192e4e7e3a9a4ca839507fe62d754, type: 3}
+  - {fileID: 8300000, guid: d3a49f55953795843a6b7660b05c1d17, type: 3}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
