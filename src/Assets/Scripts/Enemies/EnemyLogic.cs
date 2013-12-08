@@ -117,6 +117,9 @@ public class EnemyLogic : MonoBehaviour {
 					if (playerDistance > attackDistance){
 						attacking = false;
 					}
+					if (enemyType == EnemyType.LIZARD && playerDistance + 7 > attackDistance){
+						attacking = false;
+					}
 				}
 			} 
 			
@@ -135,6 +138,9 @@ public class EnemyLogic : MonoBehaviour {
 		} else {
 			if (playerDistance > attackDistance){
 				attacking = false;	
+			}
+			if (enemyType == EnemyType.LIZARD && playerDistance + 7 > attackDistance){
+				attacking = false;
 			}
 			if (treasureDistance > lootDistance){
 				looting = false;

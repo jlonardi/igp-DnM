@@ -48714,6 +48714,7 @@ MonoBehaviour:
   dragonSpawns: []
   timeOfLastWave: -.5
   waveInterval: 1
+  inBattle: 0
   orcPrefab: {fileID: 100000, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
   lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
   wolfPrefab: {fileID: 100170, guid: 786693845caefbf4e8324edb0423f355, type: 2}
@@ -48754,6 +48755,11 @@ MonoBehaviour:
       type: 3}
     dragonHealthBarTexture: {fileID: 2800000, guid: 6c5a2e85da4183249934be3dee4b52c7,
       type: 3}
+    gun_bg: {fileID: 0}
+    gun_pistol: {fileID: 0}
+    gun_m4: {fileID: 0}
+    gun_minigun: {fileID: 0}
+    gun_scar: {fileID: 0}
   crosshair:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,

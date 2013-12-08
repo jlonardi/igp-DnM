@@ -5249,7 +5249,7 @@ MonoBehaviour:
   damage: 7
   canLoot: 0
   lootInterval: 2
-  attackDistance: 3
+  attackDistance: 10
   lootDistance: 3
   painSounds:
   - {fileID: 8300000, guid: ddc8f06e3812212459f19e7333d19238, type: 3}
