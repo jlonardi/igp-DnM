@@ -34,10 +34,16 @@ public class SaveContainer {
 	public int gun2_clips;
 	public int gun3_clips;
 	public int gun4_clips;
+	public bool pickedup_gun3;
+	public bool pickedup_gun4;
+	public bool pickedup_armor;
+	public bool dragonHasAggroOnPlayer;
+	public bool playerKilledTrigger;
 	public int grenades;
 	public int currentGunIndex;
 	public int bodycount;
 	public int score;
+	public bool dragonSlayed;
 	public float dragonHealth;
 	public float dragonLastBreath;
 	public bool dragonBreathFire;
@@ -46,7 +52,25 @@ public class SaveContainer {
 	public bool dragonWalking;
 	public bool dragonLanding;
 	public bool dragonFighting;
+	public float maxSpawnCount;
+	public float maxSpawnTime;
+	public float maxEnemies;
+	public float timeBetweenEnemyCountAddition;	
+	public float maxDragonFightEnemies;	
+	public bool dragonFightSpwans;	
+	public float timeOfLastEnemyWave;
+	public float waveInterval;	
+	private float originalWaveInterval;
+	private float originalMaxEnemies;
+	private float timeOfEnemyCountRising;
+	public bool inBattle;
+	public int spawnCount;
+	public float spawnTimeStart;
+	public int nextEnemyType;
+	public int currentEnemyCount;
 
+	private GameObject player;
+	public bool spawnEnabled = true;
 	// Vector2, Vector3, Quaternion and GameObjects need prefix 's' to use serialized versions
 	public sGameObject sPlayer;
 	public sGameObject sDragon;
@@ -63,11 +87,19 @@ public class SaveContainer {
 		OnGuiManager onGuiManager = OnGuiManager.instance;
 		SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
 		SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
+		TriggerHandler dragonTriggerHandler = TriggerHandler.instance;
+
+		dragonSlayed = game.statistics.dragonSlayed;
 
 		// save GameObject, Transform, Vector3 and Quaternion by adding .Serializable() extension
 		sPlayer = game.player.gameObject.Serializable();
-		sDragon = game.dragon.gameObject.Serializable();
 		sTreasure = game.treasure.gameObject.Serializable();
+		if (dragonSlayed){
+			GameObject dragonRagdoll = GameObject.Find("Dragon Ragdoll(Clone)");
+			sDragon = dragonRagdoll.Serializable();
+		} else {
+			sDragon = game.dragon.gameObject.Serializable();
+		}
 
 		// save enemies and misc objects by listing them
 		sGameObjects = new List<sGameObject>();
@@ -86,6 +118,21 @@ public class SaveContainer {
 		playTime = game.statistics.playTime + Time.timeSinceLevelLoad;
 
 		// save regular variable here
+		timeBetweenEnemyCountAddition = enemyManager.timeBetweenEnemyCountAddition;
+		maxDragonFightEnemies = enemyManager.maxDragonFightEnemies;
+		dragonFightSpwans = enemyManager.dragonFightSpwans;
+		timeOfLastEnemyWave = enemyManager.timeOfLastWave;
+		waveInterval = enemyManager.waveInterval;
+		originalWaveInterval = enemyManager.originalWaveInterval;
+		originalMaxEnemies = enemyManager.originalMaxEnemies;
+		timeOfEnemyCountRising = enemyManager.timeOfEnemyCountRising;
+		inBattle = enemyManager.inBattle;
+		spawnCount = enemyManager.spawnCount;
+		spawnTimeStart = enemyManager.spawnTimeStart;
+		nextEnemyType = enemyManager.nextEnemyType;
+		currentEnemyCount = enemyManager.currentEnemyCount;
+		dragonHasAggroOnPlayer = dragonTriggerHandler.dragonHasAggroOnPlayer;
+		playerKilledTrigger = dragonTriggerHandler.playerKilled;
 		mousePositionX = mouseX.GetPosition();
 		mousePositionY = mouseY.GetPosition();
 		mouseSensitivity = mouseX.sensitivity;
@@ -112,6 +159,9 @@ public class SaveContainer {
 		gun2_clips = game.weapons.guns[2].totalClips;
 		gun3_clips = game.weapons.guns[3].totalClips;
 		gun4_clips = game.weapons.guns[4].totalClips;
+		pickedup_gun3 = game.weapons.guns[3].picked_up;
+		pickedup_gun4 = game.weapons.guns[3].picked_up;
+		pickedup_armor = game.statistics.armorPickedUp;
 		grenades = game.weapons.grenadeCount;
 		currentGunIndex = game.weapons.currentGunIndex;
 		dragonFighting = game.dragon.GetFighting();
@@ -132,13 +182,43 @@ public class SaveContainer {
 			RagdollManager ragdollManager = RagdollManager.instance;
 			SmoothMouseLookX mouseX = SmoothMouseLookX.instance;
 			SmoothMouseLookY mouseY = SmoothMouseLookY.instance;
+			TriggerHandler dragonTriggerHandler = TriggerHandler.instance;
 
 			GameObject player = GameObject.Find("Player");
 			player.GetValuesFrom(sPlayer);
 			game.treasure.gameObject.GetValuesFrom(sTreasure);
-			game.dragon.gameObject.GetValuesFrom(sDragon);
+
+			game.statistics.dragonSlayed = dragonSlayed;
+			//if slayed, make ragdoll
+			if (dragonSlayed){
+				GameObject dragon = GameObject.Find("Dragon");
+
+				GameObject go = ragdollManager.MakeRagdoll(EnemyType.DRAGON, dragon, false);
+				Ragdoll dragonRagdoll = go.GetComponent<Ragdoll>();
+				dragonRagdoll.Mute();
+				sDragon.restoreChildTransforms(go.transform);
+			//else restore dragon
+			} else {
+				game.dragon.gameObject.GetValuesFrom(sDragon);
+			}
 
 			// restore variables
+			enemyManager.timeBetweenEnemyCountAddition = timeBetweenEnemyCountAddition;
+			enemyManager.maxDragonFightEnemies = maxDragonFightEnemies;
+			enemyManager.dragonFightSpwans = dragonFightSpwans;
+			enemyManager.timeOfLastWave = timeOfLastEnemyWave;
+			enemyManager.waveInterval = waveInterval;
+			enemyManager.originalWaveInterval = originalWaveInterval;
+			enemyManager.originalMaxEnemies = originalMaxEnemies;
+			enemyManager.timeOfEnemyCountRising = timeOfEnemyCountRising;
+			enemyManager.spawnCount = spawnCount;
+			enemyManager.spawnTimeStart = spawnTimeStart;
+			enemyManager.nextEnemyType = nextEnemyType;
+			enemyManager.currentEnemyCount = currentEnemyCount;
+			enemyManager.inBattle = inBattle;
+
+			dragonTriggerHandler.dragonHasAggroOnPlayer = dragonHasAggroOnPlayer;
+			dragonTriggerHandler.playerKilled = playerKilledTrigger;
 			mouseX.SetPosition(mousePositionX);
 			mouseY.SetPosition(mousePositionY);
 			mouseX.SetSensitivity(mouseSensitivity);
@@ -146,7 +226,6 @@ public class SaveContainer {
 			mouseX.SetSmoothing(mouseSmoothing);
 			mouseY.SetSmoothing(mouseSmoothing);
 			onGuiManager.bloodSplatter.SetBloodAlpha(bloodAlpha);
-			game.pickupState = pickupState;
 			game.weapons.guns[0].currentRounds = gun0_rounds;
 			game.weapons.guns[1].currentRounds = gun1_rounds;
 			game.weapons.guns[2].currentRounds = gun2_rounds;
@@ -157,6 +236,9 @@ public class SaveContainer {
 			game.weapons.guns[2].totalClips = gun2_clips;
 			game.weapons.guns[3].totalClips = gun3_clips;
 			game.weapons.guns[4].totalClips = gun4_clips;
+			game.weapons.guns[3].picked_up = pickedup_gun3;
+			game.weapons.guns[3].picked_up = pickedup_gun4;
+			game.statistics.armorPickedUp = pickedup_armor;
 			game.weapons.grenadeCount = grenades;
 			game.weapons.currentGunIndex = currentGunIndex;
 			game.statistics.level = level;
@@ -177,6 +259,28 @@ public class SaveContainer {
 			game.dragon.flying = dragonFlying;
 			game.dragon.timeOfLastFireBreath = dragonLastBreath;
 
+			//if in battle, change music
+			if (inBattle){
+				game.GetComponent<MusicAndAtmoManager>().PlayBattleMusic();
+			}
+
+			// if armor picked up, disable it on level
+			if (pickedup_armor){
+				GameObject armor = GameObject.Find("armorOnGround");
+				armor.SetActive(false);
+			}
+			// if minigun picked up, disable it on level
+			if (pickedup_armor){
+				GameObject minigun = GameObject.Find("minigunOnGround");
+				minigun.SetActive(false);
+			}
+			// if scar picked up, disable it on level
+			if (pickedup_armor){
+				GameObject scarL = GameObject.Find("scarlOnGround");
+				scarL.SetActive(false);
+			}
+			game.pickupState = PickupState.NONE;
+
 			// calculate time of last enemy wave
 			enemyManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
 
@@ -194,6 +298,7 @@ public class SaveContainer {
 			}
 			
 			// restore game objects on scene by gameobject type
+			Ragdoll enemyRagdoll;
 			foreach (sGameObject sgo in sGameObjects){
 				if (sgo==null){
 					break;
@@ -201,25 +306,32 @@ public class SaveContainer {
 				if(sgo.name.Equals("orc ragdoll(Clone)")) {
 					GameObject go = ragdollManager.MakeRagdoll(EnemyType.ORC, sgo.toGameObject(), false);
 					sgo.restoreChildTransforms(go.transform);
-					
+					enemyRagdoll = go.GetComponent<Ragdoll>();
+					enemyRagdoll.Mute();
+
 				} else if(sgo.name.Equals("orc(Clone)")) {
 					enemyManager.CreateEnemy(EnemyType.ORC, sgo.transform.position.toVector3,
 					                         sgo.transform.rotation.toQuaternion);
 				} else if(sgo.name.Equals("Lizard ragdoll(Clone)")) {
 					GameObject go = ragdollManager.MakeRagdoll(EnemyType.LIZARD, sgo.toGameObject(), false);
 					sgo.restoreChildTransforms(go.transform);
-					
+					enemyRagdoll = go.GetComponent<Ragdoll>();
+					enemyRagdoll.Mute();
+
 				} else if(sgo.name.Equals("Lizard(Clone)")) {
 					enemyManager.CreateEnemy(EnemyType.LIZARD, sgo.transform.position.toVector3,
 					                         sgo.transform.rotation.toQuaternion);
 				} else if(sgo.name.Equals("WereWolf ragdoll(Clone)")) {
 					GameObject go = ragdollManager.MakeRagdoll(EnemyType.WEREWOLF, sgo.toGameObject(), false);
 					sgo.restoreChildTransforms(go.transform);
-					
+					enemyRagdoll = go.GetComponent<Ragdoll>();
+					enemyRagdoll.Mute();
+
 				} else if(sgo.name.Equals("WereWolf(Clone)")) {
 					enemyManager.CreateEnemy(EnemyType.WEREWOLF, sgo.transform.position.toVector3,
 					                         sgo.transform.rotation.toQuaternion);
 				}
+
 
 	    	}
 		} catch {

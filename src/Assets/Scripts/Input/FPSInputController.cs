@@ -166,6 +166,7 @@ public class FPSInputController : MonoBehaviour {
 
 			} else if(game.pickupState == PickupState.ARMOR){
 				game.pickupState = PickupState.NONE;
+				game.statistics.armorPickedUp = true;
 				// apply armor
 				game.player.SetArmor(50);
 				// hide armor on scene

@@ -26,34 +26,34 @@ public class EnemyManager : MonoBehaviour {
 	public float timeOfLastWave = -3f;
 	public float waveInterval = 3f;
 
-	private float originalWaveInterval = 0f;
-	private float originalMaxEnemies = 0f;
+	public float originalWaveInterval = 0f;
+	public float originalMaxEnemies = 0f;
 
-	private float timeOfEnemyCountRising = 0f;
+	public float timeOfEnemyCountRising = 0f;
 
 	[HideInInspector]
 	public bool inBattle = false;
 
-	private int numberOfLizards = 0;
+	//private int numberOfLizards = 0;
 
 	public GameObject orcPrefab;
 	public GameObject lizardPrefab;
 	public GameObject wolfPrefab;
 
 	//current spawn count
-	private int spawnCount = 0;
+	public int spawnCount = 0;
 	
 	[HideInInspector]
 	public float spawnTimeStart = 0;
 	
 	//enemy type for next enemy to be spawned (0-2)
-	private int nextEnemyType = 0;
+	public int nextEnemyType = 0;
 
 	[HideInInspector]
 	public int currentEnemyCount = 0;
 
 	private GameObject player;
-	private bool spawnEnabled = true;
+	public bool spawnEnabled = true;
 	
 	void Awake()
 	{

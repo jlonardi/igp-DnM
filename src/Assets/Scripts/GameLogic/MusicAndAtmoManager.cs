@@ -18,12 +18,12 @@ public class MusicAndAtmoManager : MonoBehaviour {
 
 	void Awake() {
 		MusicAndAtmoManager.instance = this;
-	}
-
-	void Start() {
 		AudioSource[] aSources = GetComponents<AudioSource>();
 		ambienceSource = aSources[0];
 		musicSource = aSources[1];
+	}
+
+	void Start() {
 		game = GameManager.instance;
 	}
 

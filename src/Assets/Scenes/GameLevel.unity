@@ -48692,7 +48692,7 @@ MonoBehaviour:
   orcRagdollPrefab: {fileID: 100142, guid: 590d367a23eeb99498f65bf2c75ad900, type: 2}
   lizardRagdollPrefab: {fileID: 100262, guid: 68c404f092c21ac448c78d11cc1d58fa, type: 2}
   wolfRagdollPrefab: {fileID: 100168, guid: 6b9526ac8ad1ed04fa539fa102016a88, type: 2}
-  dragonRagdollPrefab: {fileID: 100214, guid: b0c3c08e93b5c3843bd31a14201e95a7, type: 2}
+  dragonRagdollPrefab: {fileID: 100334, guid: b0c3c08e93b5c3843bd31a14201e95a7, type: 2}
   maxRagdolls: 10
 --- !u!114 &1045093061
 MonoBehaviour:
@@ -48708,18 +48708,25 @@ MonoBehaviour:
   maxSpawnCount: 3.40282306e+38
   maxSpawnTime: 3.40282306e+38
   maxEnemies: 1
+  timeBetweenEnemyCountAddition: 20
   maxDragonFightEnemies: 20
   dragonFightSpwans: 0
   areas: []
   dragonSpawns: []
   timeOfLastWave: -.5
   waveInterval: 1
+  originalWaveInterval: 0
+  originalMaxEnemies: 0
+  timeOfEnemyCountRising: 0
   inBattle: 0
   orcPrefab: {fileID: 100000, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
   lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
   wolfPrefab: {fileID: 100170, guid: 786693845caefbf4e8324edb0423f355, type: 2}
+  spawnCount: 0
   spawnTimeStart: 0
+  nextEnemyType: 0
   currentEnemyCount: 0
+  spawnEnabled: 1
 --- !u!114 &1045093062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48789,6 +48796,7 @@ MonoBehaviour:
     bodycount: 0
     playTime: 0
     dragonSlayed: 0
+    armorPickedUp: 0
     playerSpeed: 0
     orcKillScore: 100
     lizardKillScore: 150
@@ -71060,10 +71068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2094303fd8257443b12afa58275a93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInsideLair: 0
   dragon: {fileID: 0}
   dragonHasAggroOnPlayer: 0
-  playerInsideTheLair: 0
   playerKilled: 0
   lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
 --- !u!1 &1556831481
@@ -77171,8 +77177,8 @@ Transform:
   - {fileID: 623055179}
   - {fileID: 955860372}
   - {fileID: 1057864597}
-  - {fileID: 29289272}
   - {fileID: 1318883660}
+  - {fileID: 29289272}
   - {fileID: 1615781277}
   - {fileID: 1650550495}
   m_Father: {fileID: 485608024}
@@ -85038,7 +85044,7 @@ MonoBehaviour:
     maxSidewaysSpeed: 6
     maxBackwardsSpeed: 6
     sprintCoolDown: 3
-    sprintDuration: 10
+    sprintDuration: 6
     sprintSpeedMultiplier: 1.60000002
     slopeSpeedMultiplier:
       serializedVersion: 2

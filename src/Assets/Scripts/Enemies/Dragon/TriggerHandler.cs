@@ -2,17 +2,17 @@
 using System.Collections;
 
 public class TriggerHandler : MonoBehaviour {
-
-	public bool playerInsideLair = false;
+	//use singleton since only we need one instance of this class
+	public static TriggerHandler instance;
 
 	public Dragon dragon;
 	public bool dragonHasAggroOnPlayer = false;
-	public bool playerInsideTheLair = false;
 	public bool playerKilled = false;
 
 	public GameObject lizardPrefab;
 
 	void Awake() {
+		TriggerHandler.instance = this;
 		dragon = GameObject.Find("Dragon").GetComponent<Dragon>();
 	}
 

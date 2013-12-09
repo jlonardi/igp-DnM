@@ -434,10 +434,7 @@ public class CharacterMotor : MonoBehaviour {
 
 	public void StopSprint(){
 		sprinting = false;
-		float sprintTime = Time.time - sprintInitTime;
-		float sprintTimeLeft = movement.sprintDuration - sprintTime;
-		//reduce cooldown time when sprint stopped before maximum duration
-		sprintCoolDownInitTime = Time.time - sprintTimeLeft;
+		sprintCoolDownInitTime = Time.time;
 	}
 
 }
