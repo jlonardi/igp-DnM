@@ -1012,7 +1012,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: 1.70647474e-09, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .930000007}
+  m_LocalPosition: {x: 0, y: 0, z: .289999992}
   m_LocalScale: {x: 1.50000048, y: 1.5, z: 1.50000048}
   m_Children: []
   m_Father: {fileID: 400048}
@@ -2534,14 +2534,15 @@ MonoBehaviour:
   gunType: 2
   hitLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5888
+  picked_up: 0
   fireRate: 30
   fireRange: 100
-  maxDamage: 10
+  maxDamage: 30
   projectileSpeed: 0
   startDelay: 1
   clipSize: 1000
-  totalClips: 5
+  totalClips: 3
   reloadTime: 5
   currentRounds: 1000
   pushPower: 1
@@ -2550,7 +2551,7 @@ MonoBehaviour:
   gunParticles: {fileID: 0}
   capsuleEmitter: []
   shotLight: {fileID: 0}
-  unlimited: 1
+  unlimited: 0
   shootVolume: .400000006
   shootSound: {fileID: 8300000, guid: 4b367821eaed0304a99b6d4535ec0795, type: 3}
   reloadSound: {fileID: 8300000, guid: 23765aca0ba6fad4c998c7eb9f30d866, type: 3}
