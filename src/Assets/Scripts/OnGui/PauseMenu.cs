@@ -35,6 +35,9 @@ public class PauseMenu {
 
 		GUILayout.Space(30);
 
+		#if UNITY_WEBPLAYER
+		// don't show load & save on webplayer
+		#else
 		if(GUILayout.Button ("Load game")) {
 			// load previous save details
 			SaveManager.instance.GetSaveInfo();
@@ -50,19 +53,24 @@ public class PauseMenu {
 		}
 		  
 		GUILayout.Space(30);
+		#endif
+
 		if(GUILayout.Button ("Main Menu")) {
 			// load main menu scene
 			GameManager.instance.gameState = GameState.MAIN_MENU;
 			Application.LoadLevel("Main Meny");			
 		}
 
+		#if UNITY_WEBPLAYER
+		// don't show quit on webplayer
+		#else
 		GUILayout.Space(50);
 
 		if(GUILayout.Button ("Quit game"))	{
 			// quit game
 			Application.Quit();
 		}
-		
+		#endif
 		GUILayout.EndArea();
 	}	
 }

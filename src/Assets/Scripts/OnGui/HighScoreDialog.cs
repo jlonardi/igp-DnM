@@ -24,7 +24,6 @@ public class HighScoreDialog {
 		if (game == null){
 			Initialize();
 		}
-		GUI.skin.GetStyle("window");
 		GUI.Box(new Rect(centerX-400, 100,800,850),"", "window");
 
 		GUILayout.BeginArea(new Rect(centerX-220, 210,440,600));

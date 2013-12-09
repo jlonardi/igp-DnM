@@ -5,9 +5,12 @@ public class OnGuiManager : MonoBehaviour {
 	//use singleton since only we need one instance of this class
 	public static OnGuiManager instance;
 
-	// skin for all menu items
-  	public GUISkin guiSkin;
+	// skin for main menu items
+	public GUISkin guiSkinMainMenu;
+	// skin for other menu items
+	public GUISkin guiSkinOther;
 
+	public MainMenu mainMenu = new MainMenu();
 	public GameOverScreen gameOverScreen = new GameOverScreen();
 	public StoryScreen storyScreen = new StoryScreen();
 	public PauseMenu pauseMenu = new PauseMenu();
@@ -118,7 +121,7 @@ public class OnGuiManager : MonoBehaviour {
 		//set up scaling for OnGui elements
 		GUI.matrix = GetScalingMatrix();
 
-		GUI.skin = guiSkin;
+		GUI.skin = guiSkinOther;
 
 		switch (game.gameState)
 		{		
@@ -149,6 +152,9 @@ public class OnGuiManager : MonoBehaviour {
 			//hud.Show();
 			break;
 		case GameState.MAIN_MENU:
+			GUI.skin = guiSkinMainMenu;
+			mainMenu.Show();
+			GUI.skin = guiSkinOther;
 			break;
 		case GameState.HIGHSCORE:
 			highScoreScreen.Show();

@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	public void GameOver(){
+		#if UNITY_WEBPLAYER
+		gameState = GameState.GAME_OVER;
+		return;
+		#endif
+
 		// if score can be set into high score list, ask for player name
 		if (HighScoreManager.instance.getSmallestScore() < statistics.score){
 			gameState = GameState.HIGHSCORE_DIALOG;
