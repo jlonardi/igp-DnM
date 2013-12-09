@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour {
 		case 0: // main menu
 			if (saves.levelState == LevelState.LOADING_HIGHSCORE){
 				GameManager.instance.gameState = GameState.HIGHSCORE;
-				saves.levelState = LevelState.LOADED;
 			}
+			saves.levelState = LevelState.LOADED;
 			break;
 		default:
 			if (saves.levelState == LevelState.LOADING_SAVE){

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	private bool isAlive = true;
 	private float timeSinceKilled;
 	//how long it takes for player to die after final hit (s)
-	private float deathDuration = 2;
+	private float deathDuration = 2.5f;
 
 	[HideInInspector]
 	public CharacterMotor motor;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();		
 			if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
 				// align just above terrain		    
-				transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.2f, 
+				transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.05f, 
 				                                 	transform.position.z);
 			}
 			//move camera so it's closer to ground and rotate it
