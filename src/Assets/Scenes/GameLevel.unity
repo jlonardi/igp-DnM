@@ -85073,8 +85073,8 @@ MonoBehaviour:
     maxFallSpeed: 10
   jumping:
     enabled: 1
-    baseHeight: 1
-    extraHeight: .5
+    baseHeight: .899999976
+    extraHeight: .400000006
     perpAmount: 0
     steepPerpAmount: .5
   sliding:
