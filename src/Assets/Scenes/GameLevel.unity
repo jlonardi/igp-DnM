@@ -36826,7 +36826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 4
-  smoothing: 1.5
+  smoothing: 1
   invertMouse: 0
 --- !u!81 &756998770
 AudioListener:
@@ -84991,7 +84991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 4
-  smoothing: 1.5
+  smoothing: 1
 --- !u!114 &1851113635
 MonoBehaviour:
   m_ObjectHideFlags: 0
