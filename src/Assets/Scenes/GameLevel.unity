@@ -48707,13 +48707,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpawnCount: 3.40282306e+38
   maxSpawnTime: 3.40282306e+38
-  maxEnemies: 1
-  maxDragonFightEnemies: 20
+  maxEnemies: 2
+  timeBetweenEnemyCountAddition: 20
+  maxDragonFightEnemies: 15
   dragonFightSpwans: 0
   areas: []
   dragonSpawns: []
   timeOfLastWave: -.5
-  waveInterval: 1
+  waveInterval: 4
+  waveIntervalOnDragonFight: 2
   inBattle: 0
   orcPrefab: {fileID: 100000, guid: a3fae8879a9611e4dbae2fe9d9a45071, type: 2}
   lizardPrefab: {fileID: 100264, guid: 9bc28f5ef6fb2a846a63d57fa2978164, type: 2}
@@ -77171,8 +77173,8 @@ Transform:
   - {fileID: 623055179}
   - {fileID: 955860372}
   - {fileID: 1057864597}
-  - {fileID: 29289272}
   - {fileID: 1318883660}
+  - {fileID: 29289272}
   - {fileID: 1615781277}
   - {fileID: 1650550495}
   m_Father: {fileID: 485608024}

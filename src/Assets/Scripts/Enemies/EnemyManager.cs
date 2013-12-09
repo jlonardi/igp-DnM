@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour {
 	public Transform[] dragonSpawns;
 	public float timeOfLastWave = -3f;
 	public float waveInterval = 3f;
+	public float waveIntervalOnDragonFight = 1f;
 
 	private float originalWaveInterval = 0f;
 	private float originalMaxEnemies = 0f;
@@ -89,6 +90,7 @@ public class EnemyManager : MonoBehaviour {
 		dragonFightSpwans = true;
 		originalMaxEnemies = maxEnemies;
 		originalWaveInterval = waveInterval;
+		waveInterval = waveIntervalOnDragonFight;
 		maxEnemies = maxDragonFightEnemies;
 	}
 
