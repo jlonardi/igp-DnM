@@ -74,28 +74,28 @@ MonoBehaviour:
   m_button:
     m_Name: button
     m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: .91911763, g: .128406152, b: .128406152, a: 1}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
+      m_TextColor: {r: .889705896, g: .0261678454, b: .0261678454, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
+      m_TextColor: {r: .977941155, g: .934796691, b: .934796691, a: 1}
     m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
+      m_TextColor: {r: 1, g: .463235319, b: .463235319, a: 1}
     m_Focused:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_OnNormal:
-      m_Background: {fileID: 2800000, guid: f7f255b9380b94c1781bf3d10d2df5b3, type: 3}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnHover:
-      m_Background: {fileID: 2800000, guid: ce00ebfc0e20c4261b60b7563b672ba9, type: 3}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnActive:
-      m_Background: {fileID: 2800000, guid: 63fe16ea91039422ebabc98522d7ee51, type: 3}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnFocused:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: b2bc3f1ef9623fd429c98e3804e9658c, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Border:
       m_Left: 6
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 1
-    m_ImagePosition: 0
+    m_ImagePosition: 3
     m_ContentOffset: {x: 0, y: 0}
     m_FixedWidth: 0
     m_FixedHeight: 0

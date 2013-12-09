@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour {
 		// allow 3 frames to be skipped after save to fix ragdoll bug
 		skipUpdateFrames = 3;
 		Time.timeScale = 1;
-		GameManager.instance.gameState = GameState.RUNNING;	
+		//GameManager.instance.gameState = GameState.RUNNING;	
 	}
 
 	//workaround for relaxing recently instantiated ragdolls for load game

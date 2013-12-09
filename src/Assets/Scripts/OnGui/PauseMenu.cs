@@ -57,7 +57,7 @@ public class PauseMenu {
 
 		if(GUILayout.Button ("Main Menu")) {
 			// load main menu scene
-			GameManager.instance.gameState = GameState.MAIN_MENU;
+			//GameManager.instance.gameState = GameState.MAIN_MENU;
 			Application.LoadLevel("Main Meny");			
 		}
 

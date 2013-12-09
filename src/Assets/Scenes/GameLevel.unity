@@ -48750,7 +48750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a6296fee7c23148a601b27262fd9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiSkin: {fileID: 11400000, guid: 7953503d9e83f8d469b84619849edd4e, type: 2}
+  guiSkinMainMenu: {fileID: 11400000, guid: f5502fcb19048454dbd3d0211441f894, type: 2}
+  guiSkinOther: {fileID: 11400000, guid: 7953503d9e83f8d469b84619849edd4e, type: 2}
   storyScreen:
     storyImages: []
     storySlide: 1

@@ -20,7 +20,7 @@ public class MainMenu {
 		if (game == null){
 			Initialize();
 		}
-		
+
 		GUILayout.BeginArea(new Rect(centerX-250, 270,500,600));
 		if(GUILayout.Button ("Epic Story")){
 			//show story
