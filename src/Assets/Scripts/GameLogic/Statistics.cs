@@ -9,6 +9,7 @@ public class Statistics {
 	public int bodycount;
 	public float playTime;
 	public bool dragonSlayed;
+	public bool armorPickedUp = false;
 	
 	public float playerSpeed = 0f;
 

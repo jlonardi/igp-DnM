@@ -29,7 +29,7 @@ public class RagdollManager : MonoBehaviour {
 		GameObject ragdollPrefab;
 
 		// if too many dead bodies, remove the oldest ragdoll which isn't on rendered on current view
-		if (bodies.Count >= maxRagdolls){
+		if (enemyType != EnemyType.DRAGON && bodies.Count >= maxRagdolls){
 			foreach (GameObject body in bodies){
 				Renderer bodyRenderer = body.GetComponentInChildren<Renderer>();
 				if (bodyRenderer.isVisible == false){
@@ -41,7 +41,7 @@ public class RagdollManager : MonoBehaviour {
 		}
 
 		// if previous way wasn't possible, remove the body furthest away
-		if (bodies.Count >= maxRagdolls){
+		if (enemyType != EnemyType.DRAGON && bodies.Count >= maxRagdolls){
 			int farEnemyIndex = 0;
 			float farEnemyDistance = 0f;
 			float enemyDistance;

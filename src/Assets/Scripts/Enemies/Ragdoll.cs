@@ -15,6 +15,11 @@ public class Ragdoll : MonoBehaviour {
 		audio.Play();
 	}	
 
+	//mute audio for load game
+	public void Mute(){
+		audio.volume = 0;
+	}
+
 	public void CopyPose(Transform pose){
 		AddChildren(pose, poseBones);
 		AddChildren(this.transform, ragdollBones);
