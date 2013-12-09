@@ -60,9 +60,9 @@ public class SaveContainer {
 	public bool dragonFightSpwans;	
 	public float timeOfLastEnemyWave;
 	public float waveInterval;	
-	private float originalWaveInterval;
-	private float originalMaxEnemies;
-	private float timeOfEnemyCountRising;
+	public float originalWaveInterval;
+	public float originalMaxEnemies;
+	public float timeOfEnemyCountRising;
 	public bool inBattle;
 	public int spawnCount;
 	public float spawnTimeStart;
@@ -206,13 +206,13 @@ public class SaveContainer {
 			enemyManager.timeBetweenEnemyCountAddition = timeBetweenEnemyCountAddition;
 			enemyManager.maxDragonFightEnemies = maxDragonFightEnemies;
 			enemyManager.dragonFightSpwans = dragonFightSpwans;
-			enemyManager.timeOfLastWave = timeOfLastEnemyWave;
+			//enemyManager.timeOfLastWave = timeOfLastEnemyWave;
 			enemyManager.waveInterval = waveInterval;
 			enemyManager.originalWaveInterval = originalWaveInterval;
 			enemyManager.originalMaxEnemies = originalMaxEnemies;
-			enemyManager.timeOfEnemyCountRising = timeOfEnemyCountRising;
+			//enemyManager.timeOfEnemyCountRising = timeOfEnemyCountRising;
 			enemyManager.spawnCount = spawnCount;
-			enemyManager.spawnTimeStart = spawnTimeStart;
+			//enemyManager.spawnTimeStart = spawnTimeStart;
 			enemyManager.nextEnemyType = nextEnemyType;
 			enemyManager.currentEnemyCount = currentEnemyCount;
 			enemyManager.inBattle = inBattle;
@@ -257,7 +257,7 @@ public class SaveContainer {
 			game.dragon.SetHealth(dragonHealth);
 			game.dragon.breathFire = dragonBreathFire;
 			game.dragon.flying = dragonFlying;
-			game.dragon.timeOfLastFireBreath = dragonLastBreath;
+			//game.dragon.timeOfLastFireBreath = dragonLastBreath;
 
 			//if in battle, change music
 			if (inBattle){

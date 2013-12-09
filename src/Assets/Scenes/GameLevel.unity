@@ -48707,7 +48707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpawnCount: 3.40282306e+38
   maxSpawnTime: 3.40282306e+38
-  maxEnemies: 1
+  maxEnemies: 2
   timeBetweenEnemyCountAddition: 20
   maxDragonFightEnemies: 20
   dragonFightSpwans: 0
