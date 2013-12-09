@@ -15,6 +15,8 @@ public class EnemyManager : MonoBehaviour {
 	//maximum amount of enemies at once on the game level
 	public float maxEnemies = 10;
 
+	public float timeBetweenEnemyCountAddition = 20;
+
 	public float maxDragonFightEnemies = 20;
 
 	public bool dragonFightSpwans = false;
@@ -76,7 +78,7 @@ public class EnemyManager : MonoBehaviour {
 			createSpawnWave();
 		}
 
-		if(timeOfEnemyCountRising + 10 < Time.time && !dragonFightSpwans) {
+		if(timeOfEnemyCountRising + timeBetweenEnemyCountAddition < Time.time && !dragonFightSpwans) {
 			maxEnemies++;
 			timeOfEnemyCountRising = Time.time;
 		}
