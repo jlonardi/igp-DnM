@@ -10,7 +10,8 @@ public class SmoothMouseLookY : MonoBehaviour {
 
 	private float position = 0f;	
 	private float input;
-    private float deltaSmooth;
+	private float inputJoy;
+	private float deltaSmooth;
 
 	private float minimumY;
 	private float maximumY;
@@ -33,6 +34,12 @@ public class SmoothMouseLookY : MonoBehaviour {
 
 		// get raw mouse data
    	    input = Input.GetAxisRaw("Mouse Y");
+
+		inputJoy = Input.GetAxisRaw("Joystick Look Vertical");
+		
+		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
+			input = inputJoy;
+		}
 
 		// if invert selected, invert input
 		if (invertMouse){

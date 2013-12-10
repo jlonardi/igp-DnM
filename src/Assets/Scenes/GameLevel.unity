@@ -3040,6 +3040,10 @@ Prefab:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04279d36bd6d95247be73d019cfdbc95, type: 2}
   m_RootGameObject: {fileID: 775991039}
@@ -98114,7 +98118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2114621295
 Transform:
   m_ObjectHideFlags: 0

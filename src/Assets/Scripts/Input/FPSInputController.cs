@@ -16,10 +16,13 @@ public class FPSInputController : MonoBehaviour {
 	private bool firing;
 	private float firingTimer;
 	public float idleTimer;	
+	public float prevJoyTrigger;
 
 	[HideInInspector]
 	public string currentWeaponName;
-	
+
+	//time variable to help hit the corner direction on gamepad
+	private	float timeOfUpLeft;
 
 	private CharacterMotor motor;
 	private GameManager game;
@@ -38,6 +41,57 @@ public class FPSInputController : MonoBehaviour {
 			return;
 		}
 
+		//get joystick values
+		float JoyAxis3 = Input.GetAxis("Fire/Aim Down Sight");
+		float JoyPadX = Input.GetAxis("Inventory Horizontal");
+		float JoyPadY = Input.GetAxis("Inventory Vertical");
+		
+		bool JoyFire = false;
+		bool JoyFireDown = false;
+		bool JoyFireUp = false;
+		bool JoyAimDown = false;
+		bool JoyPadUp = false;
+		bool JoyPadDown = false;
+		bool JoyPadLeft = false;
+		bool JoyPadRight = false;
+		bool JoyPadUpLeft = false;
+		
+		if (JoyAxis3 > 0.5f){
+			JoyFire = true;
+		} else if (JoyAxis3 < -0.5f){
+			JoyAimDown = true;
+		}
+
+		if (prevJoyTrigger > 0.5f && JoyAxis3 < 0.5f){
+			JoyFire = false;
+			JoyFireUp = true;
+		}
+		if (prevJoyTrigger < 0.5f && JoyAxis3 > 0.5f){
+			JoyFire = true;
+			JoyFireDown = true;
+		}
+
+		prevJoyTrigger = JoyAxis3;
+		if (JoyPadX > 0.5f && JoyPadY < -0.5f){
+			JoyPadUpLeft = true;
+			timeOfUpLeft = Time.timeSinceLevelLoad;
+
+		} else if (JoyPadX > 0.5f && JoyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
+			JoyPadUp = true;
+		} else if (JoyPadX < -0.5f && JoyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
+			JoyPadDown = true;
+		}
+
+		if (JoyPadY > 0.5f && JoyPadX < 0.3f){
+			JoyPadRight = true;
+		} else if (JoyPadY < -0.5f && JoyPadX < 0.3f){
+			JoyPadLeft = true;
+		}
+
+		bool GetFireButton = Input.GetButton("Fire") || JoyFire;
+		bool GetFireButtonDown = Input.GetButtonDown("Fire") || JoyFireDown;
+		bool GetFireButtonUp = Input.GetButtonUp("Fire") || JoyFireUp;
+		
 
 		bool treasureOnGround = game.treasure.OnGround();
 
@@ -73,7 +127,12 @@ public class FPSInputController : MonoBehaviour {
 		motor.inputMoveDirection = transform.rotation * directionVector;
 		motor.inputJump = Input.GetButton("Jump");	
 
+		Gun currentGun = game.weapons.currentGun;
 		int currentGunIndex = game.weapons.currentGunIndex;
+
+		if (Input.GetButton("Reload") && !currentGun.reloading){
+			currentGun.Reload();
+		}
 
 		if (Input.GetAxis("Mouse ScrollWheel") < 0){
 			game.weapons.ChangeToNextGun();
@@ -81,29 +140,40 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToPreviousGun();
 		}
 
-		if (Input.GetButtonDown("Pistol")){
+		if (Input.GetButtonDown("Pistol") || JoyPadDown){
 			game.weapons.ChangeToGun(0);
 		}
-		if (Input.GetButtonDown("Assault Rifle")){
+		if (Input.GetButtonDown("Assault Rifle") || JoyPadUp){
 			game.weapons.ChangeToGun(1);
 		}
-		if (Input.GetButtonDown("Grenade Launcher")){
+		if (Input.GetButtonDown("Grenade Launcher") || JoyPadRight){
 			game.weapons.ChangeToGun(2);
 		}
-		if (Input.GetButtonDown("Minigun")){
+		if (Input.GetButtonDown("Minigun") || JoyPadLeft){
 			game.weapons.ChangeToGun(3);
 		}
-		if (Input.GetButtonDown("Scar-L")){
+		if (Input.GetButtonDown("Scar-L") || JoyPadUpLeft){
 			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButtonDown("Sprint") && treasureOnGround && Input.GetButton("Fire") == false){
+		if (Input.GetButtonDown("Sprint") && treasureOnGround && GetFireButton == false){
 			motor.StartSprint();
 		}
 
+		if (GetFireButtonDown && currentGun.currentRounds == 0 && !currentGun.reloading && currentGun.freeToShoot){		
+			currentGun.PlayOutOfAmmoSound();
+		}
+		
+		if(GetFireButtonUp && game.player.GetAliveStatus()){
+			currentGun.freeToShoot = true;
+		}
 
 		//Check if the user if firing the weapon
-		fire = Input.GetButton("Fire") && treasureOnGround && game.weapons.currentGun.freeToShoot;
+		if (GetFireButton && treasureOnGround && game.weapons.currentGun.freeToShoot){
+			fire = true;
+		} else {
+			fire = false;
+		}
 
 		idleTimer += Time.deltaTime;
 		

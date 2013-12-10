@@ -1,5 +1,5 @@
-Dragons & Miniguns v1.03
-=========================
+Dragons & Miniguns v1.1
+=======================
 
 Gameplay
 --------
@@ -67,12 +67,15 @@ fixes:
 - sprinting doesn't continue after cooldown period automatically
 - story's next-button is now correctly shown after returning from game level
 
+new features:
+- xbox 360 gamepad support
+- game has now a difficulty setting
+
 improvements:
-- there is now a delay after player has been killed or treaure has been stolen
+- there is now a delay after player has been killed or treasure has been stolen
 - player drops to the groumd when killed
 - game now tells player when treasure has been fully stolen
 - dead dragon ragdoll improvements
-- game has now a difficulty setting
 - save game dialog now shows a preview of save contents of the save slots
 - tweaked gun animations while sprinting
 - most of the materials now respond to gun fire (particle effects)

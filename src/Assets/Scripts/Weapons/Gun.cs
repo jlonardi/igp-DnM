@@ -156,16 +156,10 @@ public class Gun : MonoBehaviour {
 		CalculateAccuracy();
 
 		timerToCreateDecal -= Time.deltaTime;
-		if (Input.GetButtonDown("Fire") && currentRounds == 0 && !reloading && freeToShoot){
-				PlayOutOfAmmoSound();
-		}
 
 		HandleMinigun();
-
-		if(Input.GetButtonUp("Fire") && playerAlive){
-			freeToShoot = true;
-		}
 		HandleReloading();
+
 		ShootTheTarget();
 	}
 
@@ -500,10 +494,6 @@ public class Gun : MonoBehaviour {
 	}
 	
 	public void HandleReloading(){
-		if(Input.GetKeyDown(KeyCode.R) && !reloading){
-			Reload();
-		}
-		
 		if(reloading){
 			reloadTimer -= Time.deltaTime;
 			

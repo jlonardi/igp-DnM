@@ -9,7 +9,8 @@ public class SmoothMouseLookX : MonoBehaviour {
 
 	private float position = 0f;	
 	private float input;
-    private float deltaSmooth;
+	private float inputJoy;
+	private float deltaSmooth;
 	private GameManager game;
 
 	void Awake() {
@@ -29,7 +30,13 @@ public class SmoothMouseLookX : MonoBehaviour {
 			return;
 		}
 		// get raw mouse data
-   	    input = Input.GetAxisRaw("Mouse X");
+		input = Input.GetAxisRaw("Mouse X");
+
+		inputJoy = Input.GetAxisRaw("Joystick Look Horizontal");
+
+		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
+			input = inputJoy;
+		}
 
         // scale input against the sensitivity multiply against smoothing value.
         input = input * (sensitivity * smoothing);
