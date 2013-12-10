@@ -19,12 +19,13 @@ public class CharacterMotor : MonoBehaviour {
 	public bool useFixedUpdate = true;
 
 	//time when sprint was initiated
-	private float sprintInitTime;
+	private float sprintInitTime = -99;
 	//time when sprint cooldown was initiated
-	private float sprintCoolDownInitTime;
+	private float sprintCoolDownInitTime = -99;
 
 	public bool sprinting = false;
 
+	private float timeOfAirborne;
 	public float movementSpeed = 0f;        
 	private float prevMovementSpeed = 0f;        
 	private List<Vector3> movementPositions = new List<Vector3>();
@@ -72,26 +73,25 @@ public class CharacterMotor : MonoBehaviour {
 		if(!game.player.GetAliveStatus()){
 			canControl = false;
 		}
-		
 
-		UpdateVelocity();
+		if (!grounded && sprinting && timeOfAirborne + 0.5f < Time.timeSinceLevelLoad){
+			StopSprint();
+		}
 
 		if (!useFixedUpdate)
 			UpdateFunction();
 	}
 
 	void FixedUpdate () {
-		//calculate current speed
+		//calculate player speed
 		movementPositions.Add(transform.position);
-		if (movementPositions.Count>7){
+		if (movementPositions.Count>10){
 			prevMovementSpeed = movementSpeed;
-			movementSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
+			game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 20;
 			movementPositions.RemoveAt(0);
-			if (canControl){
-				game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 30;
-			}
 		}
-			
+
+		//calculate current speed			
 		if (useFixedUpdate)
 			UpdateFunction();
 	}
@@ -169,7 +169,7 @@ public class CharacterMotor : MonoBehaviour {
 		
 		// We were grounded but just loosed grounding
 		if (grounded && !IsGroundedTest()) {
-			grounded = false;
+			SetOffGround();
 
 			SendMessage("OnFall", SendMessageOptions.DontRequireReceiver);
 			// We pushed the character down to ensure it would stay on the ground if there was any.
@@ -178,10 +178,12 @@ public class CharacterMotor : MonoBehaviour {
 		}
 		// We were not grounded but just landed on something
 		else if (!grounded && IsGroundedTest()) {
-			grounded = true;
+			SetOnGround();
 			jumping.jumping = false;
 			SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
-			sounds.PlayJumpSound();
+			if (timeOfAirborne + 0.05f < Time.timeSinceLevelLoad){
+				sounds.PlayJumpSound();
+			}
 			game.weapons.currentGun.animator.SetBool("hitGround", true);
 		}
 
@@ -270,7 +272,7 @@ public class CharacterMotor : MonoBehaviour {
 			// and if they hit the button a fraction of a second too soon and no new jump happens as a consequence,
 			// it's confusing and it feels like the game is buggy.
 			if (jumping.enabled && canControl && (Time.timeSinceLevelLoad - jumping.lastButtonDownTime < 0.2)) {
-				grounded = false;
+				SetOffGround();
 				jumping.jumping = true;
 				jumping.lastStartTime = Time.timeSinceLevelLoad;
 				jumping.lastButtonDownTime = -100;
@@ -413,7 +415,7 @@ public class CharacterMotor : MonoBehaviour {
 	}
 	
 	public void SetVelocity(Vector3 velocity) {
-		grounded = false;
+		SetOffGround();
 		movement.velocity = velocity;
 		movement.frameVelocity = Vector3.zero;
 		SendMessage("OnExternalVelocity");
@@ -433,8 +435,22 @@ public class CharacterMotor : MonoBehaviour {
 	}
 
 	public void StopSprint(){
+		if (!sprinting){
+			return;
+		}
+		float sprintDifference = movement.sprintDuration - (Time.timeSinceLevelLoad - sprintInitTime);
+		float coolDownReduce = (sprintDifference/movement.sprintDuration)*movement.sprintCoolDown;
+		sprintCoolDownInitTime = Time.timeSinceLevelLoad - coolDownReduce;
 		sprinting = false;
-		sprintCoolDownInitTime = Time.timeSinceLevelLoad;
+	}
+
+	private void SetOffGround(){
+		grounded = false;
+		timeOfAirborne = Time.timeSinceLevelLoad;
+	}
+
+	private void SetOnGround(){
+		grounded = true;
 	}
 
 }

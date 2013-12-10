@@ -96,6 +96,7 @@ public class Gun : MonoBehaviour {
 	private HitParticles hitParticles;
 	private CharacterController controller;
 	private GameManager game;
+	private bool playerAlive;
 
 	[HideInInspector]
 	public Animator animator;
@@ -116,9 +117,28 @@ public class Gun : MonoBehaviour {
 		hitParticles = game.weapons.hitParticles;
 		shootFrom = transform.FindChild("ShootFrom").gameObject;
 		animator = GetComponent<Animator>();
+	}
+
+	public void UpdateAnimator(){
 		if (animator != null){
-			animator.SetLayerWeight(1,0.5f);
-			animator.SetLayerWeight(2,0.5f);
+			animator.SetBool("fire", false);
+			//if sprint start animation already player, set boolean to false
+			if (animator.GetBool("start sprinting") && animator.GetBool("sprinting")){
+				animator.SetBool("start sprinting", false);
+			}
+
+			//if player is sprinting but animation is not player, play start sprinting animation first
+			if (game.player.motor.sprinting && animator.GetBool("sprinting")==false){
+				animator.SetBool("start sprinting", true);
+			}
+			//set sprinting to true always when player sprints
+			animator.SetBool("sprinting", game.player.motor.sprinting);
+
+			if (!playerAlive){
+				game.statistics.playerSpeed = 0;
+			}
+			animator.SetFloat("speed", game.statistics.playerSpeed);
+			
 		}
 	}
 
@@ -126,25 +146,19 @@ public class Gun : MonoBehaviour {
 		if (game == null){
 			game = GameManager.instance;
 		}
-		bool playerAlive = game.player.GetAliveStatus();
+
+		playerAlive = game.player.GetAliveStatus();
 		if (!playerAlive){
 			freeToShoot = false;
-		}
+		}		
+
+		//UpdateAnimator();
 
 		CalculateAccuracy();
 
 		timerToCreateDecal -= Time.deltaTime;
 		if (Input.GetButtonDown("Fire") && currentRounds == 0 && !reloading && freeToShoot){
 				PlayOutOfAmmoSound();
-		}
-		if (animator != null){
-			animator.SetBool("fire", false);
-			animator.SetBool("sprinting", game.player.motor.sprinting);
-			if (!playerAlive){
-				game.statistics.playerSpeed = 0;
-			}
-			animator.SetFloat("speed", game.statistics.playerSpeed);
-
 		}
 
 		HandleMinigun();

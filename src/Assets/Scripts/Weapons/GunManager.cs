@@ -42,6 +42,12 @@ public class GunManager : MonoBehaviour {
 		if (throwingGrenade && (timeOfLastGrenade + grenadeThrowDelay) < Time.timeSinceLevelLoad){
 			DelayedGrenadeThrow();
 		}
+
+		//update animations for all guns
+		for (int i=0; i<5; i++){
+			guns[i].UpdateAnimator();
+		}
+
 	}
 	
 	public void ChangeToCurrentWeapon(){

@@ -44,15 +44,15 @@ public class FPSInputController : MonoBehaviour {
 		// Get the input vector from kayboard
 		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
+		//if no input, stop sprint
+		if (directionVector == Vector3.zero) {
+			motor.StopSprint();
+		}
+
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway
 			float directionLength = directionVector.magnitude;
-
-			// if player stops while sprinting, stop sprint
-			if (motor.sprinting && directionLength<0.5f){
-				motor.StopSprint();
-			}
 
 			directionVector = directionVector / directionLength;
 			
@@ -97,7 +97,7 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButton("Sprint") && treasureOnGround && Input.GetButton("Fire") == false){
+		if (Input.GetButtonDown("Sprint") && treasureOnGround && Input.GetButton("Fire") == false){
 			motor.StartSprint();
 		}
 

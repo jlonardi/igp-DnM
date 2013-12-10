@@ -14342,7 +14342,7 @@ GameObject:
   - 65: {fileID: 296658017}
   m_Layer: 10
   m_Name: WallsCollidLeft
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28926,7 +28926,7 @@ GameObject:
   - 65: {fileID: 599151267}
   m_Layer: 10
   m_Name: WallsColliderFront
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29326,7 +29326,7 @@ GameObject:
   - 65: {fileID: 608779800}
   m_Layer: 10
   m_Name: WallsColliderRight
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40421,7 +40421,7 @@ GameObject:
   - 65: {fileID: 846912727}
   m_Layer: 10
   m_Name: WallsColliderBack
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48709,7 +48709,7 @@ MonoBehaviour:
   maxSpawnTime: 3.40282306e+38
   maxEnemies: 2
   timeBetweenEnemyCountAddition: 20
-  maxDragonFightEnemies: 15
+  maxDragonFightEnemies: 20
   dragonFightSpwans: 0
   areas: []
   dragonSpawns: []
@@ -85071,7 +85071,7 @@ MonoBehaviour:
     maxGroundAcceleration: 200
     maxAirAcceleration: 15
     gravity: 15
-    maxFallSpeed: 10
+    maxFallSpeed: 20
   jumping:
     enabled: 1
     baseHeight: .899999976
