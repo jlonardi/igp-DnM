@@ -171,7 +171,7 @@ public class SaveContainer {
 		gun3_clips = game.weapons.guns[3].totalClips;
 		gun4_clips = game.weapons.guns[4].totalClips;
 		pickedup_gun3 = game.weapons.guns[3].picked_up;
-		pickedup_gun4 = game.weapons.guns[3].picked_up;
+		pickedup_gun4 = game.weapons.guns[4].picked_up;
 		pickedup_armor = game.statistics.armorPickedUp;
 		grenades = game.weapons.grenadeCount;
 		currentGunIndex = game.weapons.currentGunIndex;
@@ -255,7 +255,7 @@ public class SaveContainer {
 			game.weapons.guns[3].totalClips = gun3_clips;
 			game.weapons.guns[4].totalClips = gun4_clips;
 			game.weapons.guns[3].picked_up = pickedup_gun3;
-			game.weapons.guns[3].picked_up = pickedup_gun4;
+			game.weapons.guns[4].picked_up = pickedup_gun4;
 			game.statistics.armorPickedUp = pickedup_armor;
 			game.weapons.grenadeCount = grenades;
 			game.weapons.currentGunIndex = currentGunIndex;

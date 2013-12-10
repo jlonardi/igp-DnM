@@ -127,8 +127,9 @@ public class Gun : MonoBehaviour {
 				animator.SetBool("start sprinting", false);
 			}
 
-			//if player is sprinting but animation is not player, play start sprinting animation first
+			//if player is sprinting but animation is not played, play start sprinting animation first
 			if (game.player.motor.sprinting && animator.GetBool("sprinting")==false){
+				Debug.Log("start sprint");
 				animator.SetBool("start sprinting", true);
 			}
 			//set sprinting to true always when player sprints
