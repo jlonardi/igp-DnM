@@ -74,7 +74,7 @@ public class CharacterMotor : MonoBehaviour {
 			canControl = false;
 		}
 
-		if (!grounded && sprinting && timeOfAirborne + 0.5f < Time.timeSinceLevelLoad){
+		if (!grounded && sprinting && timeOfAirborne + 0.7f < Time.timeSinceLevelLoad){
 			StopSprint();
 		}
 
