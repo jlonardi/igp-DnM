@@ -16,19 +16,20 @@ public class HighScoreManager : MonoBehaviour {
 		HighScoreManager.instance = this;
 	}
 
-	void Start(){
+	private void initialize(){
 		scores = new List<Score>();
 		findSaveDirectory();
 		loadScoresFromFile();
 		fingHighestID();
-	
 	}
+
 	//sorts the score array
 	private void sort(){
 		scores.Sort();
 	}
 	//returns the smallest score if there is less than 10 scores (max amount of scores) it returns 0
 	public int getSmallestScore() {
+		initialize();
 		if (scores.Count<10) {
 			return 0;
 		}
@@ -38,17 +39,19 @@ public class HighScoreManager : MonoBehaviour {
 	}
 	//adds a new high score to list
 	public void addHighScore(int score, int bodyCount, int treasureValue, bool dragonSlayed, string name){
+		initialize();
 		this.highestID++;
 		scores.Add(new Score(score, bodyCount, treasureValue, dragonSlayed, name,highestID));
 		sort ();
 		if (scores.Count>10){
 			scores.RemoveAt(10);
 		}
-		uppdateScoreFile();
+		updateScoreFile();
 	
 	}
 	//returns the score list
 	public List<Score> getScores() {
+		initialize();
 		return scores;
 	}
 
@@ -76,7 +79,7 @@ public class HighScoreManager : MonoBehaviour {
 			docsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		} catch (Exception){
 			//if can't get My Documents-folder, put saves in <current folder>/highScore/
-			docsDirectory = "highScore"; 
+			docsDirectory = "highscore"; 
 		}
 		
 		saveDirectory = docsDirectory + "\\Dragons and Miniguns";
@@ -89,7 +92,8 @@ public class HighScoreManager : MonoBehaviour {
 	//loads the old scores from the score file
 	private void loadScoresFromFile(){
 		Stream stream;
-		string filePath = saveDirectory + "\\highscore"+".dat";
+		int difficulty = (int)GameManager.instance.difficulty;
+		string filePath = saveDirectory + "\\highscore"+difficulty+".dat";
 	
 		if (!File.Exists(filePath)){
 			return;
@@ -106,12 +110,13 @@ public class HighScoreManager : MonoBehaviour {
 	}
 
 	//updates the score file
-	private void uppdateScoreFile(){
-		string filePath = saveDirectory + "\\highscore"+".dat";
+	private void updateScoreFile(){
+		int difficulty = (int)GameManager.instance.difficulty;
+		string filePath = saveDirectory + "\\highscore"+difficulty+".dat";
+
 		Stream stream = File.Open(filePath, FileMode.OpenOrCreate);
 		BinaryFormatter bformatter = new BinaryFormatter();
 		bformatter.Serialize(stream, scores);
 		stream.Close();
 	}
-
 }

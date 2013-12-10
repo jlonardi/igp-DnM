@@ -12,7 +12,8 @@ public class SaveManager : MonoBehaviour {
 	private static int formatVersion = 3;
 
 	public LevelState levelState = LevelState.LOADED;
-	public DifficultySetting newGameDifficulty = DifficultySetting.NORMAL;
+	// difficulty used to store new game difficulty + when showing highscore after game
+	public DifficultySetting difficulty = DifficultySetting.NORMAL;
 
 	[HideInInspector]
 	public int maxSaveSlots = 5; //max amount of games saved

@@ -23,12 +23,29 @@ public class HighScoreScreen {
 			Initialize();
 		}
 
+		string difficultyStr;
+
 		List<Score> scores = scoreManager.getScores();
+
+		switch(game.difficulty){
+		case DifficultySetting.EASY:
+			difficultyStr = "Easy";
+			break;
+		case DifficultySetting.HARD:
+			difficultyStr = "Hard";
+			break;
+		case DifficultySetting.NIGHTMARE:
+			difficultyStr = "Epic";
+			break;
+		default:
+			difficultyStr = "Normal";
+			break;
+		}
 
 		GUI.Box(new Rect(centerX-600, 25,1200,1000),"", "window");
 
 		GUILayout.BeginArea(new Rect(centerX-220, 135,440,600));
-		GUILayout.Label("High Scores", "textfield");
+		GUILayout.Label("High Scores - "+difficultyStr, "textfield");
 		GUILayout.EndArea();
 
 		//draw column labels
@@ -85,13 +102,29 @@ public class HighScoreScreen {
 		}
 		GUILayout.EndArea();
 
-		// area for main menu button
-		GUILayout.BeginArea(new Rect(centerX-175, 870,350,600));
-
-		if(GUILayout.Button ("Main Menu")) {
+		// area for bottom buttons
+		GUILayout.BeginArea(new Rect(centerX-550, 870, 1100,100));
+		GUILayout.BeginHorizontal();
+		if(GUILayout.Button ("Back to Main Menu")) {
 			game.gameState = GameState.MAIN_MENU;
 		}
 
+		if(GUILayout.Button ("Show Easy")){
+			game.difficulty = DifficultySetting.EASY;
+		}
+
+		if(GUILayout.Button ("Show Normal")){
+			game.difficulty = DifficultySetting.NORMAL;
+		}
+
+		if(GUILayout.Button ("Show Hard")){
+			game.difficulty = DifficultySetting.HARD;
+		}
+
+		if(GUILayout.Button ("Show Epic")){
+			game.difficulty = DifficultySetting.NIGHTMARE;
+		}
+		GUILayout.EndHorizontal();
 		GUILayout.EndArea();
 	}
 	

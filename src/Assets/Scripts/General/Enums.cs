@@ -32,10 +32,10 @@ public enum LevelState {
 }
 
 public enum DifficultySetting {
-	EASY,
-	NORMAL,
-	HARD,
-	NIGHTMARE
+	EASY = 0,
+	NORMAL = 1,
+	HARD = 2,
+	NIGHTMARE = 3
 }
 
 public enum HitType

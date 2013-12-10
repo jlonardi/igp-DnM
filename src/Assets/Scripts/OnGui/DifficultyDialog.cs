@@ -27,25 +27,25 @@ public class DifficultyDialog {
 		
 		GUILayout.BeginArea(new Rect(centerX-250, 390,500,600));
 		if(GUILayout.Button ("Easy")){
-			game.saves.newGameDifficulty = DifficultySetting.EASY;
+			game.saves.difficulty = DifficultySetting.EASY;
 			game.saves.levelState = LevelState.LOADING_NEW;
 			//loads first level
 			Application.LoadLevel("GameLevel");
 		}
 		if(GUILayout.Button ("Normal")){
-			game.saves.newGameDifficulty = DifficultySetting.NORMAL;
+			game.saves.difficulty = DifficultySetting.NORMAL;
 			game.saves.levelState = LevelState.LOADING_NEW;
 			//loads first level
 			Application.LoadLevel("GameLevel");
 		}
 		if(GUILayout.Button ("Hard")){
-			game.saves.newGameDifficulty = DifficultySetting.HARD;
+			game.saves.difficulty = DifficultySetting.HARD;
 			game.saves.levelState = LevelState.LOADING_NEW;
 			//loads first level
 			Application.LoadLevel("GameLevel");
 		}
 		if(GUILayout.Button ("Epic")){
-			game.saves.newGameDifficulty = DifficultySetting.NIGHTMARE;
+			game.saves.difficulty = DifficultySetting.NIGHTMARE;
 			game.saves.levelState = LevelState.LOADING_NEW;
 			//loads first level
 			Application.LoadLevel("GameLevel");

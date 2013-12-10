@@ -79,7 +79,8 @@ public class GameManager : MonoBehaviour {
 		switch (level){
 		case 0: // main menu
 			if (saves.levelState == LevelState.LOADING_HIGHSCORE){
-				GameManager.instance.gameState = GameState.HIGHSCORE;
+				difficulty = saves.difficulty;
+				gameState = GameState.HIGHSCORE;
 			}
 			saves.levelState = LevelState.LOADED;
 			break;
@@ -100,11 +101,20 @@ public class GameManager : MonoBehaviour {
 		gameState = GameState.RUNNING;
 		statistics.Reset();
 		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
-		difficulty = saves.newGameDifficulty;
+		difficulty = saves.difficulty;
 		ApplyDifficultySetting();
 	}
 
 	public void ApplyDifficultySetting(){
-
+		switch(difficulty){
+		case DifficultySetting.EASY:
+			break;
+		case DifficultySetting.HARD:
+			break;
+		case DifficultySetting.NIGHTMARE:
+			break;
+		default: //normal settings
+			break;	
+		}
 	}
 }
