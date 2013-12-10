@@ -11,8 +11,6 @@ public class Statistics {
 	public bool dragonSlayed;
 	public bool armorPickedUp = false;
 	
-	public float playerSpeed = 0f;
-
 	//scores for different enemy types:
 	public int orcKillScore = 100;
 	public int lizardKillScore = 150;

@@ -17,6 +17,8 @@ public class Treasure : MonoBehaviour {
 	private GameManager game;
 	private float timeFromLoot;
 	private bool allowAudio = true;
+	private bool treasureEmpty = false;
+	private float timeSinceEmpty;
 
 	public AudioClip lootSound;
 	public AudioClip dropSound;
@@ -31,7 +33,12 @@ public class Treasure : MonoBehaviour {
     }
 
 	void Update(){
-		if (audio.isPlaying && (timeFromLoot + 1 < Time.timeSinceLevelLoad || game.player.GetAliveStatus() == false)){
+		if (treasureEmpty && timeSinceEmpty + 1f < Time.timeSinceLevelLoad && game.player.GetAliveStatus() == true){
+			game.GameOver();
+		} 
+
+		if (audio.isPlaying && (timeFromLoot + 1 < Time.timeSinceLevelLoad || game.player.GetAliveStatus() == false || treasureEmpty
+		                   || game.gameState != GameState.RUNNING)){
 			audio.Stop();
 		}
 	}
@@ -62,8 +69,9 @@ public class Treasure : MonoBehaviour {
 		treasureLevelMesh.transform.localPosition -= new Vector3(0, 0.4f * lootAmount/treasureFullAmount, 0);				
 
 		// if all taken, game over
-		if (treasureAmount <= 0 && game.player.GetAliveStatus() == true){
-			game.GameOver();
+		if (treasureAmount <= 0){
+			timeSinceEmpty = Time.timeSinceLevelLoad;
+			treasureEmpty = true;
 		}
 		return lootAmount;
 	}
@@ -150,6 +158,10 @@ public class Treasure : MonoBehaviour {
 	
 	public void SetTreasureAmount(int value){
 		treasureAmount = value;
+	}
+
+	public bool isEmpty(){
+		return treasureEmpty;
 	}
 	
 }

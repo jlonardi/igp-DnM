@@ -17,6 +17,7 @@ public class Hud {
 
 	private Rect helpPosition;
 	private Rect notePosition;
+	private Rect treasureNotePosition;
 	private Rect gunInfoPosition;
 	private Rect grenadeInfoPosition;
 
@@ -38,6 +39,7 @@ public class Hud {
 
 		helpPosition = new Rect(guiCenterX-350, 920, 650, 40);
 		notePosition = new Rect(guiCenterX-350, guiCenterY-60, 700, 40);
+		treasureNotePosition = new Rect(guiCenterX-350, 300, 700, 40);
 		gunInfoPosition = new Rect(20,800,330,500);
 		grenadeInfoPosition = new Rect(guiWidth-300,1010,300,20);
 
@@ -120,6 +122,10 @@ public class Hud {
 
 		if (gun.enabled){
 			GUI.Label(grenadeInfoPosition, "Grenades: " + game.weapons.grenadeCount, "hud_right");
+		}
+
+		if (game.treasure.isEmpty()){
+			GUI.Label(treasureNotePosition, "You failed to protect the treasure!", "hud_note");
 		}
 
 		if (gun.enabled && gun.reloading){

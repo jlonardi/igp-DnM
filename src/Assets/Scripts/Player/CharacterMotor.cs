@@ -26,9 +26,9 @@ public class CharacterMotor : MonoBehaviour {
 	public bool sprinting = false;
 
 	private float timeOfAirborne;
-	public float movementSpeed = 0f;        
-	private float prevMovementSpeed = 0f;        
-	private List<Vector3> movementPositions = new List<Vector3>();
+
+	//there are only used to calculate player speed
+	private Vector3 player_prevPos;
 
 	public float pushPower = 2.0f;
 	
@@ -56,16 +56,14 @@ public class CharacterMotor : MonoBehaviour {
 	private GameManager game;
 	private PlayerSounds sounds;
 
+	public float movementSpeed = 0f;
+	private float prevMovementSpeed = 0f;
+	private List<Vector3> movementPositions = new List<Vector3>();
+
 	public void Awake () {
 		controller = GetComponent<CharacterController>();
 		game = GameManager.instance;
 		tr = transform;
-	}
-
-	public void UpdateVelocity(){		
-		Vector3 movement = transform.position - lastPosition;
-		lastPosition = transform.position;
-		characterVelocity = movement / Time.deltaTime;
 	}
 
 	void Update () {
@@ -78,24 +76,30 @@ public class CharacterMotor : MonoBehaviour {
 			StopSprint();
 		}
 
+		UpdateSpeed();
 		if (!useFixedUpdate)
 			UpdateFunction();
 	}
 
 	void FixedUpdate () {
-		//calculate player speed
-		movementPositions.Add(transform.position);
-		if (movementPositions.Count>10){
-			prevMovementSpeed = movementSpeed;
-			game.statistics.playerSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 20;
-			movementPositions.RemoveAt(0);
-		}
 
-		//calculate current speed			
 		if (useFixedUpdate)
 			UpdateFunction();
 	}
-	
+
+	public void UpdateSpeed(){
+		//calculate player speed
+		movementPositions.Add(transform.position);
+		if (movementPositions.Count>12){
+			prevMovementSpeed = movementSpeed;
+			float newSpeed = Vector3.Distance(transform.position, movementPositions[0]) * 15;
+			movementPositions.RemoveAt(0);
+			float oldSpeed = game.player.speed;
+			game.player.speed = Mathf.MoveTowards(oldSpeed, newSpeed, 1000 *Time.deltaTime);
+		}
+	}
+			
+
 	private void UpdateFunction () {				
 		if (sounds == null){
 			sounds = PlayerSounds.instance;

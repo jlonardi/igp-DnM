@@ -124,6 +124,10 @@ public class EnemyLogic : MonoBehaviour {
 			} 
 			
 			if(target == focusTarget.TRESAURE) {
+				if (game.treasure.isEmpty()){
+					swapTarget();
+					return;
+				}
 				if(!looting && treasureDistance <= lootDistance) {
 					looting = true;	
 				}
@@ -170,6 +174,9 @@ public class EnemyLogic : MonoBehaviour {
 	private void swapTarget() {
 		//Debug.Log("Swapping focus target");
 		if(target == focusTarget.PLAYER  && canLoot) {
+			if (game.treasure.isEmpty()){
+				return;
+			}
 			navigation.target = treasureTransform;
 			target = focusTarget.TRESAURE;
 			//Debug.Log("New target is tresaure");
@@ -177,6 +184,9 @@ public class EnemyLogic : MonoBehaviour {
 		} 
 		
 		if (target == focusTarget.TRESAURE){
+			if (game.player.GetAliveStatus()==false){
+				return;
+			}
 			navigation.target = playerTransform;
 			target = focusTarget.PLAYER;
 			//Debug.Log("New target is player");

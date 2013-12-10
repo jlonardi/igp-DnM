@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	private float timeSinceKilled;
 	//how long it takes for player to die after final hit (s)
 	private float deathDuration = 2.5f;
+	public float speed;
 
 	[HideInInspector]
 	public CharacterMotor motor;

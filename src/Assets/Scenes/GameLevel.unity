@@ -48798,7 +48798,6 @@ MonoBehaviour:
     playTime: 0
     dragonSlayed: 0
     armorPickedUp: 0
-    playerSpeed: 0
     orcKillScore: 100
     lizardKillScore: 150
     wolfKillScore: 80
@@ -85005,6 +85004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06dcd02cc2f6194e9d9db45b3b8c7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   motor: {fileID: 0}
 --- !u!114 &1851113636
 MonoBehaviour:
@@ -85038,7 +85038,6 @@ MonoBehaviour:
   canControl: 1
   useFixedUpdate: 1
   sprinting: 0
-  movementSpeed: 0
   pushPower: 10
   characterVelocity: {x: 0, y: 0, z: 0}
   movement:
@@ -85083,6 +85082,7 @@ MonoBehaviour:
     slidingSpeed: 15
     sidewaysControl: 1
     speedControl: .400000006
+  movementSpeed: 0
 --- !u!143 &1851113638
 CharacterController:
   m_ObjectHideFlags: 0

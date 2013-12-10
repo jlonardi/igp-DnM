@@ -135,9 +135,9 @@ public class Gun : MonoBehaviour {
 			animator.SetBool("sprinting", game.player.motor.sprinting);
 
 			if (!playerAlive){
-				game.statistics.playerSpeed = 0;
+				game.player.speed = 0;
 			}
-			animator.SetFloat("speed", game.statistics.playerSpeed);
+			animator.SetFloat("speed", game.player.speed);
 			
 		}
 	}
@@ -151,8 +151,6 @@ public class Gun : MonoBehaviour {
 		if (!playerAlive){
 			freeToShoot = false;
 		}		
-
-		//UpdateAnimator();
 
 		CalculateAccuracy();
 
@@ -176,7 +174,7 @@ public class Gun : MonoBehaviour {
 	private void CalculateAccuracy(){
 		float targetAccuracy;
 
-		if (game.statistics.playerSpeed < 1f){
+		if (game.player.speed < 1f){
 			targetAccuracy = accuracy;
 		} else {
 			targetAccuracy = accuracy + 20;
