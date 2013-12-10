@@ -16,8 +16,8 @@ public class SaveContainer {
 	public float bloodAlpha;
 	public float mousePositionX;
 	public float mousePositionY;
-	public float mouseSensitivity;
-	public float mouseSmoothing;
+	//public float mouseSensitivity;
+	//public float mouseSmoothing;
 	public float timeOfLastWave;
 	public float playerArmor;
 	public float playerHealth;
@@ -140,8 +140,8 @@ public class SaveContainer {
 		playerKilledTrigger = dragonTriggerHandler.playerKilled;
 		mousePositionX = mouseX.GetPosition();
 		mousePositionY = mouseY.GetPosition();
-		mouseSensitivity = mouseX.sensitivity;
-		mouseSmoothing = mouseX.smoothing;
+		//mouseSensitivity = mouseX.sensitivity;
+		//mouseSmoothing = mouseX.smoothing;
 		level = game.statistics.level;
 		bodycount = game.statistics.bodycount;
 		score = game.statistics.score;
@@ -226,10 +226,10 @@ public class SaveContainer {
 			dragonTriggerHandler.playerKilled = playerKilledTrigger;
 			mouseX.SetPosition(mousePositionX);
 			mouseY.SetPosition(mousePositionY);
-			mouseX.SetSensitivity(mouseSensitivity);
-			mouseY.SetSensitivity(mouseSensitivity);
-			mouseX.SetSmoothing(mouseSmoothing);
-			mouseY.SetSmoothing(mouseSmoothing);
+			//mouseX.SetSensitivity(mouseSensitivity);
+			//mouseY.SetSensitivity(mouseSensitivity);
+			//mouseX.SetSmoothing(mouseSmoothing);
+			//mouseY.SetSmoothing(mouseSmoothing);
 			onGuiManager.bloodSplatter.SetBloodAlpha(bloodAlpha);
 			game.weapons.guns[0].currentRounds = gun0_rounds;
 			game.weapons.guns[1].currentRounds = gun1_rounds;

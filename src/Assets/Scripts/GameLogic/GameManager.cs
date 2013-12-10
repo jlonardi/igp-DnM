@@ -86,8 +86,8 @@ public class GameManager : MonoBehaviour {
 			break;
 		default:
 			if (saves.levelState == LevelState.LOADING_SAVE){
-				ApplyDifficultySetting();
 				saves.container.RestoreValues();	
+				ApplyDifficultySetting();
 				saves.levelState = LevelState.LOADED;
 			} else {
 				NewGame();
@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour {
 		statistics.Reset();
 		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
 		difficulty = saves.difficulty;
+		//set initial health for safe vale, will be corrected on difficulty settings
+		dragon.SetHealth(99999);
 		ApplyDifficultySetting();
 	}
 
@@ -112,23 +114,20 @@ public class GameManager : MonoBehaviour {
 		case DifficultySetting.EASY:
 			enemies.maxEnemies = 1;
 			enemies.timeBetweenEnemyCountAddition = 30;
-			dragon.SetHealth(5000);
-			dragon.SetMaxHealth(5000);
-			enemies.waveIntervalOnDragonFight = 3f;
+			dragon.SetMaxHealth(8000);
+			enemies.waveIntervalOnDragonFight = 2f;
 			enemies.maxDragonFightEnemies = 5;
 			break;
 		case DifficultySetting.NORMAL:
 			enemies.maxEnemies = 2;
 			enemies.timeBetweenEnemyCountAddition = 20;
-			dragon.SetHealth(10000);
 			dragon.SetMaxHealth(10000);
 			enemies.waveIntervalOnDragonFight = 1.5f;
-			enemies.maxDragonFightEnemies = 15;
+			enemies.maxDragonFightEnemies = 10;
 			break;	
 		case DifficultySetting.HARD:
 			enemies.maxEnemies = 10;
 			enemies.timeBetweenEnemyCountAddition = 10;
-			dragon.SetHealth(15000);
 			dragon.SetMaxHealth(15000);
 			enemies.waveIntervalOnDragonFight = 1.0f;
 			enemies.maxDragonFightEnemies = 20;
@@ -136,7 +135,6 @@ public class GameManager : MonoBehaviour {
 		case DifficultySetting.EPIC:
 			enemies.maxEnemies = 15;
 			enemies.timeBetweenEnemyCountAddition = 5;
-			dragon.SetHealth(20000);
 			dragon.SetMaxHealth(20000);
 			enemies.waveIntervalOnDragonFight = 1.0f;
 			enemies.maxDragonFightEnemies = 40;
