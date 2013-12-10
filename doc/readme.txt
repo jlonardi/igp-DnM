@@ -53,3 +53,29 @@ compromise with simpler shadows and "Fastest" will disable all shadowing and ant
 game can run on slower computers.
 
 When everything is set, hit Play!-button and have fun!
+
+Changelist 1.0->1.1
+-------------------
+fixes:
+- game now correctly saves guns which player has picked up
+- game now correctly saves enemy spawning times
+- game now correctly saves dragon battle
+- gun animations didn't play always correctly
+- minigun sounds don't keep playing if game ends while player was firing
+- minigun sounds don't keep playing if game is paused while player was firing  
+- sound of player hitting ground after jump is now always played correctly
+- sprinting doesn't continue after cooldown period automatically
+- epic story's next-button is now correctly shown after returning from game level
+
+improvements:
+- there is now a delay after player has been killed or treaure has been stolen
+- game now tells player when treasure has been fully stolen
+- dead dragon ragdoll improvements
+- game has now a difficulty setting
+- save game dialog now shows a preview of save contents of the save slots
+- tweaked gun animations while sprinting
+- most of the materials now respond to gun fire (particle effects)
+- sprinting now automatically stops while airborne
+- mouse smoothing reduced to favor faster responce time
+- player jumps now higher
+- sharper fonts on main menu

@@ -31,7 +31,12 @@ public class GameOverScreen {
 		GUILayout.BeginArea(new Rect(centerX-100, 400,300, 400));
 		GUILayout.Label("Treasure: " + game.treasure.GetTreasureAmount(), "plaintext");
 		GUILayout.Label ("Enemies: " + game.statistics.bodycount, "plaintext");
-		GUILayout.Label ("Score: " + game.statistics.score, "plaintext");
+		if (game.statistics.dragonSlayed){
+			GUILayout.Label ("Dragon was killed!", "plaintext");
+		} else {
+			GUILayout.Label ("Dragon is still alive", "plaintext");
+		}
+		GUILayout.Label ("Total score: " + game.statistics.score, "plaintext");
 		GUILayout.EndArea();
 
 		GUILayout.BeginArea(new Rect(centerX-175, 700,350,600));
