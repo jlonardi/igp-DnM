@@ -4,11 +4,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class LoadMenu {	
 	private OnGuiManager gui;
+	private GameManager game;
 	private int centerX;
 	private int centerY;
 
 	public void Initialize(){
 		gui = OnGuiManager.instance;
+		game = GameManager.instance;
 		centerX = gui.GetCenterX();
 		centerY = gui.GetCenterY();
 	}
@@ -18,8 +20,8 @@ public class LoadMenu {
 		if (gui == null){
 			Initialize();
 		}
-
-		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
+		
+		SaveInfo[] saveInfo = game.saves.saveInfo;
 
 		GUI.skin.GetStyle("window");
 		GUI.Box(new Rect(centerX-500, 100,1000,850),"", "window");
@@ -30,7 +32,7 @@ public class LoadMenu {
 		
 		GUILayout.BeginArea(new Rect(centerX-375, 330,350,600));
 
-		for (int i = 0; i < SaveManager.instance.maxSaveSlots; i++){
+		for (int i = 0; i < game.saves.maxSaveSlots; i++){
 			if (saveInfo[i].name == null){
 				//disable button if no savegame selected
 				GUI.enabled = false;
@@ -42,8 +44,8 @@ public class LoadMenu {
 			if (saveInfo[i].name != null){
 				if(GUILayout.Button(saveInfo[i].name))
 				{
-					SaveManager.instance.container.saveSlot = i;
-					SaveManager.instance.Load();
+					game.saves.container.saveSlot = i;
+					game.saves.Load();
 				}
 				if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)){
 					GUILayout.Window(i, new Rect(centerX, 300,430,550), ShowDetails, "");
@@ -51,11 +53,11 @@ public class LoadMenu {
 			}
 		}	
 		if(GUILayout.Button ("Return"))	{
-			if (GameManager.instance.gameState == GameState.LOAD_MENU_MAIN){
-				GameManager.instance.gameState = GameState.MAIN_MENU;
+			if (game.gameState == GameState.LOAD_MENU_MAIN){
+				game.gameState = GameState.MAIN_MENU;
 			}
-			if (GameManager.instance.gameState == GameState.LOAD_MENU_PAUSE){
-				GameManager.instance.gameState = GameState.PAUSE_MENU;
+			if (game.gameState == GameState.LOAD_MENU_PAUSE){
+				game.gameState = GameState.PAUSE_MENU;
 			}
 		}
 		GUILayout.EndArea();		
@@ -82,7 +84,7 @@ public class LoadMenu {
 	}
 
 	private void ShowDetails(int windowID) {
-		SaveInfo[] saveInfo = SaveManager.instance.saveInfo;
+		SaveInfo[] saveInfo = game.saves.saveInfo;
 		if (saveInfo[windowID].name == null || saveInfo[windowID].dateTime == null || saveInfo[windowID].screenshot == null){
 			return;
 		}

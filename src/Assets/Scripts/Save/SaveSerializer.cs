@@ -71,8 +71,11 @@ namespace UnitySerialization {
 			if (!File.Exists(filePath)){
 				saveInfo.name = null;
 			} else {
+				container.formatVersion = 0;
 				Load(saveIndex, false);
-				if (container.name != null){
+				if (container.formatVersion<3){ //don't show saved games from older versions
+					saveInfo.name = null;
+				} else if  (container.name != null){
 					saveInfo.name = container.name;
 				} else {
 					saveInfo.name = "Savegame " + (saveIndex + 1);

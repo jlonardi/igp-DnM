@@ -12,7 +12,8 @@ public class SaveManager : MonoBehaviour {
 	private static int formatVersion = 3;
 
 	public LevelState levelState = LevelState.LOADED;
-	// difficulty used to store new game difficulty + when showing highscore after game
+
+	// difficulty variable is used for storing new game difficulty + when showing highscore after game
 	public DifficultySetting difficulty = DifficultySetting.NORMAL;
 
 	[HideInInspector]
