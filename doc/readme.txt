@@ -65,10 +65,11 @@ fixes:
 - minigun sounds don't keep playing if game is paused while player was firing  
 - sound of player hitting ground after jump is now always played correctly
 - sprinting doesn't continue after cooldown period automatically
-- epic story's next-button is now correctly shown after returning from game level
+- story's next-button is now correctly shown after returning from game level
 
 improvements:
 - there is now a delay after player has been killed or treaure has been stolen
+- player drops to the groumd when killed
 - game now tells player when treasure has been fully stolen
 - dead dragon ragdoll improvements
 - game has now a difficulty setting
@@ -78,4 +79,5 @@ improvements:
 - sprinting now automatically stops while airborne
 - mouse smoothing reduced to favor faster responce time
 - player jumps now higher
+- better balancing on enemy spawns
 - sharper fonts on main menu
