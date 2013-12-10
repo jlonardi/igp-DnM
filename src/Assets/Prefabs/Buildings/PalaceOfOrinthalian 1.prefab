@@ -14,7 +14,7 @@ GameObject:
   - 95: {fileID: 9500000}
   m_Layer: 10
   m_Name: PoO_Table
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: CauldronGround
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +140,7 @@ GameObject:
   - 64: {fileID: 6400004}
   m_Layer: 0
   m_Name: PoO_WoodSupports
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ GameObject:
   - 64: {fileID: 6400006}
   m_Layer: 0
   m_Name: PoO_WoodenRoof
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - 64: {fileID: 6400008}
   m_Layer: 0
   m_Name: PoO_WallsLower
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   - 64: {fileID: 6400010}
   m_Layer: 0
   m_Name: PoO_SupportBeams
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ GameObject:
   - 64: {fileID: 6400002}
   m_Layer: 0
   m_Name: PoO_StoneWall_LOD0
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - 64: {fileID: 6400012}
   m_Layer: 0
   m_Name: PoO_RoughWoodenPlanks
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +266,7 @@ GameObject:
   - 64: {fileID: 6400000}
   m_Layer: 0
   m_Name: PoO_ArchColumns
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

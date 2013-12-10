@@ -105,7 +105,7 @@ GameObject:
   - 4: {fileID: 400010}
   m_Layer: 10
   m_Name: Kivirinkula
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

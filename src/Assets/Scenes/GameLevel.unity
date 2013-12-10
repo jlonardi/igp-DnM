@@ -342,7 +342,7 @@ GameObject:
   - 136: {fileID: 7594000}
   m_Layer: 9
   m_Name: openbarrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1498,7 +1498,7 @@ GameObject:
   - 65: {fileID: 29289269}
   m_Layer: 9
   m_Name: Wheel01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1706,7 +1706,7 @@ GameObject:
   - 95: {fileID: 34727329}
   m_Layer: 0
   m_Name: bone7
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1893,7 +1893,7 @@ GameObject:
   - 95: {fileID: 37470898}
   m_Layer: 10
   m_Name: brokenstonewall_1
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2066,7 +2066,7 @@ GameObject:
   - 64: {fileID: 43497154}
   m_Layer: 9
   m_Name: BigBone5
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,7 +2208,7 @@ GameObject:
   - 95: {fileID: 44893360}
   m_Layer: 0
   m_Name: skull
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5770,7 +5770,7 @@ GameObject:
   - 135: {fileID: 88900640}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6861,7 +6861,7 @@ GameObject:
   - 65: {fileID: 113434793}
   m_Layer: 9
   m_Name: anvil
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7054,8 +7054,8 @@ MeshFilter:
 --- !u!1 &115031170
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-  m_PrefabInternal: {fileID: 555972520}
+  m_PrefabParentObject: {fileID: 100000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+  m_PrefabInternal: {fileID: 686446687}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 115031174}
@@ -7064,7 +7064,7 @@ GameObject:
   - 65: {fileID: 115031171}
   m_Layer: 9
   m_Name: Cart04
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -7072,9 +7072,9 @@ GameObject:
 --- !u!65 &115031171
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: 55aa49c292af7574c9a84c4aa5b2faf0,
+  m_PrefabParentObject: {fileID: 6500000, guid: 33826ce45086cbb4fa6690501d5a0c78,
     type: 2}
-  m_PrefabInternal: {fileID: 555972520}
+  m_PrefabInternal: {fileID: 686446687}
   m_GameObject: {fileID: 115031170}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -7085,9 +7085,9 @@ BoxCollider:
 --- !u!23 &115031172
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 55aa49c292af7574c9a84c4aa5b2faf0,
+  m_PrefabParentObject: {fileID: 2300000, guid: 33826ce45086cbb4fa6690501d5a0c78,
     type: 2}
-  m_PrefabInternal: {fileID: 555972520}
+  m_PrefabInternal: {fileID: 686446687}
   m_GameObject: {fileID: 115031170}
   m_Enabled: 1
   m_CastShadows: 1
@@ -7107,16 +7107,16 @@ Renderer:
 --- !u!33 &115031173
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: 55aa49c292af7574c9a84c4aa5b2faf0,
+  m_PrefabParentObject: {fileID: 3300000, guid: 33826ce45086cbb4fa6690501d5a0c78,
     type: 2}
-  m_PrefabInternal: {fileID: 555972520}
+  m_PrefabInternal: {fileID: 686446687}
   m_GameObject: {fileID: 115031170}
   m_Mesh: {fileID: 4300000, guid: 4c5b3cc9f2f505144821ab8da8218e1a, type: 3}
 --- !u!4 &115031174
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-  m_PrefabInternal: {fileID: 555972520}
+  m_PrefabParentObject: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+  m_PrefabInternal: {fileID: 686446687}
   m_GameObject: {fileID: 115031170}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: -29.9563751, y: -2.89016151, z: -5.37173462}
@@ -7585,7 +7585,7 @@ GameObject:
   - 65: {fileID: 128470982}
   m_Layer: 9
   m_Name: grindwheel
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9427,7 +9427,7 @@ GameObject:
   - 136: {fileID: 169030227}
   m_Layer: 9
   m_Name: broken_bucket
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11052,50 +11052,6 @@ Transform:
   m_LocalScale: {x: .999999821, y: .999999642, z: .99999994}
   m_Children: []
   m_Father: {fileID: 431039008}
---- !u!1001 &211286202
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1004887702}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.31748962
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.73301506
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -8.73348999
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: .0665168837
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.251958609
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -.910408497
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .321323454
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-  m_RootGameObject: {fileID: 575430366}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &214006125
 GameObject:
   m_ObjectHideFlags: 0
@@ -11427,7 +11383,7 @@ GameObject:
   - 65: {fileID: 222226565}
   m_Layer: 9
   m_Name: anvil
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12590,7 +12546,7 @@ GameObject:
   - 95: {fileID: 259167850}
   m_Layer: 0
   m_Name: skull
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13466,58 +13422,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2125251488}
   m_GameObject: {fileID: 276137039}
   m_Mesh: {fileID: 4300000, guid: 8dab1e06f5a11cc40aa64c3d0809b7d3, type: 3}
---- !u!1001 &276864406
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1004887702}
-    m_Modifications:
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.13786793
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: .398452759
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -.815640152
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .578559637
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalScale.y
-      value: .391989917
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_LocalScale.z
-      value: .391989917
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-  m_RootGameObject: {fileID: 650730306}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &277566136
 GameObject:
   m_ObjectHideFlags: 0
@@ -13558,7 +13462,7 @@ GameObject:
   - 64: {fileID: 279075955}
   m_Layer: 0
   m_Name: PoO_ArchColumns
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13716,7 +13620,7 @@ GameObject:
   - 65: {fileID: 287465070}
   m_Layer: 9
   m_Name: Big Bone 6
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14420,7 +14324,7 @@ GameObject:
   - 95: {fileID: 298135720}
   m_Layer: 0
   m_Name: bone1
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15314,7 +15218,7 @@ GameObject:
   - 65: {fileID: 314232319}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15384,7 +15288,7 @@ GameObject:
   - 95: {fileID: 315161389}
   m_Layer: 9
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15442,50 +15346,6 @@ Transform:
   m_LocalScale: {x: .999999702, y: 1.00000012, z: .999999881}
   m_Children: []
   m_Father: {fileID: 810420905}
---- !u!1001 &317650315
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1004887702}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -16.6850433
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.53615093
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 25.7510376
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -.707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-  m_RootGameObject: {fileID: 782099364}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &319204683
 GameObject:
   m_ObjectHideFlags: 0
@@ -16598,6 +16458,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1336486688}
+--- !u!1001 &343301276
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1004887702}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.31748962
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.73301506
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -8.73348999
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .0665168837
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -.251958609
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -.910408497
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .321323454
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+  m_RootGameObject: {fileID: 575430366}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &343637458
 GameObject:
   m_ObjectHideFlags: 0
@@ -16638,7 +16538,7 @@ GameObject:
   - 64: {fileID: 345665570}
   m_Layer: 0
   m_Name: PoO_WallsLower
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17678,7 +17578,7 @@ GameObject:
   - 95: {fileID: 368182996}
   m_Layer: 10
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17965,7 +17865,7 @@ GameObject:
   - 135: {fileID: 373000639}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18581,9 +18481,9 @@ Transform:
   - {fileID: 292026108}
   - {fileID: 505056630}
   - {fileID: 1037257447}
-  - {fileID: 1386075072}
-  - {fileID: 1093486213}
   - {fileID: 2138496619}
+  - {fileID: 1093486213}
+  - {fileID: 1386075072}
   - {fileID: 274898126}
   - {fileID: 982710137}
   - {fileID: 704710250}
@@ -20340,7 +20240,7 @@ GameObject:
   - 95: {fileID: 420083015}
   m_Layer: 9
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21082,7 +20982,7 @@ GameObject:
   - 65: {fileID: 434176373}
   m_Layer: 9
   m_Name: Pailing
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -22131,7 +22031,7 @@ GameObject:
   - 65: {fileID: 461103424}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23008,7 +22908,7 @@ GameObject:
   - 95: {fileID: 478558904}
   m_Layer: 10
   m_Name: PoO_Table
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24070,7 +23970,7 @@ GameObject:
   - 65: {fileID: 493944485}
   m_Layer: 9
   m_Name: BigBone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24823,7 +24723,7 @@ GameObject:
   - 65: {fileID: 510731171}
   m_Layer: 9
   m_Name: Pailing
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -24991,7 +24891,7 @@ GameObject:
   - 95: {fileID: 514956751}
   m_Layer: 0
   m_Name: bone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25442,7 +25342,7 @@ GameObject:
   - 23: {fileID: 524509006}
   m_Layer: 0
   m_Name: gold
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25735,7 +25635,7 @@ GameObject:
   - 65: {fileID: 526692161}
   m_Layer: 10
   m_Name: bigBone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25817,7 +25717,7 @@ GameObject:
   - 4: {fileID: 529592478}
   m_Layer: 0
   m_Name: Skeleton With Armor
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26844,50 +26744,6 @@ Transform:
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 1958378566}
---- !u!1001 &555972520
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1004887702}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -29.9563751
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.89016151
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -5.37173462
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -.707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
-  m_RootGameObject: {fileID: 115031170}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &556620876
 GameObject:
   m_ObjectHideFlags: 0
@@ -27839,8 +27695,8 @@ MeshFilter:
 --- !u!1 &575430366
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-  m_PrefabInternal: {fileID: 211286202}
+  m_PrefabParentObject: {fileID: 100000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+  m_PrefabInternal: {fileID: 343301276}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 575430370}
@@ -27849,7 +27705,7 @@ GameObject:
   - 65: {fileID: 575430367}
   m_Layer: 9
   m_Name: Paling01_a
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -27857,9 +27713,9 @@ GameObject:
 --- !u!65 &575430367
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: 20a1eaca4a6b8364badf4eee56be445e,
+  m_PrefabParentObject: {fileID: 6500000, guid: 926280842f35d284ea11485f287c314a,
     type: 2}
-  m_PrefabInternal: {fileID: 211286202}
+  m_PrefabInternal: {fileID: 343301276}
   m_GameObject: {fileID: 575430366}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -27870,9 +27726,9 @@ BoxCollider:
 --- !u!23 &575430368
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 20a1eaca4a6b8364badf4eee56be445e,
+  m_PrefabParentObject: {fileID: 2300000, guid: 926280842f35d284ea11485f287c314a,
     type: 2}
-  m_PrefabInternal: {fileID: 211286202}
+  m_PrefabInternal: {fileID: 343301276}
   m_GameObject: {fileID: 575430366}
   m_Enabled: 1
   m_CastShadows: 1
@@ -27892,16 +27748,16 @@ Renderer:
 --- !u!33 &575430369
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: 20a1eaca4a6b8364badf4eee56be445e,
+  m_PrefabParentObject: {fileID: 3300000, guid: 926280842f35d284ea11485f287c314a,
     type: 2}
-  m_PrefabInternal: {fileID: 211286202}
+  m_PrefabInternal: {fileID: 343301276}
   m_GameObject: {fileID: 575430366}
   m_Mesh: {fileID: 4300000, guid: 7cb8b506a751b9b489959fe912e589f2, type: 3}
 --- !u!4 &575430370
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 20a1eaca4a6b8364badf4eee56be445e, type: 2}
-  m_PrefabInternal: {fileID: 211286202}
+  m_PrefabParentObject: {fileID: 400000, guid: 926280842f35d284ea11485f287c314a, type: 2}
+  m_PrefabInternal: {fileID: 343301276}
   m_GameObject: {fileID: 575430366}
   m_LocalRotation: {x: .0665168837, y: -.251958609, z: -.910408497, w: .321323454}
   m_LocalPosition: {x: -2.31748962, y: -2.73301506, z: -8.73348999}
@@ -28182,7 +28038,7 @@ GameObject:
   - 64: {fileID: 581314236}
   m_Layer: 0
   m_Name: PoO_SupportBeams
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28503,7 +28359,7 @@ GameObject:
   - 65: {fileID: 590793191}
   m_Layer: 9
   m_Name: BigBone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28644,7 +28500,7 @@ GameObject:
   - 65: {fileID: 592666915}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29169,7 +29025,7 @@ GameObject:
   - 64: {fileID: 606158615}
   m_Layer: 0
   m_Name: PoO_StoneWall_LOD0
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29626,7 +29482,7 @@ GameObject:
   - 64: {fileID: 611701280}
   m_Layer: 10
   m_Name: Ruins
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30263,7 +30119,7 @@ GameObject:
   - 65: {fileID: 623055180}
   m_Layer: 10
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31485,7 +31341,7 @@ GameObject:
   - 65: {fileID: 642138548}
   m_Layer: 9
   m_Name: bigBone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31672,8 +31528,8 @@ Transform:
 --- !u!1 &650730306
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabParentObject: {fileID: 100000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+  m_PrefabInternal: {fileID: 819902747}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 650730311}
@@ -31683,7 +31539,7 @@ GameObject:
   - 65: {fileID: 650730307}
   m_Layer: 10
   m_Name: desertfortress_wall_d_5m
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31691,9 +31547,9 @@ GameObject:
 --- !u!65 &650730307
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: b4757f18d75c3d24f9313e0f65767138,
+  m_PrefabParentObject: {fileID: 6500000, guid: 686ab0ee313d11d47aca293819444213,
     type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabInternal: {fileID: 819902747}
   m_GameObject: {fileID: 650730306}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -31705,9 +31561,9 @@ BoxCollider:
 Animator:
   serializedVersion: 2
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: b4757f18d75c3d24f9313e0f65767138,
+  m_PrefabParentObject: {fileID: 9500000, guid: 686ab0ee313d11d47aca293819444213,
     type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabInternal: {fileID: 819902747}
   m_GameObject: {fileID: 650730306}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 33ee2e3c74999714db36066b362bdf67, type: 3}
@@ -31719,9 +31575,9 @@ Animator:
 --- !u!23 &650730309
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: b4757f18d75c3d24f9313e0f65767138,
+  m_PrefabParentObject: {fileID: 2300000, guid: 686ab0ee313d11d47aca293819444213,
     type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabInternal: {fileID: 819902747}
   m_GameObject: {fileID: 650730306}
   m_Enabled: 1
   m_CastShadows: 1
@@ -31742,16 +31598,16 @@ Renderer:
 --- !u!33 &650730310
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: b4757f18d75c3d24f9313e0f65767138,
+  m_PrefabParentObject: {fileID: 3300000, guid: 686ab0ee313d11d47aca293819444213,
     type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabInternal: {fileID: 819902747}
   m_GameObject: {fileID: 650730306}
   m_Mesh: {fileID: 4300000, guid: 33ee2e3c74999714db36066b362bdf67, type: 3}
 --- !u!4 &650730311
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: b4757f18d75c3d24f9313e0f65767138, type: 2}
-  m_PrefabInternal: {fileID: 276864406}
+  m_PrefabParentObject: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+  m_PrefabInternal: {fileID: 819902747}
   m_GameObject: {fileID: 650730306}
   m_LocalRotation: {x: -.815640152, y: 0, z: 0, w: .578559637}
   m_LocalPosition: {x: 0, y: -1.13786793, z: .398452759}
@@ -33150,6 +33006,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 877943204}
   m_GameObject: {fileID: 685164228}
   m_Mesh: {fileID: 4300000, guid: 8445a075e5e9cd34ead20cad9062fa65, type: 3}
+--- !u!1001 &686446687
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1004887702}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -29.9563751
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.89016151
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -5.37173462
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 33826ce45086cbb4fa6690501d5a0c78, type: 2}
+  m_RootGameObject: {fileID: 115031170}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &686976891
 GameObject:
   m_ObjectHideFlags: 0
@@ -33179,58 +33075,6 @@ Transform:
   - {fileID: 54647669}
   - {fileID: 1651074156}
   m_Father: {fileID: 1236855775}
---- !u!1001 &687337152
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1004887702}
-    m_Modifications:
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.80194092
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -4.56348324
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -13.9885254
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -.663945973
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: .334726155
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: .497886151
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .446367145
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalScale.x
-      value: .364153445
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_LocalScale.y
-      value: .364153445
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-  m_RootGameObject: {fileID: 2020528743}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &689495268
 GameObject:
   m_ObjectHideFlags: 0
@@ -33243,7 +33087,7 @@ GameObject:
   - 65: {fileID: 689495269}
   m_Layer: 9
   m_Name: Big Bone 6
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34229,7 +34073,7 @@ GameObject:
   - 4: {fileID: 709326520}
   m_Layer: 10
   m_Name: StoneCircle
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34249,8 +34093,8 @@ Transform:
   - {fileID: 574443859}
   - {fileID: 2121999620}
   - {fileID: 1196714743}
-  - {fileID: 579783888}
   - {fileID: 810392301}
+  - {fileID: 579783888}
   m_Father: {fileID: 485608024}
 --- !u!1 &709598382
 GameObject:
@@ -34911,7 +34755,7 @@ GameObject:
   - 64: {fileID: 722853420}
   m_Layer: 9
   m_Name: BigBone5
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35376,7 +35220,7 @@ GameObject:
   - 95: {fileID: 733238965}
   m_Layer: 10
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35996,7 +35840,7 @@ GameObject:
   - 135: {fileID: 744286680}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36276,7 +36120,7 @@ GameObject:
   - 65: {fileID: 751044756}
   m_Layer: 9
   m_Name: BigBone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37180,7 +37024,7 @@ GameObject:
   - 64: {fileID: 765247448}
   m_Layer: 0
   m_Name: PoO_WoodenRoof
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37366,7 +37210,7 @@ GameObject:
   - 64: {fileID: 768865097}
   m_Layer: 10
   m_Name: Ruins
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37986,8 +37830,8 @@ Prefab:
 --- !u!1 &782099364
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-  m_PrefabInternal: {fileID: 317650315}
+  m_PrefabParentObject: {fileID: 100000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+  m_PrefabInternal: {fileID: 1337821728}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 782099368}
@@ -37996,7 +37840,7 @@ GameObject:
   - 64: {fileID: 782099365}
   m_Layer: 9
   m_Name: Cart01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38004,9 +37848,9 @@ GameObject:
 --- !u!64 &782099365
 MeshCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9,
+  m_PrefabParentObject: {fileID: 6400000, guid: 4d9f1495d67364b46a508dbf6de794bf,
     type: 2}
-  m_PrefabInternal: {fileID: 317650315}
+  m_PrefabInternal: {fileID: 1337821728}
   m_GameObject: {fileID: 782099364}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -38018,9 +37862,9 @@ MeshCollider:
 --- !u!23 &782099366
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 56a81c7d49a47f244ba3fd918b1d00c9,
+  m_PrefabParentObject: {fileID: 2300000, guid: 4d9f1495d67364b46a508dbf6de794bf,
     type: 2}
-  m_PrefabInternal: {fileID: 317650315}
+  m_PrefabInternal: {fileID: 1337821728}
   m_GameObject: {fileID: 782099364}
   m_Enabled: 1
   m_CastShadows: 1
@@ -38040,16 +37884,16 @@ Renderer:
 --- !u!33 &782099367
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: 56a81c7d49a47f244ba3fd918b1d00c9,
+  m_PrefabParentObject: {fileID: 3300000, guid: 4d9f1495d67364b46a508dbf6de794bf,
     type: 2}
-  m_PrefabInternal: {fileID: 317650315}
+  m_PrefabInternal: {fileID: 1337821728}
   m_GameObject: {fileID: 782099364}
   m_Mesh: {fileID: 4300000, guid: 84ad49a1269279740bf8727bac44a865, type: 3}
 --- !u!4 &782099368
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 56a81c7d49a47f244ba3fd918b1d00c9, type: 2}
-  m_PrefabInternal: {fileID: 317650315}
+  m_PrefabParentObject: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+  m_PrefabInternal: {fileID: 1337821728}
   m_GameObject: {fileID: 782099364}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: -16.6850433, y: -2.53615093, z: 25.7510376}
@@ -38874,7 +38718,7 @@ GameObject:
   - 135: {fileID: 805680073}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39362,6 +39206,46 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .356546253, y: .379999995, z: .407629609}
   m_Center: {x: -.0599999987, y: -4.17232513e-07, z: -.162417173}
+--- !u!1001 &819902747
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1004887702}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.13786793
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .398452759
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.815640152
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .578559637
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 686ab0ee313d11d47aca293819444213, type: 2}
+  m_RootGameObject: {fileID: 650730306}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &820113281
 GameObject:
   m_ObjectHideFlags: 0
@@ -40315,7 +40199,7 @@ GameObject:
   - 95: {fileID: 839739553}
   m_Layer: 9
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42123,7 +42007,7 @@ GameObject:
   - 95: {fileID: 885757860}
   m_Layer: 10
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42993,7 +42877,7 @@ GameObject:
   - 64: {fileID: 905414777}
   m_Layer: 0
   m_Name: PoO_RoughWoodenPlanks
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43368,7 +43252,7 @@ GameObject:
   - 135: {fileID: 917507129}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44045,6 +43929,10 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa39c0070ee7e464cb12509172b5ac32, type: 3}
+      propertyPath: m_TagString
+      value: wood
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa39c0070ee7e464cb12509172b5ac32, type: 3}
   m_RootGameObject: {fileID: 953139784}
@@ -44177,7 +44065,7 @@ GameObject:
   - 95: {fileID: 945758871}
   m_Layer: 0
   m_Name: bone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44487,7 +44375,7 @@ GameObject:
   - 95: {fileID: 953139785}
   m_Layer: 9
   m_Name: barrel_lid
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44742,7 +44630,7 @@ GameObject:
   - 65: {fileID: 955860373}
   m_Layer: 10
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45994,7 +45882,7 @@ GameObject:
   - 95: {fileID: 988234347}
   m_Layer: 10
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46722,7 +46610,7 @@ GameObject:
   - 65: {fileID: 999555766}
   m_Layer: 9
   m_Name: Big Bone 6
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46834,7 +46722,7 @@ GameObject:
   - 135: {fileID: 1002138656}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47109,8 +46997,8 @@ Transform:
   - {fileID: 1373148138}
   - {fileID: 1763212543}
   - {fileID: 1543081182}
-  - {fileID: 1831769262}
   - {fileID: 1988862135}
+  - {fileID: 1831769262}
   - {fileID: 1086006658}
   m_Father: {fileID: 485608024}
 --- !u!1 &1005448936
@@ -47266,7 +47154,7 @@ GameObject:
   - 65: {fileID: 1010216925}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47397,7 +47285,7 @@ GameObject:
   - 136: {fileID: 1017543257}
   m_Layer: 9
   m_Name: openbarrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47790,7 +47678,7 @@ GameObject:
   - 64: {fileID: 1029047643}
   m_Layer: 0
   m_Name: PoO_WoodSupports
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48959,7 +48847,7 @@ GameObject:
   - 95: {fileID: 1050681464}
   m_Layer: 9
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49086,7 +48974,7 @@ GameObject:
   - 95: {fileID: 1054612712}
   m_Layer: 0
   m_Name: bone7
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49246,7 +49134,7 @@ GameObject:
   - 65: {fileID: 1056527182}
   m_Layer: 9
   m_Name: bigBone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49303,7 +49191,7 @@ GameObject:
   - 65: {fileID: 1057864598}
   m_Layer: 10
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50538,7 +50426,7 @@ GameObject:
   - 95: {fileID: 1086006659}
   m_Layer: 9
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50835,7 +50723,7 @@ GameObject:
   - 136: {fileID: 1090678727}
   m_Layer: 10
   m_Name: CauldronGround
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50967,7 +50855,7 @@ GameObject:
   - 136: {fileID: 1091965772}
   m_Layer: 10
   m_Name: broken_bucket
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51274,32 +51162,32 @@ Transform:
   - {fileID: 1738272025}
   - {fileID: 875015727}
   - {fileID: 916690812}
-  - {fileID: 1512682148}
+  - {fileID: 879876695}
   - {fileID: 1480570609}
   - {fileID: 1385136241}
-  - {fileID: 879876695}
+  - {fileID: 1512682148}
   - {fileID: 166808052}
   - {fileID: 1942912765}
-  - {fileID: 665920039}
-  - {fileID: 1160021727}
-  - {fileID: 2140119333}
-  - {fileID: 1619647741}
   - {fileID: 1751123473}
+  - {fileID: 665920039}
+  - {fileID: 1619647741}
+  - {fileID: 1160021727}
   - {fileID: 1992088143}
-  - {fileID: 9089902}
+  - {fileID: 2140119333}
   - {fileID: 1648975339}
-  - {fileID: 1886159669}
+  - {fileID: 9089902}
   - {fileID: 1556831485}
+  - {fileID: 1886159669}
   - {fileID: 1739589851}
   - {fileID: 1511012015}
-  - {fileID: 1959100904}
-  - {fileID: 1805050232}
   - {fileID: 1187150421}
-  - {fileID: 2023211980}
-  - {fileID: 273613665}
-  - {fileID: 1065988768}
+  - {fileID: 1805050232}
+  - {fileID: 1959100904}
   - {fileID: 1224434596}
+  - {fileID: 273613665}
   - {fileID: 1545209373}
+  - {fileID: 1065988768}
+  - {fileID: 2023211980}
   m_Father: {fileID: 1890335680}
 --- !u!1001 &1094526417
 Prefab:
@@ -52846,7 +52734,7 @@ GameObject:
   - 95: {fileID: 1125600154}
   m_Layer: 0
   m_Name: skull
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53173,6 +53061,14 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 57790106ff977e54ba13d3c690ced729, type: 2}
+    - target: {fileID: 100002, guid: ea6da4a0ebadb704691a6fa2d03f817b, type: 3}
+      propertyPath: m_TagString
+      value: wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ea6da4a0ebadb704691a6fa2d03f817b, type: 3}
+      propertyPath: m_TagString
+      value: wood
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea6da4a0ebadb704691a6fa2d03f817b, type: 3}
   m_RootGameObject: {fileID: 2026712655}
@@ -54498,7 +54394,7 @@ GameObject:
   - 95: {fileID: 1171736555}
   m_Layer: 9
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56388,7 +56284,7 @@ GameObject:
   - 135: {fileID: 1216426114}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56683,6 +56579,10 @@ Prefab:
     - target: {fileID: 100000, guid: f7acd18dc0d9ffe4492e21fd707f9db0, type: 2}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f7acd18dc0d9ffe4492e21fd707f9db0, type: 2}
+      propertyPath: m_TagString
+      value: metal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7acd18dc0d9ffe4492e21fd707f9db0, type: 2}
@@ -57803,7 +57703,7 @@ GameObject:
   - 95: {fileID: 1239172408}
   m_Layer: 9
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58020,6 +57920,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 976633952}
   m_GameObject: {fileID: 1242840343}
   m_Mesh: {fileID: 4300000, guid: 0aee836645b89374583afeb4ca36b969, type: 3}
+--- !u!1001 &1243003952
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1004887702}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.80194092
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.56348324
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -13.9885254
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.663945973
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .334726155
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: .497886151
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .446367145
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+  m_RootGameObject: {fileID: 2020528743}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1243080775
 GameObject:
   m_ObjectHideFlags: 0
@@ -58176,7 +58116,7 @@ GameObject:
   - 65: {fileID: 1244070948}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61484,6 +61424,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2004562315}
   m_GameObject: {fileID: 1337416846}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1337821728
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1004887702}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -16.6850433
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.53615093
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 25.7510376
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+      propertyPath: m_Name
+      value: Cart01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4d9f1495d67364b46a508dbf6de794bf, type: 2}
+  m_RootGameObject: {fileID: 782099364}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1340479696
 GameObject:
   m_ObjectHideFlags: 0
@@ -61510,8 +61494,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 806609394}
-  - {fileID: 1692917557}
   - {fileID: 62375995}
+  - {fileID: 1692917557}
   m_Father: {fileID: 485608024}
 --- !u!1 &1341437407
 GameObject:
@@ -61593,7 +61577,7 @@ GameObject:
   - 95: {fileID: 1344073893}
   m_Layer: 10
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63126,7 +63110,7 @@ GameObject:
   - 65: {fileID: 1373148139}
   m_Layer: 9
   m_Name: sack1
-  m_TagString: Untagged
+  m_TagString: dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63972,7 +63956,7 @@ GameObject:
   - 65: {fileID: 1389435801}
   m_Layer: 9
   m_Name: bigBone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64552,7 +64536,7 @@ GameObject:
   - 64: {fileID: 1404886805}
   m_Layer: 10
   m_Name: Ruins
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64958,7 +64942,7 @@ GameObject:
   - 95: {fileID: 1416447189}
   m_Layer: 0
   m_Name: bone5
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65162,7 +65146,7 @@ GameObject:
   - 64: {fileID: 1418670501}
   m_Layer: 10
   m_Name: Ruins
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66163,7 +66147,7 @@ GameObject:
   - 23: {fileID: 1447943610}
   m_Layer: 0
   m_Name: box_top
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66630,7 +66614,7 @@ GameObject:
   - 65: {fileID: 1462795223}
   m_Layer: 9
   m_Name: BigBone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67136,7 +67120,7 @@ GameObject:
   - 65: {fileID: 1467985229}
   m_Layer: 9
   m_Name: plank
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67940,7 +67924,7 @@ GameObject:
   - 65: {fileID: 1482687983}
   m_Layer: 9
   m_Name: plank
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68496,7 +68480,7 @@ GameObject:
   - 95: {fileID: 1498093885}
   m_Layer: 10
   m_Name: horseshoe
-  m_TagString: Untagged
+  m_TagString: metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70382,7 +70366,7 @@ GameObject:
   - 65: {fileID: 1543081179}
   m_Layer: 9
   m_Name: Wheel01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72747,7 +72731,7 @@ GameObject:
   - 95: {fileID: 1597722374}
   m_Layer: 0
   m_Name: bone1
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74523,7 +74507,7 @@ GameObject:
   - 95: {fileID: 1638761080}
   m_Layer: 0
   m_Name: bone3
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74640,7 +74624,7 @@ GameObject:
   - 135: {fileID: 1640430333}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76140,7 +76124,7 @@ GameObject:
   - 65: {fileID: 1650550496}
   m_Layer: 9
   m_Name: Wheel01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78868,7 +78852,7 @@ GameObject:
   - 135: {fileID: 1720073973}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79482,7 +79466,7 @@ GameObject:
   - 65: {fileID: 1736582910}
   m_Layer: 9
   m_Name: plank
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80729,7 +80713,7 @@ GameObject:
   - 65: {fileID: 1763212541}
   m_Layer: 9
   m_Name: sack1
-  m_TagString: Untagged
+  m_TagString: dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81344,7 +81328,7 @@ GameObject:
   - 65: {fileID: 1774132813}
   m_Layer: 9
   m_Name: Log
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82052,7 +82036,7 @@ GameObject:
   - 65: {fileID: 1790608870}
   m_Layer: 10
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82689,7 +82673,7 @@ GameObject:
   - 95: {fileID: 1810017006}
   m_Layer: 0
   m_Name: skeleton 1
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82733,7 +82717,7 @@ GameObject:
   - 95: {fileID: 1814018749}
   m_Layer: 0
   m_Name: bone2
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83809,7 +83793,7 @@ GameObject:
   - 95: {fileID: 1829794667}
   m_Layer: 0
   m_Name: bone4
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83984,7 +83968,7 @@ GameObject:
   - 65: {fileID: 1831769259}
   m_Layer: 9
   m_Name: Wheel01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85465,7 +85449,7 @@ GameObject:
   - 135: {fileID: 1858726432}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85518,7 +85502,7 @@ GameObject:
   - 95: {fileID: 1859289820}
   m_Layer: 0
   m_Name: bone4
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85561,7 +85545,7 @@ GameObject:
   - 95: {fileID: 1859642944}
   m_Layer: 10
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89002,7 +88986,7 @@ GameObject:
   - 65: {fileID: 1925525040}
   m_Layer: 9
   m_Name: Log1
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90594,7 +90578,7 @@ GameObject:
   - 65: {fileID: 1958463389}
   m_Layer: 9
   m_Name: Big Bone 6
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91326,7 +91310,7 @@ GameObject:
   - 65: {fileID: 1980489612}
   m_Layer: 9
   m_Name: plank
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91499,7 +91483,7 @@ GameObject:
   - 65: {fileID: 1982735769}
   m_Layer: 10
   m_Name: hipposkull
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91871,7 +91855,7 @@ GameObject:
   - 65: {fileID: 1988862132}
   m_Layer: 9
   m_Name: Wheel01
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93714,8 +93698,8 @@ MeshFilter:
 --- !u!1 &2020528743
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabParentObject: {fileID: 100000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+  m_PrefabInternal: {fileID: 1243003952}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2020528748}
@@ -93725,7 +93709,7 @@ GameObject:
   - 65: {fileID: 2020528744}
   m_Layer: 10
   m_Name: desertfortress_wall_d_10m
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93733,9 +93717,9 @@ GameObject:
 --- !u!65 &2020528744
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: f4e297cfa7d8d2b4591bde1656aeecd5,
+  m_PrefabParentObject: {fileID: 6500000, guid: 3da4b051b53f2cf49b15b8124bb8abb6,
     type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabInternal: {fileID: 1243003952}
   m_GameObject: {fileID: 2020528743}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -93747,9 +93731,9 @@ BoxCollider:
 Animator:
   serializedVersion: 2
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: f4e297cfa7d8d2b4591bde1656aeecd5,
+  m_PrefabParentObject: {fileID: 9500000, guid: 3da4b051b53f2cf49b15b8124bb8abb6,
     type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabInternal: {fileID: 1243003952}
   m_GameObject: {fileID: 2020528743}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c7d65f659f3b00d41ae92d7cbdfa317a, type: 3}
@@ -93761,9 +93745,9 @@ Animator:
 --- !u!23 &2020528746
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: f4e297cfa7d8d2b4591bde1656aeecd5,
+  m_PrefabParentObject: {fileID: 2300000, guid: 3da4b051b53f2cf49b15b8124bb8abb6,
     type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabInternal: {fileID: 1243003952}
   m_GameObject: {fileID: 2020528743}
   m_Enabled: 1
   m_CastShadows: 1
@@ -93784,16 +93768,16 @@ Renderer:
 --- !u!33 &2020528747
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: f4e297cfa7d8d2b4591bde1656aeecd5,
+  m_PrefabParentObject: {fileID: 3300000, guid: 3da4b051b53f2cf49b15b8124bb8abb6,
     type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabInternal: {fileID: 1243003952}
   m_GameObject: {fileID: 2020528743}
   m_Mesh: {fileID: 4300000, guid: c7d65f659f3b00d41ae92d7cbdfa317a, type: 3}
 --- !u!4 &2020528748
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: f4e297cfa7d8d2b4591bde1656aeecd5, type: 2}
-  m_PrefabInternal: {fileID: 687337152}
+  m_PrefabParentObject: {fileID: 400000, guid: 3da4b051b53f2cf49b15b8124bb8abb6, type: 2}
+  m_PrefabInternal: {fileID: 1243003952}
   m_GameObject: {fileID: 2020528743}
   m_LocalRotation: {x: -.663945973, y: .334726155, z: .497886151, w: .446367145}
   m_LocalPosition: {x: -3.80194092, y: -4.56348324, z: -13.9885254}
@@ -94244,7 +94228,7 @@ GameObject:
   - 65: {fileID: 2026712662}
   m_Layer: 0
   m_Name: treasure_box
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94448,8 +94432,8 @@ Transform:
   m_Children:
   - {fileID: 65603442}
   - {fileID: 71557889}
-  - {fileID: 1847475002}
   - {fileID: 1526640731}
+  - {fileID: 1847475002}
   - {fileID: 1881250538}
   - {fileID: 1944831530}
   - {fileID: 619113403}
@@ -95170,7 +95154,7 @@ GameObject:
   - 65: {fileID: 2038855021}
   m_Layer: 9
   m_Name: Big Bone 6
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96691,7 +96675,7 @@ GameObject:
   - 135: {fileID: 2069247626}
   m_Layer: 9
   m_Name: BonePile
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97026,10 +97010,10 @@ Transform:
   - {fileID: 1372884151}
   - {fileID: 93990683}
   - {fileID: 1504536136}
-  - {fileID: 514500275}
   - {fileID: 1205066880}
-  - {fileID: 475212853}
+  - {fileID: 514500275}
   - {fileID: 327469518}
+  - {fileID: 475212853}
   m_Father: {fileID: 485608024}
 --- !u!1 &2084370254
 GameObject:
@@ -97480,7 +97464,7 @@ GameObject:
   - 95: {fileID: 2098239039}
   m_Layer: 0
   m_Name: Rope Bridge
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -98893,7 +98877,7 @@ GameObject:
   - 95: {fileID: 2129712091}
   m_Layer: 10
   m_Name: wooden_barrel
-  m_TagString: Untagged
+  m_TagString: wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
