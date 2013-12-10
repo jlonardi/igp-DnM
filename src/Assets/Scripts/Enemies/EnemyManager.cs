@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour {
 
 	public float timeBetweenEnemyCountAddition = 20;
 
-	public float maxDragonFightEnemies = 20;
+	public int maxDragonFightEnemies = 20;
 
 	public bool dragonFightSpwans = false;
 
@@ -69,7 +69,7 @@ public class EnemyManager : MonoBehaviour {
 		spawns = GameObject.Find("DragonSpawns").transform;
 		dragonSpawns = spawns.GetComponentsInChildren<Transform>();
 
-		spawnTimeStart = Time.time;
+		spawnTimeStart = Time.timeSinceLevelLoad;
 	}
 
 	// Update is called once per frame
@@ -79,9 +79,9 @@ public class EnemyManager : MonoBehaviour {
 			createSpawnWave();
 		}
 
-		if(timeOfEnemyCountRising + timeBetweenEnemyCountAddition < Time.time && !dragonFightSpwans) {
+		if(timeOfEnemyCountRising + timeBetweenEnemyCountAddition < Time.timeSinceLevelLoad && !dragonFightSpwans) {
 			maxEnemies++;
-			timeOfEnemyCountRising = Time.time;
+			timeOfEnemyCountRising = Time.timeSinceLevelLoad;
 		}
 
 	}
@@ -103,7 +103,7 @@ public class EnemyManager : MonoBehaviour {
 	
 	private bool newWaveNeeded() {
 		// don't add enemies if we have already spawned all enemies for this game
-		if (spawnCount >= maxSpawnCount || (spawnTimeStart + maxSpawnTime) < Time.time){		
+		if (spawnCount >= maxSpawnCount || (spawnTimeStart + maxSpawnTime) < Time.timeSinceLevelLoad){		
 			spawnEnabled = false;
 			//Debug.Log("spawns disabled");
 			return false;
@@ -114,8 +114,8 @@ public class EnemyManager : MonoBehaviour {
 			return false;
 		}
 
-		if( (timeOfLastWave + waveInterval) < Time.time) {
-			timeOfLastWave = Time.time;
+		if( (timeOfLastWave + waveInterval) < Time.timeSinceLevelLoad) {
+			timeOfLastWave = Time.timeSinceLevelLoad;
 			return true;	
 		}
 		

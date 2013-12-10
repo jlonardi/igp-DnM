@@ -288,7 +288,7 @@ public class Gun : MonoBehaviour {
 	public void ShootTheTarget(){
 		if(fire && !reloading){				
 			if(currentRounds > 0){
-				if(Time.time > lastShootTime && freeToShoot){
+				if(Time.timeSinceLevelLoad > lastShootTime && freeToShoot){
 					if (gunType == GunType.MINIGUN && mgState != MiniGunState.FIRING){
 						return;
 					}
@@ -296,7 +296,7 @@ public class Gun : MonoBehaviour {
 					//make sure we don't sprint anymore
 					game.player.motor.StopSprint();
 
-					lastShootTime = Time.time + shootDelay;			
+					lastShootTime = Time.timeSinceLevelLoad + shootDelay;			
 					
 					if(capsuleEmitter != null){
 						for(int i = 0; i < capsuleEmitter.Length; i++){

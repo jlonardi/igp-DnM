@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	}	
 
 	void Update(){
-		if (!isAlive && timeSinceKilled + deathDuration < Time.time){
+		if (!isAlive && timeSinceKilled + deathDuration < Time.timeSinceLevelLoad){
 			game.GameOver();
 		}
 	}
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour {
 		if (tempHealth <= 0){
 			health = 0;
 			isAlive = false;
-			timeSinceKilled = Time.time;
+			timeSinceKilled = Time.timeSinceLevelLoad;
 			sounds.PlayDeathSound();
 
 			//move player so that it doesn't drop through terrain

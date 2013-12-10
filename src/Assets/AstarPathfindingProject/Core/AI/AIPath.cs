@@ -195,7 +195,7 @@ public class AIPath : MonoBehaviour {
 	 * Otherwise will start WaitForPath function.
 	 */
 	public void TrySearchPath () {
-		if (Time.time - lastRepath >= repathRate && canSearchAgain && canSearch) {
+		if (Time.timeSinceLevelLoad - lastRepath >= repathRate && canSearchAgain && canSearch) {
 			SearchPath ();
 		} else {
 			StartCoroutine (WaitForRepath ());
@@ -205,7 +205,7 @@ public class AIPath : MonoBehaviour {
 	/** Is WaitForRepath running */
 	private bool waitingForRepath = false;
 	
-	/** Wait a short time til Time.time-lastRepath >= repathRate.
+	/** Wait a short time til Time.timeSinceLevelLoad-lastRepath >= repathRate.
 	  * Then call TrySearchPath
 	  * 
 	  * \see TrySearchPath
@@ -215,7 +215,7 @@ public class AIPath : MonoBehaviour {
 		
 		waitingForRepath = true;
 		//Wait until it is predicted that the AI should search for a path again
-		yield return new WaitForSeconds (repathRate - (Time.time-lastRepath));
+		yield return new WaitForSeconds (repathRate - (Time.timeSinceLevelLoad-lastRepath));
 		
 		waitingForRepath = false;
 		//Try to search for a path again
@@ -227,7 +227,7 @@ public class AIPath : MonoBehaviour {
 		
 		if (target == null) { Debug.LogError ("Target is null, aborting all search"); canSearch = false; return; }
 		
-		lastRepath = Time.time;
+		lastRepath = Time.timeSinceLevelLoad;
 		//This is where we should search to
 		Vector3 targetPosition = target.position;
 		

@@ -39,7 +39,7 @@ public class GunManager : MonoBehaviour {
 			currentGun.enabled = true;
 		}
 
-		if (throwingGrenade && (timeOfLastGrenade + grenadeThrowDelay) < Time.time){
+		if (throwingGrenade && (timeOfLastGrenade + grenadeThrowDelay) < Time.timeSinceLevelLoad){
 			DelayedGrenadeThrow();
 		}
 	}
@@ -102,7 +102,7 @@ public class GunManager : MonoBehaviour {
 			return;
 		}
 
-		timeOfLastGrenade = Time.time;
+		timeOfLastGrenade = Time.timeSinceLevelLoad;
 		throwingGrenade = true;
 		// play audio for removing the grenade socket here
 	}

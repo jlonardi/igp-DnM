@@ -241,7 +241,7 @@ public class CharacterMotor : MonoBehaviour {
 		}
 		
 		if (inputJump && jumping.lastButtonDownTime < 0 && canControl)
-			jumping.lastButtonDownTime = Time.time;
+			jumping.lastButtonDownTime = Time.timeSinceLevelLoad;
 		
 		if (grounded)
 			velocity.y = Mathf.Min(0, velocity.y) - movement.gravity * Time.deltaTime;
@@ -253,7 +253,7 @@ public class CharacterMotor : MonoBehaviour {
 			if (jumping.jumping && jumping.holdingJumpButton) {
 				// Calculate the duration that the extra jump force should have effect.
 				// If we're still less than that duration after the jumping time, apply the force.
-				if (Time.time < jumping.lastStartTime + jumping.extraHeight / CalculateJumpVerticalSpeed(jumping.baseHeight)) {
+				if (Time.timeSinceLevelLoad < jumping.lastStartTime + jumping.extraHeight / CalculateJumpVerticalSpeed(jumping.baseHeight)) {
 					// Negate the gravity we just applied, except we push in jumpDir rather than jump upwards.
 					velocity += jumping.jumpDir * movement.gravity * Time.deltaTime;
 				}
@@ -269,10 +269,10 @@ public class CharacterMotor : MonoBehaviour {
 			// because players will often try to jump in the exact moment when hitting the ground after a jump
 			// and if they hit the button a fraction of a second too soon and no new jump happens as a consequence,
 			// it's confusing and it feels like the game is buggy.
-			if (jumping.enabled && canControl && (Time.time - jumping.lastButtonDownTime < 0.2)) {
+			if (jumping.enabled && canControl && (Time.timeSinceLevelLoad - jumping.lastButtonDownTime < 0.2)) {
 				grounded = false;
 				jumping.jumping = true;
-				jumping.lastStartTime = Time.time;
+				jumping.lastStartTime = Time.timeSinceLevelLoad;
 				jumping.lastButtonDownTime = -100;
 				jumping.holdingJumpButton = true;
 				
@@ -420,21 +420,21 @@ public class CharacterMotor : MonoBehaviour {
 	}	
 
 	public void StartSprint(){
-		if (!sprinting && (sprintCoolDownInitTime + movement.sprintCoolDown < Time.time)){
-			sprintInitTime = Time.time;
+		if (!sprinting && (sprintCoolDownInitTime + movement.sprintCoolDown < Time.timeSinceLevelLoad)){
+			sprintInitTime = Time.timeSinceLevelLoad;
 			sprinting = true;
 		}
 	}
 
 	private void CheckSprintDuration(){
-		if ((sprintInitTime + movement.sprintDuration) < Time.time){
+		if ((sprintInitTime + movement.sprintDuration) < Time.timeSinceLevelLoad){
 			StopSprint();
 		}
 	}
 
 	public void StopSprint(){
 		sprinting = false;
-		sprintCoolDownInitTime = Time.time;
+		sprintCoolDownInitTime = Time.timeSinceLevelLoad;
 	}
 
 }

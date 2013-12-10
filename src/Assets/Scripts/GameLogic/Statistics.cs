@@ -30,9 +30,9 @@ public class Statistics {
 
 	// this gets called from GameManager Update()
 	public void Update(){
-		if((timeOfLastPoint + pointIntervall)<Time.time){
+		if((timeOfLastPoint + pointIntervall)<Time.timeSinceLevelLoad){
 			score++;
-			timeOfLastPoint = Time.time;
+			timeOfLastPoint = Time.timeSinceLevelLoad;
 		}
 	}
 

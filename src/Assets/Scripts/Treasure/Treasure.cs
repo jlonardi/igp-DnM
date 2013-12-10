@@ -31,7 +31,7 @@ public class Treasure : MonoBehaviour {
     }
 
 	void Update(){
-		if (audio.isPlaying && (timeFromLoot + 1 < Time.time || game.player.GetAliveStatus() == false)){
+		if (audio.isPlaying && (timeFromLoot + 1 < Time.timeSinceLevelLoad || game.player.GetAliveStatus() == false)){
 			audio.Stop();
 		}
 	}
@@ -41,7 +41,7 @@ public class Treasure : MonoBehaviour {
 		audio.loop = true;
 		audio.Play();
 
-		timeFromLoot = Time.time;
+		timeFromLoot = Time.timeSinceLevelLoad;
 		animator.SetBool("isOpen", true);
 
 		// no loot allowed if player is still carrying treasure

@@ -130,9 +130,9 @@ public class EnemyLogic : MonoBehaviour {
 				if (treasureDistance > lootDistance){
 					looting = false;
 				}
-				if(looting && (timeFromLoot + lootInterval) < Time.time) {					
+				if(looting && (timeFromLoot + lootInterval) < Time.timeSinceLevelLoad) {					
 					game.treasure.Loot(1);
-					timeFromLoot = Time.time;
+					timeFromLoot = Time.timeSinceLevelLoad;
 				}
 			}
 		} else {
@@ -151,7 +151,7 @@ public class EnemyLogic : MonoBehaviour {
 	private void checkFocus() {
 		if(target == focusTarget.PLAYER) {
 			//If the focus time expires change back to focus the tresaure
-			if(timeWhenFocusedPlayer + focusTime < Time.time) {
+			if(timeWhenFocusedPlayer + focusTime < Time.timeSinceLevelLoad) {
 				swapTarget();
 			}
 		} else { // if focus not in player, check if player nearby
@@ -161,7 +161,7 @@ public class EnemyLogic : MonoBehaviour {
 				if (timeDifference < 0){
 					timeDifference = 0;
 				}
-				timeWhenFocusedPlayer = Time.time + timeDifference;
+				timeWhenFocusedPlayer = Time.timeSinceLevelLoad + timeDifference;
 				swapTarget();
 			}
 		}
@@ -238,7 +238,7 @@ public class EnemyLogic : MonoBehaviour {
 		PlaySound(painSounds);
 		
 		target = focusTarget.PLAYER;
-		timeWhenFocusedPlayer = Time.time;
+		timeWhenFocusedPlayer = Time.timeSinceLevelLoad;
 		navigation.target = playerTransform;
 		
 		//Debug.Log("Enemy health left: " + health);
@@ -253,7 +253,7 @@ public class EnemyLogic : MonoBehaviour {
 				// if not near the treasure, just join the chase
 				// else use greedyness to choose whether to chase the player or not
 				if ((distanceToTreasure > 10f) ||(Random.Range(0f,1f) <= greedyness)){
-					timeWhenFocusedPlayer = Time.time;
+					timeWhenFocusedPlayer = Time.timeSinceLevelLoad;
 					if (target == focusTarget.TRESAURE){
 						swapTarget();
 					} 			

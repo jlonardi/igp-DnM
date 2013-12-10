@@ -18,13 +18,11 @@ public class SaveContainer {
 	public float mousePositionY;
 	//public float mouseSensitivity;
 	//public float mouseSmoothing;
-	public float timeOfLastWave;
 	public float playerArmor;
 	public float playerHealth;
 	public bool playerAlive;
 	public bool treasureOnGround;
 	public int treasureAmount;
-	public float playTime;
 	public int wave;
 	public int gun0_rounds;
 	public int gun1_rounds;
@@ -47,6 +45,7 @@ public class SaveContainer {
 	public int score;
 	public bool dragonSlayed;
 	public float dragonHealth;
+	public float dragonMaxHealth;
 	public float dragonLastBreath;
 	public bool dragonBreathFire;
 	public bool dragonFlying;
@@ -57,18 +56,21 @@ public class SaveContainer {
 	public float maxSpawnCount;
 	public float maxSpawnTime;
 	public float maxEnemies;
-	public float timeBetweenEnemyCountAddition;	
-	public bool dragonFightSpwans;	
-	public float timeOfLastEnemyWave;
+	public float timeBetweenEnemyCountAddition;
+	public bool dragonFightSpwans;
 	public float waveInterval;	
 	public float originalWaveInterval;
 	public float originalMaxEnemies;
-	public float timeOfEnemyCountRising;
 	public bool inBattle;
 	public int spawnCount;
-	public float spawnTimeStart;
 	public int nextEnemyType;
 	public int currentEnemyCount;
+	public float waveIntervalOnDragonFight;
+	public int maxDragonFightEnemies;
+	public float playTime;
+	public float timeOfLastWave;
+	public float timeOfEnemyCountRising;
+	public float spawnTimeStart;
 
 	private GameObject player;
 	public bool spawnEnabled = true;
@@ -118,6 +120,11 @@ public class SaveContainer {
 		// save playtime with previous value + time since level load
 		playTime = game.statistics.playTime + Time.timeSinceLevelLoad;
 
+		// save time variables relative to Time.timeSinceLevelLoad as load game's time starts from 0
+		timeOfLastWave = enemyManager.timeOfLastWave - Time.timeSinceLevelLoad;
+		timeOfEnemyCountRising = enemyManager.timeOfEnemyCountRising - Time.timeSinceLevelLoad;
+		spawnTimeStart = enemyManager.spawnTimeStart - Time.timeSinceLevelLoad;
+
 		// save game difficulty setting
 		difficulty = game.difficulty;
 
@@ -125,15 +132,15 @@ public class SaveContainer {
 
 		// save regular variable here
 		timeBetweenEnemyCountAddition = enemyManager.timeBetweenEnemyCountAddition;
+		waveIntervalOnDragonFight = enemyManager.waveIntervalOnDragonFight;
+		maxDragonFightEnemies = enemyManager.maxDragonFightEnemies;
 		dragonFightSpwans = enemyManager.dragonFightSpwans;
-		timeOfLastEnemyWave = enemyManager.timeOfLastWave;
 		waveInterval = enemyManager.waveInterval;
+		maxEnemies = enemyManager.maxEnemies;
 		originalWaveInterval = enemyManager.originalWaveInterval;
 		originalMaxEnemies = enemyManager.originalMaxEnemies;
-		timeOfEnemyCountRising = enemyManager.timeOfEnemyCountRising;
 		inBattle = enemyManager.inBattle;
 		spawnCount = enemyManager.spawnCount;
-		spawnTimeStart = enemyManager.spawnTimeStart;
 		nextEnemyType = enemyManager.nextEnemyType;
 		currentEnemyCount = enemyManager.currentEnemyCount;
 		dragonHasAggroOnPlayer = dragonTriggerHandler.dragonHasAggroOnPlayer;
@@ -153,7 +160,6 @@ public class SaveContainer {
 		treasureOnGround = game.treasure.OnGround();
 		treasureAmount = game.treasure.GetTreasureAmount();
 		wave = game.statistics.wave;
-		timeOfLastWave = enemyManager.timeOfLastWave;
 		gun0_rounds = game.weapons.guns[0].currentRounds;
 		gun1_rounds = game.weapons.guns[1].currentRounds;
 		gun2_rounds = game.weapons.guns[2].currentRounds;
@@ -174,6 +180,7 @@ public class SaveContainer {
 		dragonWalking = game.dragon.GetWalking();
 		dragonLanding = game.dragon.GetLanding();
 		dragonHealth = game.dragon.GetHealth(); 
+		dragonMaxHealth = game.dragon.GetMaxHealth(); 
 		dragonBreathFire = game.dragon.breathFire;
 		dragonLastBreath = game.dragon.timeOfLastFireBreath;
 		dragonFlying = game.dragon.flying;
@@ -207,17 +214,23 @@ public class SaveContainer {
 				game.dragon.gameObject.GetValuesFrom(sDragon);
 			}
 
+			//restore time variables
+			game.statistics.playTime = playTime;
+			enemyManager.timeOfLastWave = timeOfLastWave;
+			enemyManager.timeOfEnemyCountRising = timeOfEnemyCountRising;
+			enemyManager.spawnTimeStart = spawnTimeStart;
+
 			// restore variables
 			game.difficulty = difficulty;
 			enemyManager.timeBetweenEnemyCountAddition = timeBetweenEnemyCountAddition;
+			enemyManager.waveIntervalOnDragonFight = waveIntervalOnDragonFight;
+			enemyManager.maxDragonFightEnemies = maxDragonFightEnemies;
 			enemyManager.dragonFightSpwans = dragonFightSpwans;
-			//enemyManager.timeOfLastWave = timeOfLastEnemyWave;
 			enemyManager.waveInterval = waveInterval;
+			enemyManager.maxEnemies = maxEnemies;
 			enemyManager.originalWaveInterval = originalWaveInterval;
 			enemyManager.originalMaxEnemies = originalMaxEnemies;
-			//enemyManager.timeOfEnemyCountRising = timeOfEnemyCountRising;
 			enemyManager.spawnCount = spawnCount;
-			//enemyManager.spawnTimeStart = spawnTimeStart;
 			enemyManager.nextEnemyType = nextEnemyType;
 			enemyManager.currentEnemyCount = currentEnemyCount;
 			enemyManager.inBattle = inBattle;
@@ -249,7 +262,6 @@ public class SaveContainer {
 			game.statistics.level = level;
 			game.statistics.bodycount = bodycount;
 			game.statistics.score = score;
-			game.statistics.playTime = playTime;
 			game.statistics.wave = wave;
 			game.player.SetArmor(playerArmor);
 			game.player.SetHealth(playerHealth);
@@ -260,6 +272,7 @@ public class SaveContainer {
 			game.dragon.SetWalking(dragonWalking);
 			game.dragon.SetLanding(dragonLanding);
 			game.dragon.SetHealth(dragonHealth);
+			game.dragon.SetMaxHealth(dragonMaxHealth);
 			game.dragon.breathFire = dragonBreathFire;
 			game.dragon.flying = dragonFlying;
 			//game.dragon.timeOfLastFireBreath = dragonLastBreath;
@@ -285,9 +298,6 @@ public class SaveContainer {
 				scarL.SetActive(false);
 			}
 			game.pickupState = PickupState.NONE;
-
-			// calculate time of last enemy wave
-			enemyManager.timeOfLastWave = Time.time - (playTime - timeOfLastWave);
 
 			// if treasure on ground, make sure animation states are correct by calling SetTreasureOnGround
 			if (treasureOnGround){

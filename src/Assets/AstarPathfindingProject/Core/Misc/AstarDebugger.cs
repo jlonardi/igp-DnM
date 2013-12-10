@@ -152,7 +152,7 @@ public class AstarDebugger : MonoBehaviour {
 		}
 		
 		if (Time.realtimeSinceStartup - lastUpdate > 0.2f || cachedText == null || !Application.isPlaying) {
-			lastUpdate = Time.time;
+			lastUpdate = Time.timeSinceLevelLoad;
 			
 			boxRect = new Rect (5,yOffset,310,40);
 			

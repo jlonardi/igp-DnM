@@ -740,7 +740,7 @@ public class AstarPath : MonoBehaviour {
 	private IEnumerator DelayedGraphUpdate () {
 		graphUpdateRoutineRunning = true;
 		
-		yield return new WaitForSeconds (maxGraphUpdateFreq-(Time.time-lastGraphUpdate));
+		yield return new WaitForSeconds (maxGraphUpdateFreq-(Time.timeSinceLevelLoad-lastGraphUpdate));
 		QueueGraphUpdates ();
 		graphUpdateRoutineRunning = false;
 	}
@@ -836,7 +836,7 @@ public class AstarPath : MonoBehaviour {
 		}
 		
 		//If we should limit graph updates, start a coroutine which waits until we should update graphs
-		if (limitGraphUpdates && Time.time-lastGraphUpdate < maxGraphUpdateFreq) {
+		if (limitGraphUpdates && Time.timeSinceLevelLoad-lastGraphUpdate < maxGraphUpdateFreq) {
 			if (!graphUpdateRoutineRunning) {
 				StartCoroutine (DelayedGraphUpdate ());
 			}
@@ -874,7 +874,7 @@ public class AstarPath : MonoBehaviour {
 	private void DoUpdateGraphs () {
 		isRegisteredForUpdate = false;
 		isUpdatingGraphs = true;
-		lastGraphUpdate = Time.time;
+		lastGraphUpdate = Time.timeSinceLevelLoad;
 		
 		if (OnGraphsWillBeUpdated2 != null) {
 			OnVoidDelegate callbacks = OnGraphsWillBeUpdated2;

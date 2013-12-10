@@ -26,8 +26,8 @@ public class FireLight : MonoBehaviour {
 				attachedLight.intensity += direction * Time.fixedDeltaTime;
 		}
 
-		if (nextUpdateTime < Time.time){
-			nextUpdateTime = Random.Range(flickerRateMin, flickerRateMax) + Time.time;
+		if (nextUpdateTime < Time.timeSinceLevelLoad){
+			nextUpdateTime = Random.Range(flickerRateMin, flickerRateMax) + Time.timeSinceLevelLoad;
 			//get new intensity with random between min & max intensity
 			float newIntensity = UnityEngine.Random.Range(minIntensity, maxIntensity);
 			//get direction intensity will fade after update

@@ -83,13 +83,13 @@ public class Dragon : MonoBehaviour {
 					playerTransform = game.player.gameObject.transform;
 					game.player.SetDeathDuration(4);
 					game.player.TakeDamage(100, DamageType.HIT);
-					grabTime = Time.time;
+					grabTime = Time.timeSinceLevelLoad;
 				}
 			}
 
 			if(grabbing) {
 
-				if(grabTime + 2.5f > Time.time) {
+				if(grabTime + 2.5f > Time.timeSinceLevelLoad) {
 					playerTransform.position = headTransform.position + offset;
 				} else {
 					fighting = false;
@@ -109,9 +109,9 @@ public class Dragon : MonoBehaviour {
 				}
 			}
 
-			if(timeOfLastFireBreath + 5 < Time.time) {
+			if(timeOfLastFireBreath + 5 < Time.timeSinceLevelLoad) {
 				breathFire = true;
-				timeOfLastFireBreath = Time.time;
+				timeOfLastFireBreath = Time.timeSinceLevelLoad;
 
 				Quaternion rot = tr.rotation;
 				Quaternion toTarget = Quaternion.LookRotation (dir);
@@ -127,7 +127,7 @@ public class Dragon : MonoBehaviour {
 			}
 
 			if(breathFire) {
-				if(timeOfLastFireBreath + 3 < Time.time) {
+				if(timeOfLastFireBreath + 3 < Time.timeSinceLevelLoad) {
 					breathFire = false;
 				}
 			}
@@ -253,17 +253,14 @@ public class Dragon : MonoBehaviour {
 		health = value;
 	}
 
-	public void SetMaxHealth(float value){
-		maxHealth = value;
-		if (health>maxHealth){
-			health = maxHealth;
-		}
-	}
-
 	public float GetMaxHealth(){
 		return maxHealth;
 	}
 	
+	public void SetMaxHealth(float value){
+		maxHealth = value;
+	}
+
 	public bool GetPatroling(){
 		return patroling;
 	}
