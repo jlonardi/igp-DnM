@@ -248,7 +248,7 @@ public class Gun : MonoBehaviour {
 		int maxSpeed = 1000;
 		int accelSpeed = 2000;
 		int decSpeed = 500;
-		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot){
+		if(gunType == GunType.MINIGUN && fire && !reloading && freeToShoot && !game.treasure.isEmpty()){
 			if (mgState == MiniGunState.IDLE || mgState == MiniGunState.WIND_DOWN){
 				// if player tries to fire and minigun is not ready, start spinning the barrels
 				PlayWindUpSound();
