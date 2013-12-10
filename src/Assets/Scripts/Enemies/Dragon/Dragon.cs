@@ -252,7 +252,14 @@ public class Dragon : MonoBehaviour {
 	public void SetHealth(float value){
 		health = value;
 	}
-	
+
+	public void SetMaxHealth(float value){
+		maxHealth = value;
+		if (health>maxHealth){
+			health = maxHealth;
+		}
+	}
+
 	public float GetMaxHealth(){
 		return maxHealth;
 	}

@@ -35,7 +35,7 @@ public enum DifficultySetting {
 	EASY = 0,
 	NORMAL = 1,
 	HARD = 2,
-	NIGHTMARE = 3
+	EPIC = 3
 }
 
 public enum HitType

@@ -94,7 +94,7 @@ public class LoadMenu {
 		case DifficultySetting.HARD:
 			difficultyStr = "Hard";
 			break;
-		case DifficultySetting.NIGHTMARE:
+		case DifficultySetting.EPIC:
 			difficultyStr = "Epic";
 			break;
 		default:

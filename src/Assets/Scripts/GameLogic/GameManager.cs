@@ -106,15 +106,29 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void ApplyDifficultySetting(){
+		EnemyManager enemies = EnemyManager.instance;
+
 		switch(difficulty){
 		case DifficultySetting.EASY:
+			enemies.maxEnemies = 1;
+			enemies.timeBetweenEnemyCountAddition = 30;
+			dragon.SetMaxHealth(5000);
 			break;
-		case DifficultySetting.HARD:
-			break;
-		case DifficultySetting.NIGHTMARE:
-			break;
-		default: //normal settings
+		case DifficultySetting.NORMAL:
+			enemies.maxEnemies = 2;
+			enemies.timeBetweenEnemyCountAddition = 20;
+			dragon.SetMaxHealth(10000);
 			break;	
+		case DifficultySetting.HARD:
+			enemies.maxEnemies = 10;
+			enemies.timeBetweenEnemyCountAddition = 10;
+			dragon.SetMaxHealth(15000);
+			break;
+		case DifficultySetting.EPIC:
+			enemies.maxEnemies = 15;
+			enemies.timeBetweenEnemyCountAddition = 5;
+			dragon.SetMaxHealth(20000);
+			break;
 		}
 	}
 }

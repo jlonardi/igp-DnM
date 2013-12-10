@@ -45,7 +45,7 @@ public class DifficultyDialog {
 			Application.LoadLevel("GameLevel");
 		}
 		if(GUILayout.Button ("Epic")){
-			game.saves.difficulty = DifficultySetting.NIGHTMARE;
+			game.saves.difficulty = DifficultySetting.EPIC;
 			game.saves.levelState = LevelState.LOADING_NEW;
 			//loads first level
 			Application.LoadLevel("GameLevel");

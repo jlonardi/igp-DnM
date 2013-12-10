@@ -34,7 +34,7 @@ public class HighScoreScreen {
 		case DifficultySetting.HARD:
 			difficultyStr = "Hard";
 			break;
-		case DifficultySetting.NIGHTMARE:
+		case DifficultySetting.EPIC:
 			difficultyStr = "Epic";
 			break;
 		default:
@@ -122,7 +122,7 @@ public class HighScoreScreen {
 		}
 
 		if(GUILayout.Button ("Show Epic")){
-			game.difficulty = DifficultySetting.NIGHTMARE;
+			game.difficulty = DifficultySetting.EPIC;
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.EndArea();
