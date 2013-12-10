@@ -133,7 +133,7 @@ public class Hud {
 		} else if(game.pickupState == PickupState.TREASURE){
 			GUI.Label(helpPosition, "Press 'E' to pick up the treasure");
 		} else if(game.pickupState == PickupState.ARMOR) {
-			GUI.Label(helpPosition, "Press 'E' to pick up the EPIC armor");
+			GUI.Label(helpPosition, "Press 'E' to pick up the armor");
 		} else if (game.pickupState == PickupState.GRENADE_BOX) {
 			GUI.Label(helpPosition, "Press 'E' to pick up the grenades");
 		} else if (game.pickupState == PickupState.MINIGUN) {

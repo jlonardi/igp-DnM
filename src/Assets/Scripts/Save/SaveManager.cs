@@ -7,7 +7,12 @@ using System.Collections.Generic;
 public class SaveManager : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SaveManager instance;
+
+	//savegame format version
+	private static int formatVersion = 3;
+
 	public LevelState levelState = LevelState.LOADED;
+	public DifficultySetting newGameDifficulty = DifficultySetting.NORMAL;
 
 	[HideInInspector]
 	public int maxSaveSlots = 5; //max amount of games saved
@@ -50,7 +55,8 @@ public class SaveManager : MonoBehaviour {
 	
 	public void Load(){
 		levelState = LevelState.LOADING_SAVE;
-		Debug.Log("loading");
+
+		// load container data
 		serializer.Load(container.saveSlot);
 		
 		// allow 3 frames to be skipped after save to fix ragdoll bug
@@ -138,5 +144,9 @@ public class SaveManager : MonoBehaviour {
 			storeTransforms(t,list);
 		}
 	}	
+
+	public int GetFormatVersion(){
+		return formatVersion;
+	}
 	
 }

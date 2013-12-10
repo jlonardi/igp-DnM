@@ -24,13 +24,11 @@ public class MainMenu {
 		GUILayout.BeginArea(new Rect(centerX-250, 270,500,600));
 		if(GUILayout.Button ("Epic Story")){
 			//show story
-			gui.storyScreen.storySlide = 1;
 			game.gameState = GameState.STORY;
 		}
 		if(GUILayout.Button ("New Game")){
-			//loads first level
-			game.saves.levelState = LevelState.LOADING_NEWGAME;
-			Application.LoadLevel("GameLevel");
+			//show difficulty dialog
+			game.gameState = GameState.DIFFICULTY;
 		}
 		#if UNITY_WEBPLAYER
 		// don't show load & save on webplayer

@@ -11,6 +11,7 @@ public class OnGuiManager : MonoBehaviour {
 	public GUISkin guiSkinOther;
 
 	public MainMenu mainMenu = new MainMenu();
+	public DifficultyDialog difficultDialog = new DifficultyDialog();
 	public GameOverScreen gameOverScreen = new GameOverScreen();
 	public StoryScreen storyScreen = new StoryScreen();
 	public PauseMenu pauseMenu = new PauseMenu();
@@ -69,10 +70,14 @@ public class OnGuiManager : MonoBehaviour {
 			
 		case GameState.MAIN_MENU:
 		case GameState.STORY:
+		case GameState.DIFFICULTY:
 		case GameState.HIGHSCORE:
 			Time.timeScale=1;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
+			if (Input.GetButtonDown("Menu")){
+				game.gameState = GameState.MAIN_MENU;
+			}
 			break;
 
 		case GameState.GAME_OVER:
@@ -154,6 +159,11 @@ public class OnGuiManager : MonoBehaviour {
 		case GameState.MAIN_MENU:
 			GUI.skin = guiSkinMainMenu;
 			mainMenu.Show();
+			GUI.skin = guiSkinOther;
+			break;
+		case GameState.DIFFICULTY:
+			GUI.skin = guiSkinMainMenu;
+			difficultDialog.Show();
 			GUI.skin = guiSkinOther;
 			break;
 		case GameState.HIGHSCORE:

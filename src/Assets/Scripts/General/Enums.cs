@@ -1,6 +1,7 @@
 ﻿public enum GameState {
 	RUNNING,
 	STORY,
+	DIFFICULTY,
 	HIGHSCORE,
 	HIGHSCORE_DIALOG,
 	PAUSE_MENU,
@@ -23,11 +24,18 @@ public enum PickupState {
 }
 
 public enum LevelState {
-	LOADING_NEWGAME,
+	LOADING_NEW,
 	LOADING_SAVE,
 	LOADING_NEXT,
 	LOADED,
 	LOADING_HIGHSCORE
+}
+
+public enum DifficultySetting {
+	EASY,
+	NORMAL,
+	HARD,
+	NIGHTMARE
 }
 
 public enum HitType

@@ -22,6 +22,11 @@ public class Statistics {
 	
 	private float timeOfLastPoint = 0f;
 	private float pointIntervall=1f;
+	private GameManager game;
+
+	public Statistics(GameManager game){
+		this.game = game;
+	}
 
 	// this gets called from GameManager Update()
 	public void Update(){

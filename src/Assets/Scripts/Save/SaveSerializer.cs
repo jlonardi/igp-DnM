@@ -60,6 +60,11 @@ namespace UnitySerialization {
 		// Call this to get the savegame name
 		public SaveInfo GetSaveInfo(int saveIndex) { 
 			SaveInfo saveInfo = new SaveInfo();	
+			SaveContainer container = SaveManager.instance.container;
+
+			//reset value so game works with savegames made with older versions
+			container.difficulty = DifficultySetting.NORMAL;
+			
 			saveInfo.screenshot = new Texture2D(320, 180);
 
 			string filePath = saveDirectory + "\\savegame" + (saveIndex + 1) + ".dat";
@@ -67,21 +72,22 @@ namespace UnitySerialization {
 				saveInfo.name = null;
 			} else {
 				Load(saveIndex, false);
-				if (SaveManager.instance.container.name != null){
-					saveInfo.name = SaveManager.instance.container.name;
+				if (container.name != null){
+					saveInfo.name = container.name;
 				} else {
 					saveInfo.name = "Savegame " + (saveIndex + 1);
 				}
-				if (SaveManager.instance.container.dateTime != null){
-					saveInfo.dateTime = SaveManager.instance.container.dateTime;
+				if (container.dateTime != null){
+					saveInfo.dateTime = container.dateTime;
 				} else {
 					saveInfo.dateTime = "";
 				}
-				saveInfo.playTime = SaveManager.instance.container.playTime;
-				if (SaveManager.instance.container.screenshot != null){
-					saveInfo.screenshot.LoadImage(SaveManager.instance.container.screenshot);
+				saveInfo.playTime = container.playTime;
+				saveInfo.difficulty = container.difficulty;
+				if (container.screenshot != null){
+					saveInfo.screenshot.LoadImage(container.screenshot);
 				}
-				saveInfo.level = SaveManager.instance.container.level;
+				saveInfo.level = container.level;
 			}
 			return saveInfo;
 		}

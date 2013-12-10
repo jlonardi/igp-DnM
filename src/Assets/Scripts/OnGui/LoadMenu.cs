@@ -46,7 +46,7 @@ public class LoadMenu {
 					SaveManager.instance.Load();
 				}
 				if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)){
-					GUILayout.Window(i, new Rect(centerX, 300,430,500), ShowDetails, "");
+					GUILayout.Window(i, new Rect(centerX, 300,430,550), ShowDetails, "");
 				}
 			}
 		}	
@@ -86,12 +86,28 @@ public class LoadMenu {
 		if (saveInfo[windowID].name == null || saveInfo[windowID].dateTime == null || saveInfo[windowID].screenshot == null){
 			return;
 		}
+		string difficultyStr;
+		switch(saveInfo[windowID].difficulty){
+		case DifficultySetting.EASY:
+			difficultyStr = "Easy";
+			break;
+		case DifficultySetting.HARD:
+			difficultyStr = "Hard";
+			break;
+		case DifficultySetting.NIGHTMARE:
+			difficultyStr = "Epic";
+			break;
+		default:
+			difficultyStr = "Normal";
+			break;
+		}
 
 		//GUI.Label(new Rect(40,275,350,50), ConvertLevelName(saveInfo[windowID].level));
 		GUI.DrawTexture(new Rect(55,110,320,180), saveInfo[windowID].screenshot);
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		GUI.Label(new Rect(40,320,335,20), saveInfo[windowID].dateTime, "plaintext");
+		GUI.Label(new Rect(40,320,350,20), saveInfo[windowID].dateTime, "plaintext");
 		GUI.Label(new Rect(40,380,350,20), ConvertPlayTime(saveInfo[windowID].playTime), "plaintext");
+		GUI.Label(new Rect(40,440,350,20), difficultyStr, "plaintext");
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 	}	
 

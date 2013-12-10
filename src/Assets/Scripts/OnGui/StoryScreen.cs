@@ -9,8 +9,7 @@ public class StoryScreen {
 
 	private int centerX;
 	private int centerY;
-	[HideInInspector]
-	public int storySlide = 1;
+	private int storySlide = 1;
 
 	public void Initialize(){
 		game = GameManager.instance;
@@ -110,26 +109,30 @@ public class StoryScreen {
 		if(GUI.Button(new Rect(centerX-500, 935, 300, 50), "Back to Main Menu"))
 		{
 			GameManager.instance.gameState = GameState.MAIN_MENU;
+			//reset slide position
+			storySlide=1;
 		}
 
-		if (storySlide>1 && game.saves.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX+100, 935, 200, 50), "Previous"))
-			{
-				storySlide--;
+		if (game.gameState == GameState.STORY){
+			if (storySlide>1){
+				if(GUI.Button(new Rect(centerX+100, 935, 200, 50), "Previous"))
+				{
+					storySlide--;
+				}
 			}
-		}
 
-		if (storySlide<11 && game.saves.levelState != LevelState.LOADING_NEWGAME){
-			if(GUI.Button(new Rect(centerX+300, 935, 200, 50), "Next"))
-			{
-				storySlide++;
-			}
-		} else if(storySlide == 11){
-			if(GUI.Button(new Rect(centerX+300, 935, 250, 50), "Start Game")){
-				storySlide++;
-				//loads first level
-				game.saves.levelState = LevelState.LOADING_NEWGAME;
-				Application.LoadLevel("GameLevel");
+			if (storySlide<11){
+				if(GUI.Button(new Rect(centerX+300, 935, 200, 50), "Next"))
+				{
+					storySlide++;
+				}
+			} else if(storySlide == 11){
+				if(GUI.Button(new Rect(centerX+300, 935, 250, 50), "Start Game")){
+					//show difficulty dialog
+					game.gameState = GameState.DIFFICULTY;
+					//reset slide position
+					storySlide=1;
+				}
 			}
 		}
 	}

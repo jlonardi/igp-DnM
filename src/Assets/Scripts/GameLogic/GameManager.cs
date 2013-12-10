@@ -9,11 +9,12 @@ public class GameManager : MonoBehaviour {
 
 	public GameState gameState = GameState.MAIN_MENU;
 	public PickupState pickupState = PickupState.NONE;
-	public Statistics statistics = new Statistics();
+	public Statistics statistics;
 	public GunManager weapons;
 	public Dragon dragon;
 	public Player player;
 	public Treasure treasure;
+	public DifficultySetting difficulty;
 	public GameObject saveManagerPrefab;
 
 	[HideInInspector]
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	{
 		//use singleton since only we need once instance of this class
        	GameManager.instance = this;
+		statistics = new Statistics(this);
 	}
 	
 	void Start(){
@@ -36,13 +38,6 @@ public class GameManager : MonoBehaviour {
 		statistics.Update();
 	}
 
-	public void NewGame(){
-		// wait until all gameobjects are loaded
-		gameState = GameState.RUNNING;
-		statistics.Reset();
-		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
-	}
-	
 	public void GameOver(){
 		#if UNITY_WEBPLAYER
 		gameState = GameState.GAME_OVER;
@@ -67,7 +62,7 @@ public class GameManager : MonoBehaviour {
 			
 			saves = saveManagerObj.GetComponent<SaveManager>();
 			// this is only for testing level on editor
-			if (gameLevel == true && saves.levelState == LevelState.LOADING_NEWGAME){
+			if (gameLevel == true && saves.levelState != LevelState.LOADED){
 				saves.levelState = LevelState.LOADED;
 				NewGame();
 			}
@@ -90,7 +85,8 @@ public class GameManager : MonoBehaviour {
 			break;
 		default:
 			if (saves.levelState == LevelState.LOADING_SAVE){
-				SaveManager.instance.container.RestoreValues();	
+				saves.container.RestoreValues();	
+				ApplyDifficultySetting();
 				saves.levelState = LevelState.LOADED;
 			} else {
 				NewGame();
@@ -98,5 +94,17 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-	
+
+	public void NewGame(){
+		// wait until all gameobjects are loaded
+		gameState = GameState.RUNNING;
+		statistics.Reset();
+		OnGuiManager.instance.bloodSplatter.SetBloodAlpha(0f);
+		difficulty = saves.newGameDifficulty;
+		ApplyDifficultySetting();
+	}
+
+	public void ApplyDifficultySetting(){
+
+	}
 }

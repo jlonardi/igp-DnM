@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLevel: 0
-  gameState: 5
+  gameState: 6
   pickupState: 5
   statistics:
     level: 0
@@ -1394,6 +1394,7 @@ MonoBehaviour:
   dragon: {fileID: 0}
   player: {fileID: 0}
   treasure: {fileID: 0}
+  difficulty: 1
   saveManagerPrefab: {fileID: 100000, guid: c5aa14bd589468445bd1e0c7ba99ed76, type: 2}
   saves: {fileID: 0}
 --- !u!4 &1284418456
@@ -1427,7 +1428,6 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 5e389f592a3c8ce40999272847909b2c, type: 3}
     - {fileID: 2800000, guid: 5fba96b2bf735b441b1f648d6ca314f2, type: 3}
     - {fileID: 2800000, guid: 4d5d4956bcbe4c24ea762bf3429c0d77, type: 3}
-    storySlide: 1
   hud:
     healthBarTexture: {fileID: 0}
     healthBackgroundTexture: {fileID: 0}

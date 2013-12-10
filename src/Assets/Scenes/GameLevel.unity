@@ -48754,7 +48754,6 @@ MonoBehaviour:
   guiSkinOther: {fileID: 11400000, guid: 7953503d9e83f8d469b84619849edd4e, type: 2}
   storyScreen:
     storyImages: []
-    storySlide: 1
   hud:
     healthBarTexture: {fileID: 2800000, guid: 05f0125dde4637e4dbfb41e37a2c9593, type: 3}
     healthBackgroundTexture: {fileID: 2800000, guid: e11f2335dbaef034ebf1c8e256277fb2,
@@ -48788,7 +48787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e8ca26ffcbb7479d3db598f30c2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLevel: 0
+  gameLevel: 1
   gameState: 0
   pickupState: 5
   statistics:
@@ -48808,6 +48807,7 @@ MonoBehaviour:
   dragon: {fileID: 1369903693}
   player: {fileID: 1851113635}
   treasure: {fileID: 2026712658}
+  difficulty: 1
   saveManagerPrefab: {fileID: 100000, guid: c5aa14bd589468445bd1e0c7ba99ed76, type: 2}
   saves: {fileID: 0}
 --- !u!4 &1045093067

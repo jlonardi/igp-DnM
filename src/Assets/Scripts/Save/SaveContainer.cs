@@ -5,7 +5,9 @@ using UnitySerialization;
 
 public class SaveContainer {
 	// define all variables to be saved here
+	public int formatVersion;
 	public int saveSlot;
+	public DifficultySetting difficulty;
 	public string name;
 	public string dateTime;
 	public byte[] screenshot;
@@ -117,6 +119,11 @@ public class SaveContainer {
 		// save playtime with previous value + time since level load
 		playTime = game.statistics.playTime + Time.timeSinceLevelLoad;
 
+		// save game difficulty setting
+		difficulty = game.difficulty;
+
+		formatVersion = game.saves.GetFormatVersion();
+
 		// save regular variable here
 		timeBetweenEnemyCountAddition = enemyManager.timeBetweenEnemyCountAddition;
 		maxDragonFightEnemies = enemyManager.maxDragonFightEnemies;
@@ -203,6 +210,7 @@ public class SaveContainer {
 			}
 
 			// restore variables
+			game.difficulty = difficulty;
 			enemyManager.timeBetweenEnemyCountAddition = timeBetweenEnemyCountAddition;
 			enemyManager.maxDragonFightEnemies = maxDragonFightEnemies;
 			enemyManager.dragonFightSpwans = dragonFightSpwans;
