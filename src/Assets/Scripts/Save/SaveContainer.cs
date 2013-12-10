@@ -58,7 +58,6 @@ public class SaveContainer {
 	public float maxSpawnTime;
 	public float maxEnemies;
 	public float timeBetweenEnemyCountAddition;	
-	public float maxDragonFightEnemies;	
 	public bool dragonFightSpwans;	
 	public float timeOfLastEnemyWave;
 	public float waveInterval;	
@@ -126,7 +125,6 @@ public class SaveContainer {
 
 		// save regular variable here
 		timeBetweenEnemyCountAddition = enemyManager.timeBetweenEnemyCountAddition;
-		maxDragonFightEnemies = enemyManager.maxDragonFightEnemies;
 		dragonFightSpwans = enemyManager.dragonFightSpwans;
 		timeOfLastEnemyWave = enemyManager.timeOfLastWave;
 		waveInterval = enemyManager.waveInterval;
@@ -212,7 +210,6 @@ public class SaveContainer {
 			// restore variables
 			game.difficulty = difficulty;
 			enemyManager.timeBetweenEnemyCountAddition = timeBetweenEnemyCountAddition;
-			enemyManager.maxDragonFightEnemies = maxDragonFightEnemies;
 			enemyManager.dragonFightSpwans = dragonFightSpwans;
 			//enemyManager.timeOfLastWave = timeOfLastEnemyWave;
 			enemyManager.waveInterval = waveInterval;
