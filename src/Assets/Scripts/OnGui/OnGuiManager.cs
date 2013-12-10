@@ -63,6 +63,11 @@ public class OnGuiManager : MonoBehaviour {
 			Time.timeScale=0;
 			Screen.showCursor=true;
 			Screen.lockCursor=false;
+			//disable gun audio loop while in menu
+			if (game.audio.loop){
+				game.weapons.audio.loop = false;
+				game.weapons.audio.Stop();
+			}
 			if (Input.GetButtonDown("Menu")){
 				game.gameState = GameState.RUNNING;
 			}
