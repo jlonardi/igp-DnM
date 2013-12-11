@@ -42,55 +42,63 @@ public class FPSInputController : MonoBehaviour {
 		}
 
 		//get joystick values
-		float JoyAxis3 = Input.GetAxis("Fire/Aim Down Sight");
-		float JoyPadX = Input.GetAxis("Inventory Horizontal");
-		float JoyPadY = Input.GetAxis("Inventory Vertical");
+		float joyAxis3 = Input.GetAxis("Fire/Aim Down Sight");
+		float joyPadX = Input.GetAxis("Inventory Horizontal");
+		float joyPadY = Input.GetAxis("Inventory Vertical");
 		
-		bool JoyFire = false;
-		bool JoyFireDown = false;
-		bool JoyFireUp = false;
-		bool JoyAimDown = false;
-		bool JoyPadUp = false;
-		bool JoyPadDown = false;
-		bool JoyPadLeft = false;
-		bool JoyPadRight = false;
-		bool JoyPadUpLeft = false;
+		bool joyFire = false;
+		bool joyFireDown = false;
+		bool joyFireUp = false;
+		bool joyAimDown = false;
+		bool joyPadUp = false;
+		bool joyPadDown = false;
+		bool joyPadLeft = false;
+		bool joyPadRight = false;
+		bool joyPadUpLeft = false;
 		
-		if (JoyAxis3 > 0.5f){
-			JoyFire = true;
-		} else if (JoyAxis3 < -0.5f){
-			JoyAimDown = true;
+		if (joyAxis3 > 0.5f){
+			joyFire = true;
+		} else if (joyAxis3 < -0.5f){
+			joyAimDown = true;
 		}
 
-		if (prevJoyTrigger > 0.5f && JoyAxis3 < 0.5f){
-			JoyFire = false;
-			JoyFireUp = true;
+		if (prevJoyTrigger > 0.5f && joyAxis3 < 0.5f){
+			joyFire = false;
+			joyFireUp = true;
 		}
-		if (prevJoyTrigger < 0.5f && JoyAxis3 > 0.5f){
-			JoyFire = true;
-			JoyFireDown = true;
+		if (prevJoyTrigger < 0.5f && joyAxis3 > 0.5f){
+			joyFire = true;
+			joyFireDown = true;
 		}
 
-		prevJoyTrigger = JoyAxis3;
-		if (JoyPadX > 0.5f && JoyPadY < -0.5f){
-			JoyPadUpLeft = true;
+		prevJoyTrigger = joyAxis3;
+		if (joyPadX > 0.5f && joyPadY < -0.5f){
+			joyPadUpLeft = true;
 			timeOfUpLeft = Time.timeSinceLevelLoad;
 
-		} else if (JoyPadX > 0.5f && JoyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
-			JoyPadUp = true;
-		} else if (JoyPadX < -0.5f && JoyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
-			JoyPadDown = true;
+		} else if (joyPadX > 0.5f && joyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
+			joyPadUp = true;
+		} else if (joyPadX < -0.5f && joyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
+			joyPadDown = true;
 		}
 
-		if (JoyPadY > 0.5f && JoyPadX < 0.3f){
-			JoyPadRight = true;
-		} else if (JoyPadY < -0.5f && JoyPadX < 0.3f){
-			JoyPadLeft = true;
+		if (joyPadY > 0.5f && joyPadX < 0.3f){
+			joyPadRight = true;
+		} else if (joyPadY < -0.5f && joyPadX < 0.3f){
+			joyPadLeft = true;
 		}
 
-		bool GetFireButton = Input.GetButton("Fire") || JoyFire;
-		bool GetFireButtonDown = Input.GetButtonDown("Fire") || JoyFireDown;
-		bool GetFireButtonUp = Input.GetButtonUp("Fire") || JoyFireUp;
+		bool editorFire = false;
+		bool editorFireDown = false;
+		bool editorFireUp = false;
+		#if UNITY_EDITOR
+		editorFire = Input.GetKey(KeyCode.Q);
+		editorFireDown = Input.GetKeyDown(KeyCode.Q);
+		editorFireUp = Input.GetKeyUp(KeyCode.Q);
+		#endif
+		bool GetFireButton = Input.GetButton("Fire") || joyFire || editorFire;
+		bool GetFireButtonDown = Input.GetButtonDown("Fire") || joyFireDown || editorFireDown;
+		bool GetFireButtonUp = Input.GetButtonUp("Fire") || joyFireUp || editorFireUp;
 		
 
 		bool treasureOnGround = game.treasure.OnGround();
@@ -140,19 +148,19 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToPreviousGun();
 		}
 
-		if (Input.GetButtonDown("Pistol") || JoyPadDown){
+		if (Input.GetButtonDown("Pistol") || joyPadDown){
 			game.weapons.ChangeToGun(0);
 		}
-		if (Input.GetButtonDown("Assault Rifle") || JoyPadUp){
+		if (Input.GetButtonDown("Assault Rifle") || joyPadUp){
 			game.weapons.ChangeToGun(1);
 		}
-		if (Input.GetButtonDown("Grenade Launcher") || JoyPadRight){
+		if (Input.GetButtonDown("Grenade Launcher") || joyPadRight){
 			game.weapons.ChangeToGun(2);
 		}
-		if (Input.GetButtonDown("Minigun") || JoyPadLeft){
+		if (Input.GetButtonDown("Minigun") || joyPadLeft){
 			game.weapons.ChangeToGun(3);
 		}
-		if (Input.GetButtonDown("Scar-L") || JoyPadUpLeft){
+		if (Input.GetButtonDown("Scar-L") || joyPadUpLeft){
 			game.weapons.ChangeToGun(4);
 		}
 
