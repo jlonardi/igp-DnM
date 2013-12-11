@@ -134,7 +134,7 @@ public class FPSInputController : MonoBehaviour {
 			currentGun.Reload();
 		}
 
-		if (Input.GetAxis("Mouse ScrollWheel") < 0){
+		if (Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetButtonDown("Switch Weapon")){
 			game.weapons.ChangeToNextGun();
 		} else if (Input.GetAxis("Mouse ScrollWheel") > 0){
 			game.weapons.ChangeToPreviousGun();

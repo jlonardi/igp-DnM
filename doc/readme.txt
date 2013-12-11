@@ -18,21 +18,23 @@ Gameplay hints
 
 Default keymapping
 ------------------
-Movement                =  arrow keys or W,A,S,D
-Look around             =  mouse movement
-Jump                    =  space
-Sprint                  =  shift
-Pick-Up / Drop		=  E
-Fire                    =  left mouse button
-Change Weapon           =  mouse wheel
-Pistol                  =  1
-Assault Rifle           =  2
-Grenade Launcer         =  3
-Minigun (if available)  =  4
-Scar-L (if available)   =  5
-Reload                  =  R
-Handgrenade             =  G
-Pause / Resume		=  esc
+Function:                  Keyboard:           Xbox360 GamePad
+
+Movement                =  W,A,S,D             left stick
+Look around             =  mouse movement      right stick
+Fire                    =  left mouse button   right trigger
+Sprint                  =  shift               left bumber
+Handgrenade             =  G or middle mouse   right bumber
+Jump                    =  space               A
+Pick-Up / Drop		=  E                   B
+Reload                  =  R                   X
+Change Weapon           =  mouse wheel         Y
+Pistol                  =  1                   directional pad down
+Assault Rifle           =  2                   directional pad up
+Grenade Launcer         =  3                   directional pad righ
+Minigun (if available)  =  4                   directional pad left
+Scar-L (if available)   =  5                   directional pad up & left
+Pause / Resume		=  esc                 start button
 
 
 Menus

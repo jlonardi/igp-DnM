@@ -4,8 +4,11 @@ using System.Collections;
 public class SmoothMouseLookX : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SmoothMouseLookX instance;
-	public float sensitivity = 5f;
-	public float smoothing = 2f;
+	private float mouseSensitivity = 4f;
+	private float mouseSmoothing = 1f;
+
+	private float joySensitivity = 3f;
+	private float joySmoothing = 2f;
 
 	private float position = 0f;	
 	private float input;
@@ -32,21 +35,27 @@ public class SmoothMouseLookX : MonoBehaviour {
 		// get raw mouse data
 		input = Input.GetAxisRaw("Mouse X");
 
-		inputJoy = Input.GetAxisRaw("Joystick Look Horizontal");
+		inputJoy = Input.GetAxis("Joystick Look Horizontal");
 
 		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
 			input = inputJoy;
+
+			// scale input against the sensitivity multiply against smoothing value.
+			input = input * (joySensitivity * joySmoothing);
+			
+			// interpolate movement over time to apply smoothing delta.
+			deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / joySmoothing);
+
+		} else {
+			// scale input against the sensitivity multiply against smoothing value.
+			input = input * (mouseSensitivity * mouseSmoothing);
+			
+			// interpolate movement over time to apply smoothing delta.
+			deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / mouseSmoothing);
 		}
+		// apply smoothing
+		position += deltaSmooth;			
 
-        // scale input against the sensitivity multiply against smoothing value.
-        input = input * (sensitivity * smoothing);
-
-        // interpolate movement over time to apply smoothing delta.
-        deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / smoothing);
-
-        // apply smoothing
-        position += deltaSmooth;
-		
 		// rotate transform with x
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, position, 0);
 	}
@@ -59,19 +68,35 @@ public class SmoothMouseLookX : MonoBehaviour {
 		position = value;
 	}
 	
-	public float GetSensitivity(){
-		return sensitivity;
+	public float GetMouseSensitivity(){
+		return mouseSensitivity;
 	}
 	
-	public void SetSensitivity(float value){
-		sensitivity = value;
+	public void SetMouseSensitivity(float value){
+		mouseSensitivity = value;
 	}
 	
-	public float GetSmoothing(){
-		return smoothing;
+	public float GetJoySensitivity(){
+		return joySensitivity;
 	}
 	
-	public void SetSmoothing(float value){
-		sensitivity = value;
+	public void SetJoySensitivity(float value){
+		joySensitivity = value;
+	}
+	
+	public float GetMouseSmoothing(){
+		return mouseSmoothing;
+	}
+	
+	public void SetMouseSmoothing(float value){
+		mouseSmoothing = value;
+	}
+
+	public float GetJoySmoothing(){
+		return joySmoothing;
+	}
+	
+	public void SetJoySmoothing(float value){
+		joySmoothing = value;
 	}
 }

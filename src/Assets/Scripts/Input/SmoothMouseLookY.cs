@@ -4,9 +4,15 @@ using System.Collections;
 public class SmoothMouseLookY : MonoBehaviour {
 	//use singleton since only we need once instance of this class
 	public static SmoothMouseLookY instance;
-	public float sensitivity = 5f;
-	public float smoothing = 2f;
+
+	private float mouseSensitivity = 4f;
+	private float mouseSmoothing = 1f;
+	
+	private float joySensitivity = 3f;
+	private float joySmoothing = 2f;
+
 	public bool invertMouse = false;
+	public bool invertJoy = false;
 
 	private float position = 0f;	
 	private float input;
@@ -34,25 +40,37 @@ public class SmoothMouseLookY : MonoBehaviour {
 
 		// get raw mouse data
    	    input = Input.GetAxisRaw("Mouse Y");
-
-		inputJoy = Input.GetAxisRaw("Joystick Look Vertical");
-		
-		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
-			input = inputJoy;
-		}
-
 		// if invert selected, invert input
 		if (invertMouse){
 			input *= -1;
 		}
 
-        // scale input against the sensitivity multiply against smoothing value.
-        input *= (sensitivity * smoothing);
+		inputJoy = Input.GetAxis("Joystick Look Vertical");
 
-        // interpolate movement over time to apply smoothing delta.
-        deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / smoothing);
+		// if invert selected, invert input
+		if (invertJoy){
+			inputJoy *= -1;
+		}
+		
 
-        // apply smoothing
+		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
+			input = inputJoy;
+
+			// scale input against the sensitivity multiply against smoothing value.
+			input = input * (joySensitivity * joySmoothing);
+			
+			// interpolate movement over time to apply smoothing delta.
+			deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / joySmoothing);
+			
+		} else {
+			// scale input against the sensitivity multiply against smoothing value.
+			input = input * (mouseSensitivity * mouseSmoothing);
+			
+			// interpolate movement over time to apply smoothing delta.
+			deltaSmooth = Mathf.Lerp(deltaSmooth, input, 1f / mouseSmoothing);
+		}
+
+		// apply smoothing
         position += deltaSmooth;
 		
 		//if carrying treasure, restrict mouse look angle
@@ -77,20 +95,35 @@ public class SmoothMouseLookY : MonoBehaviour {
 		position = value;
 	}
 
-	public float GetSensitivity(){
-		return sensitivity;
+	public float GetMouseSensitivity(){
+		return mouseSensitivity;
 	}
 	
-	public void SetSensitivity(float value){
-		sensitivity = value;
+	public void SetMouseSensitivity(float value){
+		mouseSensitivity = value;
 	}
 	
-	public float GetSmoothing(){
-		return smoothing;
+	public float GetJoySensitivity(){
+		return joySensitivity;
 	}
 	
-	public void SetSmoothing(float value){
-		sensitivity = value;
+	public void SetJoySensitivity(float value){
+		joySensitivity = value;
 	}
-
+	
+	public float GetMouseSmoothing(){
+		return mouseSmoothing;
+	}
+	
+	public void SetMouseSmoothing(float value){
+		mouseSmoothing = value;
+	}
+	
+	public float GetJoySmoothing(){
+		return joySmoothing;
+	}
+	
+	public void SetJoySmoothing(float value){
+		joySmoothing = value;
+	}
 }
