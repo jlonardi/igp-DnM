@@ -110,36 +110,60 @@ public class GameManager : MonoBehaviour {
 
 		switch(difficulty){
 		case DifficultySetting.EASY:
+			player.SetEnemyDamage(0.5f);
+			player.SetFireDamage(0.3f);
 			enemies.maxEnemies = 1;
 			enemies.timeBetweenEnemyCountAddition = 30;
 			dragon.SetHealth(8000);
 			dragon.SetMaxHealth(8000);
 			enemies.waveIntervalOnDragonFight = 2f;
 			enemies.maxDragonFightEnemies = 5;
+			weapons.guns[1].unlimited = true;
+			weapons.guns[2].unlimited = true;
+			weapons.guns[3].unlimited = true;
+			weapons.guns[4].unlimited = true;
 			break;
 		case DifficultySetting.NORMAL:
+			player.SetEnemyDamage(1f);
+			player.SetFireDamage(0.5f);
 			enemies.maxEnemies = 2;
 			enemies.timeBetweenEnemyCountAddition = 20;
 			dragon.SetHealth(10000);
 			dragon.SetMaxHealth(10000);
 			enemies.waveIntervalOnDragonFight = 1.5f;
 			enemies.maxDragonFightEnemies = 10;
+			weapons.guns[1].totalClips = 20;
+			weapons.guns[2].totalClips = 10;
+			weapons.guns[3].totalClips = 5;
+			weapons.guns[4].totalClips = 20;
 			break;	
 		case DifficultySetting.HARD:
+			player.SetEnemyDamage(1.2f);
+			player.SetFireDamage(0.8f);
 			enemies.maxEnemies = 10;
 			enemies.timeBetweenEnemyCountAddition = 10;
 			dragon.SetHealth(15000);
 			dragon.SetMaxHealth(15000);
 			enemies.waveIntervalOnDragonFight = 1.0f;
 			enemies.maxDragonFightEnemies = 20;
+			weapons.guns[1].totalClips = 15;
+			weapons.guns[2].totalClips = 7;
+			weapons.guns[3].totalClips = 4;
+			weapons.guns[4].totalClips = 15;
 			break;
 		case DifficultySetting.EPIC:
+			player.SetEnemyDamage(1.4f);
+			player.SetFireDamage(1.2f);
 			enemies.maxEnemies = 15;
 			enemies.timeBetweenEnemyCountAddition = 5;
 			dragon.SetHealth(20000);
 			dragon.SetMaxHealth(20000);
 			enemies.waveIntervalOnDragonFight = 1.0f;
 			enemies.maxDragonFightEnemies = 40;
+			weapons.guns[1].totalClips = 10;
+			weapons.guns[2].totalClips = 5;
+			weapons.guns[3].totalClips = 3;
+			weapons.guns[4].totalClips = 10;
 			break;
 		}
 	}

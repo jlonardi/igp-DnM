@@ -4,7 +4,8 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	private float health = 100f;
 	private float armor; // armor scale 0-50
-
+	private float fireDamage = 1f;
+	private float enemyDamage = 1f;
 	private GameManager game;
 	private OnGuiManager guiManager;
 	private PlayerSounds sounds;
@@ -13,9 +14,12 @@ public class Player : MonoBehaviour {
 	//how long it takes for player to die after final hit (s)
 	private float deathDuration = 2.5f;
 	public float speed;
+	public FPSInputController inputController = new FPSInputController();
+
 
 	[HideInInspector]
 	public CharacterMotor motor;
+
 
     void Start() {
 		game = GameManager.instance;
@@ -28,6 +32,9 @@ public class Player : MonoBehaviour {
 		if (!isAlive && timeSinceKilled + deathDuration < Time.timeSinceLevelLoad){
 			game.GameOver();
 		}
+		//update inputs
+		inputController.UpdateInput();
+		inputController.UpdateRumble();
 	}
 
 	public void TakeDamage(float damageAmount, DamageType damageType){
@@ -35,6 +42,8 @@ public class Player : MonoBehaviour {
 		if (!isAlive){
 			return;
 		}
+
+		damageAmount *= enemyDamage;
 
 		float tempArmor = 0;
 		float tempHealth = 0;
@@ -126,4 +135,19 @@ public class Player : MonoBehaviour {
 		isAlive = value;
 	}
 
+	public float GetFireDamage(){
+		return fireDamage;
+	}
+	
+	public void SetFireDamage(float value){
+		fireDamage = value;
+	}
+
+	public float GetEnemyDamage(){
+		return enemyDamage;
+	}
+	
+	public void SetEnemyDamage(float value){
+		enemyDamage = value;
+	}
 }
