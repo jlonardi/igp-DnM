@@ -14,8 +14,6 @@ public class Player : MonoBehaviour {
 	//how long it takes for player to die after final hit (s)
 	private float deathDuration = 2.5f;
 	public float speed;
-	public FPSInputController inputController = new FPSInputController();
-
 
 	[HideInInspector]
 	public CharacterMotor motor;
@@ -32,9 +30,6 @@ public class Player : MonoBehaviour {
 		if (!isAlive && timeSinceKilled + deathDuration < Time.timeSinceLevelLoad){
 			game.GameOver();
 		}
-		//update inputs
-		inputController.UpdateInput();
-		inputController.UpdateRumble();
 	}
 
 	public void TakeDamage(float damageAmount, DamageType damageType){
