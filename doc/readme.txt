@@ -18,23 +18,21 @@ Gameplay hints
 
 Default keymapping
 ------------------
-Function:                  Keyboard:           Xbox360 GamePad:
-
-Movement                =  W,A,S,D             left stick
-Look around             =  mouse movement      right stick
-Fire                    =  left mouse button   right trigger
-Sprint                  =  shift               left bumber
-Handgrenade             =  G or middle mouse   right bumber
-Jump                    =  space               A
-Pick-Up / Drop          =  E                   B
-Reload                  =  R                   X
-Change Weapon           =  mouse wheel or tab  Y
-Pistol                  =  1                   directional pad down
-Assault Rifle           =  2                   directional pad up
-Grenade Launcer         =  3                   directional pad righ
-Minigun (if available)  =  4                   directional pad left
-Scar-L (if available)   =  5                   directional pad up & left
-Pause / Resume          =  esc                 start button
+Movement                =  W,A,S,D
+Look around             =  mouse movement
+Fire                    =  left mouse button
+Sprint                  =  shift
+Handgrenade             =  G or middle mouse button
+Jump                    =  space
+Pick-Up / Drop          =  E
+Reload                  =  R
+Change Weapon           =  mouse wheel or tab
+Pistol                  =  1
+Assault Rifle           =  2
+Grenade Launcer         =  3
+Minigun (if available)  =  4
+Scar-L (if available)   =  5
+Pause / Resume          =  esc
 
 
 Menus
@@ -63,14 +61,14 @@ fixes:
 - game now correctly saves enemy spawning times
 - game now correctly saves dragon battle
 - gun animations didn't play always correctly
-- minigun sounds don't keep playing if game ends while player was firing
-- minigun sounds don't keep playing if game is paused while player was firing  
+- minigun sounds don't keep playing if game ends while player is firing
+- minigun sounds don't keep playing if game is paused while player is firing
+- dragon can't be killed twice using grenades anymore
 - sound of player hitting ground after jump is now always played correctly
 - sprinting doesn't continue after cooldown period automatically
 - story's next-button is now correctly shown after returning from game level
 
 new features:
-- xbox 360 gamepad support
 - game has now a difficulty setting
 
 improvements:
@@ -85,4 +83,4 @@ improvements:
 - mouse smoothing reduced to favor faster responce time
 - player jumps now higher
 - better balancing on enemy spawns
-- sharper fonts on main menu
+- fonts on main menu no longer blurry
