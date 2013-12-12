@@ -80,7 +80,7 @@ BlendTree:
   m_BlendParameterY: Speed
   m_MinThreshold: 0
   m_MaxThreshold: 5
-  m_UseAutomaticThresholds: 0
+  m_UseAutomaticThresholds: 1
   m_BlendType: 0
 --- !u!1101 &110100000
 Transition:
@@ -274,9 +274,6 @@ StateMachine:
       second:
       - {fileID: 110182291}
       - {fileID: 110175631}
-    data:
-      first: {fileID: 0}
-      second: []
     data:
       first: {fileID: 110267797}
       second:
