@@ -4746,7 +4746,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.89000034, y: 0, z: 7.80999994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400136}
@@ -5277,7 +5277,6 @@ MonoBehaviour:
   turningSpeed: 5
   minDistanceFromPlayer: 7
   timeOfLastFireBreath: 0
-  offset: {x: 0, y: -1.5, z: -.200000003}
   painSounds:
   - {fileID: 8300000, guid: 4ea253fdd6ae0584eb15d2f6d896dbef, type: 3}
   fireBreathSound: {fileID: 8300000, guid: 315475107fc254a4e8837c26d300b6f1, type: 3}
