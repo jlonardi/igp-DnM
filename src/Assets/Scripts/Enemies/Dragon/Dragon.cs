@@ -18,6 +18,7 @@ public class Dragon : MonoBehaviour {
 	private bool fighting = false;
 	private Transform playerTransform;
 	private Transform cameraTransform;
+	private Transform grabTransform;
 	private Transform headTransform;
 	private Transform tr;
 	private Vector3 landingPoint;
@@ -26,7 +27,7 @@ public class Dragon : MonoBehaviour {
 	public float timeOfLastFireBreath = 0f;
 
 	private Vector3 dir;
-	public Vector3 offset = new Vector3(0,-1.5f,-0.3f);
+	public Vector3 offset = new Vector3(0,1.5f,3);
 	public AudioClip[] painSounds;
 	public AudioClip fireBreathSound;
 	public AudioClip[] wingSounds;
@@ -40,7 +41,8 @@ public class Dragon : MonoBehaviour {
 		landingPoint = GameObject.Find("PointInGround").transform.position;
 		playerTransform = GameObject.Find("playerFocus").transform;
 		cameraTransform = GameObject.Find("Main Camera").transform;
-		headTransform = GameObject.Find("IK_Target_Kopf").transform;
+		grabTransform = GameObject.Find("DragonGrab").transform;
+		headTransform = GameObject.Find("head").transform;
 	}
 
 	void Update () {
@@ -64,7 +66,7 @@ public class Dragon : MonoBehaviour {
 		if(fighting) {
 
 			if(!grabbing && !breathFire) {
-				dir = (playerTransform.position - tr.position);
+				dir = playerTransform.position - tr.position;
 				rotateTowards(dir);
 			}
 
@@ -75,22 +77,24 @@ public class Dragon : MonoBehaviour {
 					Vector3 fixedPlayerPosition = playerTransform.position;
 					fixedPlayerPosition.y -= 2.5f;
 					moveTowards(fixedPlayerPosition);
+					Vector3 pos = headTransform.position - cameraTransform.position;
+					Quaternion newRot = Quaternion.LookRotation(pos);
+					cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, newRot, 10); 
 
 				} else {
 					walking = false;
 					breathFire = false;
 					grabbing = true;
 					playerTransform = game.player.gameObject.transform;
-					game.player.SetDeathDuration(4);
-					game.player.TakeDamage(99999, DamageType.HIT);
+					game.player.SetDeathDuration(5);
+					game.player.TakeDamage(99999, DamageType.DRAGONJAWS);
 					grabTime = Time.timeSinceLevelLoad;
 				}
 			}
 
 			if(grabbing) {
-
 				if(grabTime + 2.5f > Time.timeSinceLevelLoad) {
-					playerTransform.position = headTransform.position + offset;
+					playerTransform.position = grabTransform.position;
 				} else {
 					fighting = false;
 					grabbing = false;
@@ -98,6 +102,14 @@ public class Dragon : MonoBehaviour {
 					Debug.Log("Player dropped");
 					//move player so that it doesn't drop through terrain
 					playerTransform.position += Vector3.up*10;
+					RaycastHit hit = new RaycastHit();					
+					if (Physics.Raycast(playerTransform.position, -Vector3.up, out hit)){					
+						// align just above terrain        
+						playerTransform.position = new Vector3(playerTransform.position.x, 
+						playerTransform.position.y - hit.distance + 0.001f, playerTransform.position.z);
+					}
+					//move camera so it's closer to ground and rotate it	
+					cameraTransform.eulerAngles = new Vector3(20,0,90);
 				}
 			}
 
@@ -143,19 +155,12 @@ public class Dragon : MonoBehaviour {
 	}
 
 	void rotateTowards (Vector3 dir) {
-		Quaternion rot = tr.rotation;
-		Quaternion toTarget = Quaternion.LookRotation (dir);
-		
-		rot = Quaternion.Slerp (rot,toTarget,turningSpeed*Time.deltaTime);
-		Vector3 euler = rot.eulerAngles;
-		euler.z = 0;
-		euler.x = 0;
-		rot = Quaternion.Euler (euler);
-		
-		tr.rotation = rot;
+		Quaternion newRot = Quaternion.LookRotation(dir);
+		tr.rotation = Quaternion.Slerp(tr.rotation, newRot, turningSpeed*Time.deltaTime);
 	}
 
 	void moveTowards(Vector3 target) {
+		dir = playerTransform.position - tr.position;
 		rotateTowards(dir);
 		float step = speed * Time.deltaTime;
 		tr.position = Vector3.MoveTowards(tr.position, target, step);

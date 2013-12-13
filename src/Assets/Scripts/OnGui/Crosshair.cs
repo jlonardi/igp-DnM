@@ -30,7 +30,7 @@ public class Crosshair {
 		Gun currentGun = game.weapons.currentGun;
 		// if gun available for firing, draw crosshair
 		if (currentGun!=null && currentGun.enabled && 
-		    !currentGun.reloading && !game.player.motor.IsSprinting()){
+		    !currentGun.reloading && !game.player.motor.IsSprinting() && game.player.GetAliveStatus()){
 			if (currentGun.gunType == Gun.GunType.PROJECTILE){
 				DrawCrosshair((int)(currentGun.currentAccuracy+10), true);
 			} else {

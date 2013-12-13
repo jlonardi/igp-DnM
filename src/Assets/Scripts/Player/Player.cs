@@ -85,17 +85,20 @@ public class Player : MonoBehaviour {
 			timeSinceKilled = Time.timeSinceLevelLoad;
 			sounds.PlayDeathSound();
 
-			//move player so that it doesn't drop through terrain
-			transform.position += Vector3.up*10;
-			RaycastHit hit = new RaycastHit();		
-			if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
-				// align just above terrain		    
-				transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.05f, 
-				                                 	transform.position.z);
+			//if not killed by dragon, drop player into the ground
+			if (damageType != DamageType.DRAGONJAWS){
+				//move player so that it doesn't drop through terrain
+				transform.position += Vector3.up*10;
+				RaycastHit hit = new RaycastHit();		
+				if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
+					// align just above terrain		    
+					transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + 0.05f, 
+					                                 	transform.position.z);
+				}
+				//move camera so it's closer to ground and rotate it
+				Transform cameraTransform = GameObject.Find("Main Camera").transform;
+				cameraTransform.eulerAngles = new Vector3(20,0,90);
 			}
-			//move camera so it's closer to ground and rotate it
-			Transform cameraTransform = GameObject.Find("Main Camera").transform;
-			cameraTransform.eulerAngles = new Vector3(20,0,90);
 		} else {
 			health = tempHealth;
 			sounds.PlayPainSound();

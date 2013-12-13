@@ -51,6 +51,7 @@ public enum HitType
 
 public enum DamageType {
 	BULLET,
+	DRAGONJAWS,
 	FIRE,
 	EXPLOSION,
 	HIT,
