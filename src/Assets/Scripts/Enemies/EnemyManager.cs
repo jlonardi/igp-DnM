@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour {
 	//enemy type for next enemy to be spawned (0-2)
 	public int nextEnemyType = 0;
 
-	[HideInInspector]
+	//[HideInInspector]
 	public int currentEnemyCount = 0;
 
 	private GameObject player;

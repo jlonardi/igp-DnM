@@ -64,7 +64,8 @@ public class SaveContainer {
 	public bool inBattle;
 	public int spawnCount;
 	public int nextEnemyType;
-	public int currentEnemyCount;
+	//do not save current enemycount as this will be automatically correct as we instantiate old enemies back into scene
+	//public int currentEnemyCount;
 	public float waveIntervalOnDragonFight;
 	public int maxDragonFightEnemies;
 	public float playTime;
@@ -142,7 +143,6 @@ public class SaveContainer {
 		inBattle = enemyManager.inBattle;
 		spawnCount = enemyManager.spawnCount;
 		nextEnemyType = enemyManager.nextEnemyType;
-		currentEnemyCount = enemyManager.currentEnemyCount;
 		dragonHasAggroOnPlayer = dragonTriggerHandler.dragonHasAggroOnPlayer;
 		playerKilledTrigger = dragonTriggerHandler.playerKilled;
 		mousePositionX = mouseX.GetPosition();
@@ -232,7 +232,6 @@ public class SaveContainer {
 			enemyManager.originalMaxEnemies = originalMaxEnemies;
 			enemyManager.spawnCount = spawnCount;
 			enemyManager.nextEnemyType = nextEnemyType;
-			enemyManager.currentEnemyCount = currentEnemyCount;
 			enemyManager.inBattle = inBattle;
 
 			dragonTriggerHandler.dragonHasAggroOnPlayer = dragonHasAggroOnPlayer;
@@ -288,12 +287,12 @@ public class SaveContainer {
 				armor.SetActive(false);
 			}
 			// if minigun picked up, disable it on level
-			if (pickedup_armor){
+			if (pickedup_gun3){
 				GameObject minigun = GameObject.Find("minigunOnGround");
 				minigun.SetActive(false);
 			}
 			// if scar picked up, disable it on level
-			if (pickedup_armor){
+			if (pickedup_gun4){
 				GameObject scarL = GameObject.Find("scarlOnGround");
 				scarL.SetActive(false);
 			}
