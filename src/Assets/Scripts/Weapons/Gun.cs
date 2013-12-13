@@ -169,7 +169,7 @@ public class Gun : MonoBehaviour {
 	private void CalculateAccuracy(){
 		float targetAccuracy;
 
-		if (game.player.speed < 1f){
+		if (game.player.speed < 1f || gunType==GunType.PROJECTILE){
 			targetAccuracy = accuracy;
 		} else {
 			targetAccuracy = accuracy + 20;

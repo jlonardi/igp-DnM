@@ -9861,7 +9861,7 @@ MonoBehaviour:
   reloading: 0
   fire: 0
   animator: {fileID: 0}
-  accuracy: 15
+  accuracy: 45
   currentAccuracy: 0
 --- !u!95 &179930195
 Animator:
@@ -48711,6 +48711,8 @@ MonoBehaviour:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
       type: 3}
+    crosshairGrenadeLauncher: {fileID: 2800000, guid: 70fdca41e9f2c494fa35dd79ea376c21,
+      type: 3}
   bloodSplatter:
     bloodSplatter: {fileID: 2800000, guid: 87fc8b49508c504478c2a462edec702b, type: 3}
     fadeSpeed: .0500000007
@@ -51290,6 +51292,10 @@ Prefab:
     - target: {fileID: 400006, guid: ec6da89e3c447df45a3679167ba0ecf0, type: 2}
       propertyPath: m_LocalPosition.z
       value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ec6da89e3c447df45a3679167ba0ecf0, type: 2}
+      propertyPath: accuracy
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec6da89e3c447df45a3679167ba0ecf0, type: 2}
