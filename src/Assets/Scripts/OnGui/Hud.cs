@@ -40,7 +40,7 @@ public class Hud {
 		helpPosition = new Rect(guiCenterX-350, 920, 650, 40);
 		notePosition = new Rect(guiCenterX-350, guiCenterY-60, 700, 40);
 		treasureNotePosition = new Rect(guiCenterX-350, 300, 700, 40);
-		gunInfoPosition = new Rect(20,800,330,500);
+		gunInfoPosition = new Rect(20,920,330,500);
 		grenadeInfoPosition = new Rect(guiWidth-300,1010,300,20);
 
 		//health & armor bar position and size
@@ -96,26 +96,31 @@ public class Hud {
 		//display gun data here
 		GUILayout.BeginArea(gunInfoPosition);
 		if (gun.enabled){
-			GUI.DrawTexture(new Rect(0,0,300,100), gun_bg);
+			GUI.DrawTexture(new Rect(0,0,300,150), gun_bg);
 			if (gun.name == "M4" || gun.name == "M203") {
-				GUI.DrawTexture(new Rect(0,0,300,100), gun_m4);
+				GUI.DrawTexture(new Rect(0,10,300,100), gun_m4);
 			}else if (gun.name == "Minigun") {
-				GUI.DrawTexture(new Rect(0,0,300,100), gun_minigun);
+				GUI.DrawTexture(new Rect(0,10,300,100), gun_minigun);
 			}else if (gun.name == "Scar-L") {
-				GUI.DrawTexture(new Rect(0,0,300,100), gun_scar);
+				GUI.DrawTexture(new Rect(0,10,300,100), gun_scar);
 			}else {
-				GUI.DrawTexture(new Rect(0,0,300,100), gun_pistol);
+				GUI.DrawTexture(new Rect(0,10,300,100), gun_pistol);
 			}
-			GUILayout.BeginArea(new Rect(0,110,330,200));
-				GUILayout.Label("Gun: " + gun.name, "hud_gun");
-				if (gun.currentRounds>0){
-					GUILayout.Label("Ammo: " + gun.currentRounds, "hud_gun");
-				} else {
-					GUILayout.Label("Ammo: -", "hud_gun");
-				}
-				if (!gun.unlimited){
-					GUILayout.Label("Clips: " + gun.totalClips, "hud_gun");
-				}
+			GUILayout.BeginArea(new Rect(0,100,330,200));
+			GUILayout.Label(gun.name, "hud_gun");
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(100,95,200,200));
+			string ammoLabel;
+			if (gun.currentRounds>0){
+				ammoLabel = ""+gun.currentRounds;
+			} else {
+				ammoLabel = "-";
+			}
+			if (!gun.unlimited){
+				ammoLabel += " / " + gun.totalClips;
+			}
+			GUILayout.Label(ammoLabel, "hud_ammo");
 			GUILayout.EndArea();
 		}
 		GUILayout.EndArea();

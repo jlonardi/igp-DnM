@@ -48702,11 +48702,11 @@ MonoBehaviour:
       type: 3}
     dragonHealthBarTexture: {fileID: 2800000, guid: 6c5a2e85da4183249934be3dee4b52c7,
       type: 3}
-    gun_bg: {fileID: 0}
-    gun_pistol: {fileID: 0}
-    gun_m4: {fileID: 0}
-    gun_minigun: {fileID: 0}
-    gun_scar: {fileID: 0}
+    gun_bg: {fileID: 2800000, guid: 4b9d15ac45e69014791aff3f8f91d206, type: 3}
+    gun_pistol: {fileID: 2800000, guid: 37694c9909c09354d9589001ea2f8395, type: 3}
+    gun_m4: {fileID: 2800000, guid: d41e635ac7016cb41a01e2cd0ffa1f38, type: 3}
+    gun_minigun: {fileID: 2800000, guid: 3b8bfb3feadb34e40a3ac9b2e3c69f1b, type: 3}
+    gun_scar: {fileID: 2800000, guid: f6123940d5f3de7488a1f7a259f05a37, type: 3}
   crosshair:
     crosshairVertical: {fileID: 2800000, guid: 622d7f12a4e98af4a9d9388c861bc5d7, type: 3}
     crosshairHorizontal: {fileID: 2800000, guid: 3890c0b96e40d1d45adf40c78427d119,
