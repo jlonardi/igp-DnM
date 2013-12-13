@@ -98,14 +98,6 @@ public class Dragon : MonoBehaviour {
 					Debug.Log("Player dropped");
 					//move player so that it doesn't drop through terrain
 					playerTransform.position += Vector3.up*10;
-					RaycastHit hit = new RaycastHit();		
-					if (Physics.Raycast(playerTransform.position, -Vector3.up, out hit)){
-						// align just above terrain		    
-						playerTransform.position = new Vector3(playerTransform.position.x, 
-	                                       playerTransform.position.y - hit.distance + 0.001f, playerTransform.position.z);
-					}
-					//move camera so it's closer to ground and rotate it
-					cameraTransform.eulerAngles = new Vector3(20,0,90);
 				}
 			}
 
