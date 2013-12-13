@@ -27,7 +27,6 @@ public class Dragon : MonoBehaviour {
 	public float timeOfLastFireBreath = 0f;
 
 	private Vector3 dir;
-	public Vector3 offset = new Vector3(0,1.5f,3);
 	public AudioClip[] painSounds;
 	public AudioClip fireBreathSound;
 	public AudioClip[] wingSounds;
