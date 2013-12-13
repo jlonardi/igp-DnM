@@ -22,7 +22,7 @@ Movement                =  W,A,S,D
 Look around             =  mouse movement
 Fire                    =  left mouse button
 Sprint                  =  shift
-Handgrenade             =  G or middle mouse button
+Handgrenade             =  G or right mouse button
 Jump                    =  space
 Pick-Up / Drop          =  E
 Reload                  =  R
@@ -58,7 +58,7 @@ Changelist 1.0->1.1
 -------------------
 fixes:
 - game now correctly saves guns which player has picked up
-- game now correctly saves enemy spawning times
+- game now correctly saves enemy spawning
 - game now correctly saves dragon battle
 - gun animations didn't play always correctly
 - minigun sounds don't keep playing if game ends while player is firing

@@ -7,8 +7,8 @@ public class SmoothMouseLookX : MonoBehaviour {
 	private float mouseSensitivity = 4f;
 	private float mouseSmoothing = 1f;
 
-	private float joySensitivity = 3f;
-	private float joySmoothing = 2f;
+	private float joySensitivity = 0.4f;
+	private float joySmoothing = 5f;
 
 	private float position = 0f;	
 	private float input;
@@ -34,11 +34,13 @@ public class SmoothMouseLookX : MonoBehaviour {
 		}
 		// get raw mouse data
 		input = Input.GetAxisRaw("Mouse X");
-
 		inputJoy = Input.GetAxis("Joystick Look Horizontal");
 
-		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
-			input = inputJoy;
+		float absInputJoy = Mathf.Abs(inputJoy);
+		if (absInputJoy > Mathf.Abs(input)){
+			
+			float logScale = Mathf.Log(absInputJoy*10);
+			input = inputJoy*logScale;
 
 			// scale input against the sensitivity multiply against smoothing value.
 			input = input * (joySensitivity * joySmoothing);

@@ -42,50 +42,57 @@ public class FPSInputController : MonoBehaviour {
 		}
 
 		//get joystick values
-		float joyAxis3 = Input.GetAxis("Fire/Aim Down Sight");
+		float joyAxis3 = Input.GetAxis("Triggers");
 		float joyPadX = Input.GetAxis("Inventory Horizontal");
 		float joyPadY = Input.GetAxis("Inventory Vertical");
 		
-		bool joyFire = false;
-		bool joyFireDown = false;
-		bool joyFireUp = false;
-		bool joyAimDown = false;
-		bool joyPadUp = false;
-		bool joyPadDown = false;
-		bool joyPadLeft = false;
-		bool joyPadRight = false;
-		bool joyPadUpLeft = false;
+		bool joyRightTrigger = false;
+		bool joyRightTrigger_Down = false;
+		bool joyRightTrigger_Up = false;
+		bool joyLeftTrigger = false;
+		bool joyLeftTrigger_Down = false;
+		bool joyLeftTrigger_Up = false;
+		bool joyPad_Up = false;
+		bool joyPad_Down = false;
+		bool joyPad_Left = false;
+		bool joyPad_Right = false;
+		bool joyPad_UpLeft = false;
 		
 		if (joyAxis3 > 0.5f){
-			joyFire = true;
+			joyRightTrigger = true;
+			if (prevJoyTrigger <= 0.5f){
+				joyRightTrigger_Down = true;
+			}
 		} else if (joyAxis3 < -0.5f){
-			joyAimDown = true;
+			joyLeftTrigger = true;
+			if (prevJoyTrigger >= -0.5f){
+				joyLeftTrigger_Down = true;
+			}
 		}
 
-		if (prevJoyTrigger > 0.5f && joyAxis3 < 0.5f){
-			joyFire = false;
-			joyFireUp = true;
+		if (prevJoyTrigger > 0.5f && joyAxis3 <= 0.5f){
+			joyRightTrigger_Up = true;
 		}
-		if (prevJoyTrigger < 0.5f && joyAxis3 > 0.5f){
-			joyFire = true;
-			joyFireDown = true;
+		if (prevJoyTrigger < -0.5f && joyAxis3 >= -0.5f){
+			joyLeftTrigger_Up = true;
 		}
 
 		prevJoyTrigger = joyAxis3;
+
 		if (joyPadX > 0.5f && joyPadY < -0.5f){
-			joyPadUpLeft = true;
+			joyPad_UpLeft = true;
 			timeOfUpLeft = Time.timeSinceLevelLoad;
 
 		} else if (joyPadX > 0.5f && joyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
-			joyPadUp = true;
+			joyPad_Up = true;
 		} else if (joyPadX < -0.5f && joyPadY < 0.3f && timeOfUpLeft + 0.5f < Time.timeSinceLevelLoad){
-			joyPadDown = true;
+			joyPad_Down = true;
 		}
 
 		if (joyPadY > 0.5f && joyPadX < 0.3f){
-			joyPadRight = true;
+			joyPad_Right = true;
 		} else if (joyPadY < -0.5f && joyPadX < 0.3f){
-			joyPadLeft = true;
+			joyPad_Left = true;
 		}
 
 		bool editorFire = false;
@@ -96,9 +103,9 @@ public class FPSInputController : MonoBehaviour {
 		editorFireDown = Input.GetKeyDown(KeyCode.Q);
 		editorFireUp = Input.GetKeyUp(KeyCode.Q);
 		#endif
-		bool GetFireButton = Input.GetButton("Fire") || joyFire || editorFire;
-		bool GetFireButtonDown = Input.GetButtonDown("Fire") || joyFireDown || editorFireDown;
-		bool GetFireButtonUp = Input.GetButtonUp("Fire") || joyFireUp || editorFireUp;
+		bool GetFireButton = Input.GetButton("Fire") || joyRightTrigger || editorFire;
+		bool GetFireButtonDown = Input.GetButtonDown("Fire") || joyRightTrigger_Down || editorFireDown;
+		bool GetFireButtonUp = Input.GetButtonUp("Fire") || joyRightTrigger_Up || editorFireUp;
 		
 
 		bool treasureOnGround = game.treasure.OnGround();
@@ -148,23 +155,23 @@ public class FPSInputController : MonoBehaviour {
 			game.weapons.ChangeToPreviousGun();
 		}
 
-		if (Input.GetButtonDown("Pistol") || joyPadDown){
+		if (Input.GetButtonDown("Pistol") || joyPad_Down){
 			game.weapons.ChangeToGun(0);
 		}
-		if (Input.GetButtonDown("Assault Rifle") || joyPadUp){
+		if (Input.GetButtonDown("Assault Rifle") || joyPad_Up){
 			game.weapons.ChangeToGun(1);
 		}
-		if (Input.GetButtonDown("Grenade Launcher") || joyPadRight){
+		if (Input.GetButtonDown("Grenade Launcher") || joyPad_Right){
 			game.weapons.ChangeToGun(2);
 		}
-		if (Input.GetButtonDown("Minigun") || joyPadLeft){
+		if (Input.GetButtonDown("Minigun") || joyPad_Left){
 			game.weapons.ChangeToGun(3);
 		}
-		if (Input.GetButtonDown("Scar-L") || joyPadUpLeft){
+		if (Input.GetButtonDown("Scar-L") || joyPad_UpLeft){
 			game.weapons.ChangeToGun(4);
 		}
 
-		if (Input.GetButtonDown("Sprint") && treasureOnGround && GetFireButton == false){
+		if ((Input.GetButtonDown("Sprint") || joyLeftTrigger_Down) && treasureOnGround && GetFireButton == false){
 			motor.StartSprint();
 		}
 

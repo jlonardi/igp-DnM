@@ -8,8 +8,8 @@ public class SmoothMouseLookY : MonoBehaviour {
 	private float mouseSensitivity = 4f;
 	private float mouseSmoothing = 1f;
 	
-	private float joySensitivity = 3f;
-	private float joySmoothing = 2f;
+	private float joySensitivity = 0.4f;
+	private float joySmoothing = 5f;
 
 	public bool invertMouse = false;
 	public bool invertJoy = false;
@@ -52,9 +52,11 @@ public class SmoothMouseLookY : MonoBehaviour {
 			inputJoy *= -1;
 		}
 		
-
-		if (Mathf.Abs(inputJoy) > Mathf.Abs(input)){
-			input = inputJoy;
+		float absInputJoy = Mathf.Abs(inputJoy);
+		if (absInputJoy > Mathf.Abs(input)){
+			
+			float logScale = Mathf.Log(absInputJoy*10);
+			input = inputJoy*logScale;
 
 			// scale input against the sensitivity multiply against smoothing value.
 			input = input * (joySensitivity * joySmoothing);
