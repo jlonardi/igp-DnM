@@ -154,8 +154,12 @@ public class Dragon : MonoBehaviour {
 	}
 
 	void rotateTowards (Vector3 dir) {
-		Quaternion newRot = Quaternion.LookRotation(dir);
-		tr.rotation = Quaternion.Slerp(tr.rotation, newRot, turningSpeed*Time.deltaTime);
+		Quaternion toTarget = Quaternion.LookRotation(dir);
+		//remove x & z rotation
+		Vector3 eulerTarget = new Vector3(0, toTarget.eulerAngles.y, 0);
+		toTarget = Quaternion.Euler(eulerTarget);
+		//rotate by using slerp
+		tr.rotation = Quaternion.Slerp(tr.rotation, toTarget , turningSpeed*Time.deltaTime);
 	}
 
 	void moveTowards(Vector3 target) {
