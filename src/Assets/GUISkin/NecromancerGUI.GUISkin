@@ -2820,7 +2820,7 @@ MonoBehaviour:
   - m_Name: hud_score_treasure
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_TextColor: {r: .963235319, g: .889329791, b: .835748255, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
@@ -2920,8 +2920,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 3ce4961425d650e42a4222d73f437545, type: 3}
-    m_FontSize: 45
+    m_Font: {fileID: 12800000, guid: 5c366876ae2f6574f942cd03913ff2a8, type: 3}
+    m_FontSize: 42
     m_FontStyle: 1
     m_Alignment: 0
     m_WordWrap: 0
@@ -2994,7 +2994,7 @@ MonoBehaviour:
   - m_Name: hud_right
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_TextColor: {r: .963235319, g: .889329791, b: .835748255, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: .282352954, g: .156862751, b: .0470588244, a: 1}
@@ -3094,8 +3094,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: c70504cdd34de484bb5e178466197c3f, type: 3}
-    m_FontSize: 45
+    m_Font: {fileID: 12800000, guid: 5c366876ae2f6574f942cd03913ff2a8, type: 3}
+    m_FontSize: 42
     m_FontStyle: 1
     m_Alignment: 2
     m_WordWrap: 0
