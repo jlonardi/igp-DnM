@@ -14,6 +14,8 @@ src/Assembly*.*
 src/ProjectSettings/Physics2DSettings.asset
 src/Assets/Scenes/TestLevel.unity
 src/Assets/Scenes/TestLevel.unity.meta
+src/Assets/Scenes/TestLevel/*
+src/Assets/Scenes/TestLevel.meta
 src/Assets/Scripts/Test/*
 src/Assets/Scripts/Test.meta
 src/Assets/Images/Alkutarina.meta
